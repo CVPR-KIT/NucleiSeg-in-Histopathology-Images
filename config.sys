@@ -1,0 +1,57 @@
+log = "log/"
+
+[Image Augmentation]
+to_be_aug = "Dataset/MonuSegData/"     # Data That is to be augmenated  
+out_dir = "Dataset/MonuSegData/slidingAug/"         # Output for Sliding Window Augmentation
+augmented_dir = "Dataset/MonuSegData/augmentated/"              # Output for Augmentation
+
+tileHeight = 800                               # Sliding Window height
+tileWidth = 800                                # Sliding Window Width
+slidingSize = 50                                # Slide Skipping size
+augmentPerImage = 50                            # Number of augmentation to perform per image that was generated using sliding down
+finalTileHeight = 256                           # Final Height of augmenated image
+finalTileWidth = 256                            # Final Width of augmenated image
+
+[Train-Val split]
+splitRatio = 0.9                                # 0.8 -> 80% training 20% validation
+
+[Training]
+trainDataset = "Dataset/train/"                    # Images to be during Training
+valDataset = "Dataset/val/"                        # Images to used during Validation
+testDataset = "Dataset/test/"                      # Images to used during Testing
+
+resumeModel = "model/best_model.pth"            # Model to used during re-training
+
+[Class Config]
+class1 = "128, 0, 128"                          #purple
+class2 = "45, 125, 255"                         #orange
+class3 = "0, 255, 255"                          #yellow
+class4 = "0, 0, 0"                              #black
+
+[Model]
+model_type = "EluNet"                           # Model Avl: UNet ,UNet_3Plus, EluNet
+
+[Parameters]
+kernel_size = 3
+epochs = 50
+batch_size = 16
+learning_rate = 0.00001                         # can be set to "auto" for finding the best learning rate or set to 0.00001
+num_classes = 2
+anti_type = "none"
+weight_path = "None"
+activation = "relu"                             # Activations available:
+resume = "False"                                # Resume Training
+resume_epoch = 0                                # Resume Training from epoch
+channel = 16                                    # Default: 16 Can be set to 64 or other
+attention = "False"                             # Model 1 only
+depth = 4                                       # Number of hidden layers (UNet Model only)
+loss = "improvedLoss"                             # Losses available: jaccard, focal, pwcel, dice, unet3+loss, improvedLoss
+dropout = 0                                     # Dropout rate
+dilation = 1                                    # For Dilated convolution.
+
+
+[episodic]
+episodicTrain = "data/train/"
+episodicVal = "data/val/"
+episodicTest = "data/data_original/test/"
+episodicModelPath = "model/episodic/"

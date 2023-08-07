@@ -1,0 +1,11 @@
+Dataset/MoNuSegTestData/
+Dataset/MoNuSeg 2018 Training Data/
+Dataset/train/
+Dataset/val/
+Dataset/test/
+Dataset/MonuSegData/
+Dataset/MoNuSeg 2018 Training Data.zip
+Dataset/MonuSeg-20200319T073151Z-001.zip
+Dataset/MoNuSegTestData.zip
+Outputs/
+monuSegEnv/
