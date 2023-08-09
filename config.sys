@@ -23,8 +23,8 @@ testDataset = "Dataset/test/"                      # Images to used during Testi
 resumeModel = "model/best_model.pth"            # Model to used during re-training
 
 [Class Config]
-class1 = "128, 0, 128"                          #purple
-class2 = "45, 125, 255"                         #orange
+class1 = "0, 0, 0"                          #purple
+class2 = "255, 255, 255"                         #orange
 class3 = "0, 255, 255"                          #yellow
 class4 = "0, 0, 0"                              #black
 

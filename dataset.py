@@ -211,7 +211,7 @@ class MonuSegOnlyTestDataSet(Dataset):
         self.hit = 512 # default value and is replaced later 
         logging.basicConfig(filename=self.config["log"] + "dataloader.log", filemode='w', 
                         level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-        self.len = 1600
+        self.len = 800
         return 
     
     def __len__(self):
@@ -228,9 +228,13 @@ class MonuSegOnlyTestDataSet(Dataset):
         self.wid = image.shape[0]
         self.hit = image.shape[1]
 
+        self.wid = self.hit = self.len
+
         
         image=image[0:self.wid,0:self.hit]
         label=label[0:self.wid,0:self.hit]
+        label[label==0] = 0
+        label[label==255] = 1
         #plabel = plabel[0:512,0:512]
 
         #plt.imshow(label*2)

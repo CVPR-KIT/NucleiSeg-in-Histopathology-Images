@@ -41,7 +41,7 @@ A training sample with segmentation mask from training set can be seen below:
     It will create augmentations on the slided images in a new folder named "augmentated". Parameters can be changed in [config.sys](config.sys) file.
 3. Create Validation and Test Set
     <pre><code>python makeValidation.py</code></pre>
-    It will create the folder and files for Train, Validation from augmentated folder and organise data for testing.
+    It will create the folder and files for Train, Validation from augmentated folder and organise data for testing(just copying them from base data folder).
 
 ## Train Model
 After checking the dataset information in the [config.sys](config.sys) file,
