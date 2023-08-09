@@ -30,7 +30,7 @@ A training sample with segmentation mask from training set can be seen below:
 * All the modifyable parameters related to the Experiment and Augmentation is present in the file [config.sys](config.sys). Setup all the parameters here before proceeding.
 
 * After preparing the data, run the following code to generate metadata files for image training and testing sets.
-    <pre><code>pip install -r requirements.txt</code></pre>
+    <pre><code>python auxilary/dataValidity.py </code></pre>
 
 ## Augmentation
 1. First Step is to perform Sliding Augmentation
@@ -47,3 +47,8 @@ A training sample with segmentation mask from training set can be seen below:
 After checking the dataset information in the [config.sys](config.sys) file,
 <pre><code>python main.py --config config.sys |& tee log/log-08-07.txt</code></pre>
 The parameters can be changed her as per requirement in the [config.sys](config.sys) file.. A log file is created in the [Log](log/) folder.
+
+
+## Inference / Testing
+For testing or inferencing images, make sure they are in the correct format and directory inforamtion is added correctly in the  [config.sys](config.sys) file.
+<pre><code>python train_test.py --expt_dir &lt;Outputs/experiment_dir&gt; --img_dir all</code></pre>
