@@ -4,6 +4,7 @@ import random
 import numpy as np
 import os
 import torch
+import sys
 import matplotlib.pyplot as plt
 import logging
 from auxilary.utils import result_recolor, toGray, toGray4C, readConfig
@@ -27,7 +28,10 @@ class MonuSegDataSet(Dataset):
 
     def __getitem__(self, index):
         try:
-            image = cv2.imread(os.path.join(self.img_dir,str(index)+'.png'),cv2.IMREAD_GRAYSCALE)/255
+            if self.config["input_img_type"] == "rgb":
+                image = cv2.imread(os.path.join(self.img_dir,str(index)+'.png'))/255
+            else:
+                image = cv2.imread(os.path.join(self.img_dir,str(index)+'.png'),cv2.IMREAD_GRAYSCALE)/255
         except TypeError:
             print(os.path.join(self.img_dir,str(index)+'.png'))
 
@@ -45,8 +49,10 @@ class MonuSegDataSet(Dataset):
         label[label==255] = 1
         label[label==0] = 0
         
-        
-        image = np.reshape(image,(1,self.wid,self.hit))
+        if self.config["input_img_type"] == "rgb":
+            image = np.reshape(image,(3,self.wid,self.hit))
+        else:
+            image = np.reshape(image,(1,self.wid,self.hit))
 
         if self.config['model_type'] == 'UNet_3Plus':
             # Only for unet3+
@@ -87,7 +93,10 @@ class MonuSegValDataSet(Dataset):
 
     def __getitem__(self, index):
         try:
-            image = cv2.imread(os.path.join(self.img_dir,str(index+1)+'.png'),cv2.IMREAD_GRAYSCALE)/255
+            if self.config["input_img_type"] == "rgb":
+                image = cv2.imread(os.path.join(self.img_dir,str(index+1)+'.png'))/255
+            else:
+                image = cv2.imread(os.path.join(self.img_dir,str(index+1)+'.png'),cv2.IMREAD_GRAYSCALE)/255
         except TypeError:
             print(os.path.join(self.img_dir,str(index+1)+'.png'))
 
@@ -109,7 +118,10 @@ class MonuSegValDataSet(Dataset):
         label[label==0] = 0
         
         
-        image = np.reshape(image,(1,self.wid,self.hit))
+        if self.config["input_img_type"] == "rgb":
+            image = np.reshape(image,(3,self.wid,self.hit))
+        else:
+            image = np.reshape(image,(1,self.wid,self.hit))
 
         if self.config['model_type'] == 'UNet_3Plus':
             # Only for unet3+
@@ -151,7 +163,11 @@ class MonuSegTestDataSet(Dataset):
     def __getitem__(self, index):
 
         img_paths  = sorted(os.listdir(self.img_dir))
-        image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]),cv2.IMREAD_GRAYSCALE)/255
+        if self.config["input_img_type"] == "rgb":
+            image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]))/255
+        else:
+            image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]),cv2.IMREAD_GRAYSCALE)/255
+        
 
         self.wid = image.shape[0]
         self.hit = image.shape[1]
@@ -178,7 +194,10 @@ class MonuSegTestDataSet(Dataset):
         label[label==0] = 0
         
         
-        image = np.reshape(image,(1,self.wid,self.hit))
+        if self.config["input_img_type"] == "rgb":
+            image = np.reshape(image,(3,self.wid,self.hit))
+        else:
+            image = np.reshape(image,(1,self.wid,self.hit))
 
         if self.config['model_type'] == 'UNet_3Plus':
             # Only for unet3+
@@ -221,7 +240,11 @@ class MonuSegOnlyTestDataSet(Dataset):
         img_paths  = sorted(os.listdir(self.img_dir))
         #logging.debug(img_paths)
         #logging.debug(os.path.join(self.img_dir,str(index+1)+img_paths[index][-4:]))
-        image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]),cv2.IMREAD_GRAYSCALE)/255
+        if self.config["input_img_type"] == "rgb":
+            image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]))/255
+        else:
+            image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]),cv2.IMREAD_GRAYSCALE)/255
+        
 
         label = cv2.imread(os.path.join(self.img_dir,str(index)+'_label'+img_paths[1][-4:]),cv2.IMREAD_GRAYSCALE)
 
@@ -240,7 +263,11 @@ class MonuSegOnlyTestDataSet(Dataset):
         #plt.imshow(label*2)
         
 
-        image = np.reshape(image,(1,self.wid,self.hit))
+        if self.config["input_img_type"] == "rgb":
+            image = np.reshape(image,(3,self.wid,self.hit))
+        else:
+            image = np.reshape(image,(1,self.wid,self.hit))
+
         label = np.reshape(label,(1,self.wid,self.hit))
 
         return torch.Tensor(image),torch.LongTensor(label)

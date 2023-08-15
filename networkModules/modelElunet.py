@@ -16,10 +16,16 @@ class ELUnet(nn.Module):
         """
         super(ELUnet, self).__init__()
 
-
+        if config["input_img_type"] == "rgb":
+            in_channels = 3
+        else:
+            in_channels = 1
+            
         n = config["channel"]
         self.kernel_size = config["kernel_size"]
         out_channels = config["num_classes"]
+
+        self.dropout = nn.Dropout2d(p=config["dropout"])
 
         # ------ Input convolution --------------
         self.in_conv = DoubleConv(in_channels,n, self.kernel_size)
@@ -62,6 +68,9 @@ class ELUnet(nn.Module):
         x_enc_2 = self.down_2(x_enc_1) # 256
         x_enc_3 = self.down_3(x_enc_2) # 512
         x_enc_4 = self.down_4(x_enc_3) # 1024
+
+        # ------ dropout
+        x_enc_4 = self.dropout(x_enc_4)
     
         # ------ decoder outputs
         x_up_1 = self.up_1024_512(x_enc_4)

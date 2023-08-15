@@ -18,8 +18,12 @@ import time
 from datetime import datetime
 import logging
 
+
 from auxilary.utils import *
 from auxilary.lossFunctions import *
+
+
+import wandb
 
 '''
 Command to run:
@@ -188,6 +192,14 @@ def run_epoch(model, data_loader, criterion, optimizer, epoch,device, mode,confi
     
     return loss, confusion_matrix, mIoU, accuracy
 
+def initWandb(config):
+    # start a new wandb run to track this script
+    wandb.init(
+    # set the wandb project where this run will be logged
+    project="monunet-segmenation",
+    # track hyperparameters and run metadata
+    config=config
+)
 
 def main():
     # Set seed
@@ -203,6 +215,8 @@ def main():
 
     sys.stdout = sys.__stdout__
 
+
+
     # Read configFile
     userConfig = arg_init().config
     if userConfig == 'none':
@@ -215,6 +229,8 @@ def main():
     logging.info("\n\n#################### New Run ####################")
     #logging.basicConfig(level=logging.CRITICAL)
 
+    # Initialize wandb
+    initWandb(config)
 
     learning_rate = config["learning_rate"]
     num_epochs = config["epochs"]
@@ -265,7 +281,10 @@ def main():
     # save model config
     print('saving model summary')
     logging.info(f'saving model summary at {config["expt_dir"]+"modelSummary.txt"}')
-    saveTorchSummary(model, input_size=(1, 256, 256), path=config["expt_dir"]+"modelSummary.txt")
+    if config["input_img_type"] == "rgb":
+        saveTorchSummary(model, input_size=(3, 256, 256), path=config["expt_dir"]+"modelSummary.txt")
+    else:
+        saveTorchSummary(model, input_size=(1, 256, 256), path=config["expt_dir"]+"modelSummary.txt")
     # optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate)
 
     
@@ -369,6 +388,7 @@ def main():
         print('val_accuracy:',val_accuracy)
         #logging.info('val_accuracy:',val_accuracy)
         
+        wandb.log({"train_loss": train_loss, "train_accuracy": train_accuracy, "train_mIoU": train_mIoU, "val_loss": val_loss, "val_accuracy": val_accuracy, "val_mIoU": val_mIoU})
         
         if val_accuracy > best_val_accuracy:
             best_val_accuracy = val_accuracy
@@ -405,6 +425,8 @@ def main():
     logging.info("Testing...")
     test_dataset = MonuSegTestDataSet(config["testDataset"])
     test_data = DataLoader(test_dataset,batch_size=1,num_workers=1)
+    # make testing directory
+    createDir([config["expt_dir"]+"testResults/"])
     pgbar = enumerate(tqdm(test_data))
     #val_confusion_matrix = np.zeros((config.num_classes, config.num_classes))
     for batch_idx, (images,label) in pgbar:        
@@ -421,12 +443,15 @@ def main():
 
             # saving images
             logging.info("saving images")
-            images = torch.reshape(images,(images.shape[2],images.shape[3],1))
+            if config["input_img_type"] == "rgb":
+                images = torch.reshape(images,(images.shape[2],images.shape[3],3))
+            else:
+                images = torch.reshape(images,(images.shape[2],images.shape[3],1))
             images = images.cpu().detach().numpy()
-            cv2.imwrite(config["expt_dir"]+str(batch_idx)+'_img'+'.png',images*255)
+            cv2.imwrite(config["expt_dir"]+"testResults/"+str(batch_idx)+'_img'+'.png',images*255)
                            
             rslt_color = result_recolor(rslt.cpu().detach().numpy())
-            cv2.imwrite(config["expt_dir"]+str(batch_idx)+'_pred_color'+'.png',rslt_color)
+            cv2.imwrite(config["expt_dir"]+"testResults/"+str(batch_idx)+'_pred_color'+'.png',rslt_color)
     
     best_val_cm = val_confusion_matrix
     best_val_mIoU = calc_mIoU(best_val_cm)
@@ -439,7 +464,7 @@ def main():
     loss_log_file.write("===============Training Losses ===========\n")
     for loss in train_losses:
         loss_log_file.write(str(loss)+', ')
-    loss_log_file.write("===============Training Accuracies ===========\n")
+    loss_log_file.write("\n\n===============Training Accuracies ===========\n")
     for acc in train_accuracies:
         loss_log_file.write(str(acc)+', ')
     loss_log_file.write('\n\n===============Validation Losses ===========\n')

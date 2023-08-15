@@ -63,7 +63,11 @@ def runInference(data, model, device, config, img_type):
 
         accList.append(test_acc.item() / (wid*hit))
 
-        images = torch.reshape(images,(wid,hit,1))
+        if config["input_img_type"] == "rgb":
+            images = torch.reshape(images,(wid,hit, 3))
+        else:
+            images = torch.reshape(images,(wid,hit,1))
+            
         images = images.cpu().detach().numpy()
         cv2.imwrite(config['expt_dir']+'inference/'+img_type+'/'+str(i)+'_'+'img.png',images*255)
 
