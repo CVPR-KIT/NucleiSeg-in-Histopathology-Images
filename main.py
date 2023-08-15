@@ -505,6 +505,26 @@ def main():
     # Logging run time
     print('Logging run time')
     logging.info(f'Experiment took {elapsed_time} hours')
+
+    #generting loss and accuracy plot
+    print('generting loss and accuracy plot')
+    logging.info(f'generting loss and accuracy plot at {config["expt_dir"]+"loss_plot.png"}')
+    N = config["epochs"]
+    plt.style.use("ggplot")
+    plt.figure()
+    plt.plot(np.arange(0, N), train_losses, label="train_loss")
+    plt.plot(np.arange(0, N), val_losses, label="val_loss")
+    plt.plot(np.arange(0, N), train_accuracies, label="train_acc")
+    plt.plot(np.arange(0, N), val_accuracies, label="val_acc")
+    title = "Training Loss and Accuracy on MoNuSeg Dataset - "+config["model_type"]
+    plt.title(title)
+    plt.xlabel("Epoch #")
+    plt.ylabel("Loss/Accuracy")
+    plt.legend(loc="lower left")
+    plt.savefig("plot.png")
+
+
+
     
     # Experiment End
     logging.info('Experiment End')

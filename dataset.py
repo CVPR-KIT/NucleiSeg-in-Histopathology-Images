@@ -24,7 +24,7 @@ class MonuSegDataSet(Dataset):
         return 
     
     def __len__(self):
-        return len(os.listdir(self.img_dir))//2
+        return len(os.listdir(self.img_dir))//200
 
     def __getitem__(self, index):
         try:
@@ -89,7 +89,7 @@ class MonuSegValDataSet(Dataset):
         return  
     
     def __len__(self):
-        return len(os.listdir(self.img_dir))//2 -1
+        return len(os.listdir(self.img_dir))//200 -1
 
     def __getitem__(self, index):
         try:

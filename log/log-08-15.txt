@@ -1,0 +1,39 @@
+wandb: Currently logged in as: bluesaiyancodes. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.15.8
+wandb: Run data is saved locally in /home/blue/projects/MoNuSeg/wandb/run-20230815_153022-khlvj66i
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run flowing-lake-11
+wandb: ⭐️ View project at https://wandb.ai/bluesaiyancodes/monunet-segmenation
+wandb: 🚀 View run at https://wandb.ai/bluesaiyancodes/monunet-segmenation/runs/khlvj66i
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cpu device
+configuring data loaders
+configuring model - EluNet
+saving model summary
+logging parameters
+starting training
+  0%|          | 0/27 [00:00<?, ?it/s]Epoch 0/50:   0%|          | 0/27 [00:00<?, ?it/s]Epoch 0/50:   0%|          | 0/27 [00:05<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/blue/projects/MoNuSeg/main.py", line 533, in <module>
+    main()
+  File "/home/blue/projects/MoNuSeg/main.py", line 368, in main
+    train_loss ,train_confusion_matrix, train_mIoU,train_accuracy =  run_epoch(model, train_data, criterion, optimizer, epoch, device, 'train',config)
+  File "/home/blue/projects/MoNuSeg/main.py", line 146, in run_epoch
+    loss = criterion(pred,gt)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/auxilary/lossFunctions.py", line 593, in forward
+    msssim_loss =  1 -  msssim(input.float(), target.float(), window_size=11, size_average=True,
+  File "/home/blue/projects/MoNuSeg/auxilary/lossFunctions.py", line 515, in msssim
+    weights = torch.FloatTensor([0.0448, 0.2856, 0.3001, 0.2363, 0.1333]).cuda()
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/cuda/__init__.py", line 247, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx
+wandb: Waiting for W&B process to finish... (failed 1). Press Control-C to abort syncing.
+wandb: 🚀 View run flowing-lake-11 at: https://wandb.ai/bluesaiyancodes/monunet-segmenation/runs/khlvj66i
+wandb: ️⚡ View job at https://wandb.ai/bluesaiyancodes/monunet-segmenation/jobs/QXJ0aWZhY3RDb2xsZWN0aW9uOjg5OTQ0NzM0/version_details/v3
+wandb: Synced 5 W&B file(s), 0 media file(s), 2 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20230815_153022-khlvj66i/logs

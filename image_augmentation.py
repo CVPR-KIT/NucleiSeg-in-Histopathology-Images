@@ -148,7 +148,7 @@ def crop_around_center(image, width, height):
 
     return image[y1:y2, x1:x2]
 
-def rotate_crop_radom(img, angle):
+def rotate_crop_random(img, angle):
     image_height, image_width = img.shape[0:2]
 
     image_rotated = rotate_image(img, angle)
@@ -160,6 +160,18 @@ def rotate_crop_radom(img, angle):
 # resize Image
 def resize_image(image, new_dimensions):
     return cv2.resize(image, new_dimensions, interpolation=cv2.INTER_CUBIC)
+
+
+def magnify_image(image, magnify_random):
+    # Apply magnification using cv2.resize with the magnification factor
+    magnified_image = cv2.resize(image, None, fx=magnify_random, fy=magnify_random, interpolation=cv2.INTER_CUBIC)
+    # Determine the crop coordinates to bring the image back to the original size
+    crop_x = (magnified_image.shape[1] - image.shape[1]) // 2
+    crop_y = (magnified_image.shape[0] - image.shape[0]) // 2
+
+    # Crop the magnified image to the original size
+    final_image = magnified_image[crop_y:crop_y + image.shape[0], crop_x:crop_x + image.shape[1]]
+    return final_image
 
 
 # function for gamma correction
@@ -268,7 +280,7 @@ if __name__ == '__main__':
         # Set random probabilities
         flip_random = np.random.uniform(size=augment_num_per_img)  # [0,1]
         rotate_random = np.random.randint(low=0, high=360, size=augment_num_per_img)  # [0, 360]
-        magnify_random = np.random.uniform(low=0.8, high=1.2, size=augment_num_per_img)  # [0.8, 1.2]
+        magnify_random = np.random.uniform(low=1, high=1.5, size=augment_num_per_img)  # [1, 1.5]
         elastic_random = np.random.uniform(size=augment_num_per_img)  # [0, 1]
 
 
@@ -282,12 +294,15 @@ if __name__ == '__main__':
             flipped_label, flip_flag = flip_ud(flipped_label, flip_random[j])
 
             # rotate randomly without blank
-            modImage, flag = rotate_crop_radom(flipped_image, rotate_random[j])
-            modLabel, flag = rotate_crop_radom(flipped_label, rotate_random[j])
+            modImage, flag = rotate_crop_random(flipped_image, rotate_random[j])
+            modLabel, flag = rotate_crop_random(flipped_label, rotate_random[j])
 
             # magnify randomly
-            modImage = cv2.resize(modImage, None, fx=magnify_random[j], fy=magnify_random[j], interpolation=cv2.INTER_CUBIC)
-            modLabel = cv2.resize(modLabel, None, fx=magnify_random[j], fy=magnify_random[j], interpolation=cv2.INTER_CUBIC)
+            modImage = magnify_image(modImage, magnify_random[j])
+            modLabel = magnify_image(modLabel, magnify_random[j])
+
+            # magnify image and label
+
 
             # elastic transform
             if elastic_random[j] <= 0.5:
@@ -304,13 +319,19 @@ if __name__ == '__main__':
 
             for gamma_value in gamma_values:
                 corrected_image = adjust_gamma(modImage, gamma_value)
-                cv2.imwrite(base_dir + str(count) +".png", corrected_image)
-                cv2.imwrite(base_dir + str(count) + "_label.png", modLabel)
+                new_img_name = str(count) +".png"
+                new_label_name = str(count) + "_label.png"
+                cv2.imwrite(base_dir + new_img_name, corrected_image)
+                cv2.imwrite(base_dir + new_label_name , modLabel)
+                f.write(new_img_name+"\n"+new_label_name+"\n")
                 count += 1
 
             # save image and label
-            cv2.imwrite(base_dir + str(count) + ".png", modImage)
-            cv2.imwrite(base_dir + str(count) + "_label.png", modLabel)
+            new_img_name = str(count) +".png"
+            new_label_name = str(count) + "_label.png"
+            cv2.imwrite(base_dir + new_img_name, modImage)
+            cv2.imwrite(base_dir + new_label_name, modLabel)
+            f.write(new_img_name+"\n"+new_label_name+"\n")
             count += 1
 
     f.close()

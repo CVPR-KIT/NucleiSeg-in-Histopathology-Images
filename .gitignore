@@ -7,5 +7,7 @@ Dataset/MonuSegData/
 Dataset/MoNuSeg 2018 Training Data.zip
 Dataset/MonuSeg-20200319T073151Z-001.zip
 Dataset/MoNuSegTestData.zip
+Dataset/train_old
+Dataset/val_old
 Outputs/
 monuSegEnv/

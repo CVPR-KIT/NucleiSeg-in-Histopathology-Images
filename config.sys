@@ -32,11 +32,11 @@ class4 = "0, 0, 0"                              #black
 model_type = "EluNet"                           # Model Avl: UNet ,UNet_3Plus, EluNet
 
 [Parameters]
-input_img_type = "gray"                          # Input Image Type: rgb, gray
+input_img_type = "rgb"                          # Input Image Type: rgb, gray
 kernel_size = 3
 epochs = 50
 batch_size = 16
-learning_rate = "auto"                         # can be set to "auto" for finding the best learning rate or set to 0.00001
+learning_rate = 0.00001                         # can be set to "auto" for finding the best learning rate or set to 0.00001
 num_classes = 2
 anti_type = "none"
 weight_path = "None"
@@ -49,10 +49,3 @@ depth = 4                                       # Number of hidden layers (UNet 
 loss = "improvedLoss"                             # Losses available: jaccard, focal, pwcel, dice, unet3+loss, improvedLoss
 dropout = 0.7                                     # Dropout rate
 dilation = 1                                    # For Dilated convolution.
-
-
-[episodic]
-episodicTrain = "data/train/"
-episodicVal = "data/val/"
-episodicTest = "data/data_original/test/"
-episodicModelPath = "model/episodic/"

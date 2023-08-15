@@ -1,0 +1,164 @@
+wandb_version: 1
+
+log:
+  desc: null
+  value: log/
+to_be_aug:
+  desc: null
+  value: Dataset/MonuSegData/
+out_dir:
+  desc: null
+  value: Dataset/MonuSegData/slidingAug/
+augmented_dir:
+  desc: null
+  value: Dataset/MonuSegData/augmentated/
+tileHeight:
+  desc: null
+  value: 800
+tileWidth:
+  desc: null
+  value: 800
+slidingSize:
+  desc: null
+  value: 50
+augmentPerImage:
+  desc: null
+  value: 100
+finalTileHeight:
+  desc: null
+  value: 256
+finalTileWidth:
+  desc: null
+  value: 256
+splitRatio:
+  desc: null
+  value: 0.9
+trainDataset:
+  desc: null
+  value: Dataset/train/
+valDataset:
+  desc: null
+  value: Dataset/val/
+testDataset:
+  desc: null
+  value: Dataset/test/
+resumeModel:
+  desc: null
+  value: model/best_model.pth
+class1:
+  desc: null
+  value:
+  - 0
+  - 0
+  - 0
+class2:
+  desc: null
+  value:
+  - 255
+  - 255
+  - 255
+class3:
+  desc: null
+  value:
+  - 0
+  - 255
+  - 255
+class4:
+  desc: null
+  value:
+  - 0
+  - 0
+  - 0
+model_type:
+  desc: null
+  value: EluNet
+input_img_type:
+  desc: null
+  value: rgb
+kernel_size:
+  desc: null
+  value: 3
+epochs:
+  desc: null
+  value: 50
+batch_size:
+  desc: null
+  value: 16
+learning_rate:
+  desc: null
+  value: 0.001
+num_classes:
+  desc: null
+  value: 2
+anti_type:
+  desc: null
+  value: none
+weight_path:
+  desc: null
+  value: null
+activation:
+  desc: null
+  value: relu
+resume:
+  desc: null
+  value: false
+resume_epoch:
+  desc: null
+  value: 0
+channel:
+  desc: null
+  value: 16
+attention:
+  desc: null
+  value: false
+depth:
+  desc: null
+  value: 4
+loss:
+  desc: null
+  value: improvedLoss
+dropout:
+  desc: null
+  value: 0.7
+dilation:
+  desc: null
+  value: 1
+episodicTrain:
+  desc: null
+  value: data/train/
+episodicVal:
+  desc: null
+  value: data/val/
+episodicTest:
+  desc: null
+  value: data/data_original/test/
+episodicModelPath:
+  desc: null
+  value: model/episodic/
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.9
+    cli_version: 0.15.8
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1692078946.0815
+    t:
+      1:
+      - 1
+      - 5
+      - 53
+      - 55
+      2:
+      - 1
+      - 5
+      - 53
+      - 55
+      3:
+      - 16
+      - 23
+      4: 3.10.9
+      5: 0.15.8
+      8:
+      - 5
