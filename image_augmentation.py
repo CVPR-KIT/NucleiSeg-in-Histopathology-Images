@@ -1,23 +1,26 @@
-import math
-import cv2
-import numpy as np
-
-from skimage.transform import warp, AffineTransform, ProjectiveTransform
-from skimage.exposure import equalize_adapthist, equalize_hist, rescale_intensity, adjust_gamma, adjust_log, adjust_sigmoid
-from skimage.filters import gaussian
-from skimage.util import random_noise
-import os
-import skimage.io
-import glob
-
-from auxilary.utils import toGray, toGray4C, readConfig
-import logging
-from tqdm import tqdm
+from auxilary.utils import *
 from natsort import natsorted
+import glob
+import logging
+import cv2
+from tqdm import tqdm
+import numpy as np
+import math
 
-np.random.seed(seed=2020)
+# function for flipping image
+def flip_lr(img, prob):
+    if prob <= 0.5:
+        return img, 'F'
+    else:
+        return np.fliplr(img), 'T'
 
-### from: https://stackoverflow.com/questions/16702966/rotate-image-and-crop-out-black-borders
+def flip_ud(img, prob):
+    if prob <= 0.5:
+        return img, 'F'
+    else:
+        return np.flipud(img), 'T'
+
+# function for rotating image
 def rotate_image(image, angle):
     """
     Rotates an OpenCV 2 / NumPy image about it's centre by the given angle
@@ -145,60 +148,6 @@ def crop_around_center(image, width, height):
 
     return image[y1:y2, x1:x2]
 
-### from: https://www.kaggle.com/safavieh/image-augmentation-using-skimage
-def randRange(a, b):
-    return np.random.rand() * (b - a) + a
-
-def randomIntensity(im):
-    # rescales the intesity of the image to random interval of image intensity distribution
-    return rescale_intensity(im,
-                             in_range=tuple(np.percentile(im, (randRange(0, 10), randRange(90, 100)))),
-                             out_range=tuple(np.percentile(im, (randRange(0, 10), randRange(90, 100)))))
-
-def randomGamma(im):
-    # Gamma filter for contrast adjustment with random gamma value.
-    return adjust_gamma(im, gamma=randRange(1, 2.5))
-
-def randomGaussian(im):
-    # Gaussian filter for bluring the image with random variance.
-    return gaussian(im, sigma=randRange(0, 2))
-
-def randomNoise(im):
-    # random gaussian noise with random variance.
-    var = randRange(0.0009, 0.004)
-    return random_noise(im, var=var)
-
-def randomFilter(img, prob):
-    '''
-    기존 필터   : equalize_adapthist, equalize_hist,
-    수정된 필터 : randomIntensity(랜덤으로 변경됨),
-    추가된 필터 : randomGamma, randomGaussian,
-    probability는 uniform 분포를 따름.
-    '''
-    img = img.astype(np.float32)
-    img /= 255.
-    if prob < 0.1:  # 10%
-        return equalize_adapthist(img), 'eqada'
-    elif prob < 0.2:  # 10%
-        return equalize_hist(img), 'eqhist'
-    elif prob < 0.3:  # 10%
-        return randomGamma(img), 'gamma'
-    elif prob < 0.5:  # 20%
-        #return randomGaussian(img), 'gauss'
-        return img, 'origin'
-    elif prob < 0.7:  # 20%
-        return randomIntensity(img), 'inten'
-    elif prob < 0.8:
-        return randomNoise(img), 'noise'
-    else:  # 30%
-        return img, 'origin'
-
-def flip_lr(img, prob):
-    if prob <= 0.5:
-        return img, 'F'
-    else:
-        return np.fliplr(img), 'T'
-
 def rotate_crop_radom(img, angle):
     image_height, image_width = img.shape[0:2]
 
@@ -208,147 +157,160 @@ def rotate_crop_radom(img, angle):
 
     return image_rotated_cropped, str(angle)
 
+# resize Image
+def resize_image(image, new_dimensions):
+    return cv2.resize(image, new_dimensions, interpolation=cv2.INTER_CUBIC)
+
+
+# function for gamma correction
+def adjust_gamma(img, gamma):
+    # Build a lookup table mapping the pixel values [0, 255] to their adjusted gamma values
+    invGamma = 1.0 / gamma
+    table = np.array([((i / 255.0) ** invGamma) * 255
+        for i in np.arange(0, 256)]).astype("uint8")
+
+    # Apply the gamma correction using the lookup table
+    return cv2.LUT(img, table)
+
+# Function to distort image
+def elastic_transform(image, alpha=80, sigma=20, random_state=None):
+    """Elastic deformation of images as described in [Simard2003]_ (with modifications).
+    .. [Simard2003] Simard, Steinkraus and Platt, "Best Practices for
+         Convolutional Neural Networks applied to Visual Document Analysis", in
+         Proc. of the International Conference on Document Analysis and
+         Recognition, 2003.
+
+     Based on https://gist.github.com/erniejunior/601cdf56d2b424757de5
+     and https://github.com/rwightman/tensorflow-litterbox/blob/ddeeb3a6c7de64e5391050ffbb5948feca65ad3c/litterbox/fabric/image_processing_common.py#L220
+    """
+    if random_state is None:
+        random_state = np.random.RandomState(None)
+
+    shape_size = image.shape[:2]
+
+    # Downscaling the random grid and then upsizing post filter
+    # improves performance. Approx 3x for scale of 4, diminishing returns after.
+    grid_scale = 4
+    alpha //= grid_scale  # Does scaling these make sense? seems to provide
+    sigma //= grid_scale  # more similar end result when scaling grid used.
+    grid_shape = (shape_size[0]//grid_scale, shape_size[1]//grid_scale)
+
+    blur_size = int(4 * sigma) | 1
+    rand_x = cv2.GaussianBlur(
+        (random_state.rand(*grid_shape) * 2 - 1).astype(np.float32),
+        ksize=(blur_size, blur_size), sigmaX=sigma) * alpha
+    rand_y = cv2.GaussianBlur(
+        (random_state.rand(*grid_shape) * 2 - 1).astype(np.float32),
+        ksize=(blur_size, blur_size), sigmaX=sigma) * alpha
+    if grid_scale > 1:
+        rand_x = cv2.resize(rand_x, shape_size[::-1])
+        rand_y = cv2.resize(rand_y, shape_size[::-1])
+
+    grid_x, grid_y = np.meshgrid(np.arange(shape_size[1]), np.arange(shape_size[0]))
+    grid_x = (grid_x + rand_x).astype(np.float32)
+    grid_y = (grid_y + rand_y).astype(np.float32)
+
+    distorted_img = cv2.remap(image, grid_x, grid_y,
+        borderMode=cv2.BORDER_REFLECT_101, interpolation=cv2.INTER_LINEAR)
+
+    return distorted_img
+
 
 if __name__ == '__main__':
-
-    # 이미지 하나당 얼마나 늘릴 껀지.
-
+    
+    # read config file
     config = readConfig()
     log_dir = config["log"]
-    f = open(log_dir +  "augmentationLog.txt", "w")
+    f = open(log_dir + "augmentationLog.txt", "w")
 
+    # GET CONFIGURATION DETAILS
     augment_num_per_img = config["augmentPerImage"]
     tile_width = config["finalTileWidth"]
     tile_height = config["finalTileHeight"]
-
     slidingDir = config["out_dir"]
 
+    # Read images and corresponding labels
     labeled_imgs = natsorted(glob.glob(f'{slidingDir}labels/*'))
-    #boundary_imgs = natsorted(glob.glob(f'{slidingDir}edge/*'))
     raw_imgs = natsorted(glob.glob(f'{slidingDir}images/*'))
 
-    """ labeled_imgs = sorted(glob.glob('../data/data_original/label/*'))
-    raw_imgs = sorted(glob.glob('../data/data_original/original/*')) """
-    print(len(raw_imgs) == len(labeled_imgs))
+    # assert len of images and labels are equal else raise error
+    assert len(labeled_imgs) == len(raw_imgs), "Number of images and labels are not equal"
 
-    logging.basicConfig(level=logging.CRITICAL)
+    logging.basicConfig(level=logging.DEBUG)
 
     base_dir = config["augmented_dir"]
-    new_raw_dir = f'{base_dir}original/'
-    new_labeled_dir = f'{base_dir}label/'
-    #new_boundary_dir = f'{base_dir}edge/'
+    createDir([base_dir])
 
-    for d in [base_dir]:
-        if not os.path.exists(d):
-            os.mkdir(d)
+
+    # print stats
+    logging.debug("Number of images: " + str(len(labeled_imgs)))
+    logging.debug("Number of labels: " + str(len(raw_imgs)))
+    logging.debug("Number of augmentations per image: " + str(augment_num_per_img))
+    logging.debug("Tile width: " + str(tile_width))
+    logging.debug("Tile height: " + str(tile_height))
+    logging.debug("Sliding direction: " + str(slidingDir))
+    logging.debug("Augmented directory: " + str(base_dir))
+
+    # run once flag
+    run_once = True
 
     count = 0
-    #fops = open("log.txt", "w")
-    #fops.write(raw_imgs)
-    """ print(raw_imgs[:20])
-    print(labeled_imgs[:20])
-    exit(0) """
     for i in tqdm(range(len(labeled_imgs))):
+        # read image and label
+        raw_image = cv2.imread(raw_imgs[i], cv2.IMREAD_COLOR)
+        label = cv2.imread(labeled_imgs[i], cv2.IMREAD_GRAYSCALE)
 
-        #count+=1
-        #print("Image -"+str(i))
-        
-        raw_img = np.array(skimage.io.imread(raw_imgs[i]))
-        labeled_img = np.array(skimage.io.imread(labeled_imgs[i]))
-        #boundary_img = np.array(skimage.io.imread(boundary_imgs[i]))
-        
+        if run_once:
+            logging.debug("raw image size:" + str(raw_image.shape))
+            logging.debug("label size:" + str(label.shape))
+            run_once = False
 
-
-        logging.debug("size1:" + str(labeled_img.shape))
-
-        raw_name = raw_imgs[i].split('/')[-1].replace(' ', '')
-        labeled_name = labeled_imgs[i].split('/')[-1].replace(' ', '')
-        #boundary_name = boundary_imgs[i].split('/')[-1].replace(' ', '')
-
-        true_raw = raw_img
-        true_label = labeled_img
-        #true_boundary = boundary_img
-
-        # random numbers
+        # Set random probabilities
         flip_random = np.random.uniform(size=augment_num_per_img)  # [0,1]
+        rotate_random = np.random.randint(low=0, high=360, size=augment_num_per_img)  # [0, 360]
+        magnify_random = np.random.uniform(low=0.8, high=1.2, size=augment_num_per_img)  # [0.8, 1.2]
+        elastic_random = np.random.uniform(size=augment_num_per_img)  # [0, 1]
 
-        rotate_radom = np.random.randint(low=0, high=360, size=augment_num_per_img)  # [0, 360]
 
-        resize_x = np.random.normal(loc=0, scale=0.04, size=augment_num_per_img)
-        resize_y = np.random.normal(loc=0, scale=0.04, size=augment_num_per_img)
+        for j in range(augment_num_per_img//4):
 
-        color_modification_random = np.random.uniform(size=augment_num_per_img)
+            # flip image
+            flipped_image, flip_flag = flip_lr(raw_image, flip_random[j])
+            flipped_label, flip_flag = flip_lr(label, flip_random[j])
 
-        modified = ''
-        
-        original_raw_img = np.copy(raw_img)
-        original_label_img = np.copy(labeled_img)
-        #original_boundary_img = np.copy(boundary_img)
-
-        origFLag = True
-
-         
-        for j in range(augment_num_per_img):
-
-            # flip randlomly
-            raw_img, flag = flip_lr(original_raw_img, flip_random[j])
-            labeled_img, flag = flip_lr(original_label_img, flip_random[j])
-            #boundary_img, flag = flip_lr(original_boundary_img, flip_random[j])
-
-            modified = flag
+            flipped_image, flip_flag = flip_ud(flipped_image, flip_random[j])
+            flipped_label, flip_flag = flip_ud(flipped_label, flip_random[j])
 
             # rotate randomly without blank
-            raw_img, flag = rotate_crop_radom(raw_img, rotate_radom[j])
-            labeled_img, flag = rotate_crop_radom(labeled_img, rotate_radom[j])
-            #boundary_img, flag = rotate_crop_radom(boundary_img, rotate_radom[j])
+            modImage, flag = rotate_crop_radom(flipped_image, rotate_random[j])
+            modLabel, flag = rotate_crop_radom(flipped_label, rotate_random[j])
 
-            modified += '_' + flag
+            # magnify randomly
+            modImage = cv2.resize(modImage, None, fx=magnify_random[j], fy=magnify_random[j], interpolation=cv2.INTER_CUBIC)
+            modLabel = cv2.resize(modLabel, None, fx=magnify_random[j], fy=magnify_random[j], interpolation=cv2.INTER_CUBIC)
 
-            # resize randomly: labeled는  INTER NEAREST가 필수이지만, raw_img는 필수(최적)은 아닐 수 있다.
-            raw_img = cv2.resize(raw_img, dsize=(0, 0), fx=(1 + resize_x[j]), fy=(1 + resize_y[j]),
-                                 interpolation=cv2.INTER_NEAREST)
-            labeled_img = cv2.resize(labeled_img, dsize=(0, 0), fx=(1 + resize_x[j]), fy=(1 + resize_y[j]),
-                                     interpolation=cv2.INTER_NEAREST)
-            #boundary_img = cv2.resize(boundary_img, dsize=(0, 0), fx=(1 + resize_x[j]), fy=(1 + resize_y[j]),
-                                     #interpolation=cv2.INTER_NEAREST)
-            
-            #labeled_img = toGray(cv2.cvtColor(labeled_img, cv2.COLOR_RGB2GRAY))
-            #boundary_img = toGray4C(cv2.cvtColor(boundary_img, cv2.COLOR_RGB2GRAY))
+            # elastic transform
+            if elastic_random[j] <= 0.5:
+                modImage = elastic_transform(modImage)
+                modLabel = elastic_transform(modLabel)
 
-            modified += '_' + str(1 + resize_x[j])[2:4] + '_' + str(1 + resize_y[j])[2:4]
 
-            # color modification. 255로 다시 곱해줘야하는지 확인.
-            raw_img, mod = randomFilter(raw_img, color_modification_random[j])
+            # resize image and label
+            modImage = resize_image(modImage, (tile_width, tile_height))
+            modLabel = resize_image(modLabel, (tile_width, tile_height))
 
-            modified += '_' + mod + '_'
+            # gamma adjustment
+            gamma_values = [0.5, 1, 1.5]
 
-            # save image, file type should be in 3 letter 여야함.
-            new_raw_name = str(count) + raw_name[-4:]
-            new_labeled_name = str(count) + "_label" + labeled_name[-4:]
-            #new_boundary_name = str(count) + "_label_b" + labeled_name[-4:]
+            for gamma_value in gamma_values:
+                corrected_image = adjust_gamma(modImage, gamma_value)
+                cv2.imwrite(base_dir + str(count) +".png", corrected_image)
+                cv2.imwrite(base_dir + str(count) + "_label.png", modLabel)
+                count += 1
 
-            raw_img = np.clip(raw_img, -1.0, 1.0)  #
-            raw_img = np.uint8((raw_img + 1.0) * 127.5)  # [-1,1] -> [0,255]
+            # save image and label
+            cv2.imwrite(base_dir + str(count) + ".png", modImage)
+            cv2.imwrite(base_dir + str(count) + "_label.png", modLabel)
+            count += 1
 
-            #save original image
-            """ if origFLag:
-                skimage.io.imsave(base_dir + new_raw_name, true_raw[0:tile_height,0:tile_width])
-                skimage.io.imsave(base_dir + new_labeled_name, toGray(cv2.cvtColor(true_label[0:tile_height,0:tile_width], cv2.COLOR_BGR2GRAY)))
-                count+=1
-                origFLag = False """
-
-            new_raw_name = str(count) + raw_name[-4:]
-            new_labeled_name = str(count) + "_label" + labeled_name[-4:]
-            #print(raw_img[0:tile_height,0:tile_width].shape)
-            #print(labeled_img[0:tile_height,0:tile_width].shape)
-            cv2.imwrite(base_dir + new_raw_name, raw_img[0:tile_height,0:tile_width])
-            cv2.imwrite(base_dir + new_labeled_name, labeled_img[0:tile_height,0:tile_width])
-            #skimage.io.imsave(base_dir + new_raw_name, raw_img[0:tile_height,0:tile_width])
-            #skimage.io.imsave(base_dir + new_labeled_name, labeled_img[0:tile_height,0:tile_width])
-            #skimage.io.imsave(base_dir + new_boundary_name, boundary_img[0:tile_height,0:tile_width])
-            f.write(new_raw_name+"\n"+new_labeled_name+"\n")
-            #f.write(new_raw_name+"\n"+new_labeled_name+"\n"+new_boundary_name+"\n")
-            count+=1
     f.close()
-
-            

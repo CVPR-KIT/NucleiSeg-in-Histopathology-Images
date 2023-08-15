@@ -8,7 +8,7 @@ augmented_dir = "Dataset/MonuSegData/augmentated/"              # Output for Aug
 tileHeight = 800                               # Sliding Window height
 tileWidth = 800                                # Sliding Window Width
 slidingSize = 50                                # Slide Skipping size
-augmentPerImage = 50                            # Number of augmentation to perform per image that was generated using sliding down
+augmentPerImage = 100                           # Number of augmentation to perform per image that was generated using sliding down
 finalTileHeight = 256                           # Final Height of augmenated image
 finalTileWidth = 256                            # Final Width of augmenated image
 

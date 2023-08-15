@@ -40,5 +40,5 @@ for name in tqdm(annotations):
                     fill_row_coords, fill_col_coords = draw.polygon(vertex_col_coords, vertex_row_coords, binary_mask.shape)
                     binary_mask[fill_row_coords, fill_col_coords] = 255
 
-            mask_path = f'{destination_path}/{name[:-4]}.jpg'
+            mask_path = f'{destination_path}/{name[:-4]}.png'
             cv2.imwrite(mask_path, binary_mask)
