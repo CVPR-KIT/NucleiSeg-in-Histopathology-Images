@@ -1,0 +1,25 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+configuring model - EluNet
+saving model summary
+logging parameters
+starting training
+Epoch 0/100:   0%|          | 0/27 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/blue/projects/MoNuSeg/main.py", line 533, in <module>
+    main()
+  File "/home/blue/projects/MoNuSeg/main.py", line 368, in main
+    train_loss ,train_confusion_matrix, train_mIoU,train_accuracy =  run_epoch(model, train_data, criterion, optimizer, epoch, device, 'train',config)
+  File "/home/blue/projects/MoNuSeg/main.py", line 146, in run_epoch
+    loss = criterion(pred,gt)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/auxilary/lossFunctions.py", line 299, in forward
+    return dice_loss(input, target)
+  File "/home/blue/projects/MoNuSeg/auxilary/lossFunctions.py", line 289, in dice_loss
+    intersection = (pred * target).sum(dim=2).sum(dim=2)
+RuntimeError: The size of tensor a (2) must match the size of tensor b (16) at non-singleton dimension 1

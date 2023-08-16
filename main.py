@@ -313,6 +313,8 @@ def main():
         criterion = unet_3Loss()
     elif config["loss"] == "improvedLoss":
         criterion = unet_3Loss()
+    elif config["loss"] == "ClassRatioLoss":
+        criterion = ClassRatioLoss2()
     else:
         criterion = FocalLoss(0.25)
 
@@ -521,7 +523,7 @@ def main():
     plt.xlabel("Epoch #")
     plt.ylabel("Loss/Accuracy")
     plt.legend(loc="lower left")
-    plt.savefig("plot.png")
+    plt.savefig(config['expt_dir']+"plot.png")
 
 
 

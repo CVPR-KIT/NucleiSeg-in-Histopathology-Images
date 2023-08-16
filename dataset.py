@@ -19,12 +19,12 @@ class MonuSegDataSet(Dataset):
                         level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.loggerFlag = True
 
-        self.spl_losses = ['unet3+loss', 'improvedLoss']
+        self.spl_losses = ['unet3+loss', 'improvedLoss', 'ClassRatioLoss']
     
         return 
     
     def __len__(self):
-        return len(os.listdir(self.img_dir))//200
+        return len(os.listdir(self.img_dir))//2
 
     def __getitem__(self, index):
         try:
@@ -54,8 +54,8 @@ class MonuSegDataSet(Dataset):
         else:
             image = np.reshape(image,(1,self.wid,self.hit))
 
-        if self.config['model_type'] == 'UNet_3Plus':
-            # Only for unet3+
+        if self.config['model_type'] == 'UNet_3Plus' or self.config['model_type'] == 'EluNet':
+            # Only for unet3+ and EluNet
             # Create one-hot encoded tensors for each class
             class_0 = np.where(label == 0, 1, 0)  # Channel for class 0
             class_1 = np.where(label == 1, 1, 0)  # Channel for class 1
@@ -89,7 +89,7 @@ class MonuSegValDataSet(Dataset):
         return  
     
     def __len__(self):
-        return len(os.listdir(self.img_dir))//200 -1
+        return len(os.listdir(self.img_dir))//2 -1
 
     def __getitem__(self, index):
         try:
@@ -123,8 +123,8 @@ class MonuSegValDataSet(Dataset):
         else:
             image = np.reshape(image,(1,self.wid,self.hit))
 
-        if self.config['model_type'] == 'UNet_3Plus':
-            # Only for unet3+
+        if self.config['model_type'] == 'UNet_3Plus' or self.config['model_type'] == 'EluNet':
+            # Only for unet3+ and EluNet
             # Create one-hot encoded tensors for each class
             class_0 = np.where(label == 0, 1, 0)  # Channel for class 0
             class_1 = np.where(label == 1, 1, 0)  # Channel for class 1
@@ -154,7 +154,7 @@ class MonuSegTestDataSet(Dataset):
         logging.basicConfig(filename=self.config["log"] + "dataloader.log", filemode='w', 
                         level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.len = 800
-        self.spl_losses = ['unet3+loss', 'improvedLoss']
+        self.spl_losses = ['unet3+loss', 'improvedLoss', 'ClassRatioLoss']
         return 
     
     def __len__(self):

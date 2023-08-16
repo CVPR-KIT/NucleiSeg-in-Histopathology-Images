@@ -1,0 +1,43 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+configuring model - UNET 3+
+saving model summary
+logging parameters
+starting training
+
+
+
+
+
+Epoch 0/100:  85%|████████▌ | 23/27 [00:11<00:01,  2.31it/s]
+train_loss: 0.519142989759092
+train_mIoU: 0.28352626236742184
+Epoch 0/100: 100%|██████████| 27/27 [00:12<00:00,  2.09it/s]
+Epoch 0/100:  15%|█▍        | 7/47 [00:00<00:02, 18.79it/s]
+val_loss: 0.5328559444305745
+val_mIoU: 0.232614403531419
+val_accuracy: 0.38023506326878326
+Epoch 0/100: 100%|██████████| 47/47 [00:01<00:00, 36.62it/s]
+
+
+
+
+Epoch 1/100:  78%|███████▊  | 21/27 [00:08<00:02,  2.47it/s]
+train_loss: 0.5112477563045643
+train_mIoU: 0.28562839445794974
+
+Epoch 1/100:  96%|█████████▋| 26/27 [00:10<00:00,  2.46it/s]
+val_loss: 0.48412336123750566
+val_mIoU: 0.20300997581316504
+Epoch 1/100: 100%|██████████| 27/27 [00:11<00:00,  2.45it/s]
+Epoch 1/100: 100%|██████████| 47/47 [00:00<00:00, 53.01it/s]
+
+
+
+
+
+Epoch 2/100:  78%|███████▊  | 21/27 [00:08<00:02,  2.46it/s]Exception ignored in: <generator object tqdm.__iter__ at 0x7f995f0518c0>Exception ignored in sys.unraisablehook: <built-in function unraisablehook>

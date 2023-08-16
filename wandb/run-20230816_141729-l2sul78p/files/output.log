@@ -1,0 +1,25 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+configuring model - EluNet
+saving model summary
+logging parameters
+starting training
+torch.Size([16, 2, 256, 256])
+torch.Size([16, 2, 256, 256])
+Epoch 0/100:   0%|          | 0/27 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/blue/projects/MoNuSeg/main.py", line 535, in <module>
+    main()
+  File "/home/blue/projects/MoNuSeg/main.py", line 370, in main
+    train_loss ,train_confusion_matrix, train_mIoU,train_accuracy =  run_epoch(model, train_data, criterion, optimizer, epoch, device, 'train',config)
+  File "/home/blue/projects/MoNuSeg/main.py", line 146, in run_epoch
+    loss = criterion(pred,gt)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/auxilary/lossFunctions.py", line 635, in forward
+    target_one_hot = F.one_hot(target.long(), num_classes=2).permute(0, 3, 1, 2).float()
+RuntimeError: permute(sparse_coo): number of dimensions in the tensor input does not match the length of the desired ordering of dimensions i.e. input.dim() = 5 is not equal to len(dims) = 4

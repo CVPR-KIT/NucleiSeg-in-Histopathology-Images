@@ -1,0 +1,80 @@
+{
+    "os": "Linux-5.10.16.3-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "python": "3.10.9",
+    "heartbeatAt": "2023-08-16T05:12:35.442712",
+    "startedAt": "2023-08-16T05:12:34.801409",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--config",
+        "config.sys"
+    ],
+    "state": "running",
+    "program": "/home/blue/projects/MoNuSeg/main.py",
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/bluesaiyancodes/MoNuSeg-Segmentation.git",
+        "commit": "b31e09009d637d29c361c1e919dd3012536becf4"
+    },
+    "email": "blue.bishal@rocketmail.com",
+    "root": "/home/blue/projects/MoNuSeg",
+    "host": "Blue-LAB",
+    "username": "blue",
+    "executable": "/home/blue/projects/MoNuSeg/monuSegEnv/bin/python",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 3408.002,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3408.002,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.002,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.002,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.002,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.002,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.002,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.002,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.002,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 983.3048324584961,
+        "used": 355.55747985839844
+    },
+    "memory": {
+        "total": 29.391098022460938
+    }
+}

@@ -12,6 +12,8 @@ class UNet_3Plus(nn.Module):
     def __init__(self, config, in_channels=1, n_classes=1, feature_scale=4, is_deconv=True, is_batchnorm=True):
         super(UNet_3Plus, self).__init__()
         self.is_deconv = is_deconv
+        if config["input_img_type"] == "rgb":
+            in_channels = 3    
         self.in_channels = in_channels
         self.is_batchnorm = is_batchnorm
         self.feature_scale = feature_scale

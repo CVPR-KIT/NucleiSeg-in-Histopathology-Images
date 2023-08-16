@@ -185,7 +185,7 @@ def adjust_gamma(img, gamma):
     return cv2.LUT(img, table)
 
 # Function to distort image
-def elastic_transform(image, alpha=80, sigma=20, random_state=None):
+def elastic_transform(image, alpha=100, sigma=10, random_state=None):
     """Elastic deformation of images as described in [Simard2003]_ (with modifications).
     .. [Simard2003] Simard, Steinkraus and Platt, "Best Practices for
          Convolutional Neural Networks applied to Visual Document Analysis", in
@@ -306,8 +306,8 @@ if __name__ == '__main__':
 
             # elastic transform
             if elastic_random[j] <= 0.5:
-                modImage = elastic_transform(modImage)
-                modLabel = elastic_transform(modLabel)
+                modImage = elastic_transform(modImage, alpha=300, sigma=30)
+                modLabel = elastic_transform(modLabel, alpha=300, sigma=30)
 
 
             # resize image and label

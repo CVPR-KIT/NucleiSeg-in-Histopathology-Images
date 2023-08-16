@@ -615,6 +615,91 @@ class improvedLoss(torch.nn.Module):
         return cumul_loss
 
 
+class ClassRatioLoss(torch.nn.Module):
+    def __init__(self):
+        super(ClassRatioLoss, self).__init__()
+
+    def forward(self, prediction, target):
+        # Calculate the class ratio by summing along the class dimension
+        class_counts = target.sum(dim=(0, 2, 3))
+        total_counts = torch.sum(class_counts).float()
+        class_ratio = class_counts.float() / total_counts
+
+        # Invert the class ratio to assign higher weight to the minority class
+        class_weights = 1 / (class_ratio + 1e-6)
+        class_weights = class_weights / torch.sum(class_weights)
+
+        # Compute the weighted cross-entropy loss
+        loss = F.binary_cross_entropy_with_logits(prediction, target.float(), weight=class_weights[None, :, None, None])
+
+        return loss
+
+
+class ClassRatioLoss2(torch.nn.Module):
+    def __init__(self, temporal_decay=0.05):
+        super(ClassRatioLoss2, self).__init__()
+        self.temporal_weights = None
+        self.temporal_decay = temporal_decay
+
+    def forward(self, prediction, target):
+        # Calculate local class ratio for adaptive weighting
+        local_class_ratio = target.float().mean(dim=(2, 3))
+        local_class_weights = 1 / (local_class_ratio + 1e-6)
+        local_class_weights = local_class_weights / torch.sum(local_class_weights, dim=1, keepdim=True)
+
+        # Compute the initial class weights based on local class ratio
+        class_weights = local_class_weights.mean(dim=0)
+
+        # Temporal adjustment: Combine the initial weights with previous weights
+        if self.temporal_weights is None:
+            self.temporal_weights = class_weights
+        else:
+            self.temporal_weights = (1 - self.temporal_decay) * self.temporal_weights + self.temporal_decay * class_weights
+            class_weights = self.temporal_weights
+
+        # Compute the weighted cross-entropy loss
+        loss = F.binary_cross_entropy_with_logits(prediction, target.float(), weight=class_weights[None, :, None, None])
+
+        return loss
+    
+
+class ClassRatioLoss3(torch.nn.Module):
+    def __init__(self, temporal_decay=0.05, spatial_context_weight=0.1, uncertainty_weight=0.1):
+        super(ClassRatioLoss, self).__init__()
+        self.temporal_weights = None
+        self.temporal_decay = temporal_decay
+        self.spatial_context_weight = spatial_context_weight
+        self.uncertainty_weight = uncertainty_weight
+
+    def forward(self, prediction, target):
+        # Calculate local class ratio for adaptive weighting
+        local_class_ratio = target.mean(dim=(2, 3))
+        local_class_weights = 1 / (local_class_ratio + 1e-6)
+        local_class_weights = local_class_weights / torch.sum(local_class_weights, dim=1, keepdim=True)
+        class_weights = local_class_weights.mean(dim=0)
+
+        # Temporal adjustment
+        if self.temporal_weights is None:
+            self.temporal_weights = class_weights
+        else:
+            self.temporal_weights = (1 - self.temporal_decay) * self.temporal_weights + self.temporal_decay * class_weights
+            class_weights = self.temporal_weights
+
+        # Compute the initial weighted cross-entropy loss
+        loss = F.binary_cross_entropy_with_logits(prediction, target.float(), weight=class_weights[None, :, None, None])
+
+        # Incorporate uncertainty
+        predicted_prob = torch.sigmoid(prediction)
+        uncertainty = torch.abs(predicted_prob - 0.5) # Higher uncertainty when close to 0.5
+        loss += self.uncertainty_weight * torch.mean(uncertainty)
+
+        # Incorporate spatial context (spatial smoothness)
+        spatial_gradients = torch.sum(torch.abs(torch.gradient(prediction, axis=[2, 3])), dim=0)
+        spatial_context_loss = torch.mean(spatial_gradients)
+        loss += self.spatial_context_weight * spatial_context_loss
+
+        return loss
+
 
 
 

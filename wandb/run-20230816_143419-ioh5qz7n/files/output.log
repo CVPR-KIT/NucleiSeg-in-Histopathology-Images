@@ -1,0 +1,16 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+configuring model - EluNet
+saving model summary
+Traceback (most recent call last):
+  File "/home/blue/projects/MoNuSeg/main.py", line 535, in <module>
+    main()
+  File "/home/blue/projects/MoNuSeg/main.py", line 317, in main
+    criterion = ClassRatioLoss2()
+  File "/home/blue/projects/MoNuSeg/auxilary/lossFunctions.py", line 640, in __init__
+    super(ClassRatioLoss, self).__init__()
+TypeError: super(type, obj): obj must be an instance or subtype of type
