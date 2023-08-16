@@ -9446,3 +9446,15 @@
 2023-08-16 18:02:06,768 DEBUG   HandlerThread:1528 [handler.py:handle_request():144] handle_request: status_report
 2023-08-16 18:02:07,597 INFO    Thread-12 :1528 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230816_145928-7aujftx4/files/output.log
 2023-08-16 18:02:09,598 INFO    Thread-12 :1528 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230816_145928-7aujftx4/files/output.log
+2023-08-16 18:02:11,147 DEBUG   HandlerThread:1528 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-16 18:02:11,147 DEBUG   SenderThread:1528 [sender.py:send_request():406] send_request: stop_status
+2023-08-16 18:02:11,598 INFO    Thread-12 :1528 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230816_145928-7aujftx4/files/output.log
+2023-08-16 18:02:11,853 DEBUG   HandlerThread:1528 [handler.py:handle_request():144] handle_request: status_report
+2023-08-16 18:02:13,599 INFO    Thread-12 :1528 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230816_145928-7aujftx4/files/output.log
+2023-08-16 18:02:15,600 INFO    Thread-12 :1528 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230816_145928-7aujftx4/files/output.log
+2023-08-16 18:02:17,301 DEBUG   HandlerThread:1528 [handler.py:handle_request():144] handle_request: status_report
+2023-08-16 18:02:17,601 INFO    Thread-12 :1528 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230816_145928-7aujftx4/files/output.log
+2023-08-16 18:02:19,601 INFO    Thread-12 :1528 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230816_145928-7aujftx4/files/output.log
+2023-08-16 18:02:21,602 INFO    Thread-12 :1528 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230816_145928-7aujftx4/files/output.log
+2023-08-16 18:02:22,574 DEBUG   HandlerThread:1528 [handler.py:handle_request():144] handle_request: status_report
+2023-08-16 18:02:23,603 INFO    Thread-12 :1528 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230816_145928-7aujftx4/files/output.log
