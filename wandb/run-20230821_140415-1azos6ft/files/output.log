@@ -1,0 +1,25 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cpu device
+configuring data loaders
+configuring model - UNET 3+
+saving model summary
+logging parameters
+starting training
+Epoch 0/100:   0%|          | 0/2700 [00:12<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/blue/projects/MoNuSeg/main.py", line 537, in <module>
+    main()
+  File "/home/blue/projects/MoNuSeg/main.py", line 372, in main
+    train_loss ,train_confusion_matrix, train_mIoU,train_accuracy =  run_epoch(model, train_data, criterion, optimizer, epoch, device, 'train',config)
+  File "/home/blue/projects/MoNuSeg/main.py", line 146, in run_epoch
+    loss = criterion(pred,gt)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/auxilary/lossFunctions.py", line 210, in forward
+    return focal_loss(input, target, self.alpha, self.gamma, self.reduction, self.eps, self.ignore_index)
+  File "/home/blue/projects/MoNuSeg/auxilary/lossFunctions.py", line 117, in focal_loss
+    raise ValueError(f'Expected target size {out_size}, got {target.size()}')
+ValueError: Expected target size (16, 256, 256), got torch.Size([16, 2, 256, 256])

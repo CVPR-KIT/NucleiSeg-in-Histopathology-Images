@@ -138,7 +138,7 @@ def run_epoch(model, data_loader, criterion, optimizer, epoch,device, mode,confi
         class_weights = calculate_class_weights(gt, config["num_classes"])
         
         #if loss is modJaccard, jaccard, pwxce, improvedLoss use weights
-        weightable_losses = ['modJaccard', 'jaccard', 'pwcel', 'improvedLoss']
+        weightable_losses = ['modJaccard', 'jaccard', 'pwcel', 'improvedLoss', 'ClassRatioLossPlus']
         if config["loss"] in weightable_losses:
             criterion.setWeights(class_weights.to(device))
 
@@ -314,7 +314,9 @@ def main():
     elif config["loss"] == "improvedLoss":
         criterion = unet_3Loss()
     elif config["loss"] == "ClassRatioLoss":
-        criterion = ClassRatioLoss2()
+        criterion = ClassRatioLoss()
+    elif config["loss"] == "RBAF":
+        criterion = RBAF()
     else:
         criterion = FocalLoss(0.25)
 

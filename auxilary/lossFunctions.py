@@ -113,6 +113,9 @@ def focal_loss(input, target, alpha, gamma, reduction, eps, ignore_index):
     
     # input : (B, C, H, W)
     # target : (B, H, W)
+    # convert target to a single channel by taking the argmax along the channel dimension
+    target = torch.argmax(target, dim=1)
+
     if target.size()[1:] != input.size()[2:]:
         raise ValueError(f'Expected target size {out_size}, got {target.size()}')
 
@@ -615,7 +618,7 @@ class improvedLoss(torch.nn.Module):
         return cumul_loss
 
 
-class ClassRatioLoss(torch.nn.Module):
+'''class ClassRatioLoss(torch.nn.Module):
     def __init__(self):
         super(ClassRatioLoss, self).__init__()
 
@@ -632,71 +635,108 @@ class ClassRatioLoss(torch.nn.Module):
         # Compute the weighted cross-entropy loss
         loss = F.binary_cross_entropy_with_logits(prediction, target.float(), weight=class_weights[None, :, None, None])
 
-        return loss
+        return loss'''
 
 
-class ClassRatioLoss2(torch.nn.Module):
-    def __init__(self, temporal_decay=0.05):
-        super(ClassRatioLoss2, self).__init__()
-        self.temporal_weights = None
-        self.temporal_decay = temporal_decay
-
-    def forward(self, prediction, target):
-        # Calculate local class ratio for adaptive weighting
-        local_class_ratio = target.float().mean(dim=(2, 3))
-        local_class_weights = 1 / (local_class_ratio + 1e-6)
-        local_class_weights = local_class_weights / torch.sum(local_class_weights, dim=1, keepdim=True)
-
-        # Compute the initial class weights based on local class ratio
-        class_weights = local_class_weights.mean(dim=0)
-
-        # Temporal adjustment: Combine the initial weights with previous weights
-        if self.temporal_weights is None:
-            self.temporal_weights = class_weights
-        else:
-            self.temporal_weights = (1 - self.temporal_decay) * self.temporal_weights + self.temporal_decay * class_weights
-            class_weights = self.temporal_weights
-
-        # Compute the weighted cross-entropy loss
-        loss = F.binary_cross_entropy_with_logits(prediction, target.float(), weight=class_weights[None, :, None, None])
-
-        return loss
-    
-
-class ClassRatioLoss3(torch.nn.Module):
-    def __init__(self, temporal_decay=0.05, spatial_context_weight=0.1, uncertainty_weight=0.1):
+class ClassRatioLoss(torch.nn.Module):
+    def __init__(self):
         super(ClassRatioLoss, self).__init__()
-        self.temporal_weights = None
-        self.temporal_decay = temporal_decay
-        self.spatial_context_weight = spatial_context_weight
-        self.uncertainty_weight = uncertainty_weight
 
     def forward(self, prediction, target):
-        # Calculate local class ratio for adaptive weighting
-        local_class_ratio = target.mean(dim=(2, 3))
-        local_class_weights = 1 / (local_class_ratio + 1e-6)
-        local_class_weights = local_class_weights / torch.sum(local_class_weights, dim=1, keepdim=True)
-        class_weights = local_class_weights.mean(dim=0)
+        # Compute the class ratio for the target
+        class_counts = target.sum(dim=(0, 2, 3))
+        total_counts = torch.sum(class_counts).float()
+        target_class_ratio = class_counts / total_counts
+
+        # Compute the class ratio for the prediction (using softmax to ensure sum to 1)
+        predicted_class_ratio = F.softmax(prediction.mean(dim=(0, 2, 3)), dim=0)
+
+        # Compute the mean-squared error between the predicted and target class ratios
+        loss = F.mse_loss(predicted_class_ratio, target_class_ratio)
+
+        return loss
+
+
+class ClassRatioLossPlus(torch.nn.Module):
+    def __init__(self, num_classes=2, class_weights=[1.0, 1.0], segmentation_weight=0.5, temporal_decay=0.05):
+        super(ClassRatioLossPlus, self).__init__()
+        self.class_weights = torch.tensor(class_weights)
+        self.segmentation_weight = segmentation_weight
+        self.temporal_weights = None
+        self.temporal_decay = temporal_decay
+
+    def setWeights(self, class_weights):
+        self.class_weights = class_weights
+
+    def forward(self, prediction, target):
+        # Compute the class ratio for the target
+        class_counts = target.sum(dim=(0, 2, 3))
+        total_counts = torch.sum(class_counts).float()
+        target_class_ratio = class_counts / total_counts
+
+        # Compute the class ratio for the prediction (using softmax to ensure sum to 1)
+        predicted_class_ratio = F.softmax(prediction.mean(dim=(0, 2, 3)), dim=0)
+
+        # Compute MSE and MAE between predicted and target class ratios
+        mse_loss = F.mse_loss(predicted_class_ratio, target_class_ratio)
+        mae_loss = F.l1_loss(predicted_class_ratio, target_class_ratio)
+        class_ratio_loss = self.class_weights[0] * mse_loss + self.class_weights[1] * mae_loss
 
         # Temporal adjustment
         if self.temporal_weights is None:
-            self.temporal_weights = class_weights
+            self.temporal_weights = target_class_ratio
         else:
-            self.temporal_weights = (1 - self.temporal_decay) * self.temporal_weights + self.temporal_decay * class_weights
-            class_weights = self.temporal_weights
+            self.temporal_weights = (1 - self.temporal_decay) * self.temporal_weights + self.temporal_decay * target_class_ratio
 
-        # Compute the initial weighted cross-entropy loss
-        loss = F.binary_cross_entropy_with_logits(prediction, target.float(), weight=class_weights[None, :, None, None])
+        # Compute segmentation loss (e.g., cross-entropy)
+        segmentation_loss = F.cross_entropy(prediction, target)
 
-        # Incorporate uncertainty
-        predicted_prob = torch.sigmoid(prediction)
-        uncertainty = torch.abs(predicted_prob - 0.5) # Higher uncertainty when close to 0.5
-        loss += self.uncertainty_weight * torch.mean(uncertainty)
+        # Combine the class ratio loss and segmentation loss
+        loss = (1 - self.segmentation_weight) * class_ratio_loss + self.segmentation_weight * segmentation_loss
 
-        # Incorporate spatial context (spatial smoothness)
-        spatial_gradients = torch.sum(torch.abs(torch.gradient(prediction, axis=[2, 3])), dim=0)
-        spatial_context_loss = torch.mean(spatial_gradients)
-        loss += self.spatial_context_weight * spatial_context_loss
+        return loss
+
+import torch
+import torch.nn.functional as F
+
+class RBAF(torch.nn.Module):
+    '''
+    Ratio-Boundary-Aware Focal Loss (RBAF Loss)
+    "Ratio" for the class ratio component.
+    "Boundary-Aware" for the Jaccard loss, which is sensitive to the object boundaries.
+    "Focal" for the Focal loss component.
+
+    The hyperparameters alpha and beta control the balance between the three loss components. 
+
+    '''
+    def __init__(self, alpha=0.3, beta=0.3, gamma=2.0):
+        super(RBAF, self).__init__()
+        self.alpha = alpha
+        self.beta = beta
+        self.gamma = gamma
+
+    def forward(self, prediction, target):
+        # Compute the class ratio for the target
+        class_counts = target.sum(dim=(0, 2, 3))
+        total_counts = torch.sum(class_counts).float()
+        target_class_ratio = class_counts / total_counts
+
+        # Compute the class ratio for the prediction
+        predicted_class_ratio = F.softmax(prediction.mean(dim=(0, 2, 3)), dim=0)
+        class_ratio_loss = F.mse_loss(predicted_class_ratio, target_class_ratio)
+
+        # Jaccard Loss (IoU Loss)
+        intersection = (prediction * target).sum(dim=(0, 2, 3))
+        union = prediction.sum(dim=(0, 2, 3)) + target.sum(dim=(0, 2, 3)) - intersection
+        jaccard_loss = 1 - (intersection + 1e-6) / (union + 1e-6)
+
+        # Focal Loss
+        probs = torch.sigmoid(prediction)
+        focal_loss = -target * torch.pow(1 - probs, self.gamma) * torch.log(probs + 1e-6)
+        focal_loss = focal_loss.sum(dim=(0, 2, 3))
+
+        # Combine the losses with weights alpha and beta
+        loss = self.alpha * class_ratio_loss + self.beta * jaccard_loss.mean() + (1 - self.alpha - self.beta) * focal_loss.mean()
 
         return loss
 

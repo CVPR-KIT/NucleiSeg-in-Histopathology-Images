@@ -5,6 +5,7 @@ import logging
 import cv2
 from tqdm import tqdm
 import numpy as np
+from auxilary.simplex import Simplex_CLASS as simplex 
 import math
 
 # function for flipping image
@@ -195,8 +196,8 @@ def elastic_transform(image, alpha=100, sigma=10, random_state=None):
      Based on https://gist.github.com/erniejunior/601cdf56d2b424757de5
      and https://github.com/rwightman/tensorflow-litterbox/blob/ddeeb3a6c7de64e5391050ffbb5948feca65ad3c/litterbox/fabric/image_processing_common.py#L220
     """
-    if random_state is None:
-        random_state = np.random.RandomState(None)
+    if random_state < 0.5:
+        return image
 
     shape_size = image.shape[:2]
 
@@ -227,6 +228,25 @@ def elastic_transform(image, alpha=100, sigma=10, random_state=None):
 
     return distorted_img
 
+
+# Function to add noise to image
+def noisy_image(img, alpha, random_state=None):
+    if random_state < 0.5:
+        return img
+
+    # Generate noise
+    simplexObj = simplex()
+    img_size = (img.shape[0], img.shape[1])
+    noise = simplexObj.rand_2d_octaves(img_size, 6, 0.6)
+    # Convert image to float [0, 1]
+    image_array = img.astype(np.float32) / 255
+    # Normalize Noise to [0, 1]
+    noise = (noise - noise.min()) / (noise.max() - noise.min())  
+    # Blend noise with original image
+    image_array = (1 - alpha) * image_array + alpha * noise[..., np.newaxis]
+    # Convert back to uint8 [0, 255]
+    image_array = (image_array * 255).astype(np.uint8)
+    return image_array
 
 if __name__ == '__main__':
     
@@ -282,6 +302,7 @@ if __name__ == '__main__':
         rotate_random = np.random.randint(low=0, high=360, size=augment_num_per_img)  # [0, 360]
         magnify_random = np.random.uniform(low=1, high=1.5, size=augment_num_per_img)  # [1, 1.5]
         elastic_random = np.random.uniform(size=augment_num_per_img)  # [0, 1]
+        noise_random = np.random.uniform(size=augment_num_per_img)  # [0, 1]
 
 
         for j in range(augment_num_per_img//4):
@@ -301,7 +322,8 @@ if __name__ == '__main__':
             modImage = magnify_image(modImage, magnify_random[j])
             modLabel = magnify_image(modLabel, magnify_random[j])
 
-            # magnify image and label
+            # add noise 
+            modImage = noisy_image(modImage, noise_random[j])
 
 
             # elastic transform

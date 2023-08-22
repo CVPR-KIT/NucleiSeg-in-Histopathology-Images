@@ -1,0 +1,108 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+configuring model - UNET 3+
+saving model summary
+logging parameters
+starting training
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch 0/100:  93%|█████████▎| 25/27 [00:26<00:01,  1.00it/s]
+train_loss: 0.022345303385346023
+train_mIoU: 0.29064865311011034
+Epoch 0/100: 100%|██████████| 27/27 [00:28<00:00,  1.05s/it]
+Epoch 0/100:  21%|██▏       | 10/47 [00:00<00:02, 18.07it/s]
+val_loss: 0.03328990191221237
+val_mIoU: 0.22657523433190285
+val_accuracy: 0.3735215207363697
+Epoch 0/100: 100%|██████████| 47/47 [00:01<00:00, 29.37it/s]
+
+
+
+
+
+
+
+
+
+
+Epoch 1/100:  96%|█████████▋| 26/27 [00:20<00:00,  1.33it/s]
+train_loss: 0.019986265511424454
+train_mIoU: 0.3069167053657108
+Epoch 1/100: 100%|██████████| 27/27 [00:21<00:00,  1.27it/s]
+Epoch 1/100: 100%|██████████| 47/47 [00:01<00:00, 32.84it/s]
+Epoch 2/100:   0%|          | 0/27 [00:00<?, ?it/s]
+val_loss: 0.03963337846575899
+val_mIoU: 0.18231130645900587
+
+
+
+
+
+
+
+
+
+
+Epoch 2/100: 100%|██████████| 27/27 [00:21<00:00,  1.25it/s]
+Epoch 2/100:  26%|██▌       | 12/47 [00:00<00:00, 35.79it/s]
+train_loss: 0.01777181457038279
+train_mIoU: 0.3196614874374506
+train_accuracy: 0.4921677200882523
+val_loss: 0.03606566402347798
+val_mIoU: 0.18729868210923128
+Epoch 2/100: 100%|██████████| 47/47 [00:01<00:00, 33.36it/s]
+
+
+
+
+
+
+
+
+
+
+Epoch 3/100:  96%|█████████▋| 26/27 [00:20<00:00,  1.29it/s]
+train_loss: 0.015736424260669284
+train_mIoU: 0.33087949734207717
+Epoch 3/100: 100%|██████████| 27/27 [00:21<00:00,  1.24it/s]
+Epoch 3/100:  74%|███████▍  | 35/47 [00:01<00:00, 34.69it/s]
+val_loss: 0.03224961859907242
+val_mIoU: 0.20573694497699474
+Epoch 3/100: 100%|██████████| 47/47 [00:01<00:00, 30.67it/s]
+
+
+
+
+
+
+
+
+
+
+Epoch 4/100:  96%|█████████▋| 26/27 [00:21<00:00,  1.28it/s]
+train_loss: 0.013908792563058712
+train_mIoU: 0.34121881351194855
+Epoch 4/100: 100%|██████████| 27/27 [00:21<00:00,  1.24it/s]
+Epoch 4/100: 100%|██████████| 47/47 [00:01<00:00, 33.83it/s]
+Epoch 5/100:   0%|          | 0/27 [00:00<?, ?it/s]
+val_loss: 0.029387496253277395
+val_mIoU: 0.2224693431197673
+
+
+
+Epoch 5/100:  22%|██▏       | 6/27 [00:05<00:17,  1.17it/s]Exception ignored in: <generator object tqdm.__iter__ at 0x7ff0d4f95930>Exception ignored in sys.unraisablehook: <built-in function unraisablehook>
