@@ -1,0 +1,15 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cpu device
+configuring data loaders
+configuring model - UNET 3+
+Traceback (most recent call last):
+  File "/home/blue/projects/MoNuSeg/main.py", line 539, in <module>
+    main()
+  File "/home/blue/projects/MoNuSeg/main.py", line 267, in main
+    model = UNet_3Plus(config)
+  File "/home/blue/projects/MoNuSeg/networkModules/modelUnet3p.py", line 33, in __init__
+    self.maxpool1 = nn.MaxBlurPool2d(kernel_size=2)
+AttributeError: module 'torch.nn' has no attribute 'MaxBlurPool2d'

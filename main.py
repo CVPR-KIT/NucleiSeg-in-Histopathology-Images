@@ -278,6 +278,7 @@ def main():
     # Set model to Device
     model.to(device)
     
+    
     # save model config
     print('saving model summary')
     logging.info(f'saving model summary at {config["expt_dir"]+"modelSummary.txt"}')
@@ -286,6 +287,7 @@ def main():
     else:
         saveTorchSummary(model, input_size=(1, 256, 256), path=config["expt_dir"]+"modelSummary.txt")
     # optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate)
+    
 
     
     # If resume is true, load model and optimizer

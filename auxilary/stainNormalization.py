@@ -6,8 +6,10 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 from natsort import natsorted
 import os
+import sys
+import logging
 
-from auxilary.utils import createDir
+from utils import createDir, readConfig
 
 
 def machenkoNormal(img, target):
@@ -42,19 +44,34 @@ if __name__=='__main__':
     for more information - https://www.leicabiosystems.com/en-kr/knowledge-pathway/he-staining-overview-a-guide-to-best-practices/
 
     '''
-    path = 'Dataset/MonuSegData/Test/TissueImages/'
-    targetPath = 'Dataset/MonuSegData/Training/TissueImages/TCGA-A7-A13F-01Z-00-DX1.png'
+
+    # read config
+    config = readConfig()
+    pathDataset = config["to_be_aug"]
+    targetPath = config["targetImagePath"]
     newPath = 'Dataset/MonuSegData/Test/TissueImagesNormalized/'
+    normalMethod = config["normalization"]
 
-    createDir([newPath])
+    dirs = ["Training", "Test"]
+    for dir_ in dirs:
+        path = pathDataset + dir_ + "/TissueImages/"
+        newPath = pathDataset + dir_ + "/TissueImagesNormalized/"
+        createDir([newPath])
 
-    for imgPath in tqdm(natsorted(os.listdir(path))):
-        # continue if image is not png or tif
-        
-        if imgPath.endswith('.png') or imgPath.endswith('.tif'):
+        print("Normalizing images in ", path)
+        for imgPath in tqdm(natsorted(os.listdir(path))):
+            # continue if image is not png or tif
+            if not imgPath.endswith('.png') and not imgPath.endswith('.tif'):
+                continue
             img = cv2.imread(path+imgPath)
             target = cv2.imread(targetPath)
-            norm = reinhardNormal(img, target)
+            if normalMethod == "machenko":
+                norm = machenkoNormal(img, target)
+            elif normalMethod == "reinhard":
+                norm = reinhardNormal(img, target)
+            else:   
+                print("No Normalization method specified. Exiting...")    
+                sys.exit(0)        
             cv2.imwrite(newPath+imgPath, norm)
         
     

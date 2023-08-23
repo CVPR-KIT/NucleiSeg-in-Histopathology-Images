@@ -61,3 +61,50 @@ class BlurPool2D(nn.Module):
         # expand dimensions to match the input tensor
         kernel = kernel.expand((3, -1, -1, -1))
         return kernel
+    
+class MaxBlurPool2D_0(nn.Module):
+    def __init__(self, kernel_size, stride, in_channels):
+        super(MaxBlurPool2D_0, self).__init__()
+        self.kernel_size = kernel_size
+        self.stride = stride
+        self.padding = (kernel_size - 1) // 2
+        self.maxpool = nn.MaxPool2d(kernel_size=kernel_size, stride=stride)
+        #print(f"inside maxblurpool2d: c={in_channels}, k={kernel_size}")
+        self.weight = self._get_weights(kernel_size, in_channels)
+
+
+    def forward(self, x):
+        x = self.maxpool(x)  # Apply max-pooling
+        x = F.pad(x, (self.padding, self.padding, self.padding, self.padding), mode='reflect')
+        weight = self.weight.to(x.device)
+        return F.conv2d(x, weight, stride=1, groups=x.size(1))  # Apply blur
+
+    def _get_weights(self, kernel_size, num_channels):
+        # create a 1D kernel
+        kernel = torch.ones((num_channels, 1, kernel_size, kernel_size))
+        # normalize the kernel to make it a mean filter
+        kernel /= kernel_size ** 2
+        return kernel
+
+class MaxBlurPool2d(nn.Module):
+    def __init__(self, kernel_size=2, stride=2, padding=0):
+        super(MaxBlurPool2d, self).__init__()
+        self.kernel_size = kernel_size
+        self.stride = stride
+        self.padding = padding
+
+    def forward(self, x):
+        # Max pooling
+        x = F.max_pool2d(x, kernel_size=self.kernel_size, stride=self.stride, padding=self.padding)
+
+        # Blurring kernel
+        blur_kernel = torch.tensor([[1, 2, 1], [2, 4, 2], [1, 2, 1]], dtype=torch.float32)
+        blur_kernel = blur_kernel.view(1, 1, 3, 3)
+        blur_kernel = blur_kernel / blur_kernel.sum()
+        blur_kernel = blur_kernel.repeat(x.size(1), 1, 1, 1).to(x.device)
+
+        # Applying the blur using the 'depthwise' convolution
+        x = F.conv2d(x, blur_kernel, groups=x.size(1), padding=1)
+
+        return x
+

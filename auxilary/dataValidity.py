@@ -14,7 +14,10 @@ def getData(mode = "Training/"):
     typeDir = os.path.join(dataDir, mode)
     labelDir = os.path.join(typeDir, "GroundTruth/")
     logging.debug(f"Label Directory: {labelDir}")
-    imageDir = os.path.join(typeDir, "TissueImages/")
+    if config["normalization"] == None:
+        imageDir = os.path.join(typeDir, "TissueImages/")
+    else:
+        imageDir = os.path.join(typeDir, "TissueImagesNormalized/")
     logging.debug(f"Image Directory: {imageDir}")
 
 
@@ -76,6 +79,6 @@ def makeMeta(mode = "Training/", metaName = "metadata.json"):
     f.close()
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.CRITICAL)
     makeMeta("Training/", "metadata.json")
     makeMeta("Test/", "metadataTest.json")

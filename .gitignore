@@ -3,6 +3,10 @@ Dataset/MoNuSeg 2018 Training Data/
 Dataset/train/
 Dataset/val/
 Dataset/test/
+Dataset/train_c/
+Dataset/val_c/
+Dataset/test_c/
+Dataset/test0/
 Dataset/MonuSegData/
 Dataset/MoNuSeg 2018 Training Data.zip
 Dataset/MonuSeg-20200319T073151Z-001.zip
@@ -12,3 +16,4 @@ Dataset/val_old
 Outputs/
 monuSegEnv/
 simplexEnv/
+model/

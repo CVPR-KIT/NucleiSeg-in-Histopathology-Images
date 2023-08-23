@@ -57,4 +57,4 @@ def makeTest(config):
 if __name__ == '__main__':
     config = readConfig()
     makeVal(config)
-    #makeTest(config)
+    makeTest(config)

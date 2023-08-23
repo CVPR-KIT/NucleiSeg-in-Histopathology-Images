@@ -1,0 +1,27 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cpu device
+configuring data loaders
+configuring model - EluNet
+saving model summary
+logging parameters
+starting training
+Epoch 0/50:   0%|          | 0/2673 [00:04<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/blue/projects/MoNuSeg/main.py", line 539, in <module>
+    main()
+  File "/home/blue/projects/MoNuSeg/main.py", line 374, in main
+    train_loss ,train_confusion_matrix, train_mIoU,train_accuracy =  run_epoch(model, train_data, criterion, optimizer, epoch, device, 'train',config)
+  File "/home/blue/projects/MoNuSeg/main.py", line 146, in run_epoch
+    loss = criterion(pred,gt)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/auxilary/lossFunctions.py", line 596, in forward
+    msssim_loss =  1 -  msssim(input.float(), target.float(), window_size=11, size_average=True,
+  File "/home/blue/projects/MoNuSeg/auxilary/lossFunctions.py", line 518, in msssim
+    weights = torch.FloatTensor([0.0448, 0.2856, 0.3001, 0.2363, 0.1333]).cuda()
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/cuda/__init__.py", line 247, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx

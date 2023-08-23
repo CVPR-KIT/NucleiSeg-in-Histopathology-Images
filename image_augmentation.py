@@ -305,7 +305,7 @@ if __name__ == '__main__':
         noise_random = np.random.uniform(size=augment_num_per_img)  # [0, 1]
 
 
-        for j in range(augment_num_per_img//4):
+        for j in range(augment_num_per_img//3):
 
             # flip image
             flipped_image, flip_flag = flip_lr(raw_image, flip_random[j])
@@ -323,13 +323,13 @@ if __name__ == '__main__':
             modLabel = magnify_image(modLabel, magnify_random[j])
 
             # add noise 
-            modImage = noisy_image(modImage, noise_random[j])
+            modImage = noisy_image(modImage, alpha=0.3, random_state=noise_random[j])
 
 
             # elastic transform
             if elastic_random[j] <= 0.5:
-                modImage = elastic_transform(modImage, alpha=300, sigma=30)
-                modLabel = elastic_transform(modLabel, alpha=300, sigma=30)
+                modImage = elastic_transform(modImage, alpha=300, sigma=30, random_state=elastic_random[j])
+                modLabel = elastic_transform(modLabel, alpha=300, sigma=30, random_state=elastic_random[j])
 
 
             # resize image and label
@@ -337,7 +337,7 @@ if __name__ == '__main__':
             modLabel = resize_image(modLabel, (tile_width, tile_height))
 
             # gamma adjustment
-            gamma_values = [0.5, 1, 1.5]
+            gamma_values = [ 1, 1.5]
 
             for gamma_value in gamma_values:
                 corrected_image = adjust_gamma(modImage, gamma_value)

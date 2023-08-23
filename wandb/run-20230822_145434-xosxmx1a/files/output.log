@@ -1,0 +1,22 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cpu device
+configuring data loaders
+configuring model - UNET 3+
+saving model summary
+Traceback (most recent call last):
+  File "/home/blue/projects/MoNuSeg/main.py", line 539, in <module>
+    main()
+  File "/home/blue/projects/MoNuSeg/main.py", line 286, in main
+    saveTorchSummary(model, input_size=(3, 256, 256), path=config["expt_dir"]+"modelSummary.txt")
+  File "/home/blue/projects/MoNuSeg/auxilary/utils.py", line 104, in saveTorchSummary
+    summary(model, input_size, )
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torchsummary/torchsummary.py", line 72, in summary
+    model(*x)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/networkModules/modelUnet3p.py", line 243, in forward
+    torch.cat((h1_PT_hd4, h2_PT_hd4, h3_PT_hd4, h4_Cat_hd4, hd5_UT_hd4), 1)))) # hd4->40*40*UpChannels
+RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 32 but got size 64 for tensor number 1 in the list.

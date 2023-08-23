@@ -82,6 +82,8 @@ def readConfig(configPath = "config.sys"):
                 config[line.split("=")[0].strip()] = False
             if config[line.split("=")[0].strip()] == "None":
                 config[line.split("=")[0].strip()] = None
+            if config[line.split("=")[0].strip()] == "none":
+                config[line.split("=")[0].strip()] = None
             if line.split("=")[0].strip() in ["class1", "class2", "class3", "class4"]:
                 config[line.split("=")[0].strip()] = getPixel(config[line.split("=")[0].strip()])
         # int or float inputs       

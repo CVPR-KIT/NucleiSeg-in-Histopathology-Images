@@ -1,0 +1,76 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+configuring model - EluNet
+saving model summary
+logging parameters
+starting training
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch 0/50:   7%|▋         | 185/2673 [02:11<28:23,  1.46it/s]Exception ignored in: <generator object tqdm.__iter__ at 0x7fbb2bd2de70>Exception ignored in sys.unraisablehook: <built-in function unraisablehook>

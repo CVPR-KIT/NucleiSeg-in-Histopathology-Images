@@ -1,0 +1,14 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cpu device
+configuring data loaders
+configuring model - UNET 3+
+saving model summary
+logging parameters
+starting training
+
+
+
+Epoch 0/100:   0%|          | 2/2673 [00:26<9:48:50, 13.23s/it]Exception ignored in: <generator object tqdm.__iter__ at 0x7ff127e89e00>Exception ignored in sys.unraisablehook: <built-in function unraisablehook>

@@ -26,9 +26,35 @@ A training sample with segmentation mask from training set can be seen below:
 :-------------------------:|:-------------------------:
 ![](./Dataset/sample/image.png)  |  ![](./Dataset/sample/label.png)
 
-## Experiment Setup
+
+## Conversion from Annotations
+* The dataset contains annotations of the nuclie and there is a need to convert it into ground truth image for the segmentation. It can be done using the [xmlParser.py](auxilary/xmlBinaryParser.py) file.
+
+
+## Directory Configuration
+The following structure should be followed for dataset directory configuration
+* MonuSegData/
+    * Test/
+        * GroundTruth/
+        * TissueImages/
+    * Training/
+        * GroundTruth/
+        * TissueImages/
+
+#
+# Experiment Setup
 * All the modifyable parameters related to the Experiment and Augmentation is present in the file [config.sys](config.sys). Setup all the parameters here before proceeding.
 
+## Data Normalization 
+* The images in MoNuSeg dataset are H&E stained images that has the follwoing properties-
+    * purple for nuclei
+    * pink for cytoplasmic components
+For more information refer the following [link](https://www.leicabiosystems.com/en-kr/knowledge-pathway/he-staining-overview-a-guide-to-best-practices/).
+* It is recommended to perform staining normalization before augmenatation. It can be done by using the [stainNormalization.py](auxilary/stainNormalization.py) file.
+    <pre><code>python auxilary/stainNormalization.py</code></pre>
+
+
+### Generate Metadata files of train and test images
 * After preparing the data, run the following code to generate metadata files for image training and testing sets.
     <pre><code>python auxilary/dataValidity.py </code></pre>
 

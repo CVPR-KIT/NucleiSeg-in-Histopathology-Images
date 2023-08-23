@@ -1,0 +1,38 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+configuring model - UNET 3+
+Epoch 0/100:   0%|          | 0/2673 [00:00<?, ?it/s]
+logging parameters
+Epoch 0/100:   0%|          | 0/2673 [00:02<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/blue/projects/MoNuSeg/main.py", line 531, in <module>
+  File "/home/blue/projects/MoNuSeg/main.py", line 366, in main
+    val_accuracies = []
+  File "/home/blue/projects/MoNuSeg/main.py", line 119, in run_epoch
+    pred = model(images.to(device))
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/networkModules/modelUnet3p.py", line 221, in forward
+    h2 = self.conv2(h2)  # h2->160*160*128
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/networkModules/conv_modules_unet3p.py", line 39, in forward
+    x = conv(x)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [32, 16, 3, 3], expected input[16, 128, 254, 254] to have 16 channels, but got 128 channels instead
+torch.Size([16, 16, 256, 256])
+h1 after maxpool1
+torch.Size([16, 128, 254, 254])

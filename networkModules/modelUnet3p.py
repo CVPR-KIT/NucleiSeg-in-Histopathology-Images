@@ -2,7 +2,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from networkModules.conv_modules_unet3p import unetConv2, BlurPool2D
+from networkModules.conv_modules_unet3p import unetConv2, BlurPool2D, MaxBlurPool2d
 from init_weights import init_weights
 '''
     UNet 3+
@@ -21,6 +21,7 @@ class UNet_3Plus(nn.Module):
         self.ch = config["channel"]
         n_classes = config["num_classes"]
         self.dropout = nn.Dropout2d(p=config["dropout"])
+        self.useMaxBPool = config["use_maxblurpool"]
 
         # self.ch, original paper uses channel size of 64, while we use 16
         # uses relu activation by default
@@ -29,16 +30,28 @@ class UNet_3Plus(nn.Module):
 
         ## -------------Encoder--------------
         self.conv1 = unetConv2(self.in_channels, filters[0], self.is_batchnorm, ks=self.kernel_size)
-        self.maxpool1 = nn.MaxPool2d(kernel_size=2)
+        if self.useMaxBPool:
+            self.maxpool1 = MaxBlurPool2d(kernel_size=2)
+        else:
+            self.maxpool1 = nn.MaxPool2d(kernel_size=2)
 
         self.conv2 = unetConv2(filters[0], filters[1], self.is_batchnorm, ks=self.kernel_size)
-        self.maxpool2 = nn.MaxPool2d(kernel_size=2)
+        if self.useMaxBPool:
+            self.maxpool2 = MaxBlurPool2d(kernel_size=2)
+        else:
+            self.maxpool2 = nn.MaxPool2d(kernel_size=2)
 
         self.conv3 = unetConv2(filters[1], filters[2], self.is_batchnorm, ks=self.kernel_size)
-        self.maxpool3 = nn.MaxPool2d(kernel_size=2)
+        if self.useMaxBPool:
+            self.maxpool3 = MaxBlurPool2d(kernel_size=2)    
+        else:
+            self.maxpool3 = nn.MaxPool2d(kernel_size=2)
 
         self.conv4 = unetConv2(filters[2], filters[3], self.is_batchnorm, ks=self.kernel_size)
-        self.maxpool4 = nn.MaxPool2d(kernel_size=2)
+        if self.useMaxBPool:
+            self.maxpool4 = MaxBlurPool2d(kernel_size=2)
+        else:
+            self.maxpool4 = nn.MaxPool2d(kernel_size=2)
 
         self.conv5 = unetConv2(filters[3], filters[4], self.is_batchnorm, ks=self.kernel_size)
 
