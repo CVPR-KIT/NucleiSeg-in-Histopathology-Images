@@ -6661,3 +6661,8 @@
 2023-08-23 13:51:49,326 DEBUG   HandlerThread:2624 [handler.py:handle_request():144] handle_request: stop_status
 2023-08-23 13:51:49,327 DEBUG   SenderThread:2624 [sender.py:send_request():406] send_request: stop_status
 2023-08-23 13:51:49,880 INFO    Thread-12 :2624 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230823_114443-n44p2ahz/files/output.log
+2023-08-23 13:51:51,881 INFO    Thread-12 :2624 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230823_114443-n44p2ahz/files/output.log
+2023-08-23 13:51:53,609 DEBUG   HandlerThread:2624 [handler.py:handle_request():144] handle_request: status_report
+2023-08-23 13:51:53,881 INFO    Thread-12 :2624 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230823_114443-n44p2ahz/files/output.log
+2023-08-23 13:51:55,882 INFO    Thread-12 :2624 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230823_114443-n44p2ahz/files/output.log
+2023-08-23 13:51:57,883 INFO    Thread-12 :2624 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230823_114443-n44p2ahz/files/output.log
