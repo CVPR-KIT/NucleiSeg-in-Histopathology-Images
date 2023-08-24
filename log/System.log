@@ -2732,3 +2732,69 @@
 08/23/2023 12:52:01 PM saving model at Outputs/experiment_08-23_11.44.44/model/best_model_4.pth
 08/23/2023 01:02:10 PM saving model at Outputs/experiment_08-23_11.44.44/model/best_model_5.pth
 08/23/2023 01:22:38 PM saving model at Outputs/experiment_08-23_11.44.44/model/best_model_7.pth
+08/23/2023 08:53:52 PM loading model for testing from Outputs/experiment_08-23_11.44.44/model/best_model.pth
+08/23/2023 08:53:52 PM Testing...
+08/23/2023 08:53:52 PM Outputting label
+08/23/2023 08:53:53 PM Outputting label
+08/23/2023 08:53:53 PM Outputting label
+08/24/2023 12:32:24 PM 
+
+#################### New Run ####################
+08/24/2023 12:32:24 PM PreRun: Creating required directories
+08/24/2023 12:32:24 PM PreRun: Generating experiment config file
+08/24/2023 12:32:24 PM Using cuda device
+08/24/2023 12:32:24 PM configuring data loaders
+08/24/2023 12:32:24 PM configuring model - EluNet
+08/24/2023 12:32:26 PM saving model summary at Outputs/experiment_08-24_12.32.24/modelSummary.txt
+08/24/2023 12:32:30 PM logging parameters
+08/24/2023 12:32:30 PM {
+    "model": "EluNet",
+    "epochs": 5,
+    "learning_rate": 1e-05,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "dice",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 16,
+    "dropout": 0.8,
+    "dilation": 1
+}
+08/24/2023 12:32:30 PM starting training
+08/24/2023 12:32:37 PM saving model at Outputs/experiment_08-24_12.32.24/model/best_model_0.pth
+08/24/2023 12:33:04 PM saving model at Outputs/experiment_08-24_12.32.24/model/best_model_4.pth
+08/24/2023 12:33:04 PM loading model for testing from Outputs/experiment_08-24_12.32.24/model/best_model.pth
+08/24/2023 12:33:04 PM Testing...
+08/24/2023 12:33:04 PM Outputting label
+08/24/2023 12:33:04 PM Outputting label
+08/24/2023 12:33:04 PM Outputting label
+08/24/2023 12:33:04 PM saving images
+08/24/2023 12:33:05 PM Outputting label
+08/24/2023 12:33:05 PM saving images
+08/24/2023 12:33:05 PM Outputting label
+08/24/2023 12:33:05 PM saving images
+08/24/2023 12:33:05 PM Outputting label
+08/24/2023 12:33:05 PM saving images
+08/24/2023 12:33:06 PM Outputting label
+08/24/2023 12:33:06 PM saving images
+08/24/2023 12:33:06 PM Outputting label
+08/24/2023 12:33:06 PM saving images
+08/24/2023 12:33:07 PM Outputting label
+08/24/2023 12:33:07 PM saving images
+08/24/2023 12:33:07 PM Outputting label
+08/24/2023 12:33:07 PM saving images
+08/24/2023 12:33:08 PM Outputting label
+08/24/2023 12:33:08 PM saving images
+08/24/2023 12:33:08 PM Outputting label
+08/24/2023 12:33:08 PM saving images
+08/24/2023 12:33:08 PM Outputting label
+08/24/2023 12:33:08 PM saving images
+08/24/2023 12:33:09 PM Outputting label
+08/24/2023 12:33:09 PM saving images
+08/24/2023 12:33:09 PM saving images
+08/24/2023 12:33:10 PM saving images
+08/24/2023 12:33:10 PM Saving Training Stats at Outputs/experiment_08-24_12.32.24/loss_log.txt
+08/24/2023 12:33:10 PM Experiment took 0.01 hours
+08/24/2023 12:33:10 PM generting loss and accuracy plot at Outputs/experiment_08-24_12.32.24/loss_plot.png
+08/24/2023 12:33:10 PM Experiment End

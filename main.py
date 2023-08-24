@@ -229,8 +229,13 @@ def main():
     logging.info("\n\n#################### New Run ####################")
     #logging.basicConfig(level=logging.CRITICAL)
 
+
+    # check if wandblogging is enabled
+    wandbFlag = config["wandb"]
+
     # Initialize wandb
-    initWandb(config)
+    if wandbFlag:
+        initWandb(config)
 
     learning_rate = config["learning_rate"]
     num_epochs = config["epochs"]
@@ -394,7 +399,8 @@ def main():
         print('val_accuracy:',val_accuracy)
         #logging.info('val_accuracy:',val_accuracy)
         
-        wandb.log({"train_loss": train_loss, "train_accuracy": train_accuracy, "train_mIoU": train_mIoU, "val_loss": val_loss, "val_accuracy": val_accuracy, "val_mIoU": val_mIoU})
+        if wandbFlag:
+            wandb.log({"train_loss": train_loss, "train_accuracy": train_accuracy, "train_mIoU": train_mIoU, "val_loss": val_loss, "val_accuracy": val_accuracy, "val_mIoU": val_mIoU})
         
         if val_accuracy > best_val_accuracy:
             best_val_accuracy = val_accuracy

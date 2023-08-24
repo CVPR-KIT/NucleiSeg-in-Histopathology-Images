@@ -1,5 +1,9 @@
 log = "log/"
 
+[Debug]
+debug = "True"                                 # Debug Mode - True or False: Radically reduces the dataset size for faster training
+wandb = "False"                                 # Wandb Logging
+
 [Stain Normalization]
 normalization = "None"                       # Normalization Avl: macenko, reinhard, None
 targetImagePath = "Dataset/MonuSegData/Training/TissueImages/TCGA-A7-A13F-01Z-00-DX1.png" # Target Image for Normalization
@@ -37,10 +41,10 @@ class4 = "0, 0, 0"                              #black
 model_type = "EluNet"                           # Model Avl: UNet ,UNet_3Plus, EluNet
 
 [Parameters]
-input_img_type = "gray"                          # Input Image Type: rgb, gray
+input_img_type = "rgb"                          # Input Image Type: rgb, gray
 kernel_size = 3
 use_maxblurpool = "False"                       # Use MaxBlurPool
-epochs = 50
+epochs = 5
 batch_size = 16
 learning_rate = 0.00001                         # can be set to "auto" for finding the best learning rate or set to 0.00001
 num_classes = 2

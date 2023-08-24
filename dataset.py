@@ -20,11 +20,15 @@ class MonuSegDataSet(Dataset):
         self.loggerFlag = True
 
         self.spl_losses = ['unet3+loss', 'improvedLoss', 'ClassRatioLoss']
+        self.debug = self.config["debug"]
     
         return 
     
     def __len__(self):
-        return len(os.listdir(self.img_dir))//2
+        if self.debug:
+            return len(os.listdir(self.img_dir))//200
+        else:
+            return len(os.listdir(self.img_dir))//2
 
     def __getitem__(self, index):
         try:
@@ -86,10 +90,15 @@ class MonuSegValDataSet(Dataset):
                         level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.spl_losses = ['unet3+loss', 'improvedLoss']
         self.loggerFlag = True
-        return  
+        self.debug = self.config["debug"]
+    
+        return 
     
     def __len__(self):
-        return len(os.listdir(self.img_dir))//2 -1
+        if self.debug:
+            return len(os.listdir(self.img_dir))//200
+        else:
+            return len(os.listdir(self.img_dir))//2
 
     def __getitem__(self, index):
         try:
@@ -189,7 +198,6 @@ class MonuSegTestDataSet(Dataset):
         #with np.printoptions(threshold=np.inf):
          #   print(label[label==225])
 
-        label = cv2.imread(os.path.join(self.img_dir,str(index)+'_label'+'.png'),cv2.IMREAD_GRAYSCALE)
         label[label==255] = 1
         label[label==0] = 0
         
