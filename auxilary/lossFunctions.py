@@ -696,8 +696,6 @@ class ClassRatioLossPlus(torch.nn.Module):
 
         return loss
 
-import torch
-import torch.nn.functional as F
 
 class RBAF(torch.nn.Module):
     '''
@@ -740,7 +738,41 @@ class RBAF(torch.nn.Module):
 
         return loss
 
+class focalDiceLoss(torch.nn.Module):
+    def __init__(self, class_weights=None):
+        super().__init__()
+        self.class_weights = class_weights
 
+    def setWeights(self, class_weights):
+        self.class_weights = class_weights
+
+    def forward(self, prediction, target):
+        # Assuming the prediction is logits; apply sigmoid to convert to probabilities
+        prediction = torch.sigmoid(prediction)
+
+        # Focal Loss
+        pt = prediction * target + (1 - prediction) * (1 - target)
+        focal_loss = -((1 - pt) ** 2) * torch.log(pt + 1e-8)
+
+        if self.class_weights is not None:
+            focal_loss = focal_loss * self.class_weights.view(1, -1, 1, 1)
+
+        focal_loss = focal_loss.mean()
+
+        # Dice Loss
+        intersection = (prediction * target).sum(dim=(0, 2, 3))
+        union = prediction.sum(dim=(0, 2, 3)) + target.sum(dim=(0, 2, 3)) - intersection
+        dice_loss = 1 - (intersection + 1e-6) / (union + 1e-6)
+
+        if self.class_weights is not None:
+            dice_loss = dice_loss * self.class_weights
+
+        dice_loss = dice_loss.mean()
+
+        # Combine the losses with weights alpha and beta
+        loss = 0.5 * dice_loss + 0.5 * focal_loss
+
+        return loss
 
 
 if __name__ == '__main__':

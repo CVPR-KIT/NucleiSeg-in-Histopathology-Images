@@ -1,7 +1,7 @@
 log = "log/"
 
 [Debug]
-debug = "True"                                 # Debug Mode - True or False: Radically reduces the dataset size for faster training
+debug = "False"                                 # Debug Mode - True or False: Radically reduces the dataset size for faster training
 wandb = "False"                                 # Wandb Logging
 
 [Stain Normalization]
@@ -44,9 +44,9 @@ model_type = "EluNet"                           # Model Avl: UNet ,UNet_3Plus, E
 input_img_type = "rgb"                          # Input Image Type: rgb, gray
 kernel_size = 3
 use_maxblurpool = "False"                       # Use MaxBlurPool
-epochs = 5
+epochs = 50
 batch_size = 16
-learning_rate = 0.00001                         # can be set to "auto" for finding the best learning rate or set to 0.00001
+learning_rate = 0.01                         # can be set to "auto" for finding the best learning rate or set to 0.00001
 num_classes = 2
 weight_path = "None"
 activation = "relu"                             # Activations available:
@@ -54,6 +54,6 @@ resume = "False"                                # Resume Training
 resume_epoch = 0                                # Resume Training from epoch
 channel = 16                                    # Default: 16 Can be set to 64 or other
 attention = "False"                             # Model 1 only
-loss = "dice"                             # Losses available: jaccard, focal, pwcel, dice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF
+loss = "focalDiceLoss"                             # Losses available: jaccard, focal, pwcel, dice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF, focalDiceLoss
 dropout = 0.8                                     # Dropout rate
 dilation = 1                                    # For Dilated convolution.

@@ -7,7 +7,7 @@ import torch
 import sys
 import matplotlib.pyplot as plt
 import logging
-from auxilary.utils import result_recolor, toGray, toGray4C, readConfig
+from auxilary.utils import result_recolor, toGray, toGray4C, readConfig, normalize_image
 class MonuSegDataSet(Dataset):
     def __init__(self, img_dir):
         self.img_dir = img_dir
@@ -33,7 +33,7 @@ class MonuSegDataSet(Dataset):
     def __getitem__(self, index):
         try:
             if self.config["input_img_type"] == "rgb":
-                image = cv2.imread(os.path.join(self.img_dir,str(index)+'.png'))/255
+                image = cv2.imread(os.path.join(self.img_dir,str(index)+'.png'))
             else:
                 image = cv2.imread(os.path.join(self.img_dir,str(index)+'.png'),cv2.IMREAD_GRAYSCALE)/255
         except TypeError:
@@ -53,6 +53,9 @@ class MonuSegDataSet(Dataset):
         label[label==255] = 1
         label[label==0] = 0
         
+        # Normalize image
+        image = normalize_image(image)
+
         if self.config["input_img_type"] == "rgb":
             image = np.reshape(image,(3,self.wid,self.hit))
         else:
@@ -103,7 +106,7 @@ class MonuSegValDataSet(Dataset):
     def __getitem__(self, index):
         try:
             if self.config["input_img_type"] == "rgb":
-                image = cv2.imread(os.path.join(self.img_dir,str(index+1)+'.png'))/255
+                image = cv2.imread(os.path.join(self.img_dir,str(index+1)+'.png'))
             else:
                 image = cv2.imread(os.path.join(self.img_dir,str(index+1)+'.png'),cv2.IMREAD_GRAYSCALE)/255
         except TypeError:
@@ -126,6 +129,8 @@ class MonuSegValDataSet(Dataset):
         label[label==255] = 1
         label[label==0] = 0
         
+        # Normalize image
+        image = normalize_image(image)
         
         if self.config["input_img_type"] == "rgb":
             image = np.reshape(image,(3,self.wid,self.hit))
@@ -173,10 +178,13 @@ class MonuSegTestDataSet(Dataset):
 
         img_paths  = sorted(os.listdir(self.img_dir))
         if self.config["input_img_type"] == "rgb":
-            image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]))/255
+            image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]))
         else:
             image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]),cv2.IMREAD_GRAYSCALE)/255
         
+
+        # Normalize image
+        image = normalize_image(image)
 
         self.wid = image.shape[0]
         self.hit = image.shape[1]
@@ -249,7 +257,7 @@ class MonuSegOnlyTestDataSet(Dataset):
         #logging.debug(img_paths)
         #logging.debug(os.path.join(self.img_dir,str(index+1)+img_paths[index][-4:]))
         if self.config["input_img_type"] == "rgb":
-            image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]))/255
+            image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]))
         else:
             image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]),cv2.IMREAD_GRAYSCALE)/255
         
@@ -260,6 +268,9 @@ class MonuSegOnlyTestDataSet(Dataset):
         self.hit = image.shape[1]
 
         self.wid = self.hit = self.len
+
+        # Normalize image
+        image = normalize_image(image)
 
         
         image=image[0:self.wid,0:self.hit]

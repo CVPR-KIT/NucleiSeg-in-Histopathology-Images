@@ -1,0 +1,122 @@
+2023-08-24 12:40:03,867 INFO    StreamThr :13283 [internal.py:wandb_internal():86] W&B internal server running at pid: 13283, started at: 2023-08-24 12:40:03.866945
+2023-08-24 12:40:03,869 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: status
+2023-08-24 12:40:03,871 INFO    WriterThread:13283 [datastore.py:open_for_write():85] open: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/run-yedo3hfr.wandb
+2023-08-24 12:40:03,872 DEBUG   SenderThread:13283 [sender.py:send():379] send: header
+2023-08-24 12:40:03,875 DEBUG   SenderThread:13283 [sender.py:send():379] send: run
+2023-08-24 12:40:04,364 INFO    SenderThread:13283 [dir_watcher.py:__init__():211] watching files in: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/files
+2023-08-24 12:40:04,364 INFO    SenderThread:13283 [sender.py:_start_run_threads():1121] run started: yedo3hfr with start time 1692848403.86656
+2023-08-24 12:40:04,366 DEBUG   SenderThread:13283 [sender.py:send_request():406] send_request: summary_record
+2023-08-24 12:40:04,366 INFO    SenderThread:13283 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-24 12:40:04,371 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: check_version
+2023-08-24 12:40:04,372 DEBUG   SenderThread:13283 [sender.py:send_request():406] send_request: check_version
+2023-08-24 12:40:04,526 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: run_start
+2023-08-24 12:40:04,607 DEBUG   HandlerThread:13283 [system_info.py:__init__():31] System info init
+2023-08-24 12:40:04,608 DEBUG   HandlerThread:13283 [system_info.py:__init__():46] System info init done
+2023-08-24 12:40:04,608 INFO    HandlerThread:13283 [system_monitor.py:start():181] Starting system monitor
+2023-08-24 12:40:04,608 INFO    SystemMonitor:13283 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-08-24 12:40:04,608 INFO    HandlerThread:13283 [system_monitor.py:probe():201] Collecting system info
+2023-08-24 12:40:04,609 INFO    SystemMonitor:13283 [interfaces.py:start():190] Started cpu monitoring
+2023-08-24 12:40:04,612 INFO    SystemMonitor:13283 [interfaces.py:start():190] Started disk monitoring
+2023-08-24 12:40:04,613 INFO    SystemMonitor:13283 [interfaces.py:start():190] Started gpu monitoring
+2023-08-24 12:40:04,614 INFO    SystemMonitor:13283 [interfaces.py:start():190] Started memory monitoring
+2023-08-24 12:40:04,616 INFO    SystemMonitor:13283 [interfaces.py:start():190] Started network monitoring
+2023-08-24 12:40:04,632 DEBUG   HandlerThread:13283 [system_info.py:probe():195] Probing system
+2023-08-24 12:40:04,657 DEBUG   HandlerThread:13283 [system_info.py:_probe_git():180] Probing git
+2023-08-24 12:40:04,661 DEBUG   HandlerThread:13283 [system_info.py:_probe_git():188] Probing git done
+2023-08-24 12:40:04,661 DEBUG   HandlerThread:13283 [system_info.py:probe():240] Probing system done
+2023-08-24 12:40:04,661 DEBUG   HandlerThread:13283 [system_monitor.py:probe():210] {'os': 'Linux-5.10.16.3-microsoft-standard-WSL2-x86_64-with-glibc2.35', 'python': '3.10.9', 'heartbeatAt': '2023-08-24T03:40:04.632323', 'startedAt': '2023-08-24T03:40:03.862634', 'docker': None, 'cuda': None, 'args': ('--config', 'config.sys'), 'state': 'running', 'program': '/home/blue/projects/MoNuSeg/main.py', 'codePath': 'main.py', 'git': {'remote': 'https://github.com/bluesaiyancodes/MoNuSeg-Segmentation.git', 'commit': '9517116025c6c5f0782ac0a620fda8b05c9cdf23'}, 'email': 'blue.bishal@rocketmail.com', 'root': '/home/blue/projects/MoNuSeg', 'host': 'Blue-LAB', 'username': 'blue', 'executable': '/home/blue/projects/MoNuSeg/monuSegEnv/bin/python', 'cpu_count': 4, 'cpu_count_logical': 8, 'cpu_freq': {'current': 3407.997, 'min': 0.0, 'max': 0.0}, 'cpu_freq_per_core': [{'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}], 'disk': {'total': 983.3048324584961, 'used': 388.74460220336914}, 'gpu': 'NVIDIA RTX A6000', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA RTX A6000', 'memory_total': 51527024640}], 'memory': {'total': 29.391098022460938}}
+2023-08-24 12:40:04,662 INFO    HandlerThread:13283 [system_monitor.py:probe():211] Finished collecting system info
+2023-08-24 12:40:04,662 INFO    HandlerThread:13283 [system_monitor.py:probe():214] Publishing system info
+2023-08-24 12:40:04,662 DEBUG   HandlerThread:13283 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-08-24 12:40:04,662 DEBUG   HandlerThread:13283 [system_info.py:_save_pip():67] Saving pip packages done
+2023-08-24 12:40:04,662 INFO    HandlerThread:13283 [system_monitor.py:probe():216] Finished publishing system info
+2023-08-24 12:40:04,667 DEBUG   SenderThread:13283 [sender.py:send():379] send: files
+2023-08-24 12:40:04,667 INFO    SenderThread:13283 [sender.py:_save_file():1375] saving file wandb-metadata.json with policy now
+2023-08-24 12:40:04,672 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-24 12:40:04,672 DEBUG   SenderThread:13283 [sender.py:send_request():406] send_request: stop_status
+2023-08-24 12:40:04,985 DEBUG   SenderThread:13283 [sender.py:send():379] send: telemetry
+2023-08-24 12:40:05,366 INFO    Thread-12 :13283 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/files/output.log
+2023-08-24 12:40:05,366 INFO    Thread-12 :13283 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/files/wandb-metadata.json
+2023-08-24 12:40:05,366 INFO    Thread-12 :13283 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/files/wandb-summary.json
+2023-08-24 12:40:05,367 INFO    Thread-12 :13283 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/files/requirements.txt
+2023-08-24 12:40:05,487 INFO    wandb-upload_0:13283 [upload_job.py:push():131] Uploaded file /tmp/tmpss0dk1xfwandb/mn0nak3j-wandb-metadata.json
+2023-08-24 12:40:07,365 INFO    Thread-12 :13283 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/files/output.log
+2023-08-24 12:40:09,137 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: status_report
+2023-08-24 12:40:09,366 INFO    Thread-12 :13283 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/files/output.log
+2023-08-24 12:40:11,367 INFO    Thread-12 :13283 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/files/output.log
+2023-08-24 12:40:12,830 DEBUG   SenderThread:13283 [sender.py:send():379] send: exit
+2023-08-24 12:40:12,830 INFO    SenderThread:13283 [sender.py:send_exit():584] handling exit code: 1
+2023-08-24 12:40:12,831 INFO    SenderThread:13283 [sender.py:send_exit():586] handling runtime: 8
+2023-08-24 12:40:12,831 INFO    SenderThread:13283 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-24 12:40:12,831 INFO    SenderThread:13283 [sender.py:send_exit():592] send defer
+2023-08-24 12:40:12,831 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: defer
+2023-08-24 12:40:12,832 INFO    HandlerThread:13283 [handler.py:handle_request_defer():170] handle defer: 0
+2023-08-24 12:40:12,832 DEBUG   SenderThread:13283 [sender.py:send_request():406] send_request: defer
+2023-08-24 12:40:12,832 INFO    SenderThread:13283 [sender.py:send_request_defer():608] handle sender defer: 0
+2023-08-24 12:40:12,832 INFO    SenderThread:13283 [sender.py:transition_state():612] send defer: 1
+2023-08-24 12:40:12,832 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: defer
+2023-08-24 12:40:12,832 INFO    HandlerThread:13283 [handler.py:handle_request_defer():170] handle defer: 1
+2023-08-24 12:40:12,833 DEBUG   SenderThread:13283 [sender.py:send_request():406] send_request: defer
+2023-08-24 12:40:12,833 INFO    SenderThread:13283 [sender.py:send_request_defer():608] handle sender defer: 1
+2023-08-24 12:40:12,833 INFO    SenderThread:13283 [sender.py:transition_state():612] send defer: 2
+2023-08-24 12:40:12,833 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: defer
+2023-08-24 12:40:12,833 INFO    HandlerThread:13283 [handler.py:handle_request_defer():170] handle defer: 2
+2023-08-24 12:40:12,833 INFO    HandlerThread:13283 [system_monitor.py:finish():190] Stopping system monitor
+2023-08-24 12:40:12,833 DEBUG   SystemMonitor:13283 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-08-24 12:40:12,833 DEBUG   SystemMonitor:13283 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-08-24 12:40:12,834 DEBUG   SystemMonitor:13283 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-08-24 12:40:12,835 INFO    HandlerThread:13283 [interfaces.py:finish():202] Joined cpu monitor
+2023-08-24 12:40:12,835 INFO    HandlerThread:13283 [interfaces.py:finish():202] Joined disk monitor
+2023-08-24 12:40:12,842 INFO    HandlerThread:13283 [interfaces.py:finish():202] Joined gpu monitor
+2023-08-24 12:40:12,842 INFO    HandlerThread:13283 [interfaces.py:finish():202] Joined memory monitor
+2023-08-24 12:40:12,843 INFO    HandlerThread:13283 [interfaces.py:finish():202] Joined network monitor
+2023-08-24 12:40:12,843 DEBUG   SenderThread:13283 [sender.py:send_request():406] send_request: defer
+2023-08-24 12:40:12,843 INFO    SenderThread:13283 [sender.py:send_request_defer():608] handle sender defer: 2
+2023-08-24 12:40:12,843 INFO    SenderThread:13283 [sender.py:transition_state():612] send defer: 3
+2023-08-24 12:40:12,843 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: defer
+2023-08-24 12:40:12,843 INFO    HandlerThread:13283 [handler.py:handle_request_defer():170] handle defer: 3
+2023-08-24 12:40:12,844 DEBUG   SenderThread:13283 [sender.py:send_request():406] send_request: defer
+2023-08-24 12:40:12,844 INFO    SenderThread:13283 [sender.py:send_request_defer():608] handle sender defer: 3
+2023-08-24 12:40:12,844 INFO    SenderThread:13283 [sender.py:transition_state():612] send defer: 4
+2023-08-24 12:40:12,844 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: defer
+2023-08-24 12:40:12,844 INFO    HandlerThread:13283 [handler.py:handle_request_defer():170] handle defer: 4
+2023-08-24 12:40:12,844 DEBUG   SenderThread:13283 [sender.py:send_request():406] send_request: defer
+2023-08-24 12:40:12,844 INFO    SenderThread:13283 [sender.py:send_request_defer():608] handle sender defer: 4
+2023-08-24 12:40:12,844 INFO    SenderThread:13283 [sender.py:transition_state():612] send defer: 5
+2023-08-24 12:40:12,845 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: defer
+2023-08-24 12:40:12,845 INFO    HandlerThread:13283 [handler.py:handle_request_defer():170] handle defer: 5
+2023-08-24 12:40:12,845 DEBUG   SenderThread:13283 [sender.py:send():379] send: summary
+2023-08-24 12:40:12,846 INFO    SenderThread:13283 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-24 12:40:12,846 DEBUG   SenderThread:13283 [sender.py:send_request():406] send_request: defer
+2023-08-24 12:40:12,846 INFO    SenderThread:13283 [sender.py:send_request_defer():608] handle sender defer: 5
+2023-08-24 12:40:12,846 INFO    SenderThread:13283 [sender.py:transition_state():612] send defer: 6
+2023-08-24 12:40:12,846 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: defer
+2023-08-24 12:40:12,846 INFO    HandlerThread:13283 [handler.py:handle_request_defer():170] handle defer: 6
+2023-08-24 12:40:12,846 DEBUG   SenderThread:13283 [sender.py:send_request():406] send_request: defer
+2023-08-24 12:40:12,846 INFO    SenderThread:13283 [sender.py:send_request_defer():608] handle sender defer: 6
+2023-08-24 12:40:12,850 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: status_report
+2023-08-24 12:40:13,112 INFO    SenderThread:13283 [sender.py:transition_state():612] send defer: 7
+2023-08-24 12:40:13,112 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: defer
+2023-08-24 12:40:13,112 INFO    HandlerThread:13283 [handler.py:handle_request_defer():170] handle defer: 7
+2023-08-24 12:40:13,112 DEBUG   SenderThread:13283 [sender.py:send_request():406] send_request: defer
+2023-08-24 12:40:13,113 INFO    SenderThread:13283 [sender.py:send_request_defer():608] handle sender defer: 7
+2023-08-24 12:40:13,368 INFO    Thread-12 :13283 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/files/output.log
+2023-08-24 12:40:13,368 INFO    Thread-12 :13283 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/files/config.yaml
+2023-08-24 12:40:13,368 INFO    Thread-12 :13283 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/files/wandb-summary.json
+2023-08-24 12:40:15,186 INFO    SenderThread:13283 [sender.py:transition_state():612] send defer: 8
+2023-08-24 12:40:15,186 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: defer
+2023-08-24 12:40:15,187 INFO    HandlerThread:13283 [handler.py:handle_request_defer():170] handle defer: 8
+2023-08-24 12:40:15,187 DEBUG   SenderThread:13283 [sender.py:send_request():406] send_request: defer
+2023-08-24 12:40:15,187 INFO    SenderThread:13283 [sender.py:send_request_defer():608] handle sender defer: 8
+2023-08-24 12:40:15,187 INFO    SenderThread:13283 [job_builder.py:build():281] Attempting to build job artifact
+2023-08-24 12:40:15,187 INFO    SenderThread:13283 [job_builder.py:_get_source_type():400] is repo sourced job
+2023-08-24 12:40:15,189 INFO    SenderThread:13283 [job_builder.py:build():374] adding wandb-job metadata file
+2023-08-24 12:40:15,221 INFO    SenderThread:13283 [sender.py:transition_state():612] send defer: 9
+2023-08-24 12:40:15,222 DEBUG   HandlerThread:13283 [handler.py:handle_request():144] handle_request: defer
+2023-08-24 12:40:15,222 DEBUG   SenderThread:13283 [sender.py:send():379] send: artifact
+2023-08-24 12:40:15,222 INFO    HandlerThread:13283 [handler.py:handle_request_defer():170] handle defer: 9
+2023-08-24 12:40:15,368 INFO    Thread-12 :13283 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/files/output.log
+2023-08-24 12:40:28,897 WARNING StreamThr :13283 [internal.py:is_dead():414] Internal process exiting, parent pid 13255 disappeared
+2023-08-24 12:40:28,898 ERROR   StreamThr :13283 [internal.py:wandb_internal():152] Internal process shutdown.
+2023-08-24 12:40:29,227 INFO    WriterThread:13283 [datastore.py:close():294] close: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/run-yedo3hfr.wandb
+2023-08-24 12:40:29,228 INFO    HandlerThread:13283 [handler.py:finish():857] shutting down handler

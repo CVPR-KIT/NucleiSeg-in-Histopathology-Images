@@ -8,6 +8,7 @@ from networkModules.model import UNet
 from networkModules.modelElunet import ELUnet
 import numpy as np
 import torch.backends.cudnn as cudnn
+
 import random
 from dataset import MonuSegDataSet, MonuSegValDataSet, MonuSegTestDataSet
 
@@ -98,7 +99,7 @@ def getSuggestedLR(model, optimizer, criterion, train_data, config):
     #logging.basicConfig(level=logging.INFO)
     return float(sLR)
 
-def run_epoch(model, data_loader, criterion, optimizer, epoch,device, mode,config):
+def run_epoch(model, data_loader, criterion, optimizer, scheduler, epoch, device, mode, config):
     pgbar = tqdm(data_loader)
     configEpochs = config["epochs"]
     pgbar.set_description(f"Epoch {epoch}/{configEpochs}")
@@ -138,7 +139,7 @@ def run_epoch(model, data_loader, criterion, optimizer, epoch,device, mode,confi
         class_weights = calculate_class_weights(gt, config["num_classes"])
         
         #if loss is modJaccard, jaccard, pwxce, improvedLoss use weights
-        weightable_losses = ['modJaccard', 'jaccard', 'pwcel', 'improvedLoss', 'ClassRatioLossPlus']
+        weightable_losses = ['modJaccard', 'jaccard', 'pwcel', 'improvedLoss', 'ClassRatioLossPlus', 'focalDiceLoss']
         if config["loss"] in weightable_losses:
             criterion.setWeights(class_weights.to(device))
 
@@ -158,6 +159,7 @@ def run_epoch(model, data_loader, criterion, optimizer, epoch,device, mode,confi
             #loss.requires_grad = True
             loss.backward()
             optimizer.step()
+            scheduler.step()
 
 
             
@@ -324,6 +326,8 @@ def main():
         criterion = ClassRatioLoss()
     elif config["loss"] == "RBAF":
         criterion = RBAF()
+    elif config["loss"] == "focalDiceLoss":
+        criterion = focalDiceLoss()
     else:
         criterion = FocalLoss(0.25)
 
@@ -341,6 +345,7 @@ def main():
         
     
     optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate, weight_decay=1e-2)
+    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)
           
 
 
@@ -376,7 +381,7 @@ def main():
     logging.info('starting training')
     
     for epoch in range(config["resume_epoch"],num_epochs):
-        train_loss ,train_confusion_matrix, train_mIoU,train_accuracy =  run_epoch(model, train_data, criterion, optimizer, epoch, device, 'train',config)
+        train_loss ,train_confusion_matrix, train_mIoU,train_accuracy =  run_epoch(model, train_data, criterion, optimizer, scheduler, epoch, device, 'train',config)
         train_losses.append(train_loss)
         train_accuracies.append(train_accuracy)
 
@@ -388,7 +393,7 @@ def main():
         print('train_accuracy:',train_accuracy)
         #logging.info('train_accuracy:',train_accuracy)
         
-        val_loss, val_confusion_matrix,val_mIoU,val_accuracy = run_epoch(model, val_data, criterion, optimizer, epoch, device, 'val',config)
+        val_loss, val_confusion_matrix,val_mIoU,val_accuracy = run_epoch(model, val_data, criterion, optimizer, scheduler, epoch, device, 'val',config)
         val_losses.append(val_loss)
         val_accuracies.append(val_accuracy)
 

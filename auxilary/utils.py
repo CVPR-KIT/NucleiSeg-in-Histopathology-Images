@@ -5,6 +5,9 @@ import json
 import os
 import sys
 from torchsummary import summary
+import torch
+
+
 
 
 # Create directory
@@ -211,6 +214,20 @@ def calc_mIoU(confusion_matrix):
             continue
         mIoU += intersect / union
     return mIoU / len(confusion_matrix)
+
+
+# Normalize image
+def normalize_image(image):
+    # Assuming the image shape is (height, width, channels)
+    # Calculate the mean and standard deviation for each channel
+    mean = np.mean(image, axis=(0, 1))
+    std = np.std(image, axis=(0, 1))
+
+    # Normalize each channel separately
+    normalized_image = (image - mean) / (std + 1e-7) # Adding a small constant to avoid division by zero
+    
+    return normalized_image
+
 
 if __name__ == "__main__":
     print("Contains functions used in the project - utils.py")
