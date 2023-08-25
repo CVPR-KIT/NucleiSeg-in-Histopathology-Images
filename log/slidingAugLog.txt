@@ -1,5 +1,5 @@
-Augmenting images in Dataset/MonuSegData/slidingAug/ directory
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-18-5592-01Z-00-DX1.png
+Augmenting images in Dataset/MonuSegData/slidingAugNormal/ directory
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-18-5592-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-18-5592-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -17,7 +17,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-18-5592-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-21-5784-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-21-5784-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-21-5784-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -35,7 +35,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-21-5784-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-21-5786-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-21-5786-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-21-5786-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -53,7 +53,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-21-5786-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-38-6178-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-38-6178-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-38-6178-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -71,7 +71,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-38-6178-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-49-4488-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-49-4488-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-49-4488-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -89,7 +89,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-49-4488-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-50-5931-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-50-5931-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-50-5931-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -107,7 +107,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-50-5931-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-A7-A13E-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-A7-A13E-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-A7-A13E-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -125,7 +125,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-A7-A13E-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-A7-A13F-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-A7-A13F-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-A7-A13F-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -143,7 +143,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-A7-A13F-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-AR-A1AK-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-AR-A1AK-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-AR-A1AK-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -161,7 +161,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-AR-A1AK-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-AR-A1AS-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-AR-A1AS-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-AR-A1AS-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -179,7 +179,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-AR-A1AS-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-AY-A8YK-01A-01-TS1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-AY-A8YK-01A-01-TS1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-AY-A8YK-01A-01-TS1_bin_mask.png
 (0,0)
 (0,50)
@@ -197,7 +197,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-AY-A8YK-01A-01-TS1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-B0-5698-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-B0-5698-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-B0-5698-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -215,7 +215,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-B0-5698-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-B0-5710-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-B0-5710-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-B0-5710-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -233,7 +233,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-B0-5710-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-B0-5711-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-B0-5711-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-B0-5711-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -251,7 +251,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-B0-5711-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-CH-5767-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-CH-5767-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-CH-5767-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -269,7 +269,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-CH-5767-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-DK-A2I6-01A-01-TS1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-DK-A2I6-01A-01-TS1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-DK-A2I6-01A-01-TS1_bin_mask.png
 (0,0)
 (0,50)
@@ -287,7 +287,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-DK-A2I6-01A-01-TS1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-E2-A1B5-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-E2-A1B5-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-E2-A1B5-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -305,7 +305,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-E2-A1B5-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-E2-A14V-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-E2-A14V-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-E2-A14V-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -323,7 +323,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-E2-A14V-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-G2-A2EK-01A-02-TSB.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-G2-A2EK-01A-02-TSB.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-G2-A2EK-01A-02-TSB_bin_mask.png
 (0,0)
 (0,50)
@@ -341,7 +341,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-G2-A2EK-01A-02-TSB_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-G9-6336-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-G9-6336-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-G9-6336-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -359,7 +359,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-G9-6336-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-G9-6348-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-G9-6348-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-G9-6348-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -377,7 +377,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-G9-6348-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-G9-6356-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-G9-6356-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-G9-6356-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -395,7 +395,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-G9-6356-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-G9-6362-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-G9-6362-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-G9-6362-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -413,7 +413,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-G9-6362-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-G9-6363-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-G9-6363-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-G9-6363-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -431,7 +431,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-G9-6363-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-HE-7128-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-HE-7128-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-HE-7128-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -449,7 +449,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-HE-7128-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-HE-7129-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-HE-7129-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-HE-7129-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -467,7 +467,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-HE-7129-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-HE-7130-01Z-00-DX1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-HE-7130-01Z-00-DX1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-HE-7130-01Z-00-DX1_bin_mask.png
 (0,0)
 (0,50)
@@ -485,7 +485,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-HE-7130-01Z-00-DX1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-KB-A93J-01A-01-TS1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-KB-A93J-01A-01-TS1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-KB-A93J-01A-01-TS1_bin_mask.png
 (0,0)
 (0,50)
@@ -503,7 +503,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-KB-A93J-01A-01-TS1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-NH-A8F7-01A-01-TS1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-NH-A8F7-01A-01-TS1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-NH-A8F7-01A-01-TS1_bin_mask.png
 (0,0)
 (0,50)
@@ -521,7 +521,7 @@ labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-NH-A8F7-01A-01-TS1_bin_
 (150,50)
 (150,100)
 (150,150)
-imagePath: Dataset/MonuSegData/Training/TissueImages/TCGA-RD-A8N9-01A-01-TS1.png
+imagePath: Dataset/MonuSegData/Training/TissueImagesNormalized/TCGA-RD-A8N9-01A-01-TS1.png
 labelPath: Dataset/MonuSegData/Training/GroundTruth/TCGA-RD-A8N9-01A-01-TS1_bin_mask.png
 (0,0)
 (0,50)

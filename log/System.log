@@ -3065,3 +3065,182 @@
     "dilation": 1
 }
 08/24/2023 08:23:14 PM starting training
+08/25/2023 11:03:08 AM 
+
+#################### New Run ####################
+08/25/2023 11:03:08 AM PreRun: Creating required directories
+08/25/2023 11:03:08 AM PreRun: Generating experiment config file
+08/25/2023 11:03:08 AM Using cuda device
+08/25/2023 11:03:08 AM configuring data loaders
+08/25/2023 11:03:09 AM configuring model - EluNet
+08/25/2023 11:03:11 AM saving model summary at Outputs/experiment_08-25_11.03.08/modelSummary.txt
+08/25/2023 11:03:14 AM logging parameters
+08/25/2023 11:03:14 AM {
+    "model": "EluNet",
+    "epochs": 50,
+    "learning_rate": 0.01,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "ce",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 16,
+    "dropout": 0.8,
+    "dilation": 1
+}
+08/25/2023 11:03:14 AM starting training
+08/25/2023 11:04:51 AM 
+
+#################### New Run ####################
+08/25/2023 11:04:51 AM PreRun: Creating required directories
+08/25/2023 11:04:51 AM PreRun: Generating experiment config file
+08/25/2023 11:04:51 AM Using cpu device
+08/25/2023 11:04:51 AM configuring data loaders
+08/25/2023 11:04:51 AM configuring model - EluNet
+08/25/2023 11:04:51 AM saving model summary at Outputs/experiment_08-25_11.04.51/modelSummary.txt
+08/25/2023 11:04:51 AM logging parameters
+08/25/2023 11:04:51 AM {
+    "model": "EluNet",
+    "epochs": 50,
+    "learning_rate": 0.01,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "ce",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 16,
+    "dropout": 0.8,
+    "dilation": 1
+}
+08/25/2023 11:04:51 AM starting training
+08/25/2023 11:08:03 AM 
+
+#################### New Run ####################
+08/25/2023 11:08:03 AM PreRun: Creating required directories
+08/25/2023 11:08:03 AM PreRun: Generating experiment config file
+08/25/2023 11:08:03 AM Using cpu device
+08/25/2023 11:08:03 AM configuring data loaders
+08/25/2023 11:08:03 AM configuring model - EluNet
+08/25/2023 11:08:03 AM saving model summary at Outputs/experiment_08-25_11.08.03/modelSummary.txt
+08/25/2023 11:08:04 AM logging parameters
+08/25/2023 11:08:04 AM {
+    "model": "EluNet",
+    "epochs": 50,
+    "learning_rate": 0.01,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "ce",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 16,
+    "dropout": 0.8,
+    "dilation": 1
+}
+08/25/2023 11:08:04 AM starting training
+08/25/2023 11:12:26 AM 
+
+#################### New Run ####################
+08/25/2023 11:12:26 AM PreRun: Creating required directories
+08/25/2023 11:12:26 AM PreRun: Generating experiment config file
+08/25/2023 11:12:26 AM Using cuda device
+08/25/2023 11:12:26 AM configuring data loaders
+08/25/2023 11:12:26 AM configuring model - EluNet
+08/25/2023 11:12:32 AM saving model summary at Outputs/experiment_08-25_11.12.26/modelSummary.txt
+08/25/2023 11:12:41 AM logging parameters
+08/25/2023 11:12:41 AM {
+    "model": "EluNet",
+    "epochs": 50,
+    "learning_rate": 0.01,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "ce",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 16,
+    "dropout": 0.8,
+    "dilation": 1
+}
+08/25/2023 11:12:41 AM starting training
+08/25/2023 11:43:22 AM saving model at Outputs/experiment_08-25_11.12.26/model/best_model_0.pth
+08/25/2023 11:59:34 AM 
+
+#################### New Run ####################
+08/25/2023 11:59:34 AM PreRun: Creating required directories
+08/25/2023 11:59:34 AM PreRun: Generating experiment config file
+08/25/2023 11:59:35 AM Using cuda device
+08/25/2023 11:59:35 AM configuring data loaders
+08/25/2023 11:59:35 AM configuring model - EluNet
+08/25/2023 11:59:37 AM saving model summary at Outputs/experiment_08-25_11.59.34/modelSummary.txt
+08/25/2023 11:59:39 AM logging parameters
+08/25/2023 11:59:39 AM {
+    "model": "EluNet",
+    "epochs": 50,
+    "learning_rate": 1e-05,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "bce",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 16,
+    "dropout": 0.8,
+    "dilation": 1
+}
+08/25/2023 11:59:39 AM starting training
+08/25/2023 12:01:16 PM saving model at Outputs/experiment_08-25_11.59.34/model/best_model_0.pth
+08/25/2023 12:25:16 PM 
+
+#################### New Run ####################
+08/25/2023 12:25:16 PM PreRun: Creating required directories
+08/25/2023 12:25:16 PM PreRun: Generating experiment config file
+08/25/2023 12:25:16 PM Using cuda device
+08/25/2023 12:25:16 PM configuring data loaders
+08/25/2023 12:25:16 PM configuring model - EluNet
+08/25/2023 12:25:18 PM saving model summary at Outputs/experiment_08-25_12.25.16/modelSummary.txt
+08/25/2023 12:25:21 PM logging parameters
+08/25/2023 12:25:21 PM {
+    "model": "EluNet",
+    "epochs": 50,
+    "learning_rate": 1e-05,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "bce",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 16,
+    "dropout": 0.8,
+    "dilation": 1
+}
+08/25/2023 12:25:21 PM starting training
+08/25/2023 12:27:01 PM saving model at Outputs/experiment_08-25_12.25.16/model/best_model_0.pth
+08/25/2023 12:28:48 PM 
+
+#################### New Run ####################
+08/25/2023 12:28:48 PM PreRun: Creating required directories
+08/25/2023 12:28:48 PM PreRun: Generating experiment config file
+08/25/2023 12:28:49 PM Using cuda device
+08/25/2023 12:28:49 PM configuring data loaders
+08/25/2023 12:28:49 PM configuring model - EluNet
+08/25/2023 12:28:51 PM saving model summary at Outputs/experiment_08-25_12.28.48/modelSummary.txt
+08/25/2023 12:28:54 PM logging parameters
+08/25/2023 12:28:54 PM {
+    "model": "EluNet",
+    "epochs": 50,
+    "learning_rate": 1e-05,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "bce",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 16,
+    "dropout": 0.8,
+    "dilation": 1
+}
+08/25/2023 12:28:54 PM starting training
+08/25/2023 12:45:11 PM saving model at Outputs/experiment_08-25_12.28.48/model/best_model_0.pth

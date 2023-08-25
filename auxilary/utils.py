@@ -228,6 +228,13 @@ def normalize_image(image):
     
     return normalized_image
 
+# Function to unnormalize an image based on its mean and std
+def unnormalize_image(image):
+    mean = np.mean(image, axis=(0, 1))
+    std = np.std(image, axis=(0, 1))
+    unnormalized_image = (image * std) + mean
+    return unnormalized_image
+
 
 if __name__ == "__main__":
     print("Contains functions used in the project - utils.py")

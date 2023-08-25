@@ -21,19 +21,22 @@ class MonuSegDataSet(Dataset):
 
         self.spl_losses = ['unet3+loss', 'improvedLoss', 'ClassRatioLoss']
         self.debug = self.config["debug"]
+        self.debugDilution = 20
     
         return 
     
     def __len__(self):
         if self.debug:
-            return len(os.listdir(self.img_dir))//200
+            return len(os.listdir(self.img_dir))//self.debugDilution
         else:
             return len(os.listdir(self.img_dir))//2
 
     def __getitem__(self, index):
         try:
             if self.config["input_img_type"] == "rgb":
-                image = cv2.imread(os.path.join(self.img_dir,str(index)+'.png'))
+                image = cv2.imread(os.path.join(self.img_dir,str(index)+'.png'), cv2.IMREAD_COLOR)/255
+                # Normalize image
+                image = normalize_image(image)
             else:
                 image = cv2.imread(os.path.join(self.img_dir,str(index)+'.png'),cv2.IMREAD_GRAYSCALE)/255
         except TypeError:
@@ -53,11 +56,11 @@ class MonuSegDataSet(Dataset):
         label[label==255] = 1
         label[label==0] = 0
         
-        # Normalize image
-        image = normalize_image(image)
+        
 
         if self.config["input_img_type"] == "rgb":
-            image = np.reshape(image,(3,self.wid,self.hit))
+            #image = np.reshape(image,(3,self.wid,self.hit))
+            image = np.transpose(image, (2, 0, 1))
         else:
             image = np.reshape(image,(1,self.wid,self.hit))
 
@@ -94,12 +97,13 @@ class MonuSegValDataSet(Dataset):
         self.spl_losses = ['unet3+loss', 'improvedLoss']
         self.loggerFlag = True
         self.debug = self.config["debug"]
+        self.debugDilution = 20
     
         return 
     
     def __len__(self):
         if self.debug:
-            return len(os.listdir(self.img_dir))//200
+            return len(os.listdir(self.img_dir))//self.debugDilution
         else:
             return len(os.listdir(self.img_dir))//2
 
@@ -107,6 +111,8 @@ class MonuSegValDataSet(Dataset):
         try:
             if self.config["input_img_type"] == "rgb":
                 image = cv2.imread(os.path.join(self.img_dir,str(index+1)+'.png'))
+                # Normalize image
+                image = normalize_image(image)
             else:
                 image = cv2.imread(os.path.join(self.img_dir,str(index+1)+'.png'),cv2.IMREAD_GRAYSCALE)/255
         except TypeError:
@@ -129,8 +135,6 @@ class MonuSegValDataSet(Dataset):
         label[label==255] = 1
         label[label==0] = 0
         
-        # Normalize image
-        image = normalize_image(image)
         
         if self.config["input_img_type"] == "rgb":
             image = np.reshape(image,(3,self.wid,self.hit))
@@ -179,12 +183,12 @@ class MonuSegTestDataSet(Dataset):
         img_paths  = sorted(os.listdir(self.img_dir))
         if self.config["input_img_type"] == "rgb":
             image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]))
+            # Normalize image
+            image = normalize_image(image)
         else:
             image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]),cv2.IMREAD_GRAYSCALE)/255
         
 
-        # Normalize image
-        image = normalize_image(image)
 
         self.wid = image.shape[0]
         self.hit = image.shape[1]
@@ -258,6 +262,8 @@ class MonuSegOnlyTestDataSet(Dataset):
         #logging.debug(os.path.join(self.img_dir,str(index+1)+img_paths[index][-4:]))
         if self.config["input_img_type"] == "rgb":
             image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]))
+            # Normalize image
+            image = normalize_image(image)
         else:
             image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]),cv2.IMREAD_GRAYSCALE)/255
         
@@ -269,8 +275,6 @@ class MonuSegOnlyTestDataSet(Dataset):
 
         self.wid = self.hit = self.len
 
-        # Normalize image
-        image = normalize_image(image)
 
         
         image=image[0:self.wid,0:self.hit]

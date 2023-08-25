@@ -5,13 +5,13 @@ debug = "False"                                 # Debug Mode - True or False: Ra
 wandb = "False"                                 # Wandb Logging
 
 [Stain Normalization]
-normalization = "None"                       # Normalization Avl: macenko, reinhard, None
+normalization = "reinhard"                       # Normalization Avl: macenko, reinhard, None
 targetImagePath = "Dataset/MonuSegData/Training/TissueImages/TCGA-A7-A13F-01Z-00-DX1.png" # Target Image for Normalization
 
 
 [Image Augmentation]
 to_be_aug = "Dataset/MonuSegData/"     # Data That is to be augmenated  - shouls contain Test and Training directories
-out_dir = "Dataset/MonuSegData/slidingAug/"         # Output for Sliding Window Augmentation
+out_dir = "Dataset/MonuSegData/slidingAugNormal/"         # Output for Sliding Window Augmentation
 augmented_dir = "Dataset/MonuSegData/augmentated/"              # Output for Augmentation
 
 tileHeight = 800                               # Sliding Window height
@@ -25,9 +25,9 @@ finalTileWidth = 256                            # Final Width of augmenated imag
 splitRatio = 0.9                                # 0.8 -> 80% training 20% validation
 
 [Training]
-trainDataset = "Dataset/train/"                    # Images to be during Training
-valDataset = "Dataset/val/"                        # Images to used during Validation
-testDataset = "Dataset/test/"                      # Images to used during Testing
+trainDataset = "Dataset/trainNormal/"                    # Images to be during Training
+valDataset = "Dataset/valNormal/"                        # Images to used during Validation
+testDataset = "Dataset/testNormal/"                      # Images to used during Testing
 
 resumeModel = "model/best_model.pth"            # Model to used during re-training
 
@@ -46,7 +46,7 @@ kernel_size = 3
 use_maxblurpool = "False"                       # Use MaxBlurPool
 epochs = 50
 batch_size = 16
-learning_rate = 0.01                         # can be set to "auto" for finding the best learning rate or set to 0.00001
+learning_rate = 0.00001                         # can be set to "auto" for finding the best learning rate or set to 0.00001
 num_classes = 2
 weight_path = "None"
 activation = "relu"                             # Activations available:
@@ -54,6 +54,6 @@ resume = "False"                                # Resume Training
 resume_epoch = 0                                # Resume Training from epoch
 channel = 16                                    # Default: 16 Can be set to 64 or other
 attention = "False"                             # Model 1 only
-loss = "focalDiceLoss"                             # Losses available: jaccard, focal, pwcel, dice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF, focalDiceLoss
+loss = "focalDiceLoss"                             # Losses available: bce, jaccard, focal, pwcel, dice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF, focalDiceLoss
 dropout = 0.8                                     # Dropout rate
 dilation = 1                                    # For Dilated convolution.

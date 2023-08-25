@@ -139,11 +139,11 @@ def run_epoch(model, data_loader, criterion, optimizer, scheduler, epoch, device
         class_weights = calculate_class_weights(gt, config["num_classes"])
         
         #if loss is modJaccard, jaccard, pwxce, improvedLoss use weights
-        weightable_losses = ['modJaccard', 'jaccard', 'pwcel', 'improvedLoss', 'ClassRatioLossPlus', 'focalDiceLoss']
+        weightable_losses = ['modJaccard', 'jaccard', 'pwcel', 'improvedLoss', 'ClassRatioLossPlus']
         if config["loss"] in weightable_losses:
             criterion.setWeights(class_weights.to(device))
 
-        
+        gt = gt.type(torch.float32)
         loss = criterion(pred,gt)
 
         #metric = MulticlassJaccardIndex(num_classes=3)
@@ -328,6 +328,8 @@ def main():
         criterion = RBAF()
     elif config["loss"] == "focalDiceLoss":
         criterion = focalDiceLoss()
+    elif config["loss"] == "bce":
+        criterion = nn.BCEWithLogitsLoss()
     else:
         criterion = FocalLoss(0.25)
 

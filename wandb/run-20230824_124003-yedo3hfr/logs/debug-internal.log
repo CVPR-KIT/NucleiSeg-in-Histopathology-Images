@@ -120,3 +120,4 @@
 2023-08-24 12:40:28,898 ERROR   StreamThr :13283 [internal.py:wandb_internal():152] Internal process shutdown.
 2023-08-24 12:40:29,227 INFO    WriterThread:13283 [datastore.py:close():294] close: /home/blue/projects/MoNuSeg/wandb/run-20230824_124003-yedo3hfr/run-yedo3hfr.wandb
 2023-08-24 12:40:29,228 INFO    HandlerThread:13283 [handler.py:finish():857] shutting down handler
+2023-08-25 00:53:48,095 WARNING FileStreamThread:13283 [file_stream.py:request_with_retry():666] requests_with_retry encountered retryable exception: 502 Server Error: Bad Gateway for url: https://api.wandb.ai/files/bluesaiyancodes/monunet-segmenation/yedo3hfr/file_stream. func: functools.partial(<bound method Session.post of <requests.sessions.Session object at 0x7f0fcdd3eda0>>, timeout=60.0), args: ('https://api.wandb.ai/files/bluesaiyancodes/monunet-segmenation/yedo3hfr/file_stream',), kwargs: {'json': {'complete': False, 'failed': False, 'dropped': 0, 'uploaded': []}}

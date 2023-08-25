@@ -7,6 +7,9 @@ Dataset/train_c/
 Dataset/val_c/
 Dataset/test_c/
 Dataset/test0/
+Dataset/trainNormal/
+Dataset/valNormal/
+Dataset/testNormal/
 Dataset/MonuSegData/
 Dataset/MoNuSeg 2018 Training Data.zip
 Dataset/MonuSeg-20200319T073151Z-001.zip
