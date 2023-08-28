@@ -1,0 +1,321 @@
+2023-08-25 14:20:54,677 INFO    StreamThr :21177 [internal.py:wandb_internal():86] W&B internal server running at pid: 21177, started at: 2023-08-25 14:20:54.677136
+2023-08-25 14:20:54,680 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status
+2023-08-25 14:20:54,683 INFO    WriterThread:21177 [datastore.py:open_for_write():85] open: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/run-6y23r6fu.wandb
+2023-08-25 14:20:54,683 DEBUG   SenderThread:21177 [sender.py:send():379] send: header
+2023-08-25 14:20:54,686 DEBUG   SenderThread:21177 [sender.py:send():379] send: run
+2023-08-25 14:20:55,320 INFO    SenderThread:21177 [dir_watcher.py:__init__():211] watching files in: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files
+2023-08-25 14:20:55,320 INFO    SenderThread:21177 [sender.py:_start_run_threads():1121] run started: 6y23r6fu with start time 1692940854.678433
+2023-08-25 14:20:55,320 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: summary_record
+2023-08-25 14:20:55,320 INFO    SenderThread:21177 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-25 14:20:55,326 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: check_version
+2023-08-25 14:20:55,327 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: check_version
+2023-08-25 14:20:55,496 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: run_start
+2023-08-25 14:20:55,582 DEBUG   HandlerThread:21177 [system_info.py:__init__():31] System info init
+2023-08-25 14:20:55,582 DEBUG   HandlerThread:21177 [system_info.py:__init__():46] System info init done
+2023-08-25 14:20:55,582 INFO    HandlerThread:21177 [system_monitor.py:start():181] Starting system monitor
+2023-08-25 14:20:55,582 INFO    SystemMonitor:21177 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-08-25 14:20:55,583 INFO    HandlerThread:21177 [system_monitor.py:probe():201] Collecting system info
+2023-08-25 14:20:55,583 INFO    SystemMonitor:21177 [interfaces.py:start():190] Started cpu monitoring
+2023-08-25 14:20:55,585 INFO    SystemMonitor:21177 [interfaces.py:start():190] Started disk monitoring
+2023-08-25 14:20:55,586 INFO    SystemMonitor:21177 [interfaces.py:start():190] Started gpu monitoring
+2023-08-25 14:20:55,586 INFO    SystemMonitor:21177 [interfaces.py:start():190] Started memory monitoring
+2023-08-25 14:20:55,588 INFO    SystemMonitor:21177 [interfaces.py:start():190] Started network monitoring
+2023-08-25 14:20:55,603 DEBUG   HandlerThread:21177 [system_info.py:probe():195] Probing system
+2023-08-25 14:20:55,627 DEBUG   HandlerThread:21177 [system_info.py:_probe_git():180] Probing git
+2023-08-25 14:20:55,631 DEBUG   HandlerThread:21177 [system_info.py:_probe_git():188] Probing git done
+2023-08-25 14:20:55,631 DEBUG   HandlerThread:21177 [system_info.py:probe():240] Probing system done
+2023-08-25 14:20:55,631 DEBUG   HandlerThread:21177 [system_monitor.py:probe():210] {'os': 'Linux-5.10.16.3-microsoft-standard-WSL2-x86_64-with-glibc2.35', 'python': '3.10.9', 'heartbeatAt': '2023-08-25T05:20:55.603595', 'startedAt': '2023-08-25T05:20:54.671705', 'docker': None, 'cuda': None, 'args': ('--config', 'config.sys'), 'state': 'running', 'program': '/home/blue/projects/MoNuSeg/main.py', 'codePath': 'main.py', 'git': {'remote': 'https://github.com/bluesaiyancodes/MoNuSeg-Segmentation.git', 'commit': '76041d47ed4f23aa9983af049e0e08af5ec57d0f'}, 'email': 'blue.bishal@rocketmail.com', 'root': '/home/blue/projects/MoNuSeg', 'host': 'Blue-LAB', 'username': 'blue', 'executable': '/home/blue/projects/MoNuSeg/monuSegEnv/bin/python', 'cpu_count': 4, 'cpu_count_logical': 8, 'cpu_freq': {'current': 3407.997, 'min': 0.0, 'max': 0.0}, 'cpu_freq_per_core': [{'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}], 'disk': {'total': 983.3048324584961, 'used': 396.81864166259766}, 'gpu': 'NVIDIA RTX A6000', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA RTX A6000', 'memory_total': 51527024640}], 'memory': {'total': 29.391098022460938}}
+2023-08-25 14:20:55,631 INFO    HandlerThread:21177 [system_monitor.py:probe():211] Finished collecting system info
+2023-08-25 14:20:55,631 INFO    HandlerThread:21177 [system_monitor.py:probe():214] Publishing system info
+2023-08-25 14:20:55,632 DEBUG   HandlerThread:21177 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-08-25 14:20:55,632 DEBUG   HandlerThread:21177 [system_info.py:_save_pip():67] Saving pip packages done
+2023-08-25 14:20:55,632 INFO    HandlerThread:21177 [system_monitor.py:probe():216] Finished publishing system info
+2023-08-25 14:20:55,760 DEBUG   SenderThread:21177 [sender.py:send():379] send: files
+2023-08-25 14:20:55,760 INFO    SenderThread:21177 [sender.py:_save_file():1375] saving file wandb-metadata.json with policy now
+2023-08-25 14:20:55,771 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:20:55,772 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:20:56,051 DEBUG   SenderThread:21177 [sender.py:send():379] send: telemetry
+2023-08-25 14:20:56,321 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:20:56,322 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/wandb-metadata.json
+2023-08-25 14:20:56,322 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/requirements.txt
+2023-08-25 14:20:56,322 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/wandb-summary.json
+2023-08-25 14:20:56,683 INFO    wandb-upload_0:21177 [upload_job.py:push():131] Uploaded file /tmp/tmpol4jf_90wandb/8awl1xep-wandb-metadata.json
+2023-08-25 14:20:58,321 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:20:59,752 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:21:00,322 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:02,322 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:03,323 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:04,992 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:21:05,324 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:07,324 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:09,325 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:10,185 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:21:10,783 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:21:10,783 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:21:11,326 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:13,327 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:15,258 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:21:15,327 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:17,328 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:19,329 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:20,450 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:21:21,330 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:23,330 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:25,331 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:25,499 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:21:25,813 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:21:25,814 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:21:26,331 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/config.yaml
+2023-08-25 14:21:27,332 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:29,333 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:31,055 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:21:31,333 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:33,334 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:35,335 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:36,434 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:21:37,336 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:39,336 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:40,813 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:21:40,813 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:21:41,337 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:41,610 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:21:43,338 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:45,338 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:46,668 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:21:47,339 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:49,340 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:51,340 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:51,864 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:21:53,341 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:55,342 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:55,588 DEBUG   SystemMonitor:21177 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-08-25 14:21:55,589 DEBUG   SenderThread:21177 [sender.py:send():379] send: stats
+2023-08-25 14:21:55,813 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:21:55,813 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:21:57,134 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:21:57,342 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:21:59,344 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:01,344 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:02,205 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:22:03,345 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:05,346 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:07,311 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:22:07,347 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:09,348 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:10,859 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:22:10,860 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:22:11,348 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:12,365 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:22:13,349 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:15,350 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:17,351 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:17,490 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:22:19,352 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:21,352 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:22,636 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:22:23,353 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:25,354 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:25,589 DEBUG   SenderThread:21177 [sender.py:send():379] send: stats
+2023-08-25 14:22:25,860 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:22:25,861 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:22:27,354 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:27,732 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:22:29,355 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:31,356 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:32,765 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:22:33,357 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:35,357 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:37,358 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:37,771 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:22:39,359 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:40,860 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:22:40,860 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:22:41,359 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:42,952 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:22:43,360 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:45,361 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:47,361 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:48,200 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:22:49,362 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:51,363 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:53,202 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:22:53,363 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:55,364 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:55,590 DEBUG   SenderThread:21177 [sender.py:send():379] send: stats
+2023-08-25 14:22:55,860 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:22:55,860 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:22:57,365 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:22:58,231 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:22:59,365 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:01,366 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:03,317 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:23:03,370 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:06,371 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:08,368 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:23:08,372 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:10,373 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:10,860 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:23:10,861 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:23:12,373 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:13,416 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:23:14,374 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:16,375 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:18,376 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:18,494 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:23:20,376 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:22,377 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:23,518 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:23:24,378 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:25,591 DEBUG   SenderThread:21177 [sender.py:send():379] send: stats
+2023-08-25 14:23:25,860 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:23:25,861 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:23:26,379 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:28,379 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:28,694 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:23:30,380 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:32,381 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:33,864 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:23:34,382 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:36,382 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:38,383 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:38,891 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:23:40,384 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:40,860 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:23:40,861 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:23:42,384 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:43,892 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:23:44,385 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:46,386 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:48,387 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:49,158 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:23:50,388 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:52,388 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:54,389 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:54,441 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:23:55,591 DEBUG   SenderThread:21177 [sender.py:send():379] send: stats
+2023-08-25 14:23:55,910 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:23:55,911 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:23:56,389 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:58,390 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:23:59,608 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:24:00,391 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:02,392 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:04,392 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:04,693 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:24:06,393 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:08,394 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:09,732 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:24:10,395 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:10,910 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:24:10,910 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:24:12,396 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:14,397 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:15,041 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:24:16,397 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:18,398 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:20,192 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:24:20,399 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:22,399 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:24,400 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:25,205 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:24:25,592 DEBUG   SenderThread:21177 [sender.py:send():379] send: stats
+2023-08-25 14:24:25,910 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:24:25,910 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:24:26,400 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:28,401 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:30,402 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:30,464 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:24:32,403 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:34,404 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:35,663 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:24:36,404 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:38,405 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:40,406 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:40,946 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:24:40,946 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-25 14:24:40,947 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: stop_status
+2023-08-25 14:24:42,406 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:44,407 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:46,103 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:24:46,408 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:48,408 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:50,409 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:51,178 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:24:52,410 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:54,411 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:55,592 DEBUG   SenderThread:21177 [sender.py:send():379] send: stats
+2023-08-25 14:24:55,814 DEBUG   SenderThread:21177 [sender.py:send():379] send: exit
+2023-08-25 14:24:55,814 INFO    SenderThread:21177 [sender.py:send_exit():584] handling exit code: 1
+2023-08-25 14:24:55,815 INFO    SenderThread:21177 [sender.py:send_exit():586] handling runtime: 240
+2023-08-25 14:24:55,815 INFO    SenderThread:21177 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-25 14:24:55,815 INFO    SenderThread:21177 [sender.py:send_exit():592] send defer
+2023-08-25 14:24:55,815 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: defer
+2023-08-25 14:24:55,816 INFO    HandlerThread:21177 [handler.py:handle_request_defer():170] handle defer: 0
+2023-08-25 14:24:55,816 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: defer
+2023-08-25 14:24:55,816 INFO    SenderThread:21177 [sender.py:send_request_defer():608] handle sender defer: 0
+2023-08-25 14:24:55,816 INFO    SenderThread:21177 [sender.py:transition_state():612] send defer: 1
+2023-08-25 14:24:55,816 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: defer
+2023-08-25 14:24:55,816 INFO    HandlerThread:21177 [handler.py:handle_request_defer():170] handle defer: 1
+2023-08-25 14:24:55,817 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: defer
+2023-08-25 14:24:55,817 INFO    SenderThread:21177 [sender.py:send_request_defer():608] handle sender defer: 1
+2023-08-25 14:24:55,817 INFO    SenderThread:21177 [sender.py:transition_state():612] send defer: 2
+2023-08-25 14:24:55,817 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: defer
+2023-08-25 14:24:55,817 INFO    HandlerThread:21177 [handler.py:handle_request_defer():170] handle defer: 2
+2023-08-25 14:24:55,817 INFO    HandlerThread:21177 [system_monitor.py:finish():190] Stopping system monitor
+2023-08-25 14:24:55,818 INFO    HandlerThread:21177 [interfaces.py:finish():202] Joined cpu monitor
+2023-08-25 14:24:55,818 INFO    HandlerThread:21177 [interfaces.py:finish():202] Joined disk monitor
+2023-08-25 14:24:55,819 DEBUG   SystemMonitor:21177 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-08-25 14:24:55,819 DEBUG   SystemMonitor:21177 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-08-25 14:24:55,829 INFO    HandlerThread:21177 [interfaces.py:finish():202] Joined gpu monitor
+2023-08-25 14:24:55,829 INFO    HandlerThread:21177 [interfaces.py:finish():202] Joined memory monitor
+2023-08-25 14:24:55,830 INFO    HandlerThread:21177 [interfaces.py:finish():202] Joined network monitor
+2023-08-25 14:24:55,830 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: defer
+2023-08-25 14:24:55,830 INFO    SenderThread:21177 [sender.py:send_request_defer():608] handle sender defer: 2
+2023-08-25 14:24:55,830 INFO    SenderThread:21177 [sender.py:transition_state():612] send defer: 3
+2023-08-25 14:24:55,830 DEBUG   SenderThread:21177 [sender.py:send():379] send: stats
+2023-08-25 14:24:55,831 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: defer
+2023-08-25 14:24:55,831 INFO    HandlerThread:21177 [handler.py:handle_request_defer():170] handle defer: 3
+2023-08-25 14:24:55,832 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: defer
+2023-08-25 14:24:55,832 INFO    SenderThread:21177 [sender.py:send_request_defer():608] handle sender defer: 3
+2023-08-25 14:24:55,832 INFO    SenderThread:21177 [sender.py:transition_state():612] send defer: 4
+2023-08-25 14:24:55,832 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: defer
+2023-08-25 14:24:55,832 INFO    HandlerThread:21177 [handler.py:handle_request_defer():170] handle defer: 4
+2023-08-25 14:24:55,832 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: defer
+2023-08-25 14:24:55,832 INFO    SenderThread:21177 [sender.py:send_request_defer():608] handle sender defer: 4
+2023-08-25 14:24:55,832 INFO    SenderThread:21177 [sender.py:transition_state():612] send defer: 5
+2023-08-25 14:24:55,832 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: defer
+2023-08-25 14:24:55,833 INFO    HandlerThread:21177 [handler.py:handle_request_defer():170] handle defer: 5
+2023-08-25 14:24:55,833 DEBUG   SenderThread:21177 [sender.py:send():379] send: summary
+2023-08-25 14:24:55,833 INFO    SenderThread:21177 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-25 14:24:55,833 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: defer
+2023-08-25 14:24:55,834 INFO    SenderThread:21177 [sender.py:send_request_defer():608] handle sender defer: 5
+2023-08-25 14:24:55,834 INFO    SenderThread:21177 [sender.py:transition_state():612] send defer: 6
+2023-08-25 14:24:55,834 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: defer
+2023-08-25 14:24:55,834 INFO    HandlerThread:21177 [handler.py:handle_request_defer():170] handle defer: 6
+2023-08-25 14:24:55,834 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: defer
+2023-08-25 14:24:55,834 INFO    SenderThread:21177 [sender.py:send_request_defer():608] handle sender defer: 6
+2023-08-25 14:24:55,834 INFO    SenderThread:21177 [sender.py:transition_state():612] send defer: 7
+2023-08-25 14:24:55,834 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: status_report
+2023-08-25 14:24:55,835 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: defer
+2023-08-25 14:24:55,835 INFO    HandlerThread:21177 [handler.py:handle_request_defer():170] handle defer: 7
+2023-08-25 14:24:55,835 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: defer
+2023-08-25 14:24:55,835 INFO    SenderThread:21177 [sender.py:send_request_defer():608] handle sender defer: 7
+2023-08-25 14:24:56,411 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:24:56,411 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/wandb-summary.json
+2023-08-25 14:24:57,537 INFO    SenderThread:21177 [sender.py:transition_state():612] send defer: 8
+2023-08-25 14:24:57,537 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: defer
+2023-08-25 14:24:57,537 INFO    HandlerThread:21177 [handler.py:handle_request_defer():170] handle defer: 8
+2023-08-25 14:24:57,538 DEBUG   SenderThread:21177 [sender.py:send_request():406] send_request: defer
+2023-08-25 14:24:57,538 INFO    SenderThread:21177 [sender.py:send_request_defer():608] handle sender defer: 8
+2023-08-25 14:24:57,538 INFO    SenderThread:21177 [job_builder.py:build():281] Attempting to build job artifact
+2023-08-25 14:24:57,538 INFO    SenderThread:21177 [job_builder.py:_get_source_type():400] is repo sourced job
+2023-08-25 14:24:57,552 INFO    SenderThread:21177 [job_builder.py:build():374] adding wandb-job metadata file
+2023-08-25 14:24:57,599 INFO    SenderThread:21177 [sender.py:transition_state():612] send defer: 9
+2023-08-25 14:24:57,599 DEBUG   HandlerThread:21177 [handler.py:handle_request():144] handle_request: defer
+2023-08-25 14:24:57,599 INFO    HandlerThread:21177 [handler.py:handle_request_defer():170] handle defer: 9
+2023-08-25 14:24:57,599 DEBUG   SenderThread:21177 [sender.py:send():379] send: artifact
+2023-08-25 14:24:58,412 INFO    Thread-12 :21177 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/files/output.log
+2023-08-25 14:27:12,100 WARNING StreamThr :21177 [internal.py:is_dead():414] Internal process exiting, parent pid 21146 disappeared
+2023-08-25 14:27:12,100 ERROR   StreamThr :21177 [internal.py:wandb_internal():152] Internal process shutdown.
+2023-08-25 14:27:12,630 INFO    WriterThread:21177 [datastore.py:close():294] close: /home/blue/projects/MoNuSeg/wandb/run-20230825_142054-6y23r6fu/run-6y23r6fu.wandb
+2023-08-25 14:27:12,630 INFO    HandlerThread:21177 [handler.py:finish():857] shutting down handler

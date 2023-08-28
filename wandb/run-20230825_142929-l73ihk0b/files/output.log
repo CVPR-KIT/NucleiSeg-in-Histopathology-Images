@@ -1,0 +1,8 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+configuring model - EluNet
+saving model summary

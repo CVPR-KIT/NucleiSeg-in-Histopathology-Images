@@ -159,7 +159,8 @@ def run_epoch(model, data_loader, criterion, optimizer, scheduler, epoch, device
             #loss.requires_grad = True
             loss.backward()
             optimizer.step()
-            scheduler.step()
+            if config["lr_decay"]:
+                scheduler.step()
 
 
             
@@ -180,7 +181,11 @@ def run_epoch(model, data_loader, criterion, optimizer, scheduler, epoch, device
         if mode == 'val' and idx == 0:
             label = torch.reshape(gt,(1,images.shape[2],images.shape[3]))
             label = label.permute(1,2,0)
-            cv2.imwrite(config["expt_dir"] + "step/"+str(epoch)+'.png',label.cpu().detach().numpy()*(255/config["num_classes"]))
+            # Tissue image saving
+            #t_image = images[0].permute(1,2,0)
+            #cv2.imwrite(config["expt_dir"] + "step/"+str(epoch)+'_img.png',t_image.cpu().detach().numpy()*255)
+
+            cv2.imwrite(config["expt_dir"] + "step/"+str(epoch)+'_label.png',label.cpu().detach().numpy()*(255/config["num_classes"]))
             rslt = rslt.permute(1,2,0)
             cv2.imwrite(config["expt_dir"] + "step/"+str(epoch)+'_pred'+'.png',rslt.cpu().detach().numpy()*(255/config["num_classes"]))
 
@@ -347,7 +352,10 @@ def main():
         
     
     optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate, weight_decay=1e-2)
-    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)
+    if config["lr_decay"]:
+        scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)
+    else:
+        scheduler = None
           
 
 
