@@ -24,16 +24,18 @@ class ELUnet(nn.Module):
         n = config["channel"]
         self.kernel_size = config["kernel_size"]
         out_channels = config["num_classes"]
+        self.useMaxBPool = config["use_maxblurpool"]
 
         self.dropout = nn.Dropout2d(p=config["dropout"])
+        self.dropoutFlag = False
 
         # ------ Input convolution --------------
         self.in_conv = DoubleConv(in_channels,n, self.kernel_size)
         # -------- Encoder ----------------------
-        self.down_1 = DownSample(n,2*n, self.kernel_size)
-        self.down_2 = DownSample(2*n,4*n, self.kernel_size)
-        self.down_3 = DownSample(4*n,8*n, self.kernel_size)
-        self.down_4 = DownSample(8*n,16*n, self.kernel_size)
+        self.down_1 = DownSample(n,2*n, self.kernel_size, self.useMaxBPool)
+        self.down_2 = DownSample(2*n,4*n, self.kernel_size, self.useMaxBPool)
+        self.down_3 = DownSample(4*n,8*n, self.kernel_size, self.useMaxBPool)
+        self.down_4 = DownSample(8*n,16*n, self.kernel_size, self.useMaxBPool)
         
         # -------- Upsampling ------------------
         self.up_1024_512 = UpSample(16*n,8*n,2, self.kernel_size)
@@ -70,7 +72,8 @@ class ELUnet(nn.Module):
         x_enc_4 = self.down_4(x_enc_3) # 1024
 
         # ------ dropout
-        x_enc_4 = self.dropout(x_enc_4)
+        if self.dropoutFlag:
+            x_enc_4 = self.dropout(x_enc_4)
     
         # ------ decoder outputs
         x_up_1 = self.up_1024_512(x_enc_4)

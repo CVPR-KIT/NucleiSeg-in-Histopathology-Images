@@ -1,9 +1,15 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+from auxilary.utils import *
 
-path = "Dataset/test/0_label.png"
-img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
-cv2.imshow("img", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+results = readMetrics("Outputs/experiment_09-02_09.56.56_MBP_dropAfter/")
+print(results)
+
+cm = results["confusionMatrix"]
+dice = calc_dice_score(cm)
+
+print(results["bestValAccuracy"])
+print(dice)
+
+

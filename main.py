@@ -6,11 +6,13 @@ import matplotlib.pyplot as plt
 from networkModules.modelUnet3p import UNet_3Plus
 from networkModules.model import UNet
 from networkModules.modelElunet import ELUnet
+from networkModules.modelUnet3pShort import UNet_3PlusShort
 import numpy as np
 import torch.backends.cudnn as cudnn
 
 import random
 from dataset import MonuSegDataSet, MonuSegValDataSet, MonuSegTestDataSet
+from Sampler import DinoPoweredSampler
 
 from torch_lr_finder import LRFinder
 import argparse
@@ -58,6 +60,9 @@ def calculate_class_weights(targets, num_classes):
         class_counts = torch.bincount(targets.flatten(), minlength=num_classes)
         total_samples = targets.numel()
         class_weights = total_samples / (num_classes * class_counts.float())
+        '''print("class weights:", class_weights)
+        print("class counts:", class_counts)
+        print("total samples:", total_samples)'''
         return class_weights
 
 def getSuggestedLR(model, optimizer, criterion, train_data, config):
@@ -99,11 +104,17 @@ def getSuggestedLR(model, optimizer, criterion, train_data, config):
     #logging.basicConfig(level=logging.INFO)
     return float(sLR)
 
-def run_epoch(model, data_loader, criterion, optimizer, scheduler, epoch, device, mode, config):
+def run_epoch(model, data_loader, criterion, optimizer, epoch, device, mode, config):
     pgbar = tqdm(data_loader)
     configEpochs = config["epochs"]
     pgbar.set_description(f"Epoch {epoch}/{configEpochs}")
     losses = 0
+    spl_models = ['UNet_3Plus', 'EluNet', "UNet_3PlusShort"]
+    weightable_losses = ['weighteddice', 'modJaccard', 'jaccard', 'pwcel', 'improvedLoss', 'ClassRatioLossPlus']
+
+    if epoch >5:
+        model.dropoutFlag = True
+    
 
     if mode == 'train':
         model.train()
@@ -117,6 +128,7 @@ def run_epoch(model, data_loader, criterion, optimizer, scheduler, epoch, device
         #print('images infos',images)
         #print('images shape:'+str(images.shape[2])+":"+str(images.shape[3]))
         #print(images.max(),images.min())
+        #print('images shape:', images.shape)
         pred = model(images.to(device))
 
         #####
@@ -127,7 +139,8 @@ def run_epoch(model, data_loader, criterion, optimizer, scheduler, epoch, device
         gt = gt.squeeze()
         if mode =='val' or mode == 'test':
             #print("images shape:", images.shape)
-            if config["model_type"] == "UNet_3Plus" or config["model_type"] == "EluNet":
+           
+            if config["model_type"] in spl_models:
                 gt = torch.reshape(gt,(1, config["num_classes"], images.shape[2],images.shape[3]))
             else:
                 if config['loss'] in spl_losses:
@@ -139,7 +152,6 @@ def run_epoch(model, data_loader, criterion, optimizer, scheduler, epoch, device
         class_weights = calculate_class_weights(gt, config["num_classes"])
         
         #if loss is modJaccard, jaccard, pwxce, improvedLoss use weights
-        weightable_losses = ['modJaccard', 'jaccard', 'pwcel', 'improvedLoss', 'ClassRatioLossPlus']
         if config["loss"] in weightable_losses:
             criterion.setWeights(class_weights.to(device))
 
@@ -159,8 +171,6 @@ def run_epoch(model, data_loader, criterion, optimizer, scheduler, epoch, device
             #loss.requires_grad = True
             loss.backward()
             optimizer.step()
-            if config["lr_decay"]:
-                scheduler.step()
 
 
             
@@ -168,7 +178,7 @@ def run_epoch(model, data_loader, criterion, optimizer, scheduler, epoch, device
         losses += loss.item()
         loss = loss.item()
         
-        if config["model_type"] == "UNet_3Plus" or config["model_type"] == "EluNet":
+        if config["model_type"] in spl_models:
             _, rslt = torch.max(pred,1)
             _, gt = torch.max(gt,1)
         else:
@@ -176,6 +186,7 @@ def run_epoch(model, data_loader, criterion, optimizer, scheduler, epoch, device
             if config["loss"] in spl_losses:
                 _, gt = torch.max(gt,1)
             
+        
         
         confusion_matrix += calc_confusion_matrix(gt.to(device), rslt, config["num_classes"])
         if mode == 'val' and idx == 0:
@@ -258,17 +269,28 @@ def main():
     print(f"Using {device} device")
     logging.info(f"Using {device} device")
 
+
+
     
     # Configuring DataLoaders
     print('configuring data loaders')
     logging.info('configuring data loaders')
-    train_dataset = MonuSegDataSet(config["trainDataset"])
-    #train_dataset = SteelDataSet('data/data_4-10/train/')
-    #train_dataset = SteelDataSet('data/data3/purpleData/purple_400_20/train/')
-    train_data = DataLoader(train_dataset,batch_size=config["batch_size"],shuffle=True)
     
+    # if sampler is enabled, run sampler
+    if config["sampleImages"]:
+        trainPaths = config["trainDataset"]
+        sampleTrainImages = load_images(trainPaths)
+        dino_model = load_sampling_model(modelType="small")
+        train_dataset = MonuSegDataSet(config["trainDataset"])
+
+        sampler = DinoPoweredSampler(images=sampleTrainImages, dino_model=dino_model, config=config)
+        train_data = DataLoader(train_dataset,batch_size=config["batch_size"], sampler=sampler)
+
+    else:
+        train_dataset = MonuSegDataSet(config["trainDataset"])
+        train_data = DataLoader(train_dataset,batch_size=config["batch_size"],shuffle=True)
+
     val_dataset = MonuSegValDataSet(config["valDataset"])
-    #val_dataset = SteelValDataSet('data/data3/purpleData/purple_400_20/val/')
     val_data = DataLoader(val_dataset,batch_size=1,num_workers=4)
 
     
@@ -281,6 +303,10 @@ def main():
         print(f'configuring model - EluNet')
         logging.info('configuring model - EluNet')
         model = ELUnet(config)
+    elif config["model_type"] == "UNet_3PlusShort":
+        print(f'configuring model - UNET 3+ Short')
+        logging.info('configuring model - UNET 3+ Short')
+        model = UNet_3PlusShort(config)
     else:
         print(f'configuring model - UNET')
         logging.info('configuring model - UNET')
@@ -289,6 +315,10 @@ def main():
 
     # Set model to Device
     model.to(device)
+
+    # dropout flag
+    if config["dropoutLOC"] == "std":
+        model.dropoutFlag = True
     
     
     # save model config
@@ -321,6 +351,8 @@ def main():
         criterion = pwcel()
     elif config["loss"] == "dice":
         criterion = diceLoss()
+    elif config["loss"] == "weighteddice":
+        criterion = weightedDiceLoss()
     elif config["loss"] == "modJaccard":
         criterion = modJaccLoss()
     elif config["loss"] == "unet3+loss":
@@ -353,7 +385,8 @@ def main():
     
     optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate, weight_decay=1e-2)
     if config["lr_decay"]:
-        scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)
+        scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.5)
+        #scheduler = torch.optim.lr_scheduler.CyclicLR(optimizer, base_lr=0.0001, max_lr=0.001)
     else:
         scheduler = None
           
@@ -386,14 +419,17 @@ def main():
     best_val_cm = None
     best_val_mIoU = None
     val_accuracies = []
+    train_mIoUs = []
+    val_mIoUs = []
 
     print('starting training')
     logging.info('starting training')
     
     for epoch in range(config["resume_epoch"],num_epochs):
-        train_loss ,train_confusion_matrix, train_mIoU,train_accuracy =  run_epoch(model, train_data, criterion, optimizer, scheduler, epoch, device, 'train',config)
+        train_loss ,train_confusion_matrix, train_mIoU,train_accuracy =  run_epoch(model, train_data, criterion, optimizer, epoch, device, 'train',config)
         train_losses.append(train_loss)
         train_accuracies.append(train_accuracy)
+        train_mIoUs.append(train_mIoU)
 
 
         print('train_loss:',train_loss)
@@ -403,9 +439,10 @@ def main():
         print('train_accuracy:',train_accuracy)
         #logging.info('train_accuracy:',train_accuracy)
         
-        val_loss, val_confusion_matrix,val_mIoU,val_accuracy = run_epoch(model, val_data, criterion, optimizer, scheduler, epoch, device, 'val',config)
+        val_loss, val_confusion_matrix,val_mIoU,val_accuracy = run_epoch(model, val_data, criterion, optimizer, epoch, device, 'val',config)
         val_losses.append(val_loss)
         val_accuracies.append(val_accuracy)
+        val_mIoUs.append(val_mIoU)
 
         print('val_loss:',val_loss)
         #logging.info('val_loss:',val_loss)
@@ -414,6 +451,11 @@ def main():
         print('val_accuracy:',val_accuracy)
         #logging.info('val_accuracy:',val_accuracy)
         
+        # Learning rate scheduler
+        if config["lr_decay"]:
+            scheduler.step()
+
+
         if wandbFlag:
             wandb.log({"train_loss": train_loss, "train_accuracy": train_accuracy, "train_mIoU": train_mIoU, "val_loss": val_loss, "val_accuracy": val_accuracy, "val_mIoU": val_mIoU})
         
@@ -439,6 +481,8 @@ def main():
         best_model = UNet(config)
     elif config["model_type"] == "EluNet":
         best_model = ELUnet(config)
+    elif config["model_type"] == "UNet_3PlusShort":
+        best_model = UNet_3PlusShort(config)
     else:
         print(f"Given model type {config['model_type']} is not supported. Proceeding with UNet")
         logging.info(f"Given model type {config['model_type']} is not supported. Proceeding with UNet")
@@ -483,6 +527,7 @@ def main():
     best_val_cm = val_confusion_matrix
     best_val_mIoU = calc_mIoU(best_val_cm)
     best_val_accuracy = calc_accuracy(best_val_cm)
+    best_dice_score = calc_dice_score(best_val_cm)
 
     # Saving Training Stats
     print('Saving Training Stats')
@@ -494,6 +539,9 @@ def main():
     loss_log_file.write("\n\n===============Training Accuracies ===========\n")
     for acc in train_accuracies:
         loss_log_file.write(str(acc)+', ')
+    loss_log_file.write('\n\n===============Training mIoUs ===========\n')
+    for mIoU in train_mIoUs:
+        loss_log_file.write(str(mIoU)+', ')
     loss_log_file.write('\n\n===============Validation Losses ===========\n')
     for loss in val_losses:
         loss_log_file.write(str(loss)+', ')
@@ -501,6 +549,10 @@ def main():
     for acc in val_accuracies:
         loss_log_file.write(str(acc)+', ')
     loss_log_file.write('\n')
+    loss_log_file.write('\n\n===============Validation mIoUs ===========\n')
+    for mIoU in val_mIoUs:
+        loss_log_file.write(str(mIoU)+', ')
+
     
     
 
@@ -518,6 +570,11 @@ def main():
     loss_log_file.write('\n\n================    val accuracy   ================\n\n')
     print(best_val_accuracy)
     loss_log_file.write(str(best_val_accuracy))
+
+    print('\n\n','================    Dice Score   ================','\n\n')
+    loss_log_file.write('\n\n================    Dice Score   ================\n\n')
+    print(best_dice_score)
+    loss_log_file.write(str(best_dice_score))
     
     print('\n\n','================       end        ================','\n\n')
     loss_log_file.write('\n\n================       end        ================\n\n')

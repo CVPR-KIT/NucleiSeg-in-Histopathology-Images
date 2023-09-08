@@ -10,6 +10,7 @@ from auxilary.utils import *
 from networkModules.model import UNet
 from networkModules.modelUnet3p import UNet_3Plus
 from networkModules.modelElunet import ELUnet
+from networkModules.modelUnet3pShort import UNet_3PlusShort
 from datetime import datetime
 import json
 
@@ -31,6 +32,7 @@ def make_preRunNecessities(expt_dir):
     config = None
     with open(expt_dir + "config.json") as f:
         config = json.load(f)   
+        #print(config)
     
     # Create the required directories
     print("PreRun: Creating required directories")
@@ -132,6 +134,8 @@ def main():
         model = UNet_3Plus(config)
     elif config["model_type"] == "EluNet":
         model = ELUnet(config)
+    elif config["model_type"] == "UNet_3PlusShort":
+        model = UNet_3PlusShort(config)
     else:
         logging.info("Please specify valid model.")
         print("Please specify valid model. Provided Model - ")
@@ -156,11 +160,11 @@ def main():
 
     if args.img_dir == 'all':
         logging.info("Testing on all images")
-        paths = [('Dataset/test/', 'testData')]
+        paths = [(config["testDataset"], 'testData')]
         for path, img_type in paths:
             # Load Dataset
             logging.info("Loading dataset")
-            dataset = MonuSegOnlyTestDataSet(path)
+            dataset = MonuSegOnlyTestDataSet(path, config)
             data = DataLoader(dataset,batch_size=1)
             acc = runInference(data, model, device, config, img_type)
             f.write(f"{args.expt_dir},{img_type},{np.average(acc)} \n")

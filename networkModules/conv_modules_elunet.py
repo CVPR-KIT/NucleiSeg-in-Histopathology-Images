@@ -22,12 +22,18 @@ class DoubleConv(nn.Module):
 
 class DownSample(nn.Module):
     """ MaxPool => DoubleConv """
-    def __init__(self,in_channels,out_channels, ks) -> None:
+    def __init__(self,in_channels,out_channels, ks, useMaxBPool) -> None:
         super().__init__()
-        self.down_sample = nn.Sequential(
-            nn.MaxPool2d(2),
-            DoubleConv(in_channels,out_channels, ks)
-        )
+        if useMaxBPool:
+            self.down_sample = nn.Sequential(
+                MaxBlurPool2d(kernel_size=2),
+                DoubleConv(in_channels,out_channels, ks)
+            )
+        else:
+            self.down_sample = nn.Sequential(
+                nn.MaxPool2d(2),
+                DoubleConv(in_channels,out_channels, ks)
+            )
     def forward(self,x):
         x  = self.down_sample(x)
         return x
@@ -57,3 +63,26 @@ class OutConv(nn.Module):
         self.conv = nn.Conv2d(in_channels, out_channels, kernel_size=ks,padding=1)
     def forward(self, x):
         return self.conv(x)
+    
+
+class MaxBlurPool2d(nn.Module):
+    def __init__(self, kernel_size=2, stride=2, padding=0):
+        super(MaxBlurPool2d, self).__init__()
+        self.kernel_size = kernel_size
+        self.stride = stride
+        self.padding = padding
+
+    def forward(self, x):
+        # Max pooling
+        x = F.max_pool2d(x, kernel_size=self.kernel_size, stride=self.stride, padding=self.padding)
+
+        # Blurring kernel
+        blur_kernel = torch.tensor([[1, 2, 1], [2, 4, 2], [1, 2, 1]], dtype=torch.float32)
+        blur_kernel = blur_kernel.view(1, 1, 3, 3)
+        blur_kernel = blur_kernel / blur_kernel.sum()
+        blur_kernel = blur_kernel.repeat(x.size(1), 1, 1, 1).to(x.device)
+
+        # Applying the blur using the 'depthwise' convolution
+        x = F.conv2d(x, blur_kernel, groups=x.size(1), padding=1)
+
+        return x

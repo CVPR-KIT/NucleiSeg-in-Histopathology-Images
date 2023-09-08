@@ -284,6 +284,36 @@ class pwcel(nn.Module):
         return pixelwise_cross_entropy_loss(input, target, self.class_weights)
 
     
+# Weighted Dice Loss    
+class weightedDiceLoss(nn.Module):
+    def __init__(self, smooth=1., weights=None):
+        super(weightedDiceLoss, self).__init__()
+        self.smooth = smooth
+        self.weights = weights
+
+    def setWeights(self, weights):
+        self.weights = weights
+
+    def forward(self, pred, target):
+        pred = pred.contiguous()
+        target = target.contiguous()
+
+        # Calculate intersection and weighted union
+        intersection = (pred * target).sum(dim=2).sum(dim=2)
+        union = (pred + target).sum(dim=2).sum(dim=2)
+        
+        # Calculate Dice coefficient for each class
+        dice = (2. * intersection + self.smooth) / (union + self.smooth)
+        
+        # Dice Loss
+        dice_loss = 1 - dice
+        if self.weights is not None:
+            dice_loss = dice_loss * self.weights
+
+        return dice_loss.mean()
+
+
+# Dice Loss
 # Dice Loss
 def dice_loss(pred, target, smooth = 1.):
     pred = pred.contiguous()
@@ -300,6 +330,7 @@ class diceLoss(nn.Module):
         super().__init__()
     def forward(self, input, target):
         return dice_loss(input, target)
+
 
 
 # Modified Jaccard Loss

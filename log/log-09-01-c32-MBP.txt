@@ -1,0 +1,11 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+configuring model - UNET 3+ Short
+saving model summary
+logging parameters
+starting training
+  0%|          | 0/2673 [00:00<?, ?it/s]Epoch 0/30:   0%|          | 0/2673 [00:00<?, ?it/s]Epoch 0/30:   0%|          | 1/2673 [00:00<36:00,  1.24it/s]Epoch 0/30:   0%|          | 2/2673 [00:01<22:45,  1.96it/s]Epoch 0/30:   0%|          | 3/2673 [00:01<18:42,  2.38it/s]Epoch 0/30:   0%|          | 4/2673 [00:01<16:37,  2.67it/s]

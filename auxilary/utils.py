@@ -5,6 +5,8 @@ import json
 import os
 import sys
 from torchsummary import summary
+from tqdm import tqdm
+from natsort import natsorted
 import torch
 
 
@@ -27,7 +29,7 @@ def result_recolor(gray_img):
     img = np.zeros((gray_img.shape[0], gray_img.shape[1], 3), np.uint8)
     config = readConfig()
 
-    colormap = [config["class1"],config["class2"],config["class3"],config["class4"]] # Purple, Orange, Yellow, Black
+    colormap = [config["class1"],config["class2"]] # black, white
     for i in range(gray_img.shape[0]):
         for j in range(gray_img.shape[1]):
             #print(gray_img[i,j])
@@ -48,7 +50,6 @@ def showImage(img, name = "image"):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    
 # Generate Configuration File
 def makeConfigJson(config, path = "config.json"):
     # convert dict config to json
@@ -100,11 +101,89 @@ def readConfig(configPath = "config.sys"):
     #makeConfigJson(config)
     return config
 
+# convert string array into float array
+def getArray(arrayStr):
+    arrayStr = arrayStr.split(",")
+    array = []
+    for i in arrayStr:
+        array.append(float(i))
+    return array
+
+# Read Metrics File
+def readMetrics(path = None):
+    if path == None:
+        assert False, "Experiment Path not provided"
+
+    f = open(f"{path}metrics.txt", "r")
+    fReader = f.read()
+    f.close()   
+    fReader.split("\n")
+    fReader = fReader.split("\n")
+    
+
+    # finding confusion matrix, best mIoU and best val accuracy
+    confusionMatrix = []
+    bestmIoU = None
+    bestValAccuracy = None
+    for i, line in enumerate(fReader):
+        # if line contains Training Losses
+        if "Training Losses" in line:
+            trainingLoss = fReader[i+1].strip()
+            trainingLoss = getArray(trainingLoss[0:-2])
+        # if line contains Training Accuraries
+        if "Training Accuracies" in line:
+            trainingAccuracy = fReader[i+1].strip()
+            trainingAccuracy = getArray(trainingAccuracy[0:-2])
+        # if line contains Validation Losses
+        if "Validation Losses" in line:
+            validationLoss = fReader[i+1].strip()
+            validationLoss = getArray(validationLoss[0:-2])
+        # if line contains Validation Accuracies
+        if "Validation Accuracies" in line:
+            validationAccuracy = fReader[i+1].strip()
+            validationAccuracy = getArray(validationAccuracy[0:-2])
+
+        # if line contains 'confusion matrix'
+        if "confusion matrix" in line:
+            #print("confusion matrix found")
+            l1 = fReader[i+2].strip()
+            l2 = fReader[i+3].strip()
+
+
+            one_1 = l1.split(" ")[0][2:]
+            one_2 = l1.split(" ")[-1][:-1]
+            two_1 = l2.split(" ")[0][2:]
+            if not len(two_1):
+                two_1 = l2.split(" ")[1]
+            two_2 = l2.split(" ")[-1][:-2]
+
+
+            confusionMatrix.append([float(one_1), float(one_2)])
+            confusionMatrix.append([float(two_1), float(two_2)])
+            confusionMatrix = np.array(confusionMatrix)
+
+        if "val mIoUs" in line:
+            bestmIoU = float(fReader[i+2].strip())
+            #print(bestmIoU)
+        if "val accuracy" in line:
+            bestValAccuracy = float(fReader[i+2].strip())
+
+    #return trainingLoss, trainingAccuracy, validationLoss, validationAccuracy, confusionMatrix, bestmIoU, bestValAccuracy
+    return {
+        'trainingLoss': trainingLoss,
+        'trainingAccuracy': trainingAccuracy,
+        'validationLoss': validationLoss,
+        'validationAccuracy': validationAccuracy,
+        'confusionMatrix': confusionMatrix,
+        'bestmIoU': bestmIoU,
+        'bestValAccuracy': bestValAccuracy
+    }
+
 # Save Torch Summary to a file
 def saveTorchSummary(model, input_size, path="modelSummary.txt"):
     sys.stdout = open(path, "w")
     #f.write(summary(model, input_size))
-    summary(model, input_size, )
+    summary(model, input_size)
     sys.stdout.close()
     sys.stdout = sys.__stdout__
     #f.close()
@@ -196,15 +275,14 @@ def calc_accuracy(confusion_matrix):
     return accuracy
 
 # Calculate mIoU
-
+'''
 def calc_mIoU(confusion_matrix):
     mIoU = 0
     for row in range(len(confusion_matrix)):
         if (np.sum(confusion_matrix[row,:])+np.sum(confusion_matrix[:,row])) == 0:
             continue
         mIoU += confusion_matrix[row,row]/(np.sum(confusion_matrix[row,:])+np.sum(confusion_matrix[:,row]))
-    return mIoU / len(confusion_matrix)
-
+    return mIoU / len(confusion_matrix)'''
 def calc_mIoU(confusion_matrix):
     mIoU = 0
     for row in range(len(confusion_matrix)):
@@ -215,6 +293,16 @@ def calc_mIoU(confusion_matrix):
         mIoU += intersect / union
     return mIoU / len(confusion_matrix)
 
+#calculate Dice Score
+def calc_dice_score(confusion_matrix):
+    dice_score = 0
+    for row in range(len(confusion_matrix)):
+        intersect = confusion_matrix[row,row]
+        union = np.sum(confusion_matrix[row,:]) + np.sum(confusion_matrix[:,row])
+        if union == 0:
+            continue
+        dice_score += 2*intersect / union
+    return dice_score / len(confusion_matrix)
 
 # Normalize image
 def normalize_image(image):
@@ -235,6 +323,31 @@ def unnormalize_image(image):
     unnormalized_image = (image * std) + mean
     return unnormalized_image
 
+# Load images from path
+def load_images(image_paths):
+    images = []
+    print(f"loading Images from path: {image_paths}")
+    for filename in tqdm(natsorted(os.listdir(image_paths))):
+        if filename.endswith("_label.png"):
+            continue
+        img = cv2.imread(os.path.join(image_paths,filename))
+        if img is not None:
+            images.append(img)
+    return images
+
+# Load sampling Model
+def load_sampling_model(modelType):
+    if modelType == "small":
+        dino_model = torch.hub.load('facebookresearch/dinov2', 'dinov2_vits14')
+    elif modelType == "large":
+        dino_model = torch.hub.load('facebookresearch/dinov2', 'dinov2_vitl14')
+    elif modelType == "giga":
+        dino_model = torch.hub.load('facebookresearch/dinov2', 'dinov2_vitg14')
+    else:
+        print("Invalid Sampler model type")
+        return None
+    dino_model = dino_model.cuda()
+    return dino_model
 
 if __name__ == "__main__":
     print("Contains functions used in the project - utils.py")

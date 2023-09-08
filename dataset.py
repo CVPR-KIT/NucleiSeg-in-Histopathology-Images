@@ -20,8 +20,9 @@ class MonuSegDataSet(Dataset):
         self.loggerFlag = True
 
         self.spl_losses = ['unet3+loss', 'improvedLoss', 'ClassRatioLoss']
+        self.spl_models = ['UNet_3Plus', 'EluNet', 'UNet_3PlusShort']
         self.debug = self.config["debug"]
-        self.debugDilution = 200
+        self.debugDilution = self.config["debugDilution"]
     
         return 
     
@@ -64,8 +65,8 @@ class MonuSegDataSet(Dataset):
         else:
             image = np.reshape(image,(1,self.wid,self.hit))
 
-        if self.config['model_type'] == 'UNet_3Plus' or self.config['model_type'] == 'EluNet':
-            # Only for unet3+ and EluNet
+        if self.config['model_type'] in self.spl_models:
+            # Only for Spl. Models
             # Create one-hot encoded tensors for each class
             class_0 = np.where(label == 0, 1, 0)  # Channel for class 0
             class_1 = np.where(label == 1, 1, 0)  # Channel for class 1
@@ -94,10 +95,11 @@ class MonuSegValDataSet(Dataset):
         self.hit = 512 # default value and is replaced later 
         logging.basicConfig(filename=self.config["log"] + "dataloader.log", filemode='w', 
                         level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-        self.spl_losses = ['unet3+loss', 'improvedLoss']
+        self.spl_losses = ['unet3+loss', 'improvedLoss', 'ClassRatioLoss']
+        self.spl_models = ['UNet_3Plus', 'EluNet', 'UNet_3PlusShort']
         self.loggerFlag = True
         self.debug = self.config["debug"]
-        self.debugDilution = 20
+        self.debugDilution = self.config["debugDilution"]
     
         return 
     
@@ -141,8 +143,8 @@ class MonuSegValDataSet(Dataset):
         else:
             image = np.reshape(image,(1,self.wid,self.hit))
 
-        if self.config['model_type'] == 'UNet_3Plus' or self.config['model_type'] == 'EluNet':
-            # Only for unet3+ and EluNet
+        if self.config['model_type'] in self.spl_models:
+            # Only for Spl. Models
             # Create one-hot encoded tensors for each class
             class_0 = np.where(label == 0, 1, 0)  # Channel for class 0
             class_1 = np.where(label == 1, 1, 0)  # Channel for class 1
@@ -173,6 +175,7 @@ class MonuSegTestDataSet(Dataset):
                         level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.len = 800
         self.spl_losses = ['unet3+loss', 'improvedLoss', 'ClassRatioLoss']
+        self.spl_models = ['UNet_3Plus', 'EluNet', 'UNet_3PlusShort']
         return 
     
     def __len__(self):
@@ -219,8 +222,8 @@ class MonuSegTestDataSet(Dataset):
         else:
             image = np.reshape(image,(1,self.wid,self.hit))
 
-        if self.config['model_type'] == 'UNet_3Plus':
-            # Only for unet3+
+        if self.config['model_type'] in self.spl_models:
+            # Only for Spl. Models
             # Create one-hot encoded tensors for each class
             class_0 = np.where(label == 0, 1, 0)  # Channel for class 0
             class_1 = np.where(label == 1, 1, 0)  # Channel for class 1
@@ -243,9 +246,9 @@ class MonuSegTestDataSet(Dataset):
 
 
 class MonuSegOnlyTestDataSet(Dataset):
-    def __init__(self, img_dir):
+    def __init__(self, img_dir, config):
         self.img_dir = img_dir
-        self.config = readConfig()
+        self.config = config
         self.wid = 512 # default value and is replaced later 
         self.hit = 512 # default value and is replaced later 
         logging.basicConfig(filename=self.config["log"] + "dataloader.log", filemode='w', 
@@ -260,6 +263,7 @@ class MonuSegOnlyTestDataSet(Dataset):
         img_paths  = sorted(os.listdir(self.img_dir))
         #logging.debug(img_paths)
         #logging.debug(os.path.join(self.img_dir,str(index+1)+img_paths[index][-4:]))
+        #print(self.config["input_img_type"])
         if self.config["input_img_type"] == "rgb":
             image = cv2.imread(os.path.join(self.img_dir,str(index)+img_paths[0][-4:]))/255
             # Normalize image
