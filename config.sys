@@ -1,8 +1,8 @@
 log = "log/"
 
 [Debug]
-debug = "False"                                 # Debug Mode - True or False: Radically reduces the dataset size for faster training
-debugDilution = 20                            # Debug Dilution - 1/nth of the dataset will be used for training
+debug = "True"                                 # Debug Mode - True or False: Radically reduces the dataset size for faster training
+debugDilution = 200                            # Debug Dilution - 1/nth of the dataset will be used for training
 wandb = "False"                                 # Wandb Logging
 
 [Stain Normalization]
@@ -26,14 +26,14 @@ finalTileWidth = 256                            # Final Width of augmenated imag
 splitRatio = 0.9                                # 0.8 -> 80% training 20% validation
 
 [Training]
-trainDataset = "Dataset/trainNormal/"                    # Images to be during Training
-valDataset = "Dataset/valNormal/"                        # Images to used during Validation
-testDataset = "Dataset/testNormal/"                      # Images to used during Testing
+trainDataset = "Dataset/train/"                    # Images to be during Training
+valDataset = "Dataset/val/"                        # Images to used during Validation
+testDataset = "Dataset/test/"                      # Images to used during Testing
 
 resumeModel = "model/best_model.pth"            # Model to used during re-training
 
-sampleImages = "True"                           # Sample Images during Training
-reUseFeatures = "True"                         # Use existing features - Should re-train features if dataset is changed
+sampleImages = "False"                           # Sample Images during Training
+reUseFeatures = "False"                         # Use existing features - Should re-train features if dataset is changed
 
 [Class Config]
 class1 = "0, 0, 0"                          #black
@@ -48,16 +48,17 @@ kernel_size = 3
 use_maxblurpool = "False"                       # Use MaxBlurPool
 epochs = 50
 batch_size = 16
-learning_rate = 0.00001                         # can be set to "auto" for finding the best learning rate or set to 0.00001
+learning_rate = 0.000001                         # can be set to "auto" for finding the best learning rate or set to 0.00001
 lr_decay = "False"                             # Learning Rate Decay  - True or False
 num_classes = 2
 weight_path = "None"
 activation = "relu"                             # Activations available:
 resume = "False"                                # Resume Training
 resume_epoch = 0                                # Resume Training from epoch
-channel = 32                                    # Default: 16 Can be set to 64 or other
+channel = 16                                    # Default: 16 Can be set to 64 or other
 attention = "False"                             # Model 1 only
-loss = "weighteddice"                           # Losses available: bce, jaccard, focal, pwcel, dice, weighteddice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF, focalDiceLoss
-dropout = 0.3                                   # Dropout rate
+loss = "dice"                           # Losses available: bce, jaccard, focal, pwcel, dice, weighteddice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF, focalDiceLoss
+dropout = 0                                   # Dropout rate
 dropoutLOC = "std"                              # Dropout Location: std, after (after 20 iterations)
-dilation = 2                                    # For Dilated convolution.
+dilation = 1                                    # For Dilated convolution.
+l1_regularization = "False"                     # L1 Regularization

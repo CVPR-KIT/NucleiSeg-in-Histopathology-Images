@@ -160,9 +160,10 @@ def run_epoch(model, data_loader, criterion, optimizer, epoch, device, mode, con
 
 
         # Adding L1 regularization
-        l1_lambda = 0.001
-        l1_norm = sum(p.abs().sum() for p in model.parameters())
-        loss += l1_lambda * l1_norm
+        if config["l1_regularization"]:
+            l1_lambda = 0.001
+            l1_norm = sum(p.abs().sum() for p in model.parameters())
+            loss += l1_lambda * l1_norm
 
 
         #metric = MulticlassJaccardIndex(num_classes=3)
