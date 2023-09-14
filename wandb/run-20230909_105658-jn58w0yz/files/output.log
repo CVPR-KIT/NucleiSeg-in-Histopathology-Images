@@ -1,0 +1,90 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+loading Images from path: Dataset/trainNormal/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100%|██████████| 85536/85536 [02:02<00:00, 697.79it/s]
+Using cache found in /home/blue/.cache/torch/hub/facebookresearch_dinov2_main
+Loading Features
+Applying t-SNE
+Applying DBSCAN
+Unique clusters: [0 1 2 3 4 5 6 7 8]
+Sampling Initialization Complete
+configuring model - UNET 3+ Short
+saving model summary
+Traceback (most recent call last):
+  File "/home/blue/projects/MoNuSeg/main.py", line 617, in <module>
+    main()
+  File "/home/blue/projects/MoNuSeg/main.py", line 328, in main
+    saveTorchSummary(model, input_size=(3, 256, 256), path=config["expt_dir"]+"modelSummary.txt")
+  File "/home/blue/projects/MoNuSeg/auxilary/utils.py", line 186, in saveTorchSummary
+    summary(model, input_size)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torchsummary/torchsummary.py", line 72, in summary
+    model(*x)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/networkModules/modelUnet3pShort.py", line 224, in forward
+    torch.cat((h1_PT_hd4, h2_PT_hd4, h3_PT_hd4, h4_Cat_hd4), 1)))) # hd4->40*40*UpChannels
+RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 27 but got size 25 for tensor number 1 in the list.

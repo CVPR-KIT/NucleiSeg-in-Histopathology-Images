@@ -158,6 +158,13 @@ def run_epoch(model, data_loader, criterion, optimizer, epoch, device, mode, con
         gt = gt.type(torch.float32)
         loss = criterion(pred,gt)
 
+
+        # Adding L1 regularization
+        l1_lambda = 0.001
+        l1_norm = sum(p.abs().sum() for p in model.parameters())
+        loss += l1_lambda * l1_norm
+
+
         #metric = MulticlassJaccardIndex(num_classes=3)
         #loss = metric(pred, gt)
 
@@ -371,7 +378,7 @@ def main():
         criterion = FocalLoss(0.25)
 
     # Configuring Optimizer
-    optimizer = torch.optim.Adam(model.parameters() ,lr=1e-7, weight_decay=1e-2)
+    optimizer = torch.optim.Adam(model.parameters() ,lr=1e-7, weight_decay=1e-5)
     if config["resume"]:
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
   
@@ -383,7 +390,7 @@ def main():
         learning_rate = getSuggestedLR(model, optimizer, criterion, train_data, config)
         
     
-    optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate, weight_decay=1e-2)
+    optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate, weight_decay=1e-5)
     if config["lr_decay"]:
         scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.5)
         #scheduler = torch.optim.lr_scheduler.CyclicLR(optimizer, base_lr=0.0001, max_lr=0.001)

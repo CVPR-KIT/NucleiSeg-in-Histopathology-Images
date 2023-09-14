@@ -52,6 +52,10 @@ def unfinished(path, outPath):
             val_acc.append(float(line.split(":")[1].strip()))
 
     # plot graph for training loss and accuracy and validation loss and accuracy
+    #train_loss = [0.25006714254182866, 0.1928768632588563, 0.17703613093672643, 0.1655030488867551, 0.15564322062435998]
+    #train_acc = [0.8445546920496652, 0.8713883586559589, 0.8805587089244588, 0.8877894058684218, 0.8939133025803372]
+    #val_loss = [0.21477208098691422, 0.19198805339295755, 0.17996057449379052, 0.17317383136813488, 0.16608148720429]
+    #val_acc = [0.8558756606747405, 0.8638045314185145, 0.8620655721285527, 0.869460581127642, 0.8688149532485089]
     printImage([train_loss, val_loss], "Loss", outPath)
     printImage([train_acc, val_acc], "Accuracy", outPath)
     printImage([train_mIoU, val_mIoU], "mIoU", outPath)
@@ -83,7 +87,7 @@ def finished(path, outPath):
 
 
 if __name__ == "__main__":
-    #unfinished("log/log-09-01-c32-wD.txt", "Outputs/experiment_09-01_19.02.25_NoMBP/")
-    finalPath = "Outputs/channelTests/experiment_09-07_17.00.22/"
+    #unfinished("log/log-09-08.txt", "Outputs/")
+    finalPath = "Outputs/experiment_09-13_23.33.56/"
     finished(finalPath, finalPath)
     

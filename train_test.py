@@ -12,6 +12,7 @@ from networkModules.modelUnet3p import UNet_3Plus
 from networkModules.modelElunet import ELUnet
 from networkModules.modelUnet3pShort import UNet_3PlusShort
 from datetime import datetime
+from sklearn.metrics import average_precision_score
 import json
 
 import logging
@@ -43,6 +44,7 @@ def make_preRunNecessities(expt_dir):
 def runInference(data, model, device, config, img_type):
     accList = []
     count= 0
+    mAPs = []
 
     for i,(images,y) in enumerate(tqdm(data)):
         pred = model(images.to(device))
@@ -56,20 +58,37 @@ def runInference(data, model, device, config, img_type):
         (wid, hit) = (int(pred.shape[2]), int(pred.shape[3]))
             
         #y = y.reshape((1,wid,hit))
+        
 
         _, rslt = torch.max(pred,1)
 
         rslt = rslt.squeeze().type(torch.uint8)
         y = y.reshape((wid,hit))
+
+        #print(f"rslt: {rslt.shape}")
+        #print(f"y: {y.shape}")
+
         test_acc = torch.sum(rslt.cpu() == y)
 
         accList.append(test_acc.item() / (wid*hit))
 
         if config["input_img_type"] == "rgb":
-            images = torch.reshape(images,(wid,hit, 3))
+            #print(f"RGB Image : {images.shape}")
+            #images = torch.reshape(images,(wid,hit, 3))
+            images = images.squeeze(0)
+            images = images.permute(1, 2, 0)
+            #print(f"RGB Image reshaped : {images.shape}")
         else:
             images = torch.reshape(images,(wid,hit,1))
-            
+        
+
+        
+        cm = calc_confusion_matrix2(y, rslt, config["num_classes"])
+        mAP = calculate_mAP(cm)
+        mAPs.append(mAP)
+        #print(f"mAP: {mAP}")
+        
+
         images = images.cpu().detach().numpy()
         cv2.imwrite(config['expt_dir']+'inference/'+img_type+'/'+str(i)+'_'+'img.png',images*255)
 
@@ -81,7 +100,7 @@ def runInference(data, model, device, config, img_type):
         rslt = rslt.squeeze()
         rslt_color = result_recolor(rslt.cpu().detach().numpy())
         cv2.imwrite(config['expt_dir']+'inference/'+img_type+'/'+str(i)+'_'+str(test_acc.item()/(wid*hit))[:5]+'_'+'predict.png',rslt_color)
-    return np.average(accList)
+    return np.average(accList), np.average(mAPs)
 
 
 '''
@@ -166,17 +185,19 @@ def main():
             logging.info("Loading dataset")
             dataset = MonuSegOnlyTestDataSet(path, config)
             data = DataLoader(dataset,batch_size=1)
-            acc = runInference(data, model, device, config, img_type)
+            acc, mAP = runInference(data, model, device, config, img_type)
             f.write(f"{args.expt_dir},{img_type},{np.average(acc)} \n")
-            print(f"Testing Accuracy -{args.expt_dir}-{img_type}- {np.average(acc)} \n")
+            print(f"Testing Accuracy -{args.expt_dir}-{img_type}- {acc} \n")
+            print(f"Testing mAP -{args.expt_dir}-{img_type}- {mAP} \n")
     else:
         # Load Dataset
         logging.info("Loading dataset")
         dataset = MonuSegOnlyTestDataSet(args.img_dir)
         data = DataLoader(dataset,batch_size=1)
-        acc = runInference(data, model, device, config, args)
+        acc, mAP = runInference(data, model, device, config, args)
         f.write(f"{args.expt_dir},{args.img_type},{np.average(acc)} \n")
         print(f"Testing Accuracy -{args.expt_dir}-{args.img_type}- {np.average(acc)} \n")
+        print(f"Testing mAP -{args.expt_dir}-{img_type}- {mAP} \n")
 
     
     f.close()

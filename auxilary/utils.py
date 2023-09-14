@@ -155,8 +155,11 @@ def readMetrics(path = None):
             two_1 = l2.split(" ")[0][2:]
             if not len(two_1):
                 two_1 = l2.split(" ")[1]
+                if not len(two_1):
+                    two_1 = l2.split(" ")[2]
             two_2 = l2.split(" ")[-1][:-2]
 
+            #print(one_1, one_2, two_1, two_2)
 
             confusionMatrix.append([float(one_1), float(one_2)])
             confusionMatrix.append([float(two_1), float(two_2)])
@@ -269,6 +272,41 @@ def calc_confusion_matrix2(label, pred, num_classes):
 
     return cm
 
+
+def calculate_mAP(confusion_matrix):
+    """
+    Calculate Mean Average Precision (mAP) from a confusion matrix.
+    
+    Parameters:
+    - confusion_matrix (numpy array): A square matrix where each row and column corresponds to a class.
+                                      The value at (i, j) is the number of instances of class i predicted as class j.
+                                      
+    Returns:
+    - mAP (float): Mean Average Precision.
+    """
+    num_classes = len(confusion_matrix)
+    APs = []
+    
+    for i in range(num_classes):
+        TP = confusion_matrix[i, i]
+        FP = np.sum(confusion_matrix[:, i]) - TP
+        FN = np.sum(confusion_matrix[i, :]) - TP
+        TN = np.sum(confusion_matrix) - TP - FP - FN
+        
+        # Calculate Precision and Recall
+        precision = TP / (TP + FP) if (TP + FP) != 0 else 0
+        recall = TP / (TP + FN) if (TP + FN) != 0 else 0
+        
+        # Calculate Average Precision (AP) using trapezoidal approximation
+        AP = (precision + recall) / 2 if (precision + recall) != 0 else 0
+        
+        APs.append(AP)
+        
+    # Calculate Mean Average Precision (mAP)
+    mAP = np.mean(APs)
+    
+    return mAP
+
 # Calculate accuracy
 def calc_accuracy(confusion_matrix):
     accuracy = np.trace(confusion_matrix)/np.sum(confusion_matrix)
@@ -303,6 +341,21 @@ def calc_dice_score(confusion_matrix):
             continue
         dice_score += 2*intersect / union
     return dice_score / len(confusion_matrix)
+
+def calc_dice_score2(confusion_matrix):
+    TP = confusion_matrix[0][0]
+    FP = confusion_matrix[0][1]
+    FN = confusion_matrix[1][0]
+    # Calculating the Dice Coefficient
+    dice_coefficient = (2 * TP) / (2 * TP + FP + FN)
+    return dice_coefficient
+
+def dice_coef(y_true, y_pred):
+    smooth = 1e-5
+    y_true_f = y_true.flatten()
+    y_pred_f = y_pred.flatten()
+    intersection = np.sum(y_true_f * y_pred_f)
+    return (2. * intersection + smooth) / (np.sum(y_true_f) + np.sum(y_pred_f) + smooth)
 
 # Normalize image
 def normalize_image(image):
