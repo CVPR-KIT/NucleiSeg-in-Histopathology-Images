@@ -331,6 +331,28 @@ def calc_mIoU(confusion_matrix):
         mIoU += intersect / union
     return mIoU / len(confusion_matrix)
 
+def calc_mIoU2(pred, label, num_classes):
+    # Initialize variables
+    intersection = torch.zeros(num_classes)
+    union = torch.zeros(num_classes)
+    
+    # Loop through each class
+    for cls in range(num_classes):
+        pred_inds = (pred == cls)
+        target_inds = (label == cls)
+        
+        # Calculate intersection and union for each class
+        intersection[cls] = (pred_inds[target_inds]).sum()
+        union[cls] = pred_inds.sum() + target_inds.sum() - intersection[cls]
+    
+    # Ignore zero union values (to avoid division by zero)
+    iou = intersection / (union + 1e-10)
+    
+    # Calculate mean IoU
+    mIoU = iou.mean().item()
+    
+    return mIoU
+
 #calculate Dice Score
 def calc_dice_score(confusion_matrix):
     dice_score = 0
@@ -343,7 +365,7 @@ def calc_dice_score(confusion_matrix):
     return dice_score / len(confusion_matrix)
 
 def calc_dice_score2(confusion_matrix):
-    TP = confusion_matrix[0][0]
+    TP = confusion_matrix[1][1]
     FP = confusion_matrix[0][1]
     FN = confusion_matrix[1][0]
     # Calculating the Dice Coefficient
@@ -356,6 +378,14 @@ def dice_coef(y_true, y_pred):
     y_pred_f = y_pred.flatten()
     intersection = np.sum(y_true_f * y_pred_f)
     return (2. * intersection + smooth) / (np.sum(y_true_f) + np.sum(y_pred_f) + smooth)
+
+def dice_coef_torch(y_true, y_pred):
+    smooth = 1e-5
+    y_true_f = torch.flatten(y_true)
+    y_pred_f = torch.flatten(y_pred)
+    intersection = torch.sum(y_true_f * y_pred_f)
+    return (2. * intersection + smooth) / (torch.sum(y_true_f) + torch.sum(y_pred_f) + smooth)
+
 
 # Normalize image
 def normalize_image(image):

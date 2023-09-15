@@ -2,7 +2,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from networkModules.conv_modules_unet3p import unetConv2, BlurPool2D, MaxBlurPool2d
+from networkModules.conv_modules_unet3p import unetConv2, BlurPool2D, MaxBlurPool2d, MultiScaleAttentionBlock
 from init_weights import init_weights
 '''
     UNet 3+
@@ -23,37 +23,57 @@ class UNet_3PlusShort(nn.Module):
         self.dropout = nn.Dropout2d(p=config["dropout"])
         self.useMaxBPool = config["use_maxblurpool"]
         self.dropoutFlag = False
+        supportedActivations = ["relu", "GLU"]
+        if config["activation"] not in supportedActivations:
+            raise Exception("Activation function not supported. Supported activations: {}".format(supportedActivations))
+        self.activation = config["activation"]
+
+        try:
+            self.multiScaleAttention = config["multiScaleAttention"]
+        except:
+            self.multiScaleAttention = False
+
 
         # self.ch, original paper uses channel size of 64, while we use 16
         # uses relu activation by default
         #filters = [self.ch, self.ch * 2, self.ch * 4, self.ch * 8]
         filters = [self.ch, self.ch * 2, self.ch * 4, self.ch * 4]
+        #print(f"Filters: {filters}")
         #filters = [64, 128, 256, 512, 1024]
 
         ## -------------Encoder--------------
-        self.conv1 = unetConv2(self.in_channels, filters[0], self.is_batchnorm, ks=self.kernel_size)
+        self.conv1 = unetConv2(self.in_channels, filters[0], self.is_batchnorm, ks=self.kernel_size, act=self.activation)
         if self.useMaxBPool:
             self.maxpool1 = MaxBlurPool2d(kernel_size=2)
         else:
             self.maxpool1 = nn.MaxPool2d(kernel_size=2)
 
-        self.conv2 = unetConv2(filters[0], filters[1], self.is_batchnorm, ks=self.kernel_size)
+        self.conv2 = unetConv2(filters[0], filters[1], self.is_batchnorm, ks=self.kernel_size, act=self.activation)
         if self.useMaxBPool:
             self.maxpool2 = MaxBlurPool2d(kernel_size=2)
         else:
             self.maxpool2 = nn.MaxPool2d(kernel_size=2)
 
-        self.conv3 = unetConv2(filters[1], filters[2], self.is_batchnorm, ks=self.kernel_size)
+        self.conv3 = unetConv2(filters[1], filters[2], self.is_batchnorm, ks=self.kernel_size, act=self.activation)
         if self.useMaxBPool:
             self.maxpool3 = MaxBlurPool2d(kernel_size=2)    
         else:
             self.maxpool3 = nn.MaxPool2d(kernel_size=2)
 
-        self.conv4 = unetConv2(filters[2], filters[3], self.is_batchnorm, ks=self.kernel_size)
+        self.conv4 = unetConv2(filters[2], filters[3], self.is_batchnorm, ks=self.kernel_size, act=self.activation)
         if self.useMaxBPool:
             self.maxpool4 = MaxBlurPool2d(kernel_size=2)
         else:
             self.maxpool4 = nn.MaxPool2d(kernel_size=2)
+
+
+        ## Attention
+        if self.multiScaleAttention:
+            self.multi_scale_attention1 = MultiScaleAttentionBlock(filters[0])
+            self.multi_scale_attention2 = MultiScaleAttentionBlock(filters[1])
+            self.multi_scale_attention3 = MultiScaleAttentionBlock(filters[2])
+            self.multi_scale_attention4 = MultiScaleAttentionBlock(filters[3])
+
 
 
         ## -------------Decoder--------------
@@ -198,14 +218,26 @@ class UNet_3PlusShort(nn.Module):
         ## -------------Encoder-------------
         h1 = self.conv1(inputs)  # h1->320*320*64
 
+        if self.multiScaleAttention:
+            h1 = self.multi_scale_attention1(h1)
+
         h2 = self.maxpool1(h1)
         h2 = self.conv2(h2)  # h2->160*160*128
+
+        if self.multiScaleAttention:
+            h2 = self.multi_scale_attention2(h2)
 
         h3 = self.maxpool2(h2)
         h3 = self.conv3(h3)  # h3->80*80*256
 
+        if self.multiScaleAttention:
+            h3 = self.multi_scale_attention3(h3)
+
         h4 = self.maxpool3(h3)
         h4 = self.conv4(h4)  # h4->40*40*512
+
+        if self.multiScaleAttention:
+            h4 = self.multi_scale_attention4(h4)
 
         #h5 = self.maxpool4(h4)
         #hd5 = self.conv5(h5)  # h5->20*20*1024
@@ -220,32 +252,75 @@ class UNet_3PlusShort(nn.Module):
         h3_PT_hd4 = self.h3_PT_hd4_relu(self.h3_PT_hd4_bn(self.h3_PT_hd4_conv(self.h3_PT_hd4(h3))))
         h4_Cat_hd4 = self.h4_Cat_hd4_relu(self.h4_Cat_hd4_bn(self.h4_Cat_hd4_conv(h4)))
         #hd5_UT_hd4 = self.hd5_UT_hd4_relu(self.hd5_UT_hd4_bn(self.hd5_UT_hd4_conv(self.hd5_UT_hd4(hd5))))
-        hd4 = self.relu4d_1(self.bn4d_1(self.conv4d_1(
-            torch.cat((h1_PT_hd4, h2_PT_hd4, h3_PT_hd4, h4_Cat_hd4), 1)))) # hd4->40*40*UpChannels
+
+        ## Attention
+        if self.multiScaleAttention:
+            h1_PT_hd4_attn = self.multi_scale_attention1(h1_PT_hd4)
+            h2_PT_hd4_attn = self.multi_scale_attention2(h2_PT_hd4)
+            h3_PT_hd4_attn = self.multi_scale_attention3(h3_PT_hd4)
+            hd4 = self.relu4d_1(self.bn4d_1(self.conv4d_1(
+                torch.cat((h1_PT_hd4_attn, h2_PT_hd4_attn, h3_PT_hd4_attn, h4_Cat_hd4), 1)))) # hd4->40*40*UpChannels
+            hd4 = self.multi_scale_attention4(hd4)
+        else:
+            hd4 = self.relu4d_1(self.bn4d_1(self.conv4d_1(
+                torch.cat((h1_PT_hd4, h2_PT_hd4, h3_PT_hd4, h4_Cat_hd4), 1)))) # hd4->40*40*UpChannels
 
         h1_PT_hd3 = self.h1_PT_hd3_relu(self.h1_PT_hd3_bn(self.h1_PT_hd3_conv(self.h1_PT_hd3(h1))))
         h2_PT_hd3 = self.h2_PT_hd3_relu(self.h2_PT_hd3_bn(self.h2_PT_hd3_conv(self.h2_PT_hd3(h2))))
         h3_Cat_hd3 = self.h3_Cat_hd3_relu(self.h3_Cat_hd3_bn(self.h3_Cat_hd3_conv(h3)))
         hd4_UT_hd3 = self.hd4_UT_hd3_relu(self.hd4_UT_hd3_bn(self.hd4_UT_hd3_conv(self.hd4_UT_hd3(hd4))))
         #hd5_UT_hd3 = self.hd5_UT_hd3_relu(self.hd5_UT_hd3_bn(self.hd5_UT_hd3_conv(self.hd5_UT_hd3(hd5))))
-        hd3 = self.relu3d_1(self.bn3d_1(self.conv3d_1(
-            torch.cat((h1_PT_hd3, h2_PT_hd3, h3_Cat_hd3, hd4_UT_hd3), 1)))) # hd3->80*80*UpChannels
+        
+        ## Attention
+        if self.multiScaleAttention:
+            h1_PT_hd3_attn = self.multi_scale_attention1(h1_PT_hd3)
+            h2_PT_hd3_attn = self.multi_scale_attention2(h2_PT_hd3)
+            hd4_UT_hd3_attn = self.multi_scale_attention4(hd4_UT_hd3)
+            hd3 = self.relu3d_1(self.bn3d_1(self.conv3d_1(
+                torch.cat((h1_PT_hd3_attn, h2_PT_hd3_attn, h3_Cat_hd3, hd4_UT_hd3_attn), 1)))) # hd3->80*80*UpChannels
+            h3 = self.multi_scale_attention3(h3)
+        else:
+            hd3 = self.relu3d_1(self.bn3d_1(self.conv3d_1(
+                torch.cat((h1_PT_hd3, h2_PT_hd3, h3_Cat_hd3, hd4_UT_hd3), 1)))) # hd3->80*80*UpChannels
 
         h1_PT_hd2 = self.h1_PT_hd2_relu(self.h1_PT_hd2_bn(self.h1_PT_hd2_conv(self.h1_PT_hd2(h1))))
         h2_Cat_hd2 = self.h2_Cat_hd2_relu(self.h2_Cat_hd2_bn(self.h2_Cat_hd2_conv(h2)))
         hd3_UT_hd2 = self.hd3_UT_hd2_relu(self.hd3_UT_hd2_bn(self.hd3_UT_hd2_conv(self.hd3_UT_hd2(hd3))))
         hd4_UT_hd2 = self.hd4_UT_hd2_relu(self.hd4_UT_hd2_bn(self.hd4_UT_hd2_conv(self.hd4_UT_hd2(hd4))))
         #hd5_UT_hd2 = self.hd5_UT_hd2_relu(self.hd5_UT_hd2_bn(self.hd5_UT_hd2_conv(self.hd5_UT_hd2(hd5))))
-        hd2 = self.relu2d_1(self.bn2d_1(self.conv2d_1(
-            torch.cat((h1_PT_hd2, h2_Cat_hd2, hd3_UT_hd2, hd4_UT_hd2), 1)))) # hd2->160*160*UpChannels
+        
+        
+        ## Attention
+        if self.multiScaleAttention:
+            h1_PT_hd2_attn = self.multi_scale_attention1(h1_PT_hd2)
+            hd3_UT_hd2_attn = self.multi_scale_attention3(hd3_UT_hd2)
+            hd4_UT_hd2_attn = self.multi_scale_attention4(hd4_UT_hd2)
+            hd2 = self.relu2d_1(self.bn2d_1(self.conv2d_1(
+                torch.cat((h1_PT_hd2_attn, h2_Cat_hd2, hd3_UT_hd2_attn, hd4_UT_hd2_attn), 1)))) # hd2->160*160*UpChannels
+            hd2 = self.multi_scale_attention2(hd2)
+        else:
+            hd2 = self.relu2d_1(self.bn2d_1(self.conv2d_1(
+                torch.cat((h1_PT_hd2, h2_Cat_hd2, hd3_UT_hd2, hd4_UT_hd2), 1)))) # hd2->160*160*UpChannels
+
 
         h1_Cat_hd1 = self.h1_Cat_hd1_relu(self.h1_Cat_hd1_bn(self.h1_Cat_hd1_conv(h1)))
         hd2_UT_hd1 = self.hd2_UT_hd1_relu(self.hd2_UT_hd1_bn(self.hd2_UT_hd1_conv(self.hd2_UT_hd1(hd2))))
         hd3_UT_hd1 = self.hd3_UT_hd1_relu(self.hd3_UT_hd1_bn(self.hd3_UT_hd1_conv(self.hd3_UT_hd1(hd3))))
         hd4_UT_hd1 = self.hd4_UT_hd1_relu(self.hd4_UT_hd1_bn(self.hd4_UT_hd1_conv(self.hd4_UT_hd1(hd4))))
         #hd5_UT_hd1 = self.hd5_UT_hd1_relu(self.hd5_UT_hd1_bn(self.hd5_UT_hd1_conv(self.hd5_UT_hd1(hd5))))
-        hd1 = self.relu1d_1(self.bn1d_1(self.conv1d_1(
-            torch.cat((h1_Cat_hd1, hd2_UT_hd1, hd3_UT_hd1, hd4_UT_hd1), 1)))) # hd1->320*320*UpChannels
+        
+        ## Attention
+        if self.multiScaleAttention:
+            hd2_UT_hd1_attn = self.multi_scale_attention2(hd2_UT_hd1)
+            hd3_UT_hd1_attn = self.multi_scale_attention3(hd3_UT_hd1)
+            hd4_UT_hd1_attn = self.multi_scale_attention4(hd4_UT_hd1)
+            hd1 = self.relu1d_1(self.bn1d_1(self.conv1d_1(
+                torch.cat((h1_Cat_hd1, hd2_UT_hd1_attn, hd3_UT_hd1_attn, hd4_UT_hd1_attn), 1)))) # hd1->320*320*UpChannels
+            hd1 = self.multi_scale_attention1(hd1)
+        else:
+            hd1 = self.relu1d_1(self.bn1d_1(self.conv1d_1(
+                torch.cat((h1_Cat_hd1, hd2_UT_hd1, hd3_UT_hd1, hd4_UT_hd1), 1)))) # hd1->320*320*UpChannels
+
 
         d1 = self.outconv1(hd1)  # d1->320*320*n_classes
         return torch.sigmoid(d1)
