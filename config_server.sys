@@ -26,9 +26,9 @@ finalTileWidth = 256                            # Final Width of augmenated imag
 splitRatio = 0.9                                # 0.8 -> 80% training 20% validation
 
 [Training]
-trainDataset = "/mnt/BishalFiles/MoNuSeg/train/"                    # Images to be during Training
-valDataset = "/mnt/BishalFiles/MoNuSeg/val/"                        # Images to used during Validation
-testDataset = "/mnt/BishalFiles/MoNuSeg/test/"                      # Images to used during Testing
+trainDataset = "/mnt/BishalFiles/MoNuSeg/trainNormal/"                    # Images to be during Training
+valDataset = "/mnt/BishalFiles/MoNuSeg/valNormal/"                        # Images to used during Validation
+testDataset = "/mnt/BishalFiles/MoNuSeg/testNormal/"                      # Images to used during Testing
 
 resumeModel = "model/best_model.pth"            # Model to used during re-training
 
@@ -52,13 +52,18 @@ learning_rate = 0.000001                         # can be set to "auto" for find
 lr_decay = "False"                             # Learning Rate Decay  - True or False
 num_classes = 2
 weight_path = "None"
-activation = "relu"                             # Activations available:
+activation = "GLU"                             # Activations available: relu, GLU
 resume = "False"                                # Resume Training
 resume_epoch = 0                                # Resume Training from epoch
-channel = 16                                    # Default: 16 Can be set to 64 or other
+channel = 32                                    # Default: 16 Can be set to 64 or other
 attention = "False"                             # Model 1 only
-loss = "dice"                           # Losses available: bce, jaccard, focal, pwcel, dice, weighteddice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF, focalDiceLoss
-dropout = 0                                   # Dropout rate
+loss = "weighteddice"                           # Losses available: bce, jaccard, focal, pwcel, dice, weighteddice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF, focalDiceLoss
+dropout = 0.3                                   # Dropout rate
 dropoutLOC = "std"                              # Dropout Location: std, after (after 20 iterations)
 dilation = 1                                    # For Dilated convolution.
 l1_regularization = "False"                     # L1 Regularization
+
+[experiment features]
+multiScaleAttention = "False"                   # Spatial, Channel and Edge Attention used in tandem
+eigen_decomposition= "True"                  # Eigen Decomposition
+top_k_features = 0                        # Top K Features - 0- False, n-Top N values

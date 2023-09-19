@@ -333,6 +333,7 @@ def main():
     print('saving model summary')
     logging.info(f'saving model summary at {config["expt_dir"]+"modelSummary.txt"}')
     if config["input_img_type"] == "rgb":
+        # skip
         saveTorchSummary(model, input_size=(3, 256, 256), path=config["expt_dir"]+"modelSummary.txt")
     else:
         saveTorchSummary(model, input_size=(1, 256, 256), path=config["expt_dir"]+"modelSummary.txt")

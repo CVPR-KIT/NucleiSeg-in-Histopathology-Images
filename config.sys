@@ -32,8 +32,8 @@ testDataset = "Dataset/testNormal/"                      # Images to used during
 
 resumeModel = "model/best_model.pth"            # Model to used during re-training
 
-sampleImages = "False"                           # Sample Images during Training
-reUseFeatures = "False"                         # Use existing features - Should re-train features if dataset is changed
+sampleImages = "True"                           # Sample Images during Training
+reUseFeatures = "True"                         # Use existing features - Should re-train features if dataset is changed
 
 [Class Config]
 class1 = "0, 0, 0"                          #black
@@ -45,21 +45,25 @@ model_type = "UNet_3PlusShort"                           # Model Avl: UNet ,UNet
 [Parameters]
 input_img_type = "rgb"                          # Input Image Type: rgb, gray
 kernel_size = 3
-use_maxblurpool = "True"                       # Use MaxBlurPool
-epochs = 10
+use_maxblurpool = "False"                       # Use MaxBlurPool
+epochs = 50
 batch_size = 16
-learning_rate = 0.000001                         # can be set to "auto" for finding the best learning rate or set to 0.00001
+learning_rate = 0.00001                         # can be set to "auto" for finding the best learning rate or set to 0.00001
 lr_decay = "True"                             # Learning Rate Decay  - True or False
 num_classes = 2
 weight_path = "None"
-activation = "relu"                             # Activations available: relu, GLU
+activation = "GLU"                             # Activations available: relu, GLU
 resume = "False"                                # Resume Training
 resume_epoch = 0                                # Resume Training from epoch
 channel = 32                                    # Default: 16 Can be set to 64 or other
 attention = "False"                             # Model 1 only
-multiScaleAttention = "False"                   # Spatial, Channel and Edge Attention used in tandem
 loss = "weighteddice"                           # Losses available: bce, jaccard, focal, pwcel, dice, weighteddice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF, focalDiceLoss
 dropout = 0.3                                   # Dropout rate
 dropoutLOC = "std"                              # Dropout Location: std, after (after 20 iterations)
 dilation = 1                                    # For Dilated convolution.
 l1_regularization = "False"                     # L1 Regularization
+
+[experiment features]
+multiScaleAttention = "True"                   # Spatial, Channel and Edge Attention used in tandem
+eigen_decomposition = "False"                  # Eigen Decomposition
+top_k_features = 0                        # Top K Features - 0- False, n-Top N values

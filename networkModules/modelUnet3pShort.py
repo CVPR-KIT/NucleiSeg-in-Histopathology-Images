@@ -2,7 +2,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from networkModules.conv_modules_unet3p import unetConv2, BlurPool2D, MaxBlurPool2d, MultiScaleAttentionBlock
+from networkModules.conv_modules_unet3p import unetConv2, BlurPool2D, MaxBlurPool2d, MultiScaleAttentionBlock, EigenDecomposition, TopKFeatures
 from init_weights import init_weights
 '''
     UNet 3+
@@ -28,8 +28,12 @@ class UNet_3PlusShort(nn.Module):
             raise Exception("Activation function not supported. Supported activations: {}".format(supportedActivations))
         self.activation = config["activation"]
 
+        self.eigen_decompositionFlag = config["eigen_decomposition"]
+        self.top_k_featuresFlag = config["top_k_features"]
+
         try:
             self.multiScaleAttention = config["multiScaleAttention"]
+            self.basicAttention  = True
         except:
             self.multiScaleAttention = False
 
@@ -40,6 +44,12 @@ class UNet_3PlusShort(nn.Module):
         filters = [self.ch, self.ch * 2, self.ch * 4, self.ch * 4]
         #print(f"Filters: {filters}")
         #filters = [64, 128, 256, 512, 1024]
+        if self.eigen_decompositionFlag:
+            self.eigen_decomposition = EigenDecomposition()
+        if self.top_k_featuresFlag:
+            self.top_k_features = TopKFeatures(k=self.top_k_featuresFlag)  
+
+
 
         ## -------------Encoder--------------
         self.conv1 = unetConv2(self.in_channels, filters[0], self.is_batchnorm, ks=self.kernel_size, act=self.activation)
@@ -242,6 +252,12 @@ class UNet_3PlusShort(nn.Module):
         #h5 = self.maxpool4(h4)
         #hd5 = self.conv5(h5)  # h5->20*20*1024
 
+        if self.eigen_decompositionFlag:
+            h4 = self.eigen_decomposition(h4)
+        if self.top_k_featuresFlag:
+            h4 = self.top_k_features(h4)
+
+
         # dropout
         if self.dropoutFlag:
             h4 = self.dropout(h4)
@@ -254,7 +270,7 @@ class UNet_3PlusShort(nn.Module):
         #hd5_UT_hd4 = self.hd5_UT_hd4_relu(self.hd5_UT_hd4_bn(self.hd5_UT_hd4_conv(self.hd5_UT_hd4(hd5))))
 
         ## Attention
-        if self.multiScaleAttention:
+        if self.multiScaleAttention and not self.basicAttention:
             h1_PT_hd4_attn = self.multi_scale_attention1(h1_PT_hd4)
             h2_PT_hd4_attn = self.multi_scale_attention2(h2_PT_hd4)
             h3_PT_hd4_attn = self.multi_scale_attention3(h3_PT_hd4)
@@ -272,7 +288,7 @@ class UNet_3PlusShort(nn.Module):
         #hd5_UT_hd3 = self.hd5_UT_hd3_relu(self.hd5_UT_hd3_bn(self.hd5_UT_hd3_conv(self.hd5_UT_hd3(hd5))))
         
         ## Attention
-        if self.multiScaleAttention:
+        if self.multiScaleAttention and not self.basicAttention:
             h1_PT_hd3_attn = self.multi_scale_attention1(h1_PT_hd3)
             h2_PT_hd3_attn = self.multi_scale_attention2(h2_PT_hd3)
             hd4_UT_hd3_attn = self.multi_scale_attention4(hd4_UT_hd3)
@@ -291,7 +307,7 @@ class UNet_3PlusShort(nn.Module):
         
         
         ## Attention
-        if self.multiScaleAttention:
+        if self.multiScaleAttention and not self.basicAttention:
             h1_PT_hd2_attn = self.multi_scale_attention1(h1_PT_hd2)
             hd3_UT_hd2_attn = self.multi_scale_attention3(hd3_UT_hd2)
             hd4_UT_hd2_attn = self.multi_scale_attention4(hd4_UT_hd2)
@@ -310,7 +326,7 @@ class UNet_3PlusShort(nn.Module):
         #hd5_UT_hd1 = self.hd5_UT_hd1_relu(self.hd5_UT_hd1_bn(self.hd5_UT_hd1_conv(self.hd5_UT_hd1(hd5))))
         
         ## Attention
-        if self.multiScaleAttention:
+        if self.multiScaleAttention and not self.basicAttention:
             hd2_UT_hd1_attn = self.multi_scale_attention2(hd2_UT_hd1)
             hd3_UT_hd1_attn = self.multi_scale_attention3(hd3_UT_hd1)
             hd4_UT_hd1_attn = self.multi_scale_attention4(hd4_UT_hd1)

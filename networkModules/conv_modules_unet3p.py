@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from init_weights import init_weights
+from torch import linalg as LA
 
 
 class unetConv2(nn.Module):
@@ -143,42 +144,66 @@ class MaxBlurPool2d(nn.Module):
 
 
 class MultiScaleAttentionBlock(nn.Module):
-    def __init__(self, in_channels):
+    def __init__(self, num_channels):
         super(MultiScaleAttentionBlock, self).__init__()
+        self.num_channels = num_channels
+
+        # Spatial attention
+        self.spatial_conv = nn.Conv2d(num_channels, 1, kernel_size=1)
         
-        # Spatial Attention
-        self.spatial_attn = nn.Sequential(
-            nn.Conv2d(in_channels, 1, kernel_size=1),
-            nn.Sigmoid()
-        )
+        # Channel attention
+        self.channel_conv1 = nn.Conv2d(num_channels, num_channels//4, kernel_size=1)
+        self.channel_conv2 = nn.Conv2d(num_channels//4, num_channels, kernel_size=1)
         
-        # Channel Attention
-        self.channel_attn = nn.Sequential(
-            nn.AdaptiveAvgPool2d(1),
-            nn.Conv2d(in_channels, in_channels // 2, kernel_size=1),
-            nn.ReLU(inplace=True),
-            nn.Conv2d(in_channels // 2, in_channels, kernel_size=1),
-            nn.Sigmoid()
-        )
-        
-       
-        self.sobel_filter = nn.Conv2d(in_channels, 1, kernel_size=3, padding=1, bias=False)
-        self.sobel_filter.weight.data = torch.tensor([
-            [[[-1., 0., 1.],
-              [-2., 0., 2.],
-              [-1., 0., 1.]]]
-        ])
-        self.sobel_filter.weight.requires_grad = False 
-        
+        # Edge attention
+        self.sobel_filter = nn.Conv2d(1, 1, kernel_size=3, stride=1, padding=1, bias=False)
+        sobel_kernel = torch.tensor([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]], dtype=torch.float32)
+        sobel_kernel = sobel_kernel.unsqueeze(0).unsqueeze(0)  # Shape becomes [1, 1, 3, 3]
+        self.sobel_filter.weight = nn.Parameter(sobel_kernel)
+
+        self.sobel_filter.requires_grad = False
+
     def forward(self, x):
-        spatial_attn_map = self.spatial_attn(x)
-        
-        channel_attn_map = self.channel_attn(x)
-        channel_attn_map = channel_attn_map * torch.ones(x.size(), device=x.device)
+        # Spatial Attention
+        spatial_attn_map = torch.sigmoid(self.spatial_conv(x))
 
-        edge_attn_map = torch.sigmoid(self.sobel_filter(x))
+        # Channel Attention
+        avg_pool = torch.mean(x, dim=[2, 3], keepdim=True)
+        channel_attn_map = self.channel_conv2(F.relu(self.channel_conv1(avg_pool)))
+        channel_attn_map = torch.sigmoid(channel_attn_map)
 
-        combined_attn_map = spatial_attn_map * channel_attn_map * edge_attn_map
-        out = x * combined_attn_map
+        # Edge Attention
+        edge_attn_maps = []
+        for i in range(self.num_channels):
+            single_channel = x[:, i:i+1, :, :]
+            
+            '''print("Shape of sobel_filter.weight:", self.sobel_filter.weight.shape)
+            print("Shape of single_channel:", single_channel.shape)
+
+            '''
+            with torch.no_grad():
+                edge_attn_map = F.conv2d(single_channel, self.sobel_filter.weight, stride=(1, 1), padding=1)
+
+            edge_attn_map = torch.sigmoid(edge_attn_map)
+            edge_attn_maps.append(edge_attn_map)
+        edge_attn_map = torch.cat(edge_attn_maps, dim=1)
         
-        return out
+        # Multi-Scale Attention
+        multi_scale_attn_map = spatial_attn_map * channel_attn_map * edge_attn_map
+        return x * multi_scale_attn_map
+    
+class EigenDecomposition(nn.Module):
+    def forward(self, x):
+        cov_matrix = torch.matmul(x.transpose(-1, -2), x)
+        eigenvalues, eigenvectors = LA.eigh(cov_matrix)
+        enhanced_x = torch.matmul(x, eigenvectors)
+        return enhanced_x
+
+class TopKFeatures(nn.Module):
+    def __init__(self, k):
+        super(TopKFeatures, self).__init__()
+        self.k = k
+
+    def forward(self, x):
+        values, _ = torch.topk(x, self.k, dim=1)
+        return values
