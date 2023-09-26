@@ -88,6 +88,6 @@ def finished(path, outPath):
 
 if __name__ == "__main__":
     #unfinished("log/log-09-08.txt", "Outputs/")
-    finalPath = "Outputs/server1/experiment_09-18_05.12.17/"
+    finalPath = "Outputs/experiment_09-15_18.42.14/"
     finished(finalPath, finalPath)
     

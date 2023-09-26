@@ -9675,3 +9675,63 @@
 }
 09/19/2023 04:31:04 PM starting training
 09/19/2023 04:52:10 PM saving model at Outputs/experiment_09-19_16.27.24/model/best_model_0.pth
+09/20/2023 10:25:22 AM loading model for testing from Outputs/experiment_09-19_16.27.24/model/best_model.pth
+09/20/2023 10:25:22 AM Testing...
+09/20/2023 10:25:23 AM Outputting label
+09/20/2023 10:25:23 AM Outputting label
+09/20/2023 10:25:23 AM Outputting label
+09/20/2023 10:25:23 AM saving images
+09/20/2023 10:25:23 AM Outputting label
+09/20/2023 10:25:23 AM saving images
+09/20/2023 10:25:24 AM Outputting label
+09/20/2023 10:25:24 AM saving images
+09/20/2023 10:25:24 AM Outputting label
+09/20/2023 10:25:24 AM saving images
+09/20/2023 10:25:25 AM Outputting label
+09/20/2023 10:25:25 AM saving images
+09/20/2023 10:25:25 AM Outputting label
+09/20/2023 10:25:25 AM saving images
+09/20/2023 10:25:26 AM Outputting label
+09/20/2023 10:25:26 AM saving images
+09/20/2023 10:25:26 AM Outputting label
+09/20/2023 10:25:26 AM saving images
+09/20/2023 10:25:27 AM Outputting label
+09/20/2023 10:25:27 AM saving images
+09/20/2023 10:25:27 AM Outputting label
+09/20/2023 10:25:27 AM saving images
+09/20/2023 10:25:28 AM Outputting label
+09/20/2023 10:25:28 AM saving images
+09/20/2023 10:25:28 AM Outputting label
+09/20/2023 10:25:28 AM saving images
+09/20/2023 10:25:29 AM saving images
+09/20/2023 10:25:29 AM saving images
+09/20/2023 10:25:30 AM Saving Training Stats at Outputs/experiment_09-19_16.27.24/loss_log.txt
+09/20/2023 10:25:30 AM Experiment took 17.97 hours
+09/20/2023 10:25:30 AM generting loss and accuracy plot at Outputs/experiment_09-19_16.27.24/loss_plot.png
+09/20/2023 10:25:30 AM Experiment End
+09/20/2023 10:40:54 AM 
+
+#################### New Run ####################
+09/20/2023 10:40:54 AM PreRun: Creating required directories
+09/20/2023 10:40:54 AM PreRun: Generating experiment config file
+09/20/2023 10:40:55 AM Using cuda device
+09/20/2023 10:40:55 AM configuring data loaders
+09/20/2023 10:40:55 AM configuring model - UNET 3+ Short
+09/20/2023 10:40:57 AM saving model summary at Outputs/experiment_09-20_10.40.54/modelSummary.txt
+09/20/2023 10:41:03 AM logging parameters
+09/20/2023 10:41:03 AM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+09/20/2023 10:41:03 AM starting training
+09/20/2023 10:56:51 AM saving model at Outputs/experiment_09-20_10.40.54/model/best_model_0.pth
