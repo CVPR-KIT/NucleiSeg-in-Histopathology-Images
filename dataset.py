@@ -9,9 +9,14 @@ import matplotlib.pyplot as plt
 import logging
 from auxilary.utils import result_recolor, toGray, toGray4C, readConfig, normalize_image
 class MonuSegDataSet(Dataset):
-    def __init__(self, img_dir):
+    def __init__(self, img_dir, config = None):
         self.img_dir = img_dir
-        self.config = readConfig()
+
+        if config is None:
+            self.config = readConfig()
+        else:
+            self.config = config
+
         self.definedSize = (self.config["finalTileHeight"], self.config["finalTileWidth"])
         self.wid = 512 # default value and is replaced later 
         self.hit = 512 # default value and is replaced later 
@@ -87,9 +92,14 @@ class MonuSegDataSet(Dataset):
         return torch.Tensor(image),torch.LongTensor(label)
 
 class MonuSegValDataSet(Dataset):
-    def __init__(self, img_dir):
+    def __init__(self, img_dir, config = None):
         self.img_dir = img_dir
-        self.config = readConfig()
+
+        if config is None:
+            self.config = readConfig()
+        else:
+            self.config = config
+
         self.definedSize = (self.config["finalTileHeight"], self.config["finalTileWidth"])
         self.wid = 512 # default value and is replaced later 
         self.hit = 512 # default value and is replaced later 
@@ -166,9 +176,14 @@ class MonuSegValDataSet(Dataset):
 
 
 class MonuSegTestDataSet(Dataset):
-    def __init__(self, img_dir):
+    def __init__(self, img_dir, config = None):
         self.img_dir = img_dir
-        self.config = readConfig()
+
+        if config is None:
+            self.config = readConfig()
+        else:
+            self.config = config
+            
         self.wid = 512 # default value and is replaced later 
         self.hit = 512 # default value and is replaced later 
         logging.basicConfig(filename=self.config["log"] + "dataloader.log", filemode='w', 

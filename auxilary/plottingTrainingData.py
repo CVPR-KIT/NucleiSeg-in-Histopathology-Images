@@ -1,6 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from utils import readMetrics, calc_dice_score
+import argparse
+import sys
+
+def arg_init():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--expt_dir', type=str, default='none', help='Path to the experiment directory.')
+    return parser.parse_args()
+
 
 def printImage(data, head, outPath):
 
@@ -89,5 +97,14 @@ def finished(path, outPath):
 if __name__ == "__main__":
     #unfinished("log/log-09-08.txt", "Outputs/")
     finalPath = "Outputs/experiment_09-15_18.42.14/"
+
+    args = arg_init()
+
+    if args.expt_dir == 'none':
+        print("Please specify experiment directory")
+        sys.exit(1)
+
+    finalPath = args.expt_dir
+
     finished(finalPath, finalPath)
     

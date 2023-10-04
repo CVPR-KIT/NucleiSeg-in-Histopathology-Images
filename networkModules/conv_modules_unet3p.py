@@ -143,9 +143,9 @@ class MaxBlurPool2d(nn.Module):
 
 
 
-class MultiScaleAttentionBlock(nn.Module):
+class MultiScaleAttentionBlock_old(nn.Module):
     def __init__(self, num_channels):
-        super(MultiScaleAttentionBlock, self).__init__()
+        super(MultiScaleAttentionBlock_old, self).__init__()
         self.num_channels = num_channels
 
         # Spatial attention
@@ -192,6 +192,47 @@ class MultiScaleAttentionBlock(nn.Module):
         multi_scale_attn_map = spatial_attn_map * channel_attn_map * edge_attn_map
         return x * multi_scale_attn_map
     
+
+class MultiScaleAttentionBlock(nn.Module):
+    def __init__(self, num_channels):
+        super(MultiScaleAttentionBlock, self).__init__()
+        self.num_channels = num_channels
+
+        # Spatial attention
+        self.spatial_conv = nn.Conv2d(num_channels, 1, kernel_size=1)
+        
+        # Channel attention
+        self.channel_conv1 = nn.Conv2d(num_channels, num_channels//4, kernel_size=1)
+        self.channel_conv2 = nn.Conv2d(num_channels//4, num_channels, kernel_size=1)
+        
+        # Edge attention
+        self.edge_conv = nn.Conv2d(num_channels, num_channels, kernel_size=3, padding=1)
+        
+        # Weights for weighted sum of attentions
+        self.alpha = nn.Parameter(torch.ones(1))
+        self.beta = nn.Parameter(torch.ones(1))
+        self.gamma = nn.Parameter(torch.ones(1))
+
+    def forward(self, x):
+        # Spatial Attention
+        spatial_attn_map = torch.sigmoid(self.spatial_conv(x))
+
+        # Channel Attention
+        avg_pool = torch.mean(x, dim=[2, 3], keepdim=True)
+        channel_attn_map = self.channel_conv2(F.relu(self.channel_conv1(avg_pool)))
+        channel_attn_map = torch.sigmoid(channel_attn_map)
+
+        # Edge Attention
+        edge_attn_map = self.edge_conv(x)
+        edge_attn_map = torch.sigmoid(edge_attn_map)
+        
+        # Weighted sum of attentions
+        multi_scale_attn_map = self.alpha * spatial_attn_map + self.beta * channel_attn_map + self.gamma * edge_attn_map
+        multi_scale_attn_map = torch.sigmoid(multi_scale_attn_map)  # Apply sigmoid to squash values between 0 and 1
+
+        return x * multi_scale_attn_map
+
+    
 class EigenDecomposition(nn.Module):
     def forward(self, x):
         cov_matrix = torch.matmul(x.transpose(-1, -2), x)
@@ -207,3 +248,33 @@ class TopKFeatures(nn.Module):
     def forward(self, x):
         values, _ = torch.topk(x, self.k, dim=1)
         return values
+    
+
+class DropBlock(nn.Module):
+    def __init__(self, block_size, keep_prob):
+        super(DropBlock, self).__init__()
+        self.block_size = block_size
+        self.keep_prob = keep_prob
+
+    def forward(self, x):
+        if not self.training:
+            return x
+
+        # Generate random tensor for DropBlock mask
+        random_tensor = torch.rand(x.shape[0], x.shape[1], x.shape[2] - self.block_size + 1, x.shape[3] - self.block_size + 1, device=x.device)
+        random_tensor += self.keep_prob
+        mask = torch.floor(random_tensor).type(torch.bool)
+
+        # Calculate counts for each block
+        count_ones = F.conv2d(mask.float(), torch.ones((1, 1, self.block_size, self.block_size)).to(x.device), stride=1, padding=0)
+        
+        # Generate block mask
+        block_mask = 1 - F.pad(count_ones, (self.block_size // 2, self.block_size // 2, self.block_size // 2, self.block_size // 2))
+
+        # Apply block mask to input
+        x = x * block_mask
+
+        # Normalize feature map to keep activation sum unchanged
+        x = x * block_mask.numel() / block_mask.sum()
+        
+        return x

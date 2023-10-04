@@ -11,7 +11,6 @@ import torch
 
 
 
-
 # Create directory
 def createDir(dirs):
     '''
@@ -49,6 +48,11 @@ def showImage(img, name = "image"):
     cv2.imshow(name, img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+# Generate Configuration File
+    f = open(path, "w")
+    f.write(json.dumps(config, indent=4))
+    f.close()
 
 # Generate Configuration File
 def makeConfigJson(config, path = "config.json"):
@@ -431,6 +435,49 @@ def load_sampling_model(modelType):
         return None
     dino_model = dino_model.cuda()
     return dino_model
+
+# Lookahead Class
+from torch.optim import Optimizer
+
+class Lookahead(Optimizer):
+    def __init__(self, optimizer, k=5, alpha=0.5):
+        if not 0.0 <= alpha <= 1.0:
+            raise ValueError(f'Invalid slow update rate: {alpha}')
+        if not 1 <= k:
+            raise ValueError(f'Invalid lookahead steps: {k}')
+        
+        self.optimizer = optimizer
+        self.param_groups = self.optimizer.param_groups
+        self.defaults = self.optimizer.defaults
+        self.k = k
+        self.alpha = alpha
+        self.step_counter = 0
+        self.state = {}
+        
+        # Initialize slow weights with fast weights
+        for group in self.param_groups:
+            for p in group['params']:
+                param_state = self.state.setdefault(p, {})
+                param_state['slow_buffer'] = torch.zeros_like(p.data)
+                param_state['slow_buffer'].copy_(p.data)
+    
+    def step(self, closure=None):
+        loss = self.optimizer.step(closure)
+        self.step_counter += 1
+
+        if self.step_counter % self.k == 0:
+            for group in self.param_groups:
+                for p in group['params']:
+                    param_state = self.state[p]
+                    param_state['slow_buffer'].add_((p.data - param_state['slow_buffer']) * self.alpha)
+                    p.data.copy_(param_state['slow_buffer'])
+
+        return loss
+
+
+
+    def zero_grad(self):
+        self.optimizer.zero_grad()
 
 if __name__ == "__main__":
     print("Contains functions used in the project - utils.py")

@@ -289,16 +289,16 @@ def main():
         trainPaths = config["trainDataset"]
         sampleTrainImages = load_images(trainPaths)
         dino_model = load_sampling_model(modelType="small")
-        train_dataset = MonuSegDataSet(config["trainDataset"])
+        train_dataset = MonuSegDataSet(config["trainDataset"], config)
 
         sampler = DinoPoweredSampler(images=sampleTrainImages, dino_model=dino_model, config=config)
         train_data = DataLoader(train_dataset,batch_size=config["batch_size"], sampler=sampler)
 
     else:
-        train_dataset = MonuSegDataSet(config["trainDataset"])
+        train_dataset = MonuSegDataSet(config["trainDataset"], config)
         train_data = DataLoader(train_dataset,batch_size=config["batch_size"],shuffle=True)
 
-    val_dataset = MonuSegValDataSet(config["valDataset"])
+    val_dataset = MonuSegValDataSet(config["valDataset"], config)
     val_data = DataLoader(val_dataset,batch_size=1,num_workers=4)
 
     
@@ -326,7 +326,13 @@ def main():
 
     # dropout flag
     if config["dropoutLOC"] == "std":
-        model.dropoutFlag = True
+        model.setdropoutFlag = True
+
+    # dropblock
+    if config["dropBlock"]:
+        # dont use dropout if dropblock is enabled
+        model.setdropoutFlag = False
+        model.setdropblockFlag = True
     
     
     # save model config
@@ -399,6 +405,9 @@ def main():
     else:
         scheduler = None
           
+
+    if config["lookahead"]:
+        optimizer = Lookahead(optimizer, k=config["lookahead_k"], alpha=config["lookahead_alpha"])
 
 
     # Logging Parameters
@@ -503,7 +512,7 @@ def main():
     
     print("Testing...")
     logging.info("Testing...")
-    test_dataset = MonuSegTestDataSet(config["testDataset"])
+    test_dataset = MonuSegTestDataSet(config["testDataset"], config)
     test_data = DataLoader(test_dataset,batch_size=1,num_workers=1)
     # make testing directory
     createDir([config["expt_dir"]+"testResults/"])

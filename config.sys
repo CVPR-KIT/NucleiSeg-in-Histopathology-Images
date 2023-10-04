@@ -1,7 +1,7 @@
 log = "log/"
 
 [Debug]
-debug = "False"                                 # Debug Mode - True or False: Radically reduces the dataset size for faster training
+debug = "True"                                 # Debug Mode - True or False: Radically reduces the dataset size for faster training
 debugDilution = 200                            # Debug Dilution - 1/nth of the dataset will be used for training
 wandb = "False"                                 # Wandb Logging
 
@@ -32,7 +32,7 @@ testDataset = "Dataset/testNormal/"                      # Images to used during
 
 resumeModel = "model/best_model.pth"            # Model to used during re-training
 
-sampleImages = "True"                           # Sample Images during Training
+sampleImages = "False"                           # Sample Images during Training
 reUseFeatures = "True"                         # Use existing features - Should re-train features if dataset is changed
 
 [Class Config]
@@ -65,5 +65,14 @@ l1_regularization = "False"                     # L1 Regularization
 
 [experiment features]
 multiScaleAttention = "False"                   # Spatial, Channel and Edge Attention used in tandem
+
 eigen_decomposition = "False"                  # Eigen Decomposition
 top_k_features = 0                        # Top K Features - 0- False, n-Top N values
+
+dropBlock = "True"                             # DropBlock, automatically sets dropout to 0 and proceeds with dropblock
+dropBlockProb = 0.8                             # DropBlock Probability
+dropBlockSize = 5                            # DropBlock Size
+
+lookahead = "False"                             # Lookahead
+lookahead_k = 5                                 # Lookahead k
+lookahead_alpha = 0.8                           # Lookahead alpha

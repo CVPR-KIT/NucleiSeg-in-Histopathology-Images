@@ -65,5 +65,14 @@ l1_regularization = "False"                     # L1 Regularization
 
 [experiment features]
 multiScaleAttention = "False"                   # Spatial, Channel and Edge Attention used in tandem
-eigen_decomposition= "True"                  # Eigen Decomposition
+
+eigen_decomposition = "False"                  # Eigen Decomposition
 top_k_features = 0                        # Top K Features - 0- False, n-Top N values
+
+dropBlock = "True"                             # DropBlock, automatically sets dropout to 0 and proceeds with dropblock
+dropBlockProb = 0.8                             # DropBlock Probability
+dropBlockSize = 5                            # DropBlock Size
+
+lookahead = "False"                             # Lookahead
+lookahead_k = 5                                 # Lookahead k
+lookahead_alpha = 0.8                           # Lookahead alpha

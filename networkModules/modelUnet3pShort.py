@@ -2,7 +2,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from networkModules.conv_modules_unet3p import unetConv2, BlurPool2D, MaxBlurPool2d, MultiScaleAttentionBlock, EigenDecomposition, TopKFeatures
+from networkModules.conv_modules_unet3p import unetConv2, BlurPool2D, MaxBlurPool2d, MultiScaleAttentionBlock, EigenDecomposition, TopKFeatures, DropBlock
 from init_weights import init_weights
 '''
     UNet 3+
@@ -22,7 +22,12 @@ class UNet_3PlusShort(nn.Module):
         n_classes = config["num_classes"]
         self.dropout = nn.Dropout2d(p=config["dropout"])
         self.useMaxBPool = config["use_maxblurpool"]
+
+        # Drop out or drop block
         self.dropoutFlag = False
+        self.dropblockFlag = False
+        self.dropBlock = DropBlock(block_size=config["dropBlockSize"], keep_prob=config["dropBlockProb"])
+
         supportedActivations = ["relu", "GLU"]
         if config["activation"] not in supportedActivations:
             raise Exception("Activation function not supported. Supported activations: {}".format(supportedActivations))
@@ -220,9 +225,11 @@ class UNet_3PlusShort(nn.Module):
             elif isinstance(m, nn.BatchNorm2d):
                 init_weights(m, init_type='kaiming')
 
-    def dropoutFlag(self, flag):
-        if flag:
-            self.dropoutFlag = True
+    def setdropoutFlag(self, flag):
+        self.dropoutFlag = flag
+
+    def setdropblockFlag(self, flag):
+        self.dropblockFlag = flag
 
     def forward(self, inputs):
         ## -------------Encoder-------------
@@ -261,6 +268,9 @@ class UNet_3PlusShort(nn.Module):
         # dropout
         if self.dropoutFlag:
             h4 = self.dropout(h4)
+
+        if self.dropblockFlag:
+            h4 = self.dropBlock(h4)
 
         ## -------------Decoder-------------
         h1_PT_hd4 = self.h1_PT_hd4_relu(self.h1_PT_hd4_bn(self.h1_PT_hd4_conv(self.h1_PT_hd4(h1))))
