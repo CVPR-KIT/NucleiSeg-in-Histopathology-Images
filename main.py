@@ -110,7 +110,7 @@ def run_epoch(model, data_loader, criterion, optimizer, epoch, device, mode, con
     pgbar.set_description(f"Epoch {epoch}/{configEpochs}")
     losses = 0
     spl_models = ['UNet_3Plus', 'EluNet', "UNet_3PlusShort"]
-    weightable_losses = ['weighteddice', 'modJaccard', 'jaccard', 'pwcel', 'improvedLoss', 'ClassRatioLossPlus']
+    weightable_losses = ['weighteddice', 'modJaccard', 'jaccard', 'pwcel', 'improvedLoss', 'ClassRatioLossPlus', 'focalDiceLoss', 'focalDiceHDLoss']
 
     if epoch >5:
         model.dropoutFlag = True
@@ -156,6 +156,9 @@ def run_epoch(model, data_loader, criterion, optimizer, epoch, device, mode, con
             criterion.setWeights(class_weights.to(device))
 
         gt = gt.type(torch.float32)
+
+
+
         loss = criterion(pred,gt)
 
 
@@ -288,7 +291,7 @@ def main():
     if config["sampleImages"]:
         trainPaths = config["trainDataset"]
         sampleTrainImages = load_images(trainPaths)
-        dino_model = load_sampling_model(modelType="small")
+        dino_model = load_sampling_model(modelType=config["dinoModelType"])
         train_dataset = MonuSegDataSet(config["trainDataset"], config)
 
         sampler = DinoPoweredSampler(images=sampleTrainImages, dino_model=dino_model, config=config)
@@ -382,6 +385,10 @@ def main():
         criterion = focalDiceLoss()
     elif config["loss"] == "bce":
         criterion = nn.BCEWithLogitsLoss()
+    elif config["loss"] == "wassersteinLoss":
+        criterion = WassersteinLoss()
+    elif config["loss"] == "focalDiceHDLoss":
+        criterion = focalDiceHDLoss()
     else:
         criterion = FocalLoss(0.25)
 

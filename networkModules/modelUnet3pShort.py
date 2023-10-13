@@ -26,8 +26,11 @@ class UNet_3PlusShort(nn.Module):
         # Drop out or drop block
         self.dropoutFlag = False
         self.dropblockFlag = False
-        self.dropBlock = DropBlock(block_size=config["dropBlockSize"], keep_prob=config["dropBlockProb"])
-
+        try:
+            self.dropBlock = DropBlock(block_size=config["dropBlockSize"], keep_prob=config["dropBlockProb"])
+        except:
+            pass
+        
         supportedActivations = ["relu", "GLU"]
         if config["activation"] not in supportedActivations:
             raise Exception("Activation function not supported. Supported activations: {}".format(supportedActivations))

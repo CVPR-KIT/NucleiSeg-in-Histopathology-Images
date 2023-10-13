@@ -7,6 +7,7 @@ import torch.nn.functional as F
 import numpy as np
 from math import exp
 from typing import Optional
+from scipy.spatial.distance import directed_hausdorff
 
 
 def label_to_one_hot_label(
@@ -769,25 +770,27 @@ class RBAF(torch.nn.Module):
 
         return loss
 
-class focalDiceLoss(torch.nn.Module):
+class focalDiceLoss(nn.Module):
     def __init__(self, class_weights=None):
-        super().__init__()
+        super(focalDiceLoss, self).__init__()
         self.class_weights = class_weights
+
+        # Initialize the weights for each loss as learnable parameters
+        self.alpha = nn.Parameter(torch.tensor(0.5))  # Weight for Dice Loss
+        self.beta = nn.Parameter(torch.tensor(0.5))   # Weight for Focal Loss
 
     def setWeights(self, class_weights):
         self.class_weights = class_weights
 
     def forward(self, prediction, target):
-        # Assuming the prediction is logits; apply sigmoid to convert to probabilities
-        prediction = torch.sigmoid(prediction)
 
         # Focal Loss
         pt = prediction * target + (1 - prediction) * (1 - target)
         focal_loss = -((1 - pt) ** 2) * torch.log(pt + 1e-8)
 
         if self.class_weights is not None:
-            focal_loss = focal_loss * self.class_weights.view(1, -1, 1, 1)
-
+            class_weights = self.class_weights.view(1, -1, 1, 1)
+            focal_loss = focal_loss * class_weights
         focal_loss = focal_loss.mean()
 
         # Dice Loss
@@ -800,11 +803,120 @@ class focalDiceLoss(torch.nn.Module):
 
         dice_loss = dice_loss.mean()
 
-        # Combine the losses with weights alpha and beta
-        loss = 0.5 * dice_loss + 0.5 * focal_loss
+        # Combine the losses with learnable weights alpha and beta
+        loss = self.alpha * dice_loss + self.beta * focal_loss
 
         return loss
 
+class WassersteinLoss(nn.Module):
+    def __init__(self, epsilon=1e-8):
+        super(WassersteinLoss, self).__init__()
+        self.epsilon = epsilon
+
+    def get_stats(self, segment):
+        coords = torch.nonzero(segment)
+        if coords.shape[0] == 0:
+            return torch.Tensor([0]).to(segment.device), torch.Tensor([[0]]).to(segment.device)
+        mean = torch.mean(coords.float(), dim=0)
+        cov = self.torch_cov(coords.float())
+        return mean, cov
+
+    def torch_cov(self, m, rowvar=False):
+        if m.size(0) == 1:
+            return torch.Tensor([[self.epsilon]]).to(m.device)
+        else:
+            fact = 1.0 / (m.size(1) - 1)
+            m -= torch.mean(m, dim=1, keepdim=True)
+            mt = m.t()
+            return fact * m.matmul(mt).squeeze() + self.epsilon * torch.eye(m.size(0)).to(m.device)
+
+    def wasserstein_distance(self, mean1, cov1, mean2, cov2):
+        term_1 = torch.norm(mean1 - mean2, p=2) ** 2
+        term_2 = torch.trace(cov1 + cov2 - 2 * (cov2.sqrt().mm(cov1.mm(cov2.sqrt())).sqrt() + self.epsilon))
+        return torch.sqrt(term_1 + term_2 + self.epsilon)
+
+    def forward(self, pred, target):
+        # Placeholder for loss
+        total_loss = torch.zeros(1, requires_grad=True).to(pred.device)
+
+        # Get the statistics for each nucleus in the prediction and target
+        for i in range(pred.size(0)):  # assuming pred is of shape (batch_size, num_classes, height, width)
+            for c in range(pred.size(1)):
+                mean_pred, cov_pred = self.get_stats(pred[i, c])
+                mean_target, cov_target = self.get_stats(target[i, c])
+
+                # Calculate Wasserstein distance
+                distance = self.wasserstein_distance(mean_pred, cov_pred, mean_target, cov_target)
+
+                # Add to total loss
+                total_loss += distance
+
+        return total_loss / (pred.size(0) * pred.size(1))
+
+     
+class focalDiceHDLoss(nn.Module):
+    def __init__(self, class_weights=None):
+        super(focalDiceHDLoss, self).__init__()
+        self.class_weights = class_weights
+
+        # Initialize the weights for each loss as learnable parameters
+        self.alpha = nn.Parameter(torch.tensor(0.33))  # Weight for Dice Loss
+        self.beta = nn.Parameter(torch.tensor(0.33))   # Weight for Focal Loss
+        self.gamma = nn.Parameter(torch.tensor(0.34))  # Weight for HD Loss
+
+    def setWeights(self, class_weights):
+        self.class_weights = class_weights
+
+    def hausdorff_distance(self, pred, target):
+        # Initialize Hausdorff distance to 0
+        hd_total = 0.0
+    
+        # Loop through each image in the batch
+        for i in range(pred.shape[0]):
+            for j in range(pred.shape[1]):
+                pred_slice = pred[i, j].cpu().detach().numpy()
+                target_slice = target[i, j].cpu().detach().numpy()
+            
+                # Calculate the directed Hausdorff distance
+                hd1 = directed_hausdorff(pred_slice, target_slice)[0]
+                hd2 = directed_hausdorff(target_slice, pred_slice)[0]
+
+                # Calculate the undirected Hausdorff distance
+                hd = max(hd1, hd2)
+            
+                # Add to the total Hausdorff distance
+                hd_total += hd
+    
+        # Average the Hausdorff distance across the batch
+        hd_avg = hd_total / (pred.shape[0] * pred.shape[1])
+    
+        return hd_avg
+
+    def forward(self, prediction, target):
+        # Focal Loss
+        pt = prediction * target + (1 - prediction) * (1 - target)
+        focal_loss = -((1 - pt) ** 2) * torch.log(pt + 1e-8)
+        if self.class_weights is not None:
+            class_weights = self.class_weights.view(1, -1, 1, 1)
+            focal_loss = focal_loss * class_weights
+        focal_loss = focal_loss.mean()
+
+        # Dice Loss
+        intersection = (prediction * target).sum(dim=(0, 2, 3))
+        union = prediction.sum(dim=(0, 2, 3)) + target.sum(dim=(0, 2, 3)) - intersection
+        dice_loss = 1 - (intersection + 1e-6) / (union + 1e-6)
+        if self.class_weights is not None:
+            dice_loss = dice_loss * self.class_weights
+        dice_loss = dice_loss.mean()
+
+        # HD Loss
+        hd_loss = self.hausdorff_distance(prediction, target)
+        hd_loss = torch.tensor(hd_loss).to(prediction.device)
+
+        # Combine the losses with learnable weights alpha, beta, and gamma
+        loss = self.alpha * dice_loss + self.beta * focal_loss + self.gamma * hd_loss
+
+        return loss
 
 if __name__ == '__main__':
     # sample usage to check if loss function is working with dummy data
