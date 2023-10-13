@@ -110,12 +110,33 @@ class DinoPoweredSampler(Sampler):
         plt.xlabel('Y')
         plt.ylabel('X')
         #plt.imsave(self.plotDir+self.mode+"-tsne.png", image_patches_tsne)
+        createDir(["Outputs/Plots/"])
+        plt.savefig("Outputs/Plots/"+self.mode+"-tsne.png")
         return image_patches_tsne
 
-    def apply_dbscan(self, eps = 5, min_samples = 5):
+    def apply_dbscan(self, eps = 2, min_samples = 5):
         dbscan = DBSCAN(eps=eps, min_samples=min_samples)
         clusters = dbscan.fit_predict(self.image_patches_tsne)
         print("Unique clusters:", np.unique(clusters))  # You should see more than just -1
+
+        # Plot the results
+        plt.figure(figsize=(10, 10))
+
+        # Scatter plot for each uniquely labeled cluster
+        unique_clusters = np.unique(clusters)
+        for cluster in unique_clusters:
+            x = self.image_patches_tsne[clusters == cluster][:, 0]
+            y = self.image_patches_tsne[clusters == cluster][:, 1]
+            plt.scatter(x, y, label=f"Cluster {cluster}")
+
+        plt.title("DBSCAN Clustering")
+        plt.xlabel("t-SNE 1st dimension")
+        plt.ylabel("t-SNE 2nd dimension")
+        plt.legend()
+        createDir(["Outputs/Plots/"])
+        plt.savefig("Outputs/Plots/"+self.mode+"-dbscan.png")
+
+
         return clusters
 
     def sampleImages(self):
