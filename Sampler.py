@@ -10,14 +10,28 @@ from sklearn.manifold import TSNE
 from sklearn.cluster import DBSCAN
 import matplotlib.pyplot as plt
 from auxilary.utils import *
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 
 class DinoPoweredSampler(Sampler):
-    def __init__(self, images, dino_model, config, mode="train"):
+    def __init__(self, images, dino_model, config, mode="train", pca_dim=0.5, dbscan_eps=5):
+        '''
+        Args:
+            images: A list of image patches
+            dino_model: The DINO model
+            config: The config dictionary
+            mode: The mode of the sampler. Can be "train", "val", "test" or "debug"
+            pca_dim: The number of dimensions to reduce the features to using PCA. Can be 0.5 to keep 50% of the dimensions or an integer to keep that many dimensions.
+            dbscan_eps: The maximum distance between two samples for one to be considered as in the neighborhood of the other. This is not a maximum bound on the distances of points within a cluster. 
+                        This is the most important DBSCAN parameter to choose appropriately for your data set and distance function.
+        '''
         self.dino_model = dino_model
         self.mode = mode
         self.batch_size = config["batch_size"]
         self.debug = config["debug"]
         self.debugDilution = config["debugDilution"]
+        self.pca_dim = pca_dim
+        self.dbscan_eps = dbscan_eps
         #self.plotDir = config["expt_dir"]
         # Perform feature extraction, t-SNE, and DBSCAN here 
 
@@ -31,14 +45,26 @@ class DinoPoweredSampler(Sampler):
             createDir(["Outputs/Features/"])
             np.save("Outputs/Features/"+self.mode+"-features.npy", self.features)
 
-        print("Applying t-SNE")
-        self.image_patches_tsne = self.apply_tsne()
+
+        #Scaling Features
+        scaler = StandardScaler()
+        self.scaled_features = scaler.fit_transform(self.features)
+        #print("Applying t-SNE")
+        #self.image_patches_tsne = self.apply_tsne()
+        # Dim reduction using PCA
+        pca = PCA(n_components=self.pca_dim)
+        pca.fit(self.features)
+        self.transformed_features = pca.transform(self.scaled_features)
+
         print("Applying DBSCAN")
         self.clusters = self.apply_dbscan()
-        print("Sampling Initialization Complete")
+        np.save('Outputs/Features/image_clusters.npy', self.clusters)
+        #print("Applying t-SNE")
+        self.image_patches_tsne = self.apply_tsne()
 
+        np.save('Outputs/Features/image_patches_tsne.npy', self.image_patches_tsne)
 
-        self.batch_indices = []
+        print("Sampling Initialization Complete") 
 
 
     def __iter__(self):
@@ -104,39 +130,53 @@ class DinoPoweredSampler(Sampler):
 
     def apply_tsne(self):
         tsne = TSNE(n_components=2, perplexity=40, learning_rate=200, random_state=42)
-        image_patches_tsne = tsne.fit_transform(self.features)
-        plt.scatter(image_patches_tsne[:, 0], image_patches_tsne[:, 1])
-        plt.title('t-SNE Visualization')
+        image_patches_tsne = tsne.fit_transform(self.transformed_features)
+        # Plot the results
+        plt.figure(1)
+        plt.scatter(image_patches_tsne[:, 0], image_patches_tsne[:, 1], c=self.clusters)
+        plt.colorbar()
+        plt.title(f"t-SNE Visualization, DBSNE c - {len(np.unique(self.clusters))}")
         plt.xlabel('Y')
         plt.ylabel('X')
         #plt.imsave(self.plotDir+self.mode+"-tsne.png", image_patches_tsne)
         createDir(["Outputs/Plots/"])
-        plt.savefig("Outputs/Plots/"+self.mode+"-tsne.png")
+        if self.mode == "debug":
+            plt.savefig(f"Outputs/Plots/{self.mode}-tsne-{self.pca_dim}-{self.dbscan_eps}.png")
+        else:
+            plt.savefig("Outputs/Plots/"+self.mode+"-tsne.png")
+        plt.clf()
         return image_patches_tsne
 
-    def apply_dbscan(self, eps = 2, min_samples = 5):
+    def apply_dbscan(self, eps = 5, min_samples = 5, gen_plot = False):
+        eps = self.dbscan_eps
         dbscan = DBSCAN(eps=eps, min_samples=min_samples)
-        clusters = dbscan.fit_predict(self.image_patches_tsne)
+        clusters = dbscan.fit_predict(self.transformed_features)
         print("Unique clusters:", np.unique(clusters))  # You should see more than just -1
 
+        if not gen_plot:
+            return clusters
+        
         # Plot the results
         plt.figure(figsize=(10, 10))
 
         # Scatter plot for each uniquely labeled cluster
         unique_clusters = np.unique(clusters)
         for cluster in unique_clusters:
-            x = self.image_patches_tsne[clusters == cluster][:, 0]
-            y = self.image_patches_tsne[clusters == cluster][:, 1]
+            x = self.transformed_features[clusters == cluster][:, 0]
+            y = self.transformed_features[clusters == cluster][:, 1]
             plt.scatter(x, y, label=f"Cluster {cluster}")
 
         plt.title("DBSCAN Clustering")
-        plt.xlabel("t-SNE 1st dimension")
-        plt.ylabel("t-SNE 2nd dimension")
+        plt.xlabel("1st component")
+        plt.ylabel("2nd component")
         plt.legend()
         createDir(["Outputs/Plots/"])
-        plt.savefig("Outputs/Plots/"+self.mode+"-dbscan.png")
-
-
+        
+        if self.mode == "debug":
+            plt.savefig(f"Outputs/Plots/{self.mode}-dbscan-{self.pca_dim}-{self.dbscan_eps}.png")
+        else:
+            plt.savefig("Outputs/Plots/"+self.mode+"-dbscan.png")
+            
         return clusters
 
     def sampleImages(self):

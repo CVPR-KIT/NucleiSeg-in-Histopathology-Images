@@ -4,6 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from networkModules.conv_modules_unet3p import unetConv2, BlurPool2D, MaxBlurPool2d, MultiScaleAttentionBlock, EigenDecomposition, TopKFeatures, DropBlock
 from init_weights import init_weights
+from networkModules.DCA.dual_cross_attention import DCA
 '''
     UNet 3+
 '''
@@ -23,6 +24,20 @@ class UNet_3PlusShort(nn.Module):
         self.dropout = nn.Dropout2d(p=config["dropout"])
         self.useMaxBPool = config["use_maxblurpool"]
 
+        self.img_size = config["finalTileHeight"]
+
+        #DCA flag
+        try:
+            self.DCAFlag = config["DCAFlag"]
+        except:
+            self.DCAFlag = False
+        self.patch_size = 8
+        self.patch = self.img_size // self.patch_size
+        spatial_att=True,
+        channel_att=True,
+        spatial_head_dim=[4, 4, 4, 4],
+        channel_head_dim=[1, 1, 1, 1],
+
         # Drop out or drop block
         self.dropoutFlag = False
         self.dropblockFlag = False
@@ -35,9 +50,16 @@ class UNet_3PlusShort(nn.Module):
         if config["activation"] not in supportedActivations:
             raise Exception("Activation function not supported. Supported activations: {}".format(supportedActivations))
         self.activation = config["activation"]
+        
+        try:
+            self.eigen_decompositionFlag = config["eigen_decomposition"]
+        except:
+            self.eigen_decompositionFlag = False
 
-        self.eigen_decompositionFlag = config["eigen_decomposition"]
-        self.top_k_featuresFlag = config["top_k_features"]
+        try:
+            self.top_k_featuresFlag = config["top_k_features"]
+        except:
+            self.top_k_featuresFlag = False
 
         try:
             self.multiScaleAttention = config["multiScaleAttention"]
@@ -91,6 +113,17 @@ class UNet_3PlusShort(nn.Module):
             self.multi_scale_attention2 = MultiScaleAttentionBlock(filters[1])
             self.multi_scale_attention3 = MultiScaleAttentionBlock(filters[2])
             self.multi_scale_attention4 = MultiScaleAttentionBlock(filters[3])
+
+        if self.DCAFlag:
+            self.DCA = DCA(n=1,                                            
+                                features = filters,                                                                                                              
+                                strides=[self.patch_size, self.patch_size // 2, self.patch_size // 4, self.patch_size // 8],
+                                patch=self.patch,
+                                spatial_att=spatial_att,
+                                channel_att=channel_att, 
+                                spatial_head=spatial_head_dim,
+                                channel_head=channel_head_dim,
+                                                            )  
 
 
 
@@ -266,6 +299,9 @@ class UNet_3PlusShort(nn.Module):
             h4 = self.eigen_decomposition(h4)
         if self.top_k_featuresFlag:
             h4 = self.top_k_features(h4)
+
+        if self.DCAFlag:
+            h1, h2, h3, h4 = self.DCA([h1, h2, h3, h4])
 
 
         # dropout

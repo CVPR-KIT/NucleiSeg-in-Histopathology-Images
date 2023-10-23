@@ -335,6 +335,8 @@ def calc_mIoU(confusion_matrix):
         mIoU += intersect / union
     return mIoU / len(confusion_matrix)
 
+
+
 def calc_mIoU2(pred, label, num_classes):
     # Initialize variables
     intersection = torch.zeros(num_classes)
@@ -426,6 +428,8 @@ def load_images(image_paths):
 def load_sampling_model(modelType):
     if modelType == "small":
         dino_model = torch.hub.load('facebookresearch/dinov2', 'dinov2_vits14')
+    elif modelType == "base":
+        dino_model = torch.hub.load('facebookresearch/dinov2', 'dinov2_vitb14')
     elif modelType == "large":
         dino_model = torch.hub.load('facebookresearch/dinov2', 'dinov2_vitl14')
     elif modelType == "giga":
