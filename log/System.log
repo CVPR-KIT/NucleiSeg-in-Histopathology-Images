@@ -11251,3 +11251,73 @@
 10/12/2023 08:41:17 PM starting training
 10/12/2023 09:09:52 PM saving model at Outputs/experiment_10-12_20.35.01/model/best_model_0.pth
 10/12/2023 09:24:18 PM saving model at Outputs/experiment_10-12_20.35.41/model/best_model_0.pth
+10/23/2023 11:48:01 AM 
+
+#################### New Run ####################
+10/23/2023 11:48:02 AM PreRun: Creating required directories
+10/23/2023 11:48:02 AM PreRun: Generating experiment config file
+10/23/2023 11:48:02 AM Using cuda device
+10/23/2023 11:48:02 AM configuring data loaders
+10/23/2023 11:51:41 AM 
+
+#################### New Run ####################
+10/23/2023 11:51:44 AM PreRun: Creating required directories
+10/23/2023 11:51:44 AM PreRun: Generating experiment config file
+10/23/2023 11:51:44 AM Using cuda device
+10/23/2023 11:51:44 AM configuring data loaders
+10/23/2023 11:55:03 AM xFormers not available
+10/23/2023 11:55:03 AM xFormers not available
+10/23/2023 11:55:03 AM using SwiGLU layer as FFN
+10/23/2023 11:59:28 AM configuring model - UNET 3+ Short
+10/23/2023 11:59:28 AM saving model summary at Outputs/experiment_10-23_11.51.44/modelSummary.txt
+10/23/2023 11:59:38 AM logging parameters
+10/23/2023 11:59:38 AM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+10/23/2023 11:59:38 AM starting training
+10/23/2023 12:16:56 PM saving model at Outputs/experiment_10-23_11.51.44/model/best_model_0.pth
+10/24/2023 03:28:08 AM loading model for testing from Outputs/experiment_10-23_11.51.44/model/best_model.pth
+10/24/2023 03:28:09 AM Testing...
+10/24/2023 03:28:09 AM Outputting label
+10/24/2023 03:28:09 AM Outputting label
+10/24/2023 03:28:09 AM Outputting label
+10/24/2023 03:28:09 AM saving images
+10/24/2023 03:28:10 AM Outputting label
+10/24/2023 03:28:10 AM saving images
+10/24/2023 03:28:11 AM Outputting label
+10/24/2023 03:28:11 AM saving images
+10/24/2023 03:28:11 AM Outputting label
+10/24/2023 03:28:11 AM saving images
+10/24/2023 03:28:12 AM saving images
+10/24/2023 03:28:12 AM Outputting label
+10/24/2023 03:28:13 AM Outputting label
+10/24/2023 03:28:13 AM saving images
+10/24/2023 03:28:13 AM Outputting label
+10/24/2023 03:28:13 AM saving images
+10/24/2023 03:28:14 AM Outputting label
+10/24/2023 03:28:14 AM saving images
+10/24/2023 03:28:15 AM Outputting label
+10/24/2023 03:28:15 AM saving images
+10/24/2023 03:28:15 AM Outputting label
+10/24/2023 03:28:15 AM saving images
+10/24/2023 03:28:16 AM Outputting label
+10/24/2023 03:28:16 AM saving images
+10/24/2023 03:28:16 AM saving images
+10/24/2023 03:28:16 AM Outputting label
+10/24/2023 03:28:17 AM saving images
+10/24/2023 03:28:17 AM saving images
+10/24/2023 03:28:18 AM Saving Training Stats at Outputs/experiment_10-23_11.51.44/loss_log.txt
+10/24/2023 03:28:18 AM Experiment took 15.61 hours
+10/24/2023 03:28:18 AM generting loss and accuracy plot at Outputs/experiment_10-23_11.51.44/loss_plot.png
+10/24/2023 03:28:18 AM Experiment End

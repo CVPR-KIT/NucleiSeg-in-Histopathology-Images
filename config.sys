@@ -3,7 +3,7 @@ log = "log/"
 [Debug]
 debug = "False"                                 # Debug Mode - True or False: Radically reduces the dataset size for faster training
 debugDilution = 20                            # Debug Dilution - 1/nth of the dataset will be used for training
-wandb = "False"                                 # Wandb Logging
+wandb = "True"                                 # Wandb Logging
 
 [Stain Normalization]
 normalization = "reinhard"                       # Normalization Avl: macenko, reinhard, None
@@ -33,8 +33,8 @@ testDataset = "Dataset/testNormal/"                      # Images to used during
 resumeModel = "model/best_model.pth"            # Model to used during re-training
 
 sampleImages = "True"                           # Sample Images during Training
-dinoModelType = "small"                         # DINO Model Type - small, large, giga
-reUseFeatures = "True"                         # Use existing features - Should re-train features if dataset is changed
+dinoModelType = "giga"                         # DINO Model Type - small, large, giga
+reUseFeatures = "false"                         # Use existing features - Should re-train features if dataset is changed
 
 [Class Config]
 class1 = "0, 0, 0"                          #black
@@ -58,7 +58,7 @@ resume = "False"                                # Resume Training
 resume_epoch = 0                                # Resume Training from epoch
 channel = 32                                    # Default: 16 Can be set to 64 or other
 attention = "False"                             # Model 1 only
-loss = "focalDiceHDLoss"                           # Losses available: bce, jaccard, focal, pwcel, dice, weighteddice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF, focalDiceLoss, wassersteinLoss, focalDiceHDLoss
+loss = "weighteddice"                           # Losses available: bce, jaccard, focal, pwcel, dice, weighteddice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF, focalDiceLoss, wassersteinLoss, focalDiceHDLoss
 dropout = 0.3                                   # Dropout rate
 dropoutLOC = "std"                              # Dropout Location: std, after (after 20 iterations)
 dilation = 1                                    # For Dilated convolution.

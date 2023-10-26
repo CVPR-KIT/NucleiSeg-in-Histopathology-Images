@@ -58,11 +58,11 @@ class DinoPoweredSampler(Sampler):
 
         print("Applying DBSCAN")
         self.clusters = self.apply_dbscan()
-        np.save('Outputs/Features/image_clusters.npy', self.clusters)
+        #np.save('Outputs/Features/image_clusters.npy', self.clusters)
         #print("Applying t-SNE")
         self.image_patches_tsne = self.apply_tsne()
 
-        np.save('Outputs/Features/image_patches_tsne.npy', self.image_patches_tsne)
+        #np.save('Outputs/Features/image_patches_tsne.npy', self.image_patches_tsne)
 
         print("Sampling Initialization Complete") 
 
@@ -120,8 +120,8 @@ class DinoPoweredSampler(Sampler):
         return np.array(features)
 
     def sample_from_cluster(self, cluster_indices, k=1):
-        centroid = np.mean(self.image_patches_tsne[cluster_indices], axis=0)
-        distances = np.linalg.norm(self.image_patches_tsne[cluster_indices] - centroid, axis=1)
+        centroid = np.mean(self.transformed_features[cluster_indices], axis=0)
+        distances = np.linalg.norm(self.transformed_features[cluster_indices] - centroid, axis=1)
 
         center_indices = cluster_indices[np.argsort(distances)[:k]]
         boundary_indices = cluster_indices[np.argsort(distances)[-k:]]
@@ -181,7 +181,7 @@ class DinoPoweredSampler(Sampler):
 
     def sampleImages(self):
         # Get unique clusters excluding noise
-        valid_clusters = [c for c in np.unique(self.clusters) if c != -1]
+        valid_clusters = [c for c in np.unique(self.clusters)]
 
         # Determine how many samples to take from each cluster
         samples_per_cluster = self.batch_size // (2 * len(valid_clusters))

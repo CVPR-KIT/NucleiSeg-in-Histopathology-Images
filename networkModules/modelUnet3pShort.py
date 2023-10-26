@@ -137,24 +137,36 @@ class UNet_3PlusShort(nn.Module):
         self.h1_PT_hd4 = nn.MaxPool2d(8, 8, ceil_mode=True)
         self.h1_PT_hd4_conv = nn.Conv2d(filters[0], self.CatChannels, self.kernel_size, padding=1)
         self.h1_PT_hd4_bn = nn.BatchNorm2d(self.CatChannels)
-        self.h1_PT_hd4_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.h1_PT_hd4_relu = nn.GLU(dim=1)
+        else:
+            self.h1_PT_hd4_relu = nn.ReLU(inplace=True)
 
         # h2->160*160, hd4->40*40, Pooling 4 times
         self.h2_PT_hd4 = nn.MaxPool2d(4, 4, ceil_mode=True)
         self.h2_PT_hd4_conv = nn.Conv2d(filters[1], self.CatChannels, self.kernel_size, padding=1)
         self.h2_PT_hd4_bn = nn.BatchNorm2d(self.CatChannels)
-        self.h2_PT_hd4_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.h2_PT_hd4_relu = nn.GLU(dim=1)
+        else:
+            self.h2_PT_hd4_relu = nn.ReLU(inplace=True)
 
         # h3->80*80, hd4->40*40, Pooling 2 times
         self.h3_PT_hd4 = nn.MaxPool2d(2, 2, ceil_mode=True)
         self.h3_PT_hd4_conv = nn.Conv2d(filters[2], self.CatChannels, self.kernel_size, padding=1)
         self.h3_PT_hd4_bn = nn.BatchNorm2d(self.CatChannels)
-        self.h3_PT_hd4_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.h3_PT_hd4_relu = nn.GLU(dim=1)
+        else:
+            self.h3_PT_hd4_relu = nn.ReLU(inplace=True)
 
         # h4->40*40, hd4->40*40, Concatenation
         self.h4_Cat_hd4_conv = nn.Conv2d(filters[3], self.CatChannels, self.kernel_size, padding=1)
         self.h4_Cat_hd4_bn = nn.BatchNorm2d(self.CatChannels)
-        self.h4_Cat_hd4_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.h4_Cat_hd4_relu = nn.GLU(dim=1)
+        else:
+            self.h4_Cat_hd4_relu = nn.ReLU(inplace=True)
 
         # fusion(h1_PT_hd4, h2_PT_hd4, h3_PT_hd4, h4_Cat_hd4, hd5_UT_hd4)
         self.conv4d_1 = nn.Conv2d(self.UpChannels, self.UpChannels, self.kernel_size, padding=1)  # 16
@@ -166,90 +178,135 @@ class UNet_3PlusShort(nn.Module):
         self.h1_PT_hd3 = nn.MaxPool2d(4, 4, ceil_mode=True)
         self.h1_PT_hd3_conv = nn.Conv2d(filters[0], self.CatChannels, self.kernel_size, padding=1)
         self.h1_PT_hd3_bn = nn.BatchNorm2d(self.CatChannels)
-        self.h1_PT_hd3_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.h1_PT_hd3_relu = nn.GLU(dim=1)
+        else:
+            self.h1_PT_hd3_relu = nn.ReLU(inplace=True)
 
         # h2->160*160, hd3->80*80, Pooling 2 times
         self.h2_PT_hd3 = nn.MaxPool2d(2, 2, ceil_mode=True)
         self.h2_PT_hd3_conv = nn.Conv2d(filters[1], self.CatChannels, self.kernel_size, padding=1)
         self.h2_PT_hd3_bn = nn.BatchNorm2d(self.CatChannels)
-        self.h2_PT_hd3_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.h2_PT_hd3_relu = nn.GLU(dim=1)
+        else:
+            self.h2_PT_hd3_relu = nn.ReLU(inplace=True)
 
         # h3->80*80, hd3->80*80, Concatenation
         self.h3_Cat_hd3_conv = nn.Conv2d(filters[2], self.CatChannels, self.kernel_size, padding=1)
         self.h3_Cat_hd3_bn = nn.BatchNorm2d(self.CatChannels)
-        self.h3_Cat_hd3_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.h3_Cat_hd3_relu = nn.GLU(dim=1)
+        else:
+            self.h3_Cat_hd3_relu = nn.ReLU(inplace=True)
 
         # hd4->40*40, hd4->80*80, Upsample 2 times
         self.hd4_UT_hd3 = nn.Upsample(scale_factor=2, mode='bilinear')  # 14*14
         self.hd4_UT_hd3_conv = nn.Conv2d(self.UpChannels, self.CatChannels, self.kernel_size, padding=1)
         self.hd4_UT_hd3_bn = nn.BatchNorm2d(self.CatChannels)
-        self.hd4_UT_hd3_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.hd4_UT_hd3_relu = nn.GLU(dim=1)
+        else:
+            self.hd4_UT_hd3_relu = nn.ReLU(inplace=True)
 
 
         # fusion(h1_PT_hd3, h2_PT_hd3, h3_Cat_hd3, hd4_UT_hd3, hd5_UT_hd3)
         self.conv3d_1 = nn.Conv2d(self.UpChannels, self.UpChannels, self.kernel_size, padding=1)  # 16
         self.bn3d_1 = nn.BatchNorm2d(self.UpChannels)
-        self.relu3d_1 = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.relu3d_1 = nn.GLU(dim=1)
+        else:
+            self.relu3d_1 = nn.ReLU(inplace=True)
 
         '''stage 2d '''
         # h1->320*320, hd2->160*160, Pooling 2 times
         self.h1_PT_hd2 = nn.MaxPool2d(2, 2, ceil_mode=True)
         self.h1_PT_hd2_conv = nn.Conv2d(filters[0], self.CatChannels, self.kernel_size, padding=1)
         self.h1_PT_hd2_bn = nn.BatchNorm2d(self.CatChannels)
-        self.h1_PT_hd2_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.h1_PT_hd2_relu = nn.GLU(dim=1)
+        else:
+            self.h1_PT_hd2_relu = nn.ReLU(inplace=True)
 
         # h2->160*160, hd2->160*160, Concatenation
         self.h2_Cat_hd2_conv = nn.Conv2d(filters[1], self.CatChannels, self.kernel_size, padding=1)
         self.h2_Cat_hd2_bn = nn.BatchNorm2d(self.CatChannels)
-        self.h2_Cat_hd2_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.h2_Cat_hd2_relu = nn.GLU(dim=1)
+        else:
+            self.h2_Cat_hd2_relu = nn.ReLU(inplace=True)
 
         # hd3->80*80, hd2->160*160, Upsample 2 times
         self.hd3_UT_hd2 = nn.Upsample(scale_factor=2, mode='bilinear')  # 14*14
         self.hd3_UT_hd2_conv = nn.Conv2d(self.UpChannels, self.CatChannels, self.kernel_size, padding=1)
         self.hd3_UT_hd2_bn = nn.BatchNorm2d(self.CatChannels)
-        self.hd3_UT_hd2_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.hd3_UT_hd2_relu = nn.GLU(dim=1)
+        else:
+            self.hd3_UT_hd2_relu = nn.ReLU(inplace=True)
 
         # hd4->40*40, hd2->160*160, Upsample 4 times
         self.hd4_UT_hd2 = nn.Upsample(scale_factor=4, mode='bilinear')  # 14*14
         self.hd4_UT_hd2_conv = nn.Conv2d(self.UpChannels, self.CatChannels, self.kernel_size, padding=1)
         self.hd4_UT_hd2_bn = nn.BatchNorm2d(self.CatChannels)
-        self.hd4_UT_hd2_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.hd4_UT_hd2_relu = nn.GLU(dim=1)
+        else:
+            self.hd4_UT_hd2_relu = nn.ReLU(inplace=True)
 
 
         # fusion(h1_PT_hd2, h2_Cat_hd2, hd3_UT_hd2, hd4_UT_hd2, hd5_UT_hd2)
         self.conv2d_1 = nn.Conv2d(self.UpChannels, self.UpChannels, self.kernel_size, padding=1)  # 16
         self.bn2d_1 = nn.BatchNorm2d(self.UpChannels)
-        self.relu2d_1 = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.relu2d_1 = nn.GLU(dim=1)
+        else:
+            self.relu2d_1 = nn.ReLU(inplace=True)
 
         '''stage 1d'''
         # h1->320*320, hd1->320*320, Concatenation
         self.h1_Cat_hd1_conv = nn.Conv2d(filters[0], self.CatChannels, self.kernel_size, padding=1)
         self.h1_Cat_hd1_bn = nn.BatchNorm2d(self.CatChannels)
-        self.h1_Cat_hd1_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.h1_Cat_hd1_relu = nn.GLU(dim=1)
+        else:
+            self.h1_Cat_hd1_relu = nn.ReLU(inplace=True)
 
         # hd2->160*160, hd1->320*320, Upsample 2 times
         self.hd2_UT_hd1 = nn.Upsample(scale_factor=2, mode='bilinear')  # 14*14
         self.hd2_UT_hd1_conv = nn.Conv2d(self.UpChannels, self.CatChannels, self.kernel_size, padding=1)
         self.hd2_UT_hd1_bn = nn.BatchNorm2d(self.CatChannels)
-        self.hd2_UT_hd1_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.hd2_UT_hd1_relu = nn.GLU(dim=1)
+        else:
+            self.hd2_UT_hd1_relu = nn.ReLU(inplace=True)
 
         # hd3->80*80, hd1->320*320, Upsample 4 times
         self.hd3_UT_hd1 = nn.Upsample(scale_factor=4, mode='bilinear')  # 14*14
         self.hd3_UT_hd1_conv = nn.Conv2d(self.UpChannels, self.CatChannels, self.kernel_size, padding=1)
         self.hd3_UT_hd1_bn = nn.BatchNorm2d(self.CatChannels)
-        self.hd3_UT_hd1_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.hd3_UT_hd1_relu = nn.GLU(dim=1)
+        else:
+            self.hd3_UT_hd1_relu = nn.ReLU(inplace=True)
 
         # hd4->40*40, hd1->320*320, Upsample 8 times
         self.hd4_UT_hd1 = nn.Upsample(scale_factor=8, mode='bilinear')  # 14*14
         self.hd4_UT_hd1_conv = nn.Conv2d(self.UpChannels, self.CatChannels, self.kernel_size, padding=1)
         self.hd4_UT_hd1_bn = nn.BatchNorm2d(self.CatChannels)
-        self.hd4_UT_hd1_relu = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.hd4_UT_hd1_relu = nn.GLU(dim=1)
+        else:
+            self.hd4_UT_hd1_relu = nn.ReLU(inplace=True)
 
 
         # fusion(h1_Cat_hd1, hd2_UT_hd1, hd3_UT_hd1, hd4_UT_hd1, hd5_UT_hd1)
         self.conv1d_1 = nn.Conv2d(self.UpChannels, self.UpChannels, self.kernel_size, padding=1)  # 16
         self.bn1d_1 = nn.BatchNorm2d(self.UpChannels)
-        self.relu1d_1 = nn.ReLU(inplace=True)
+        if self.activation == "GLU":
+            self.relu1d_1 = nn.GLU(dim=1)
+        else:
+            self.relu1d_1 = nn.ReLU(inplace=True)
 
         # output
         self.outconv1 = nn.Conv2d(self.UpChannels, n_classes, self.kernel_size, padding=1)

@@ -50,11 +50,6 @@ def showImage(img, name = "image"):
     cv2.destroyAllWindows()
 
 # Generate Configuration File
-    f = open(path, "w")
-    f.write(json.dumps(config, indent=4))
-    f.close()
-
-# Generate Configuration File
 def makeConfigJson(config, path = "config.json"):
     # convert dict config to json
     f = open(path, "w")
