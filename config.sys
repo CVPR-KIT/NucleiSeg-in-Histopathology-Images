@@ -34,7 +34,7 @@ resumeModel = "model/best_model.pth"            # Model to used during re-traini
 
 sampleImages = "True"                           # Sample Images during Training
 dinoModelType = "giga"                         # DINO Model Type - small, large, giga
-reUseFeatures = "false"                         # Use existing features - Should re-train features if dataset is changed
+reUseFeatures = "True"                         # Use existing features - Should re-train features if dataset is changed
 
 [Class Config]
 class1 = "0, 0, 0"                          #black
@@ -46,8 +46,8 @@ model_type = "UNet_3PlusShort"                           # Model Avl: UNet ,UNet
 [Parameters]
 input_img_type = "rgb"                          # Input Image Type: rgb, gray
 kernel_size = 3
-use_maxblurpool = "True"                       # Use MaxBlurPool
-epochs = 50
+use_maxblurpool = "False"                       # Use MaxBlurPool
+epochs = 30
 batch_size = 16
 learning_rate = 0.000001                         # can be set to "auto" for finding the best learning rate or set to 0.00001
 lr_decay = "False"                             # Learning Rate Decay  - True or False

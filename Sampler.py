@@ -12,16 +12,18 @@ import matplotlib.pyplot as plt
 from auxilary.utils import *
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+from sklearn.preprocessing import Normalizer
+import itertools
+
 
 class DinoPoweredSampler(Sampler):
-    def __init__(self, images, dino_model, config, mode="train", pca_dim=0.5, dbscan_eps=5):
+    def __init__(self, images, dino_model, config, mode="train", dbscan_eps=2):
         '''
         Args:
             images: A list of image patches
             dino_model: The DINO model
             config: The config dictionary
             mode: The mode of the sampler. Can be "train", "val", "test" or "debug"
-            pca_dim: The number of dimensions to reduce the features to using PCA. Can be 0.5 to keep 50% of the dimensions or an integer to keep that many dimensions.
             dbscan_eps: The maximum distance between two samples for one to be considered as in the neighborhood of the other. This is not a maximum bound on the distances of points within a cluster. 
                         This is the most important DBSCAN parameter to choose appropriately for your data set and distance function.
         '''
@@ -30,7 +32,7 @@ class DinoPoweredSampler(Sampler):
         self.batch_size = config["batch_size"]
         self.debug = config["debug"]
         self.debugDilution = config["debugDilution"]
-        self.pca_dim = pca_dim
+        
         self.dbscan_eps = dbscan_eps
         #self.plotDir = config["expt_dir"]
         # Perform feature extraction, t-SNE, and DBSCAN here 
@@ -49,44 +51,83 @@ class DinoPoweredSampler(Sampler):
         #Scaling Features
         scaler = StandardScaler()
         self.scaled_features = scaler.fit_transform(self.features)
-        #print("Applying t-SNE")
-        #self.image_patches_tsne = self.apply_tsne()
-        # Dim reduction using PCA
-        pca = PCA(n_components=self.pca_dim)
-        pca.fit(self.features)
-        self.transformed_features = pca.transform(self.scaled_features)
+
+        normalizer = Normalizer(norm='l2')
+        self.normalized_features = normalizer.fit_transform(self.scaled_features)
+
+        self.image_patches_tsne = self.apply_tsne(plot=False)
 
         print("Applying DBSCAN")
         self.clusters = self.apply_dbscan()
+
+        # plot the clusters
+        _t = self.apply_tsne(plot=True)
+
+
         #np.save('Outputs/Features/image_clusters.npy', self.clusters)
         #print("Applying t-SNE")
-        self.image_patches_tsne = self.apply_tsne()
+        
 
         #np.save('Outputs/Features/image_patches_tsne.npy', self.image_patches_tsne)
+
+        self.all_indices = set()
 
         print("Sampling Initialization Complete") 
 
 
-    def __iter__(self):
+    def __iter__0(self):
         # You can reuse your existing sampleImages function here
         # but modify it to return indices instead of image patches.
         #batch_indices = self.sampleImages()
         #return iter(batch_indices)
-        all_indices = []
         num_images = len(self.image_patches)
         print("\nMaking Batches")
         
         for _ in tqdm(range(num_images // self.batch_size)):
             batch_indices = self.sampleImages()
-            all_indices.extend(batch_indices)
+            self.all_indices.update(batch_indices)
         
         # Handle remaining images if any
         remaining_images = num_images % self.batch_size
         if remaining_images > 0:
             remaining_indices = self.sampleImages()[:remaining_images]
-            all_indices.extend(remaining_indices)
+            self.all_indices.update(remaining_indices)
         
+        print("all_indices: ", len(self.all_indices))
+        return iter(self.all_indices)
+    
+
+    def __iter__(self):
+        # Reset all_indices at the beginning of each iteration to start fresh
+        self.all_indices = set()
+
+        # Initialize an empty list to store all indices for the epoch
+        all_indices = []
+
+        # Calculate the total number of batches needed
+        total_batches = self.__len__()
+
+        # Loop to generate all indices for the epoch
+        for _ in range(total_batches):
+            # Sample indices for a batch
+            batch_indices = self.sampleImages()
+
+            # Check if we have already included enough indices
+            if len(all_indices) + len(batch_indices) > len(self.image_patches):
+                # If adding the current batch_indices exceeds the number of images,
+                # trim the batch_indices to fit the remaining number of images
+                batch_indices = batch_indices[:len(self.image_patches) - len(all_indices)]
+
+            # Extend the all_indices list with the new batch indices
+            all_indices.extend(batch_indices)
+
+        # Shuffle the indices to ensure random order of image access
+        np.random.shuffle(all_indices)
+
+        # Yield each index at a time
         return iter(all_indices)
+
+
 
     def __len__(self):
         if self.debug:
@@ -119,21 +160,40 @@ class DinoPoweredSampler(Sampler):
 
         return np.array(features)
 
-    def sample_from_cluster(self, cluster_indices, k=1):
-        centroid = np.mean(self.transformed_features[cluster_indices], axis=0)
-        distances = np.linalg.norm(self.transformed_features[cluster_indices] - centroid, axis=1)
+    def sample_from_cluster0(self, cluster_indices, k=1):
+        centroid = np.mean(self.image_patches_tsne[cluster_indices], axis=0)
+        distances = np.linalg.norm(self.image_patches_tsne[cluster_indices] - centroid, axis=1)
 
         center_indices = cluster_indices[np.argsort(distances)[:k]]
         boundary_indices = cluster_indices[np.argsort(distances)[-k:]]
 
         return center_indices, boundary_indices
+    
+    def sample_from_cluster(self, cluster_indices, k=1, used_indices=None):
+        if used_indices is None:
+            used_indices = []
+    
+        # Compute centroid and distances as before
+        centroid = np.mean(self.image_patches_tsne[cluster_indices], axis=0)
+        distances = np.linalg.norm(self.image_patches_tsne[cluster_indices] - centroid, axis=1)
 
-    def apply_tsne(self):
-        tsne = TSNE(n_components=2, perplexity=40, learning_rate=200, random_state=42)
-        image_patches_tsne = tsne.fit_transform(self.transformed_features)
+        # Find center indices, excluding used ones
+        sorted_indices = np.argsort(distances)
+        center_indices = [idx for idx in cluster_indices[sorted_indices] if idx not in used_indices][:k]
+
+        # Find boundary indices, excluding used ones
+        boundary_indices = [idx for idx in cluster_indices[sorted_indices[::-1]] if idx not in used_indices][:k]
+
+        return center_indices, boundary_indices
+
+    def apply_tsne(self, plot = False):
+        if not plot:
+            tsne = TSNE(n_components=2, perplexity=40, learning_rate=200, random_state=42)
+            image_patches_tsne = tsne.fit_transform(self.normalized_features)
+            return image_patches_tsne
         # Plot the results
         plt.figure(1)
-        plt.scatter(image_patches_tsne[:, 0], image_patches_tsne[:, 1], c=self.clusters)
+        plt.scatter(self.image_patches_tsne[:, 0], self.image_patches_tsne[:, 1], c=self.clusters)
         plt.colorbar()
         plt.title(f"t-SNE Visualization, DBSNE c - {len(np.unique(self.clusters))}")
         plt.xlabel('Y')
@@ -141,16 +201,16 @@ class DinoPoweredSampler(Sampler):
         #plt.imsave(self.plotDir+self.mode+"-tsne.png", image_patches_tsne)
         createDir(["Outputs/Plots/"])
         if self.mode == "debug":
-            plt.savefig(f"Outputs/Plots/{self.mode}-tsne-{self.pca_dim}-{self.dbscan_eps}.png")
+            plt.savefig(f"Outputs/Plots/{self.mode}-tsne-{self.dbscan_eps}.png")
         else:
             plt.savefig("Outputs/Plots/"+self.mode+"-tsne.png")
         plt.clf()
-        return image_patches_tsne
+        return None
 
-    def apply_dbscan(self, eps = 5, min_samples = 5, gen_plot = False):
+    def apply_dbscan(self, eps = 2, min_samples = 5, metrics='euclidean',gen_plot = False):
         eps = self.dbscan_eps
-        dbscan = DBSCAN(eps=eps, min_samples=min_samples)
-        clusters = dbscan.fit_predict(self.transformed_features)
+        dbscan = DBSCAN(eps=eps, min_samples=min_samples, metric=metrics)
+        clusters = dbscan.fit_predict(self.image_patches_tsne)
         print("Unique clusters:", np.unique(clusters))  # You should see more than just -1
 
         if not gen_plot:
@@ -162,8 +222,8 @@ class DinoPoweredSampler(Sampler):
         # Scatter plot for each uniquely labeled cluster
         unique_clusters = np.unique(clusters)
         for cluster in unique_clusters:
-            x = self.transformed_features[clusters == cluster][:, 0]
-            y = self.transformed_features[clusters == cluster][:, 1]
+            x = self.image_patches_tsne[clusters == cluster][:, 0]
+            y = self.image_patches_tsne[clusters == cluster][:, 1]
             plt.scatter(x, y, label=f"Cluster {cluster}")
 
         plt.title("DBSCAN Clustering")
@@ -173,18 +233,18 @@ class DinoPoweredSampler(Sampler):
         createDir(["Outputs/Plots/"])
         
         if self.mode == "debug":
-            plt.savefig(f"Outputs/Plots/{self.mode}-dbscan-{self.pca_dim}-{self.dbscan_eps}.png")
+            plt.savefig(f"Outputs/Plots/{self.mode}-dbscan-{self.dbscan_eps}.png")
         else:
             plt.savefig("Outputs/Plots/"+self.mode+"-dbscan.png")
             
         return clusters
 
-    def sampleImages(self):
+    def sampleImages0(self):
         # Get unique clusters excluding noise
-        valid_clusters = [c for c in np.unique(self.clusters)]
+        valid_clusters = [c for c in np.unique(self.clusters) if c >= 0]
 
         # Determine how many samples to take from each cluster
-        samples_per_cluster = self.batch_size // (2 * len(valid_clusters))
+        samples_per_cluster = self.batch_size // (len(valid_clusters))
         if samples_per_cluster == 0:
             samples_per_cluster = 1
 
@@ -197,12 +257,49 @@ class DinoPoweredSampler(Sampler):
             batch_indices.extend(boundary_indices)
 
     
-        # If the batch is not full, fill it with additional samples
-        while len(batch_indices) < 16:
+        # If the batch is not full then fill it with additional samples
+        while len(batch_indices) < self.batch_size:
             additional_cluster = np.random.choice(valid_clusters)
             additional_indices = np.where(self.clusters == additional_cluster)[0]
             center_indices, _ = self.sample_from_cluster(additional_indices, k=1)
             batch_indices.extend(center_indices)
 
+        #np.random.shuffle(batch_indices)
+        print(batch_indices[:self.batch_size])
+        print(len(batch_indices))
+
         # return batch indices
+        return batch_indices[:self.batch_size]
+    
+    
+    def sampleImages(self):
+        valid_clusters = [c for c in np.unique(self.clusters) if c >= 0]  # Excluding noise (-1)
+        np.random.shuffle(valid_clusters)  # Shuffle clusters for randomness
+
+        # Pre-select center and boundary indices for each cluster, exclude used indices
+        preselected_indices = {cluster: self.sample_from_cluster(cluster_indices=np.where(self.clusters == cluster)[0], k=1)
+                           for cluster in valid_clusters}
+
+        batch_indices = []
+        for cluster in valid_clusters:
+            if len(batch_indices) >= self.batch_size:
+                break  # Batch is full
+
+            # Add new, unused indices to the batch
+            center_indices, boundary_indices = preselected_indices[cluster]
+            new_indices = [idx for idx in center_indices + boundary_indices if idx not in self.all_indices]
+
+            # Append new indices and update all_indices
+            batch_indices.extend(new_indices)
+            self.all_indices.update(new_indices)  # Assuming all_indices is a set for O(1) lookups
+
+        # Fill the rest of the batch if needed
+        if len(batch_indices) < self.batch_size:
+            all_unused_indices = [idx for idx in range(len(self.image_patches)) if idx not in self.all_indices]
+            np.random.shuffle(all_unused_indices)
+            batch_indices.extend(all_unused_indices[:self.batch_size - len(batch_indices)])
+
+        #print(batch_indices[:self.batch_size])
+        #print(len(batch_indices))
+
         return batch_indices[:self.batch_size]

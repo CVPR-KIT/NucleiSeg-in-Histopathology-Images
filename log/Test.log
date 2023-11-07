@@ -532,3 +532,12 @@
 10/25/2023 08:29:34 AM Starting Inference
 10/25/2023 08:29:34 AM Loading Model at Outputs/server1/experiment_10-03_05.12.06/model/best_model.pth
 10/25/2023 08:29:36 AM Loading checkpoints
+10/27/2023 12:53:05 PM Testing Initiated
+10/27/2023 12:53:05 PM PreRun: Creating required directories
+10/27/2023 12:53:05 PM Weight Path: Outputs/server1/experiment_09-18_05.12.17/model/best_model.pth
+10/27/2023 12:53:05 PM Starting Inference
+10/27/2023 12:53:05 PM Loading Model at Outputs/server1/experiment_09-18_05.12.17/model/best_model.pth
+10/27/2023 12:53:10 PM Loading checkpoints
+10/27/2023 12:53:10 PM Starting evaluations
+10/27/2023 12:53:10 PM Testing on all images
+10/27/2023 12:53:10 PM Loading dataset

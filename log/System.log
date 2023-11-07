@@ -11321,3 +11321,312 @@
 10/24/2023 03:28:18 AM Experiment took 15.61 hours
 10/24/2023 03:28:18 AM generting loss and accuracy plot at Outputs/experiment_10-23_11.51.44/loss_plot.png
 10/24/2023 03:28:18 AM Experiment End
+10/26/2023 05:54:03 PM 
+
+#################### New Run ####################
+10/26/2023 05:54:03 PM PreRun: Creating required directories
+10/26/2023 05:54:03 PM PreRun: Generating experiment config file
+10/26/2023 05:54:04 PM Using cuda device
+10/26/2023 05:54:04 PM configuring data loaders
+10/26/2023 05:54:23 PM 
+
+#################### New Run ####################
+10/26/2023 05:54:23 PM PreRun: Creating required directories
+10/26/2023 05:54:23 PM PreRun: Generating experiment config file
+10/26/2023 05:54:23 PM Using cuda device
+10/26/2023 05:54:23 PM configuring data loaders
+10/26/2023 05:54:23 PM configuring model - UNET 3+ Short
+10/26/2023 05:54:29 PM saving model summary at Outputs/experiment_10-26_17.54.23/modelSummary.txt
+10/26/2023 05:55:25 PM 
+
+#################### New Run ####################
+10/26/2023 05:55:25 PM PreRun: Creating required directories
+10/26/2023 05:55:25 PM PreRun: Generating experiment config file
+10/26/2023 05:55:25 PM Using cuda device
+10/26/2023 05:55:25 PM configuring data loaders
+10/26/2023 05:55:25 PM configuring model - UNET 3+ Short
+10/26/2023 05:55:27 PM saving model summary at Outputs/experiment_10-26_17.55.25/modelSummary.txt
+10/26/2023 05:55:29 PM logging parameters
+10/26/2023 05:55:29 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+10/26/2023 05:55:29 PM starting training
+10/26/2023 06:13:23 PM 
+
+#################### New Run ####################
+10/26/2023 06:13:23 PM PreRun: Creating required directories
+10/26/2023 06:13:23 PM PreRun: Generating experiment config file
+10/26/2023 06:13:23 PM Using cuda device
+10/26/2023 06:13:23 PM configuring data loaders
+10/26/2023 06:13:23 PM configuring model - UNET 3+ Short
+10/26/2023 06:13:25 PM saving model summary at Outputs/experiment_10-26_18.13.23/modelSummary.txt
+10/26/2023 06:14:28 PM 
+
+#################### New Run ####################
+10/26/2023 06:14:28 PM PreRun: Creating required directories
+10/26/2023 06:14:28 PM PreRun: Generating experiment config file
+10/26/2023 06:14:28 PM Using cuda device
+10/26/2023 06:14:28 PM configuring data loaders
+10/26/2023 06:14:28 PM configuring model - UNET 3+ Short
+10/26/2023 06:14:30 PM saving model summary at Outputs/experiment_10-26_18.14.28/modelSummary.txt
+10/26/2023 06:15:40 PM 
+
+#################### New Run ####################
+10/26/2023 06:15:40 PM PreRun: Creating required directories
+10/26/2023 06:15:40 PM PreRun: Generating experiment config file
+10/26/2023 06:15:41 PM Using cuda device
+10/26/2023 06:15:41 PM configuring data loaders
+10/26/2023 06:15:41 PM configuring model - UNET 3+ Short
+10/26/2023 06:15:42 PM saving model summary at Outputs/experiment_10-26_18.15.40/modelSummary.txt
+10/26/2023 06:17:29 PM 
+
+#################### New Run ####################
+10/26/2023 06:17:29 PM PreRun: Creating required directories
+10/26/2023 06:17:29 PM PreRun: Generating experiment config file
+10/26/2023 06:17:29 PM Using cuda device
+10/26/2023 06:17:29 PM configuring data loaders
+10/26/2023 06:17:29 PM configuring model - UNET 3+ Short
+10/26/2023 06:17:31 PM saving model summary at Outputs/experiment_10-26_18.17.29/modelSummary.txt
+10/26/2023 06:18:53 PM 
+
+#################### New Run ####################
+10/26/2023 06:18:53 PM PreRun: Creating required directories
+10/26/2023 06:18:53 PM PreRun: Generating experiment config file
+10/26/2023 06:18:53 PM Using cuda device
+10/26/2023 06:18:53 PM configuring data loaders
+10/26/2023 06:18:53 PM configuring model - UNET 3+ Short
+10/26/2023 06:18:55 PM saving model summary at Outputs/experiment_10-26_18.18.53/modelSummary.txt
+10/26/2023 06:18:57 PM logging parameters
+10/26/2023 06:18:57 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+10/26/2023 06:18:57 PM starting training
+10/26/2023 06:19:22 PM 
+
+#################### New Run ####################
+10/26/2023 06:19:22 PM PreRun: Creating required directories
+10/26/2023 06:19:22 PM PreRun: Generating experiment config file
+10/26/2023 06:19:22 PM Using cuda device
+10/26/2023 06:19:22 PM configuring data loaders
+10/26/2023 06:19:22 PM configuring model - UNET 3+ Short
+10/26/2023 06:19:24 PM saving model summary at Outputs/experiment_10-26_18.19.22/modelSummary.txt
+10/26/2023 06:20:46 PM 
+
+#################### New Run ####################
+10/26/2023 06:20:46 PM PreRun: Creating required directories
+10/26/2023 06:20:46 PM PreRun: Generating experiment config file
+10/26/2023 06:20:46 PM Using cuda device
+10/26/2023 06:20:46 PM configuring data loaders
+10/26/2023 06:20:46 PM configuring model - UNET 3+ Short
+10/26/2023 06:20:48 PM saving model summary at Outputs/experiment_10-26_18.20.46/modelSummary.txt
+10/26/2023 06:21:22 PM 
+
+#################### New Run ####################
+10/26/2023 06:21:22 PM PreRun: Creating required directories
+10/26/2023 06:21:22 PM PreRun: Generating experiment config file
+10/26/2023 06:21:22 PM Using cuda device
+10/26/2023 06:21:22 PM configuring data loaders
+10/26/2023 06:21:22 PM configuring model - UNET 3+ Short
+10/26/2023 06:21:24 PM saving model summary at Outputs/experiment_10-26_18.21.22/modelSummary.txt
+10/26/2023 06:21:45 PM 
+
+#################### New Run ####################
+10/26/2023 06:21:45 PM PreRun: Creating required directories
+10/26/2023 06:21:45 PM PreRun: Generating experiment config file
+10/26/2023 06:21:45 PM Using cuda device
+10/26/2023 06:21:45 PM configuring data loaders
+10/26/2023 06:21:45 PM configuring model - UNET 3+ Short
+10/26/2023 06:21:47 PM saving model summary at Outputs/experiment_10-26_18.21.45/modelSummary.txt
+10/26/2023 06:21:49 PM logging parameters
+10/26/2023 06:21:49 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+10/26/2023 06:21:49 PM starting training
+10/26/2023 06:22:41 PM 
+
+#################### New Run ####################
+10/26/2023 06:22:41 PM PreRun: Creating required directories
+10/26/2023 06:22:41 PM PreRun: Generating experiment config file
+10/26/2023 06:22:41 PM Using cuda device
+10/26/2023 06:22:41 PM configuring data loaders
+10/26/2023 06:22:41 PM configuring model - UNET 3+ Short
+10/26/2023 06:22:43 PM saving model summary at Outputs/experiment_10-26_18.22.41/modelSummary.txt
+10/26/2023 06:23:21 PM 
+
+#################### New Run ####################
+10/26/2023 06:23:21 PM PreRun: Creating required directories
+10/26/2023 06:23:21 PM PreRun: Generating experiment config file
+10/26/2023 06:23:21 PM Using cuda device
+10/26/2023 06:23:21 PM configuring data loaders
+10/26/2023 06:23:21 PM configuring model - UNET 3+ Short
+10/26/2023 06:23:23 PM saving model summary at Outputs/experiment_10-26_18.23.21/modelSummary.txt
+10/26/2023 06:23:25 PM logging parameters
+10/26/2023 06:23:25 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+10/26/2023 06:23:25 PM starting training
+11/08/2023 04:36:14 AM 
+
+#################### New Run ####################
+11/08/2023 04:36:14 AM PreRun: Creating required directories
+11/08/2023 04:36:14 AM PreRun: Generating experiment config file
+11/08/2023 04:36:14 AM Using cuda device
+11/08/2023 04:36:14 AM configuring data loaders
+11/08/2023 04:36:35 AM 
+
+#################### New Run ####################
+11/08/2023 04:36:38 AM PreRun: Creating required directories
+11/08/2023 04:36:38 AM PreRun: Generating experiment config file
+11/08/2023 04:36:38 AM Using cuda device
+11/08/2023 04:36:38 AM configuring data loaders
+11/08/2023 04:39:09 AM xFormers not available
+11/08/2023 04:39:09 AM xFormers not available
+11/08/2023 04:39:09 AM using SwiGLU layer as FFN
+11/08/2023 04:45:18 AM 
+
+#################### New Run ####################
+11/08/2023 04:45:21 AM PreRun: Creating required directories
+11/08/2023 04:45:21 AM PreRun: Generating experiment config file
+11/08/2023 04:45:21 AM Using cuda device
+11/08/2023 04:45:21 AM configuring data loaders
+11/08/2023 04:48:07 AM xFormers not available
+11/08/2023 04:48:07 AM xFormers not available
+11/08/2023 04:48:07 AM using SwiGLU layer as FFN
+11/08/2023 04:52:24 AM configuring model - UNET 3+ Short
+11/08/2023 04:52:25 AM saving model summary at Outputs/experiment_11-08_04.45.21/modelSummary.txt
+11/08/2023 04:52:35 AM logging parameters
+11/08/2023 04:52:35 AM {
+    "model": "UNet_3PlusShort",
+    "epochs": 30,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/08/2023 04:52:35 AM starting training
+11/08/2023 04:54:24 AM saving model at Outputs/experiment_11-08_04.45.21/model/best_model_0.pth
+11/08/2023 04:55:48 AM 
+
+#################### New Run ####################
+11/08/2023 04:55:51 AM PreRun: Creating required directories
+11/08/2023 04:55:51 AM PreRun: Generating experiment config file
+11/08/2023 04:55:51 AM Using cpu device
+11/08/2023 04:55:51 AM configuring data loaders
+11/08/2023 04:59:02 AM xFormers not available
+11/08/2023 04:59:02 AM xFormers not available
+11/08/2023 04:59:02 AM using SwiGLU layer as FFN
+11/08/2023 05:02:42 AM 
+
+#################### New Run ####################
+11/08/2023 05:02:45 AM PreRun: Creating required directories
+11/08/2023 05:02:45 AM PreRun: Generating experiment config file
+11/08/2023 05:02:45 AM Using cuda device
+11/08/2023 05:02:45 AM configuring data loaders
+11/08/2023 05:05:41 AM xFormers not available
+11/08/2023 05:05:41 AM xFormers not available
+11/08/2023 05:05:41 AM using SwiGLU layer as FFN
+11/08/2023 05:10:29 AM configuring model - UNET 3+ Short
+11/08/2023 05:10:30 AM saving model summary at Outputs/experiment_11-08_05.02.45/modelSummary.txt
+11/08/2023 05:10:40 AM logging parameters
+11/08/2023 05:10:40 AM {
+    "model": "UNet_3PlusShort",
+    "epochs": 30,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/08/2023 05:10:40 AM starting training
+11/08/2023 05:36:15 AM 
+
+#################### New Run ####################
+11/08/2023 05:36:17 AM PreRun: Creating required directories
+11/08/2023 05:36:17 AM PreRun: Generating experiment config file
+11/08/2023 05:36:17 AM Using cuda device
+11/08/2023 05:36:17 AM configuring data loaders
+11/08/2023 05:39:15 AM xFormers not available
+11/08/2023 05:39:15 AM xFormers not available
+11/08/2023 05:39:15 AM using SwiGLU layer as FFN
+11/08/2023 05:42:41 AM configuring model - UNET 3+ Short
+11/08/2023 05:42:42 AM saving model summary at Outputs/experiment_11-08_05.36.17/modelSummary.txt
+11/08/2023 05:42:52 AM logging parameters
+11/08/2023 05:42:52 AM {
+    "model": "UNet_3PlusShort",
+    "epochs": 30,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/08/2023 05:42:52 AM starting training
+11/08/2023 06:08:56 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_0.pth
+11/08/2023 06:29:36 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_1.pth
+11/08/2023 06:48:28 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_2.pth
+11/08/2023 07:06:17 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_3.pth
+11/08/2023 07:23:48 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_4.pth
+11/08/2023 07:41:03 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_5.pth
+11/08/2023 07:58:06 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_6.pth
+11/08/2023 08:15:06 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_7.pth
+11/08/2023 08:32:48 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_8.pth

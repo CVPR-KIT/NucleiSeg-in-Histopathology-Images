@@ -15,6 +15,8 @@ from datetime import datetime
 from sklearn.metrics import average_precision_score, jaccard_score
 from torchmetrics import JaccardIndex
 import json
+import torchvision
+import matplotlib.pyplot as plt
 
 import logging
 
@@ -41,6 +43,8 @@ def make_preRunNecessities(expt_dir):
     createDir([config['log'], config['expt_dir']+'inference/', config['expt_dir']+'inference/testData/'])
 
     return config if config is not None else print("PreRun: Error reading config file")
+
+
     
 def runInference(data, model, device, config, img_type):
     accList = []

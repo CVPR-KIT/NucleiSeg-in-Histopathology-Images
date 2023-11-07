@@ -294,7 +294,7 @@ def main():
         dino_model = load_sampling_model(modelType=config["dinoModelType"])
         train_dataset = MonuSegDataSet(config["trainDataset"], config)
 
-        sampler = DinoPoweredSampler(images=sampleTrainImages, dino_model=dino_model, config=config, pca_dim = 10, dbscan_eps = 5, mode="train")
+        sampler = DinoPoweredSampler(images=sampleTrainImages, dino_model=dino_model, config=config, mode="train")
         train_data = DataLoader(train_dataset,batch_size=config["batch_size"], sampler=sampler)
 
     else:
