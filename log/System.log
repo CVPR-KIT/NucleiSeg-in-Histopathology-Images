@@ -11630,3 +11630,43 @@
 11/08/2023 07:58:06 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_6.pth
 11/08/2023 08:15:06 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_7.pth
 11/08/2023 08:32:48 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_8.pth
+11/08/2023 08:50:45 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_9.pth
+11/08/2023 09:08:03 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_10.pth
+11/08/2023 09:58:50 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_13.pth
+11/08/2023 10:32:11 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_15.pth
+11/08/2023 11:22:02 AM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_18.pth
+11/08/2023 02:25:44 PM saving model at Outputs/experiment_11-08_05.36.17/model/best_model_29.pth
+11/08/2023 02:25:44 PM loading model for testing from Outputs/experiment_11-08_05.36.17/model/best_model.pth
+11/08/2023 02:25:45 PM Testing...
+11/08/2023 02:25:45 PM Outputting label
+11/08/2023 02:25:45 PM Outputting label
+11/08/2023 02:25:46 PM Outputting label
+11/08/2023 02:25:46 PM saving images
+11/08/2023 02:25:47 PM Outputting label
+11/08/2023 02:25:47 PM saving images
+11/08/2023 02:25:47 PM Outputting label
+11/08/2023 02:25:47 PM saving images
+11/08/2023 02:25:48 PM Outputting label
+11/08/2023 02:25:48 PM saving images
+11/08/2023 02:25:48 PM Outputting label
+11/08/2023 02:25:48 PM saving images
+11/08/2023 02:25:49 PM Outputting label
+11/08/2023 02:25:49 PM saving images
+11/08/2023 02:25:49 PM saving images
+11/08/2023 02:25:49 PM Outputting label
+11/08/2023 02:25:50 PM Outputting label
+11/08/2023 02:25:50 PM saving images
+11/08/2023 02:25:50 PM Outputting label
+11/08/2023 02:25:50 PM saving images
+11/08/2023 02:25:50 PM Outputting label
+11/08/2023 02:25:50 PM saving images
+11/08/2023 02:25:51 PM Outputting label
+11/08/2023 02:25:51 PM saving images
+11/08/2023 02:25:51 PM Outputting label
+11/08/2023 02:25:51 PM saving images
+11/08/2023 02:25:52 PM saving images
+11/08/2023 02:25:52 PM saving images
+11/08/2023 02:25:53 PM Saving Training Stats at Outputs/experiment_11-08_05.36.17/loss_log.txt
+11/08/2023 02:25:53 PM Experiment took 8.83 hours
+11/08/2023 02:25:53 PM generting loss and accuracy plot at Outputs/experiment_11-08_05.36.17/loss_plot.png
+11/08/2023 02:25:55 PM Experiment End
