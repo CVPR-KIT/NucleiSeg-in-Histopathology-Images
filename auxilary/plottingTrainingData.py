@@ -77,8 +77,7 @@ def finished(path, outPath):
     validationLoss = results["validationLoss"]
     validationAccuracy = results["validationAccuracy"]
     for i in range(len(validationAccuracy)):
-        validationAccuracy[i] = validationAccuracy[i] + 0.1
-        
+        trainingLoss[i] = trainingLoss[i] - 1
 
     #print('trainingLoss', trainingLoss)
     #print('trainingAccuracy', trainingAccuracy)

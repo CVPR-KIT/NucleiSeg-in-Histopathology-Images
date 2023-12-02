@@ -123,12 +123,11 @@ def run_epoch(model, data_loader, criterion, optimizer, epoch, device, mode, con
     
     confusion_matrix = np.zeros((config["num_classes"],config["num_classes"]))
 
-
+    print('mode:',mode)
     for idx,(images,label) in enumerate(pgbar):
         #print('images infos',images)
         #print('images shape:'+str(images.shape[2])+":"+str(images.shape[3]))
         #print(images.max(),images.min())
-        #print('images shape:', images.shape)
         pred = model(images.to(device))
 
         #####
@@ -294,7 +293,7 @@ def main():
         dino_model = load_sampling_model(modelType=config["dinoModelType"])
         train_dataset = MonuSegDataSet(config["trainDataset"], config)
 
-        sampler = DinoPoweredSampler(images=sampleTrainImages, dino_model=dino_model, config=config, mode="train")
+        sampler = DinoPoweredSampler(images=sampleTrainImages, dino_model=dino_model, config=config, mode="train", training_phase=config["trainingPhase"])
         train_data = DataLoader(train_dataset,batch_size=config["batch_size"], sampler=sampler)
 
     else:
@@ -353,13 +352,13 @@ def main():
     # If resume is true, load model and optimizer
     if config["resume"]:
         print(config["resume"])
-        checkpoint = torch.load(config["resumeModel"])
+        checkpoint = torch.load(config["weight_path"])
         model.load_state_dict(checkpoint['model_state_dict'])
         print('model loaded from checkpoint')
         logging.info('model loaded from checkpoint')
 
-    if config["weight_path"] is not None:
-        model.load_state_dict(torch.load(config["weight_path"]))
+    '''if config["weight_path"] is not None:
+        model.load_state_dict(torch.load(config["weight_path"]))'''
         
 
     # Configuring Loss Function

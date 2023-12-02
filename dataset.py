@@ -292,7 +292,7 @@ class MonuSegOnlyTestDataSet(Dataset):
         self.wid = image.shape[0]
         self.hit = image.shape[1]
 
-        self.wid = self.hit = self.len
+        #self.wid = self.hit = self.len
 
 
         

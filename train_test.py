@@ -91,11 +91,11 @@ def runInference(data, model, device, config, img_type):
         
 
         
-        cm = calc_confusion_matrix2(y, rslt, config["num_classes"])
+        cm = calc_confusion_matrix(y, rslt, config["num_classes"])
         tn, fp, fn, tp = cm.ravel()
         mAP = calculate_mAP(cm)
         mAPs.append(mAP)
-        dices.append(calc_dice_score2(cm))
+        dices.append(calc_dice_score(cm))
         mious.append(calc_mIoU2(rslt.cpu(), y, config["num_classes"]))
         #print(f"mAP: {mAP}")
         
@@ -206,7 +206,7 @@ def main():
             print(f"Testing mAP -{args.expt_dir}-{img_type}- {mAP} \n")
             print(f"Testing Dice -{args.expt_dir}-{img_type}- {mdice} \n")
             print(f"Testing mIoU -{args.expt_dir}-{img_type}- {miou} \n")
-            print(f"Testing AJI -{args.expt_dir}-{img_type}- {aji} \n")
+           # print(f"Testing AJI -{args.expt_dir}-{img_type}- {aji} \n")
 
     else:
         # Load Dataset
@@ -219,7 +219,7 @@ def main():
         print(f"Testing mAP -{args.expt_dir}-{img_type}- {mAP} \n")
         print(f"Testing Dice -{args.expt_dir}-{img_type}- {mdice} \n")
         print(f"Testing mIoU -{args.expt_dir}-{img_type}- {miou} \n")
-        print(f"Testing AJI -{args.expt_dir}-{img_type}- {aji} \n")
+        #print(f"Testing AJI -{args.expt_dir}-{img_type}- {aji} \n")
 
     
     f.close()

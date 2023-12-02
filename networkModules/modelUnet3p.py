@@ -23,6 +23,8 @@ class UNet_3Plus(nn.Module):
         self.dropout = nn.Dropout2d(p=config["dropout"])
         self.useMaxBPool = config["use_maxblurpool"]
 
+        self.dropoutFlag = False
+
         # self.ch, original paper uses channel size of 64, while we use 16
         # uses relu activation by default
         filters = [self.ch, self.ch * 2, self.ch * 4, self.ch * 8, self.ch * 16]
@@ -209,6 +211,10 @@ class UNet_3Plus(nn.Module):
                 init_weights(m, init_type='kaiming')
             elif isinstance(m, nn.BatchNorm2d):
                 init_weights(m, init_type='kaiming')
+
+
+    def setdropoutFlag(self, flag):
+        self.dropoutFlag = flag
 
     def forward(self, inputs):
         ## -------------Encoder-------------

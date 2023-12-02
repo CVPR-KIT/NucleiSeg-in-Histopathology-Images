@@ -1,0 +1,88 @@
+{
+    "os": "Linux-5.10.16.3-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "python": "3.10.9",
+    "heartbeatAt": "2023-11-20T06:42:36.558333",
+    "startedAt": "2023-11-20T06:42:35.704969",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--config",
+        "config.sys"
+    ],
+    "state": "running",
+    "program": "/home/blue/projects/MoNuSeg/main.py",
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/bluesaiyancodes/MoNuSeg-Segmentation.git",
+        "commit": "28ec7299c09f8737e4bee951b25b877546246b98"
+    },
+    "email": "blue.bishal@rocketmail.com",
+    "root": "/home/blue/projects/MoNuSeg",
+    "host": "Blue-LAB",
+    "username": "blue",
+    "executable": "/home/blue/projects/MoNuSeg/monuSegEnv/bin/python",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 3408.0,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3408.0,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.0,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.0,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.0,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.0,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.0,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.0,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3408.0,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 983.3048324584961,
+        "used": 477.8013916015625
+    },
+    "gpu": "NVIDIA RTX A6000",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA RTX A6000",
+            "memory_total": 51527024640
+        }
+    ],
+    "memory": {
+        "total": 29.391098022460938
+    }
+}

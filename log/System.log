@@ -11670,3 +11670,654 @@
 11/08/2023 02:25:53 PM Experiment took 8.83 hours
 11/08/2023 02:25:53 PM generting loss and accuracy plot at Outputs/experiment_11-08_05.36.17/loss_plot.png
 11/08/2023 02:25:55 PM Experiment End
+11/15/2023 11:52:03 PM 
+
+#################### New Run ####################
+11/15/2023 11:52:07 PM PreRun: Creating required directories
+11/15/2023 11:52:07 PM PreRun: Generating experiment config file
+11/15/2023 11:52:07 PM Using cuda device
+11/15/2023 11:52:07 PM configuring data loaders
+11/15/2023 11:56:01 PM xFormers not available
+11/15/2023 11:56:02 PM xFormers not available
+11/15/2023 11:56:02 PM using SwiGLU layer as FFN
+11/16/2023 12:00:19 AM configuring model - UNET 3+ Short
+11/16/2023 12:00:19 AM saving model summary at Outputs/experiment_11-15_23.52.07/modelSummary.txt
+11/16/2023 12:00:30 AM logging parameters
+11/16/2023 12:00:30 AM {
+    "model": "UNet_3PlusShort",
+    "epochs": 30,
+    "learning_rate": 0.0001,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/16/2023 12:00:30 AM starting training
+11/16/2023 12:30:34 AM saving model at Outputs/experiment_11-15_23.52.07/model/best_model_0.pth
+11/16/2023 02:10:10 AM saving model at Outputs/experiment_11-15_23.52.07/model/best_model_6.pth
+11/16/2023 02:26:48 AM saving model at Outputs/experiment_11-15_23.52.07/model/best_model_7.pth
+11/16/2023 08:33:09 AM loading model for testing from Outputs/experiment_11-15_23.52.07/model/best_model.pth
+11/16/2023 08:33:09 AM Testing...
+11/16/2023 08:33:09 AM Outputting label
+11/16/2023 08:33:10 AM Outputting label
+11/16/2023 08:33:10 AM Outputting label
+11/16/2023 08:33:10 AM saving images
+11/16/2023 08:33:10 AM Outputting label
+11/16/2023 08:33:10 AM saving images
+11/16/2023 08:33:11 AM Outputting label
+11/16/2023 08:33:11 AM saving images
+11/16/2023 08:33:11 AM Outputting label
+11/16/2023 08:33:11 AM saving images
+11/16/2023 08:33:12 AM Outputting label
+11/16/2023 08:33:12 AM saving images
+11/16/2023 08:33:12 AM Outputting label
+11/16/2023 08:33:12 AM saving images
+11/16/2023 08:33:13 AM Outputting label
+11/16/2023 08:33:13 AM saving images
+11/16/2023 08:33:13 AM Outputting label
+11/16/2023 08:33:13 AM saving images
+11/16/2023 08:33:13 AM Outputting label
+11/16/2023 08:33:14 AM saving images
+11/16/2023 08:33:14 AM Outputting label
+11/16/2023 08:33:14 AM saving images
+11/16/2023 08:33:14 AM Outputting label
+11/16/2023 08:33:14 AM saving images
+11/16/2023 08:33:15 AM Outputting label
+11/16/2023 08:33:15 AM saving images
+11/16/2023 08:33:15 AM saving images
+11/16/2023 08:33:16 AM saving images
+11/16/2023 08:33:16 AM Saving Training Stats at Outputs/experiment_11-15_23.52.07/loss_log.txt
+11/16/2023 08:33:16 AM Experiment took 8.69 hours
+11/16/2023 08:33:16 AM generting loss and accuracy plot at Outputs/experiment_11-15_23.52.07/loss_plot.png
+11/16/2023 08:33:17 AM Experiment End
+11/16/2023 05:38:07 PM 
+
+#################### New Run ####################
+11/16/2023 05:38:10 PM PreRun: Creating required directories
+11/16/2023 05:38:10 PM PreRun: Generating experiment config file
+11/16/2023 05:38:11 PM Using cuda device
+11/16/2023 05:38:11 PM configuring data loaders
+11/16/2023 05:40:14 PM xFormers not available
+11/16/2023 05:40:14 PM xFormers not available
+11/16/2023 05:40:14 PM using SwiGLU layer as FFN
+11/16/2023 05:43:04 PM 
+
+#################### New Run ####################
+11/16/2023 05:43:06 PM PreRun: Creating required directories
+11/16/2023 05:43:06 PM PreRun: Generating experiment config file
+11/16/2023 05:43:07 PM Using cuda device
+11/16/2023 05:43:07 PM configuring data loaders
+11/16/2023 05:44:59 PM xFormers not available
+11/16/2023 05:44:59 PM xFormers not available
+11/16/2023 05:44:59 PM using SwiGLU layer as FFN
+11/16/2023 05:49:26 PM configuring model - UNET 3+ Short
+11/16/2023 05:49:26 PM saving model summary at Outputs/experiment_11-16_17.43.06/modelSummary.txt
+11/16/2023 05:49:35 PM logging parameters
+11/16/2023 05:49:35 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 0.01,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/16/2023 05:49:35 PM starting training
+11/16/2023 06:17:24 PM saving model at Outputs/experiment_11-16_17.43.06/model/best_model_0.pth
+11/16/2023 08:34:32 PM saving model at Outputs/experiment_11-16_17.43.06/model/best_model_8.pth
+11/17/2023 07:58:00 AM loading model for testing from Outputs/experiment_11-16_17.43.06/model/best_model.pth
+11/17/2023 07:58:00 AM Testing...
+11/17/2023 07:58:01 AM Outputting label
+11/17/2023 07:58:01 AM Outputting label
+11/17/2023 07:58:01 AM Outputting label
+11/17/2023 07:58:01 AM saving images
+11/17/2023 07:58:01 AM Outputting label
+11/17/2023 07:58:01 AM saving images
+11/17/2023 07:58:02 AM Outputting label
+11/17/2023 07:58:02 AM saving images
+11/17/2023 07:58:02 AM saving images
+11/17/2023 07:58:02 AM Outputting label
+11/17/2023 07:58:03 AM Outputting label
+11/17/2023 07:58:03 AM saving images
+11/17/2023 07:58:03 AM Outputting label
+11/17/2023 07:58:03 AM saving images
+11/17/2023 07:58:03 AM Outputting label
+11/17/2023 07:58:03 AM saving images
+11/17/2023 07:58:04 AM Outputting label
+11/17/2023 07:58:04 AM saving images
+11/17/2023 07:58:04 AM Outputting label
+11/17/2023 07:58:04 AM saving images
+11/17/2023 07:58:05 AM Outputting label
+11/17/2023 07:58:05 AM saving images
+11/17/2023 07:58:05 AM Outputting label
+11/17/2023 07:58:05 AM saving images
+11/17/2023 07:58:06 AM Outputting label
+11/17/2023 07:58:06 AM saving images
+11/17/2023 07:58:06 AM saving images
+11/17/2023 07:58:07 AM saving images
+11/17/2023 07:58:07 AM Saving Training Stats at Outputs/experiment_11-16_17.43.06/loss_log.txt
+11/17/2023 07:58:07 AM Experiment took 14.25 hours
+11/17/2023 07:58:07 AM generting loss and accuracy plot at Outputs/experiment_11-16_17.43.06/loss_plot.png
+11/17/2023 07:58:07 AM Experiment End
+11/17/2023 02:44:01 PM 
+
+#################### New Run ####################
+11/17/2023 02:44:04 PM PreRun: Creating required directories
+11/17/2023 02:44:04 PM PreRun: Generating experiment config file
+11/17/2023 02:44:04 PM Using cuda device
+11/17/2023 02:44:04 PM configuring data loaders
+11/17/2023 02:46:07 PM xFormers not available
+11/17/2023 02:46:07 PM xFormers not available
+11/17/2023 02:46:07 PM using SwiGLU layer as FFN
+11/17/2023 02:51:10 PM configuring model - UNET 3+ Short
+11/17/2023 02:51:10 PM saving model summary at Outputs/experiment_11-17_14.44.04/modelSummary.txt
+11/17/2023 02:51:18 PM logging parameters
+11/17/2023 02:51:18 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 1e-05,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "focalDiceLoss",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/17/2023 02:51:18 PM starting training
+11/17/2023 03:15:03 PM saving model at Outputs/experiment_11-17_14.44.04/model/best_model_0.pth
+11/17/2023 03:34:34 PM saving model at Outputs/experiment_11-17_14.44.04/model/best_model_1.pth
+11/17/2023 03:55:02 PM saving model at Outputs/experiment_11-17_14.44.04/model/best_model_2.pth
+11/17/2023 04:15:33 PM saving model at Outputs/experiment_11-17_14.44.04/model/best_model_3.pth
+11/17/2023 04:36:01 PM saving model at Outputs/experiment_11-17_14.44.04/model/best_model_4.pth
+11/18/2023 06:15:22 AM loading model for testing from Outputs/experiment_11-17_14.44.04/model/best_model.pth
+11/18/2023 06:15:22 AM Testing...
+11/18/2023 06:15:23 AM Outputting label
+11/18/2023 06:15:23 AM Outputting label
+11/18/2023 06:15:23 AM Outputting label
+11/18/2023 06:15:23 AM saving images
+11/18/2023 06:15:23 AM saving images
+11/18/2023 06:15:23 AM Outputting label
+11/18/2023 06:15:24 AM Outputting label
+11/18/2023 06:15:24 AM saving images
+11/18/2023 06:15:24 AM Outputting label
+11/18/2023 06:15:24 AM saving images
+11/18/2023 06:15:25 AM Outputting label
+11/18/2023 06:15:25 AM saving images
+11/18/2023 06:15:25 AM Outputting label
+11/18/2023 06:15:25 AM saving images
+11/18/2023 06:15:26 AM Outputting label
+11/18/2023 06:15:26 AM saving images
+11/18/2023 06:15:26 AM Outputting label
+11/18/2023 06:15:26 AM saving images
+11/18/2023 06:15:27 AM Outputting label
+11/18/2023 06:15:27 AM saving images
+11/18/2023 06:15:27 AM Outputting label
+11/18/2023 06:15:27 AM saving images
+11/18/2023 06:15:28 AM Outputting label
+11/18/2023 06:15:28 AM saving images
+11/18/2023 06:15:28 AM Outputting label
+11/18/2023 06:15:28 AM saving images
+11/18/2023 06:15:28 AM saving images
+11/18/2023 06:15:29 AM saving images
+11/18/2023 06:15:29 AM Saving Training Stats at Outputs/experiment_11-17_14.44.04/loss_log.txt
+11/18/2023 06:15:29 AM Experiment took 15.52 hours
+11/18/2023 06:15:29 AM generting loss and accuracy plot at Outputs/experiment_11-17_14.44.04/loss_plot.png
+11/18/2023 06:15:30 AM Experiment End
+11/20/2023 03:29:18 PM 
+
+#################### New Run ####################
+11/20/2023 03:29:21 PM PreRun: Creating required directories
+11/20/2023 03:29:21 PM PreRun: Generating experiment config file
+11/20/2023 03:29:22 PM Using cuda device
+11/20/2023 03:29:22 PM configuring data loaders
+11/20/2023 03:31:58 PM xFormers not available
+11/20/2023 03:31:58 PM xFormers not available
+11/20/2023 03:31:58 PM using SwiGLU layer as FFN
+11/20/2023 03:36:28 PM configuring model - UNET 3+ Short
+11/20/2023 03:36:28 PM saving model summary at Outputs/experiment_11-20_15.29.21/modelSummary.txt
+11/20/2023 03:42:33 PM 
+
+#################### New Run ####################
+11/20/2023 03:42:36 PM PreRun: Creating required directories
+11/20/2023 03:42:36 PM PreRun: Generating experiment config file
+11/20/2023 03:42:37 PM Using cuda device
+11/20/2023 03:42:37 PM configuring data loaders
+11/20/2023 03:44:47 PM xFormers not available
+11/20/2023 03:44:47 PM xFormers not available
+11/20/2023 03:44:47 PM using SwiGLU layer as FFN
+11/20/2023 03:48:59 PM configuring model - UNET 3+ Short
+11/20/2023 03:48:59 PM saving model summary at Outputs/experiment_11-20_15.42.36/modelSummary.txt
+11/20/2023 03:49:11 PM model loaded from checkpoint
+11/20/2023 03:49:11 PM logging parameters
+11/20/2023 03:49:11 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 1e-05,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "focalDiceLoss",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/20/2023 03:49:11 PM starting training
+11/20/2023 04:18:36 PM saving model at Outputs/experiment_11-20_15.42.36/model/best_model_0.pth
+11/20/2023 04:49:34 PM saving model at Outputs/experiment_11-20_15.42.36/model/best_model_1.pth
+11/20/2023 05:47:39 PM saving model at Outputs/experiment_11-20_15.42.36/model/best_model_4.pth
+11/20/2023 10:23:44 PM 
+
+#################### New Run ####################
+11/20/2023 10:23:47 PM PreRun: Creating required directories
+11/20/2023 10:23:47 PM PreRun: Generating experiment config file
+11/20/2023 10:23:48 PM Using cuda device
+11/20/2023 10:23:48 PM configuring data loaders
+11/20/2023 10:25:24 PM xFormers not available
+11/20/2023 10:25:24 PM xFormers not available
+11/20/2023 10:25:24 PM using SwiGLU layer as FFN
+11/20/2023 10:29:09 PM configuring model - UNET 3+ Short
+11/20/2023 10:29:09 PM saving model summary at Outputs/experiment_11-20_22.23.47/modelSummary.txt
+11/20/2023 10:29:19 PM model loaded from checkpoint
+11/20/2023 10:29:19 PM logging parameters
+11/20/2023 10:29:19 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 0.01,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "focalDiceLoss",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/20/2023 10:29:19 PM starting training
+11/20/2023 10:49:27 PM saving model at Outputs/experiment_11-20_22.23.47/model/best_model_0.pth
+11/20/2023 11:45:12 PM saving model at Outputs/experiment_11-20_22.23.47/model/best_model_3.pth
+11/21/2023 12:02:34 AM 
+
+#################### New Run ####################
+11/21/2023 12:02:37 AM PreRun: Creating required directories
+11/21/2023 12:02:37 AM PreRun: Generating experiment config file
+11/21/2023 12:02:38 AM Using cuda device
+11/21/2023 12:02:38 AM configuring data loaders
+11/21/2023 12:04:08 AM xFormers not available
+11/21/2023 12:04:08 AM xFormers not available
+11/21/2023 12:04:08 AM using SwiGLU layer as FFN
+11/21/2023 12:08:27 AM configuring model - UNET 3+ Short
+11/21/2023 12:08:27 AM saving model summary at Outputs/experiment_11-21_00.02.37/modelSummary.txt
+11/21/2023 12:08:36 AM model loaded from checkpoint
+11/21/2023 12:08:36 AM logging parameters
+11/21/2023 12:08:36 AM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 0.01,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "focalDiceLoss",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/21/2023 12:08:36 AM starting training
+11/21/2023 12:29:08 AM saving model at Outputs/experiment_11-21_00.02.37/model/best_model_0.pth
+11/21/2023 12:47:53 AM saving model at Outputs/experiment_11-21_00.02.37/model/best_model_1.pth
+11/21/2023 01:06:34 AM saving model at Outputs/experiment_11-21_00.02.37/model/best_model_2.pth
+11/21/2023 03:17:36 AM saving model at Outputs/experiment_11-21_00.02.37/model/best_model_9.pth
+11/21/2023 12:20:39 PM saving model at Outputs/experiment_11-21_00.02.37/model/best_model_38.pth
+11/21/2023 03:49:23 PM loading model for testing from Outputs/experiment_11-21_00.02.37/model/best_model.pth
+11/21/2023 03:49:24 PM Testing...
+11/21/2023 03:49:24 PM Outputting label
+11/21/2023 03:49:24 PM Outputting label
+11/21/2023 03:49:24 PM Outputting label
+11/21/2023 03:49:24 PM saving images
+11/21/2023 03:49:25 PM Outputting label
+11/21/2023 03:49:25 PM saving images
+11/21/2023 03:49:25 PM Outputting label
+11/21/2023 03:49:25 PM saving images
+11/21/2023 03:49:26 PM saving images
+11/21/2023 03:49:26 PM Outputting label
+11/21/2023 03:49:27 PM saving images
+11/21/2023 03:49:27 PM Outputting label
+11/21/2023 03:49:27 PM Outputting label
+11/21/2023 03:49:27 PM saving images
+11/21/2023 03:49:28 PM saving images
+11/21/2023 03:49:28 PM Outputting label
+11/21/2023 03:49:28 PM saving images
+11/21/2023 03:49:28 PM Outputting label
+11/21/2023 03:49:29 PM Outputting label
+11/21/2023 03:49:29 PM saving images
+11/21/2023 03:49:29 PM saving images
+11/21/2023 03:49:29 PM Outputting label
+11/21/2023 03:49:30 PM saving images
+11/21/2023 03:49:30 PM Outputting label
+11/21/2023 03:49:31 PM saving images
+11/21/2023 03:49:31 PM Outputting label
+11/21/2023 03:49:31 PM saving images
+11/21/2023 03:49:32 PM saving images
+11/21/2023 03:49:32 PM Saving Training Stats at Outputs/experiment_11-21_00.02.37/loss_log.txt
+11/21/2023 03:49:32 PM Experiment took 15.78 hours
+11/21/2023 03:49:32 PM generting loss and accuracy plot at Outputs/experiment_11-21_00.02.37/loss_plot.png
+11/21/2023 03:49:33 PM Experiment End
+11/21/2023 06:35:06 PM 
+
+#################### New Run ####################
+11/21/2023 06:35:06 PM PreRun: Creating required directories
+11/21/2023 06:35:06 PM PreRun: Generating experiment config file
+11/21/2023 06:35:06 PM Using cpu device
+11/21/2023 06:35:06 PM configuring data loaders
+11/21/2023 06:35:06 PM configuring model - UNET 3+ Short
+11/21/2023 06:35:06 PM saving model summary at Outputs/experiment_11-21_18.35.06/modelSummary.txt
+11/21/2023 06:35:07 PM logging parameters
+11/21/2023 06:35:07 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 1,
+    "learning_rate": 0.01,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "focalDiceLoss",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/21/2023 06:35:07 PM starting training
+11/21/2023 06:36:58 PM 
+
+#################### New Run ####################
+11/21/2023 06:36:58 PM PreRun: Creating required directories
+11/21/2023 06:36:58 PM PreRun: Generating experiment config file
+11/21/2023 06:36:58 PM Using cuda device
+11/21/2023 06:36:58 PM configuring data loaders
+11/21/2023 06:37:02 PM configuring model - UNET 3+ Short
+11/21/2023 06:37:08 PM saving model summary at Outputs/experiment_11-21_18.36.58/modelSummary.txt
+11/21/2023 06:37:18 PM logging parameters
+11/21/2023 06:37:18 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 1,
+    "learning_rate": 0.01,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "focalDiceLoss",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/21/2023 06:37:18 PM starting training
+11/21/2023 06:40:08 PM 
+
+#################### New Run ####################
+11/21/2023 06:40:08 PM PreRun: Creating required directories
+11/21/2023 06:40:08 PM PreRun: Generating experiment config file
+11/21/2023 06:40:08 PM Using cuda device
+11/21/2023 06:40:08 PM configuring data loaders
+11/21/2023 06:42:44 PM xFormers not available
+11/21/2023 06:42:44 PM xFormers not available
+11/21/2023 06:42:44 PM using SwiGLU layer as FFN
+11/21/2023 06:47:36 PM configuring model - UNET 3+ Short
+11/21/2023 06:47:36 PM saving model summary at Outputs/experiment_11-21_18.40.08/modelSummary.txt
+11/21/2023 06:47:41 PM logging parameters
+11/21/2023 06:47:41 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 1,
+    "learning_rate": 0.01,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "focalDiceLoss",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/21/2023 06:47:41 PM starting training
+11/23/2023 04:08:36 PM 
+
+#################### New Run ####################
+11/23/2023 04:08:39 PM PreRun: Creating required directories
+11/23/2023 04:08:39 PM PreRun: Generating experiment config file
+11/23/2023 04:08:40 PM Using cuda device
+11/23/2023 04:08:40 PM configuring data loaders
+11/23/2023 04:11:12 PM xFormers not available
+11/23/2023 04:11:12 PM xFormers not available
+11/23/2023 04:11:12 PM using SwiGLU layer as FFN
+11/23/2023 04:14:39 PM configuring model - UNET 3+
+11/23/2023 04:14:39 PM saving model summary at Outputs/experiment_11-23_16.08.39/modelSummary.txt
+11/23/2023 04:14:43 PM logging parameters
+11/23/2023 04:14:43 PM {
+    "model": "UNet_3Plus",
+    "epochs": 1,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "focalDiceLoss",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/23/2023 04:14:43 PM starting training
+11/23/2023 04:21:03 PM 
+
+#################### New Run ####################
+11/23/2023 04:21:05 PM PreRun: Creating required directories
+11/23/2023 04:21:05 PM PreRun: Generating experiment config file
+11/23/2023 04:21:06 PM Using cuda device
+11/23/2023 04:21:06 PM configuring data loaders
+11/23/2023 04:23:32 PM xFormers not available
+11/23/2023 04:23:32 PM xFormers not available
+11/23/2023 04:23:32 PM using SwiGLU layer as FFN
+11/23/2023 04:27:12 PM configuring model - UNET 3+
+11/23/2023 04:27:13 PM saving model summary at Outputs/experiment_11-23_16.21.05/modelSummary.txt
+11/23/2023 04:27:23 PM logging parameters
+11/23/2023 04:27:23 PM {
+    "model": "UNet_3Plus",
+    "epochs": 1,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "focalDiceLoss",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/23/2023 04:27:23 PM starting training
+11/23/2023 05:14:38 PM saving model at Outputs/experiment_11-23_16.21.05/model/best_model_0.pth
+11/23/2023 05:14:38 PM loading model for testing from Outputs/experiment_11-23_16.21.05/model/best_model.pth
+11/23/2023 05:14:38 PM Testing...
+11/23/2023 05:14:39 PM Outputting label
+11/23/2023 05:14:39 PM Outputting label
+11/23/2023 05:14:39 PM Outputting label
+11/23/2023 05:14:39 PM saving images
+11/23/2023 05:14:39 PM Outputting label
+11/23/2023 05:14:39 PM saving images
+11/23/2023 05:14:40 PM Outputting label
+11/23/2023 05:14:40 PM saving images
+11/23/2023 05:14:40 PM Outputting label
+11/23/2023 05:14:40 PM saving images
+11/23/2023 05:14:41 PM Outputting label
+11/23/2023 05:14:41 PM saving images
+11/23/2023 05:14:41 PM Outputting label
+11/23/2023 05:14:41 PM saving images
+11/23/2023 05:14:42 PM Outputting label
+11/23/2023 05:14:42 PM saving images
+11/23/2023 05:14:42 PM Outputting label
+11/23/2023 05:14:42 PM saving images
+11/23/2023 05:14:43 PM Outputting label
+11/23/2023 05:14:43 PM saving images
+11/23/2023 05:14:43 PM saving images
+11/23/2023 05:14:43 PM Outputting label
+11/23/2023 05:14:43 PM Outputting label
+11/23/2023 05:14:43 PM saving images
+11/23/2023 05:14:44 PM saving images
+11/23/2023 05:14:44 PM Outputting label
+11/23/2023 05:14:44 PM saving images
+11/23/2023 05:14:45 PM saving images
+11/23/2023 05:14:45 PM Saving Training Stats at Outputs/experiment_11-23_16.21.05/loss_log.txt
+11/23/2023 05:14:45 PM Experiment took 0.9 hours
+11/23/2023 05:14:45 PM generting loss and accuracy plot at Outputs/experiment_11-23_16.21.05/loss_plot.png
+11/23/2023 05:14:46 PM Experiment End
+11/24/2023 01:33:06 AM 
+
+#################### New Run ####################
+11/24/2023 01:33:09 AM PreRun: Creating required directories
+11/24/2023 01:33:09 AM PreRun: Generating experiment config file
+11/24/2023 01:33:09 AM Using cuda device
+11/24/2023 01:33:09 AM configuring data loaders
+11/24/2023 01:35:38 AM xFormers not available
+11/24/2023 01:35:38 AM xFormers not available
+11/24/2023 01:35:38 AM using SwiGLU layer as FFN
+11/24/2023 01:39:42 AM configuring model - UNET 3+
+11/24/2023 01:39:42 AM saving model summary at Outputs/experiment_11-24_01.33.09/modelSummary.txt
+11/24/2023 01:39:52 AM logging parameters
+11/24/2023 01:39:52 AM {
+    "model": "UNet_3Plus",
+    "epochs": 1,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "focalDiceLoss",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/24/2023 01:39:52 AM starting training
+11/24/2023 02:26:36 AM saving model at Outputs/experiment_11-24_01.33.09/model/best_model_0.pth
+11/24/2023 02:26:37 AM loading model for testing from Outputs/experiment_11-24_01.33.09/model/best_model.pth
+11/24/2023 02:26:37 AM Testing...
+11/24/2023 02:26:38 AM Outputting label
+11/24/2023 02:26:38 AM Outputting label
+11/24/2023 02:26:38 AM Outputting label
+11/24/2023 02:26:38 AM saving images
+11/24/2023 02:26:39 AM Outputting label
+11/24/2023 02:26:39 AM saving images
+11/24/2023 02:26:39 AM Outputting label
+11/24/2023 02:26:39 AM saving images
+11/24/2023 02:26:40 AM saving images
+11/24/2023 02:26:40 AM Outputting label
+11/24/2023 02:26:40 AM Outputting label
+11/24/2023 02:26:40 AM saving images
+11/24/2023 02:26:41 AM Outputting label
+11/24/2023 02:26:41 AM saving images
+11/24/2023 02:26:41 AM Outputting label
+11/24/2023 02:26:41 AM saving images
+11/24/2023 02:26:41 AM Outputting label
+11/24/2023 02:26:41 AM saving images
+11/24/2023 02:26:42 AM Outputting label
+11/24/2023 02:26:42 AM saving images
+11/24/2023 02:26:42 AM Outputting label
+11/24/2023 02:26:42 AM saving images
+11/24/2023 02:26:43 AM Outputting label
+11/24/2023 02:26:43 AM saving images
+11/24/2023 02:26:43 AM Outputting label
+11/24/2023 02:26:43 AM saving images
+11/24/2023 02:26:44 AM saving images
+11/24/2023 02:26:44 AM saving images
+11/24/2023 02:26:45 AM Saving Training Stats at Outputs/experiment_11-24_01.33.09/loss_log.txt
+11/24/2023 02:26:45 AM Experiment took 0.89 hours
+11/24/2023 02:26:45 AM generting loss and accuracy plot at Outputs/experiment_11-24_01.33.09/loss_plot.png
+11/24/2023 02:26:45 AM Experiment End
+11/24/2023 02:27:24 AM 
+
+#################### New Run ####################
+11/24/2023 02:27:27 AM PreRun: Creating required directories
+11/24/2023 02:27:27 AM PreRun: Generating experiment config file
+11/24/2023 02:27:28 AM Using cuda device
+11/24/2023 02:27:28 AM configuring data loaders
+11/24/2023 02:30:05 AM xFormers not available
+11/24/2023 02:30:05 AM xFormers not available
+11/24/2023 02:30:05 AM using SwiGLU layer as FFN
+11/24/2023 02:34:27 AM configuring model - UNET 3+
+11/24/2023 02:34:27 AM saving model summary at Outputs/experiment_11-24_02.27.27/modelSummary.txt
+11/24/2023 02:34:37 AM logging parameters
+11/24/2023 02:34:37 AM {
+    "model": "UNet_3Plus",
+    "epochs": 30,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "focalDiceLoss",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+11/24/2023 02:34:37 AM starting training
+11/24/2023 03:20:12 AM saving model at Outputs/experiment_11-24_02.27.27/model/best_model_0.pth
+11/24/2023 03:56:09 AM saving model at Outputs/experiment_11-24_02.27.27/model/best_model_1.pth
+11/24/2023 04:31:22 AM saving model at Outputs/experiment_11-24_02.27.27/model/best_model_2.pth
+11/24/2023 05:06:35 AM saving model at Outputs/experiment_11-24_02.27.27/model/best_model_3.pth
+11/24/2023 05:41:53 AM saving model at Outputs/experiment_11-24_02.27.27/model/best_model_4.pth
+11/24/2023 06:17:04 AM saving model at Outputs/experiment_11-24_02.27.27/model/best_model_5.pth
+11/24/2023 06:52:20 AM saving model at Outputs/experiment_11-24_02.27.27/model/best_model_6.pth
+11/24/2023 08:38:09 AM saving model at Outputs/experiment_11-24_02.27.27/model/best_model_9.pth
+11/24/2023 08:25:07 PM loading model for testing from Outputs/experiment_11-24_02.27.27/model/best_model.pth
+11/24/2023 08:25:07 PM Testing...
+11/24/2023 08:25:08 PM Outputting label
+11/24/2023 08:25:08 PM Outputting label
+11/24/2023 08:25:08 PM Outputting label
+11/24/2023 08:25:08 PM saving images
+11/24/2023 08:25:08 PM Outputting label
+11/24/2023 08:25:08 PM saving images
+11/24/2023 08:25:09 PM Outputting label
+11/24/2023 08:25:09 PM saving images
+11/24/2023 08:25:09 PM Outputting label
+11/24/2023 08:25:09 PM saving images
+11/24/2023 08:25:10 PM Outputting label
+11/24/2023 08:25:10 PM saving images
+11/24/2023 08:25:10 PM Outputting label
+11/24/2023 08:25:10 PM saving images
+11/24/2023 08:25:11 PM Outputting label
+11/24/2023 08:25:11 PM saving images
+11/24/2023 08:25:11 PM Outputting label
+11/24/2023 08:25:11 PM saving images
+11/24/2023 08:25:12 PM Outputting label
+11/24/2023 08:25:12 PM saving images
+11/24/2023 08:25:12 PM Outputting label
+11/24/2023 08:25:12 PM saving images
+11/24/2023 08:25:13 PM Outputting label
+11/24/2023 08:25:13 PM saving images
+11/24/2023 08:25:13 PM Outputting label
+11/24/2023 08:25:13 PM saving images
+11/24/2023 08:25:14 PM saving images
+11/24/2023 08:25:14 PM saving images
+11/24/2023 08:25:15 PM Saving Training Stats at Outputs/experiment_11-24_02.27.27/loss_log.txt
+11/24/2023 08:25:15 PM Experiment took 17.96 hours
+11/24/2023 08:25:15 PM generting loss and accuracy plot at Outputs/experiment_11-24_02.27.27/loss_plot.png
+11/24/2023 08:25:15 PM Experiment End
