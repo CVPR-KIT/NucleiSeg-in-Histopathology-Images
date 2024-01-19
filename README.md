@@ -51,23 +51,23 @@ The following structure should be followed for dataset directory configuration
     * pink for cytoplasmic components
 For more information refer the following [link](https://www.leicabiosystems.com/en-kr/knowledge-pathway/he-staining-overview-a-guide-to-best-practices/).
 * It is recommended to perform staining normalization before augmenatation. It can be done by using the [stainNormalization.py](auxilary/stainNormalization.py) file.
-    <pre><code>python auxilary/stainNormalization.py</code></pre>
+    <pre><code>python auxilary/stainNormalization.py --config config.sys</code></pre>
 
 
 ### Generate Metadata files of train and test images
 * After preparing the data, run the following code to generate metadata files for image training and testing sets.
-    <pre><code>python auxilary/dataValidity.py </code></pre>
+    <pre><code>python auxilary/dataValidity.py --config config.sys</code></pre>
 
 ## Augmentation
 1. First Step is to perform Sliding Augmentation
-    <pre><code>python slidingAug.py</code></pre>
+    <pre><code>python slidingAug.py --config config.sys</code></pre>
     It will create the folder "slidingAug" with sliding augmentations. The parameters can be changed in the [config.sys](config.sys) file.
-2. Perform other augmentations on the images created in the previous step.
-    <pre><code>python image_augmentation.py</code></pre>
+2. Perform Train and Validation split
+    <pre><code>python auxilary/trainValsplit.py --config config.sys</code></pre>
+    It will create the folder and files for Train, Validation from augmentated folder
+3. Perform other augmentations on the images created in the previous step.
+    <pre><code>python image_augmentation.py --config config.sys</code></pre>
     It will create augmentations on the slided images in a new folder named "augmentated". Parameters can be changed in [config.sys](config.sys) file.
-3. Create Validation and Test Set
-    <pre><code>python makeValidation.py</code></pre>
-    It will create the folder and files for Train, Validation from augmentated folder and organise data for testing(just copying them from base data folder).
 
 ## Train Model
 After checking the dataset information in the [config.sys](config.sys) file,
@@ -77,4 +77,4 @@ The parameters can be changed her as per requirement in the [config.sys](config.
 
 ## Inference / Testing
 For testing or inferencing images, make sure they are in the correct format and directory inforamtion is added correctly in the  [config.sys](config.sys) file.
-<pre><code>python train_test.py --expt_dir &lt;Outputs/experiment_dir&gt; --img_dir all</code></pre>
+<pre><code>python train_test.py --img_dir all --expt_dir &lt;Outputs/experiment_dir&gt; </code></pre>

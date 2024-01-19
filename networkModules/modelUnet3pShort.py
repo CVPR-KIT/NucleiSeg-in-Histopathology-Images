@@ -5,6 +5,8 @@ import torch.nn.functional as F
 from networkModules.conv_modules_unet3p import unetConv2, BlurPool2D, MaxBlurPool2d, MultiScaleAttentionBlock, EigenDecomposition, TopKFeatures, DropBlock
 from init_weights import init_weights
 from networkModules.DCA.dual_cross_attention import DCA
+from guided_filter_pytorch.guided_filter import ConvGuidedFilter, FastGuidedFilter
+
 '''
     UNet 3+
 '''
@@ -37,6 +39,15 @@ class UNet_3PlusShort(nn.Module):
         channel_att=True,
         spatial_head_dim=[4, 4, 4, 4],
         channel_head_dim=[1, 1, 1, 1],
+
+        # Guided filter
+        if config["guidedFilter"]:
+            self.guildedFilterFlag = True
+        else:
+            self.guildedFilterFlag = False
+            
+        #self.guided_filter_module = ConvGuidedFilter(radius=2)
+        self.guided_filter_module = FastGuidedFilter(r=2, eps=1e-2)
 
         # Drop out or drop block
         self.dropoutFlag = False
@@ -267,7 +278,10 @@ class UNet_3PlusShort(nn.Module):
     def setdropblockFlag(self, flag):
         self.dropblockFlag = flag
 
-    def forward(self, inputs):
+    def forward(self, input):
+
+        inputs, label = input
+
         ## -------------Encoder-------------
         h1 = self.conv1(inputs)  # h1->320*320*64
 
@@ -388,4 +402,8 @@ class UNet_3PlusShort(nn.Module):
 
 
         d1 = self.outconv1(hd1)  # d1->320*320*n_classes
+
+        # Guided filter
+        if self.guildedFilterFlag:
+            d1 = self.guided_filter_module(label, d1, label)
         return torch.sigmoid(d1)

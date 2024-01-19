@@ -128,7 +128,8 @@ def run_epoch(model, data_loader, criterion, optimizer, epoch, device, mode, con
         #print('images infos',images)
         #print('images shape:'+str(images.shape[2])+":"+str(images.shape[3]))
         #print(images.max(),images.min())
-        pred = model(images.to(device))
+        input = (images.to(device), label.to(device))
+        pred = model(input)
 
         #####
         # boundary as a class or not
@@ -303,6 +304,7 @@ def main():
     val_dataset = MonuSegValDataSet(config["valDataset"], config)
     val_data = DataLoader(val_dataset,batch_size=1,num_workers=4)
 
+
     
     # Configuring Model
     if config["model_type"] == "UNet_3Plus":
@@ -342,9 +344,11 @@ def main():
     logging.info(f'saving model summary at {config["expt_dir"]+"modelSummary.txt"}')
     if config["input_img_type"] == "rgb":
         # skip
-        saveTorchSummary(model, input_size=(3, 256, 256), path=config["expt_dir"]+"modelSummary.txt")
+        if config["torchsummary"]:
+            saveTorchSummary(model, input_size=(3, 256, 256), path=config["expt_dir"]+"modelSummary.txt")
     else:
-        saveTorchSummary(model, input_size=(1, 256, 256), path=config["expt_dir"]+"modelSummary.txt")
+        if config["torchsummary"]:
+            saveTorchSummary(model, input_size=(1, 256, 256), path=config["expt_dir"]+"modelSummary.txt")
     # optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate)
     
 
@@ -411,7 +415,6 @@ def main():
     else:
         scheduler = None
           
-
     if config["lookahead"]:
         optimizer = Lookahead(optimizer, k=config["lookahead_k"], alpha=config["lookahead_alpha"])
 
@@ -524,8 +527,9 @@ def main():
     createDir([config["expt_dir"]+"testResults/"])
     pgbar = enumerate(tqdm(test_data))
     #val_confusion_matrix = np.zeros((config.num_classes, config.num_classes))
-    for batch_idx, (images,label) in pgbar:        
-            pred = model(images.to(device))
+    for batch_idx, (images,label) in pgbar:    
+            input = (images.to(device), label.to(device))    
+            pred = model(input)
 
             gt = label.to(device)
 

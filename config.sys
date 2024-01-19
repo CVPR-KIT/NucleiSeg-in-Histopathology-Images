@@ -2,7 +2,7 @@ log = "log/"
 
 [Debug]
 debug = "False"                                 # Debug Mode - True or False: Radically reduces the dataset size for faster training
-debugDilution = 20                            # Debug Dilution - 1/nth of the dataset will be used for training
+debugDilution = 200                            # Debug Dilution - 1/nth of the dataset will be used for training
 wandb = "True"                                 # Wandb Logging
 
 [Stain Normalization]
@@ -12,8 +12,8 @@ targetImagePath = "Dataset/MonuSegData/Training/TissueImages/TCGA-A7-A13F-01Z-00
 
 [Image Augmentation]
 to_be_aug = "Dataset/MonuSegData/"     # Data That is to be augmenated  - shouls contain Test and Training directories
+split_dir = "Dataset/MonuSegData/split2/"                      # Output for Splitting
 out_dir = "Dataset/MonuSegData/slidingAugNormal/"         # Output for Sliding Window Augmentation
-augmented_dir = "Dataset/MonuSegData/augmentated/"              # Output for Augmentation
 
 tileHeight = 800                               # Sliding Window height
 tileWidth = 800                                # Sliding Window Width
@@ -23,19 +23,20 @@ finalTileHeight = 256                           # Final Height of augmenated ima
 finalTileWidth = 256                            # Final Width of augmenated image
 
 [Train-Val split]
-splitRatio = 0.9                                # 0.8 -> 80% training 20% validation
+splitRatio = 0.7                                # 0.8 -> 80% training 20% validation
 
 [Training]
-trainDataset = "Dataset/trainNormal/"                    # Images to be during Training
-valDataset = "Dataset/valNormal/"                        # Images to used during Validation
+trainDataset = "Dataset/trainNormal3/"                    # Images to be during Training
+valDataset = "Dataset/valNormal3/"                        # Images to used during Validation
 testDataset = "Dataset/testNormal/"                      # Images to used during Testing
 
 resumeModel = "model/best_model.pth"            # Model to used during re-training
 
-sampleImages = "True"                           # Sample Images during Training
+torchsummary = "True"                          # Torch Summary
+sampleImages = "False"                           # Sample Images during Training
 dinoModelType = "giga"                         # DINO Model Type - small, large, giga
 reUseFeatures = "True"                         # Use existing features - Should re-train features if dataset is changed
-batchVisualization = "False"                   # Sampling Visualization
+batchVisualization = "True"                   # Sampling Visualization
 trainingPhase = "high-density"                  # Training Phase - high-density, low-density
 
 [Class Config]
@@ -43,13 +44,13 @@ class1 = "0, 0, 0"                          #black
 class2 = "255, 255, 255"                         #white
 
 [Model]
-model_type = "UNet_3Plus"                           # Model Avl: UNet ,UNet_3Plus, EluNet, UNet_3PlusShort
+model_type = "UNet_3PlusShort"                           # Model Avl: UNet ,UNet_3Plus, EluNet, UNet_3PlusShort
 
 [Parameters]
 input_img_type = "rgb"                          # Input Image Type: rgb, gray
 kernel_size = 3
 use_maxblurpool = "False"                       # Use MaxBlurPool
-epochs = 30
+epochs = 50
 batch_size = 16
 learning_rate = 0.000001                         # can be set to "auto" for finding the best learning rate or set to 0.00001
 lr_decay = "False"                             # Learning Rate Decay  - True or False
@@ -60,7 +61,7 @@ resume = "False"                                # Resume Training
 resume_epoch = 0                                # Resume Training from epoch
 channel = 32                                    # Default: 16 Can be set to 64 or other
 attention = "False"                             # Model 1 only
-loss = "focalDiceLoss"                           # Losses available: bce, jaccard, focal, pwcel, dice, weighteddice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF, focalDiceLoss, wassersteinLoss, focalDiceHDLoss
+loss = "weighteddice"                           # Losses available: bce, jaccard, focal, pwcel, dice, weighteddice, unet3+loss, improvedLoss, ClassRatioLoss, RBAF, focalDiceLoss, wassersteinLoss, focalDiceHDLoss
 dropout = 0.3                                   # Dropout rate
 dropoutLOC = "std"                              # Dropout Location: std, after (after 20 iterations)
 dilation = 1                                    # For Dilated convolution.
@@ -72,10 +73,12 @@ multiScaleAttention = "False"                   # Spatial, Channel and Edge Atte
 eigen_decomposition = "False"                  # Eigen Decomposition
 top_k_features = 0                        # Top K Features - 0- False, n-Top N values
 
-dropBlock = "False"                             # DropBlock, automatically sets dropout to 0 and proceeds with dropblock
+dropBlock = "True"                             # DropBlock, automatically sets dropout to 0 and proceeds with dropblock
 dropBlockProb = 0.8                             # DropBlock Probability
 dropBlockSize = 5                            # DropBlock Size
 
 lookahead = "False"                             # Lookahead
 lookahead_k = 5                                 # Lookahead k
 lookahead_alpha = 0.8                           # Lookahead alpha
+
+guidedFilter = "True"                         # Guilded Filter

@@ -40,6 +40,8 @@ class DinoPoweredSampler(Sampler):
 
         self.training_phase = training_phase
 
+        self.count_insufficientBatch = 0
+
 
         self.image_patches = images
         if config["reUseFeatures"]:
@@ -79,29 +81,6 @@ class DinoPoweredSampler(Sampler):
 
         print("Sampling Initialization Complete") 
 
-
-    '''def __iter__0(self):
-        # You can reuse your existing sampleImages function here
-        # but modify it to return indices instead of image patches.
-        #batch_indices = self.sampleImages()
-        #return iter(batch_indices)
-        num_images = len(self.image_patches)
-        print("\nMaking Batches")
-        
-        for _ in tqdm(range(num_images // self.batch_size)):
-            batch_indices = self.sampleImages()
-            self.all_indices.update(batch_indices)
-        
-        # Handle remaining images if any
-        remaining_images = num_images % self.batch_size
-        if remaining_images > 0:
-            remaining_indices = self.sampleImages()[:remaining_images]
-            self.all_indices.update(remaining_indices)
-        
-        print("all_indices: ", len(self.all_indices))
-        return iter(self.all_indices)'''
-    
-
     def plot_batches(self, all_indices, total_batches):
 
         #plotted indices
@@ -130,9 +109,6 @@ class DinoPoweredSampler(Sampler):
             # Save the plot with the batch number
             plt.savefig(f"Outputs/Batch_Plots/tsne_batch_{batch_num + 1}.png")
             plt.close()
-
-
-
 
 
     def __iter__(self):
@@ -179,6 +155,7 @@ class DinoPoweredSampler(Sampler):
             return len(self.image_patches) // self.debugDilution
         else:
             num_images = len(self.image_patches)
+            return 820
             return (num_images // self.batch_size) + int(num_images % self.batch_size > 0)
     
     
@@ -205,47 +182,42 @@ class DinoPoweredSampler(Sampler):
 
         return np.array(features)
 
-    '''def sample_from_cluster0(self, cluster_indices, k=1):
-        centroid = np.mean(self.image_patches_tsne[cluster_indices], axis=0)
-        distances = np.linalg.norm(self.image_patches_tsne[cluster_indices] - centroid, axis=1)
+    def save_batches(self, filename):
+        all_batches = []
+        total_batches = self.__len__()
+        f_writer = open(filename, 'w')
 
-        center_indices = cluster_indices[np.argsort(distances)[:k]]
-        boundary_indices = cluster_indices[np.argsort(distances)[-k:]]
+        # Generate all batches
+        for _ in range(total_batches):
+            batch_indices = self.sampleImages()
+            all_batches.append(batch_indices)
+            f_writer.write(str(batch_indices) + '\n')
+            if not len(batch_indices):
+                break 
 
-        return center_indices, boundary_indices'''
-    
-    '''def sample_from_cluster1(self, cluster_indices, k=1, used_indices=None):
-        if used_indices is None:
-            used_indices = []
-    
-        # Compute centroid and distances
-        centroid = np.mean(self.image_patches_tsne[cluster_indices], axis=0)
-        distances = np.linalg.norm(self.image_patches_tsne[cluster_indices] - centroid, axis=1)
 
-        # Find center indices, excluding used ones
-        sorted_indices = np.argsort(distances)
-        center_indices = [idx for idx in cluster_indices[sorted_indices] if idx not in used_indices][:k]
 
-        # Find boundary indices, excluding used ones
-        boundary_indices = [idx for idx in cluster_indices[sorted_indices[::-1]] if idx not in used_indices][:k]
 
-        return center_indices, boundary_indices'''
-    
     def sample_from_cluster(self, cluster_indices, k=1, used_indices=None):
         if used_indices is None:
             used_indices = []
 
-        centroid = np.mean(self.image_patches_tsne[cluster_indices], axis=0)
-        distances = np.linalg.norm(self.image_patches_tsne[cluster_indices] - centroid, axis=1)
+        # Extract the t-SNE coordinates for the current cluster
+        cluster_tsne = self.image_patches_tsne[cluster_indices]
+
+        # Calculate the centroid of the current cluster
+        centroid = np.mean(cluster_tsne, axis=0)
+        # Calculate the distances from each point in the cluster to the centroid
+        distances = np.linalg.norm(cluster_tsne - centroid, axis=1)
 
         # Determine the maximum distance as the "radius" of the cluster
         max_distance = np.max(distances)
-        # Set the threshold as a fraction of the maximum distance (e.g., half)
+        # Set the threshold as a fraction of the maximum distance
         threshold_distance = max_distance / 2
 
-        # Classify points based on their distance to the centroid
-        central_indices = [idx for idx in cluster_indices if distances[idx] <= threshold_distance and idx not in used_indices]
-        boundary_indices = [idx for idx in cluster_indices if distances[idx] > threshold_distance and idx not in used_indices]
+        # Classify points as central or boundary
+        central_indices = [cluster_indices[i] for i in range(len(cluster_indices)) if distances[i] <= threshold_distance and cluster_indices[i] not in used_indices]
+        boundary_indices = [cluster_indices[i] for i in range(len(cluster_indices)) if distances[i] > threshold_distance and cluster_indices[i] not in used_indices]
 
         return central_indices[:k], boundary_indices[:k]
     
@@ -303,95 +275,41 @@ class DinoPoweredSampler(Sampler):
             
         return clusters
 
-    '''def sampleImages0(self):
-        # Get unique clusters excluding noise
-        valid_clusters = [c for c in np.unique(self.clusters) if c >= 0]
-
-        # Determine how many samples to take from each cluster
-        samples_per_cluster = self.batch_size // (len(valid_clusters))
-        if samples_per_cluster == 0:
-            samples_per_cluster = 1
-
-        batch_indices = []
-        for cluster in valid_clusters:
-            cluster_indices = np.where(self.clusters == cluster)[0]
-            center_indices, boundary_indices = self.sample_from_cluster(cluster_indices=cluster_indices, k=samples_per_cluster)
-
-            batch_indices.extend(center_indices)
-            batch_indices.extend(boundary_indices)
-
-    
-        # If the batch is not full then fill it with additional samples
-        while len(batch_indices) < self.batch_size:
-            additional_cluster = np.random.choice(valid_clusters)
-            additional_indices = np.where(self.clusters == additional_cluster)[0]
-            center_indices, _ = self.sample_from_cluster(additional_indices, k=1)
-            batch_indices.extend(center_indices)
-
-        #np.random.shuffle(batch_indices)
-        print(batch_indices[:self.batch_size])
-        print(len(batch_indices))
-
-        # return batch indices
-        return batch_indices[:self.batch_size]'''
-    
-    
-    '''def sampleImages1(self):
-        valid_clusters = [c for c in np.unique(self.clusters) if c >= 0]  # Excluding noise (-1)
-        np.random.shuffle(valid_clusters)  # Shuffle clusters for randomness
-
-        # Pre-select center and boundary indices for each cluster, exclude used indices
-        preselected_indices = {cluster: self.sample_from_cluster(cluster_indices=np.where(self.clusters == cluster)[0], k=1, used_indices=self.all_indices)
-                           for cluster in valid_clusters}
-
-        batch_indices = []
-        for cluster in valid_clusters:
-            if len(batch_indices) >= self.batch_size:
-                break  # Batch is full
-
-            # Add new, unused indices to the batch
-            center_indices, boundary_indices = preselected_indices[cluster]
-            new_indices = [idx for idx in center_indices + boundary_indices if idx not in self.all_indices]
-
-            # Append new indices and update all_indices
-            batch_indices.extend(new_indices)
-            self.all_indices.update(new_indices)  # Update all_indices
-
-        # Fill the rest of the batch if needed
-        if len(batch_indices) < self.batch_size:
-            all_unused_indices = [idx for idx in range(len(self.image_patches)) if idx not in self.all_indices]
-            np.random.shuffle(all_unused_indices)
-            batch_indices.extend(all_unused_indices[:self.batch_size - len(batch_indices)])
-
-        #print(batch_indices[:self.batch_size])
-        #print(len(batch_indices))
-
-        return batch_indices[:self.batch_size]'''
 
     def sampleImages(self):
         valid_clusters = [c for c in np.unique(self.clusters) if c >= 0]
         np.random.shuffle(valid_clusters)
 
         batch_indices = []
-        for cluster in valid_clusters:
-            if len(batch_indices) >= self.batch_size:
-                break
+        loopCount = 0
+        while len(batch_indices) < self.batch_size:
+            new_indices = []
+        
+            for cluster in valid_clusters:
+                if len(batch_indices) >= self.batch_size:
+                    break
 
-            center_indices, boundary_indices = self.sample_from_cluster(cluster_indices=np.where(self.clusters == cluster)[0], k=1, used_indices=self.all_indices)
+                center_indices, boundary_indices = self.sample_from_cluster(cluster_indices=np.where(self.clusters == cluster)[0], k=1, used_indices=self.all_indices)
 
-            # Select indices based on the current training phase
-            if self.training_phase == 'high-density':  # high-density phase
-                new_indices = [idx for idx in center_indices if idx not in self.all_indices]
-            else:  # low-density phase
-                new_indices = [idx for idx in boundary_indices if idx not in self.all_indices]
+                # Select indices based on the current training phase
+                if self.training_phase == 'high-density':
+                    new_indices = [idx for idx in center_indices if idx not in self.all_indices]
+                else:  # low-density phase
+                    new_indices = [idx for idx in boundary_indices if idx not in self.all_indices]
 
-            batch_indices.extend(new_indices)
-            self.all_indices.update(new_indices)
+                batch_indices.extend(new_indices)
+                self.all_indices.update(new_indices)
 
-        # Fill the rest of the batch if needed
-        if len(batch_indices) < self.batch_size:
-            all_unused_indices = [idx for idx in range(len(self.image_patches)) if idx not in self.all_indices]
-            np.random.shuffle(all_unused_indices)
-            batch_indices.extend(all_unused_indices[:self.batch_size - len(batch_indices)])
+            if len(new_indices) == 0:
+                loopCount += 1
+
+            if loopCount > 10:
+                # Handle the case where new indices are not found
+                # Repeat some of the already selected indices to fill the batch
+                remaining_slots = self.batch_size - len(batch_indices)
+                repeat_indices = batch_indices[:remaining_slots]
+                batch_indices.extend(repeat_indices)
+                break  # Exit the while loop as the batch is now full
+        #print("Batch Indices: ", batch_indices)
 
         return batch_indices[:self.batch_size]

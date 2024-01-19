@@ -7,6 +7,13 @@ from tqdm import tqdm
 import numpy as np
 from auxilary.simplex import Simplex_CLASS as simplex 
 import math
+import argparse
+
+def arg_init():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config', type=str, default='none', help='Path to the config file.')
+    return parser.parse_args()
+
 
 # function for flipping image
 def flip_lr(img, prob):
@@ -248,30 +255,24 @@ def noisy_image(img, alpha, random_state=None):
     image_array = (image_array * 255).astype(np.uint8)
     return image_array
 
-if __name__ == '__main__':
-    
-    # read config file
-    config = readConfig()
-    log_dir = config["log"]
-    f = open(log_dir + "augmentationLog.txt", "w")
-
-    # GET CONFIGURATION DETAILS
-    augment_num_per_img = config["augmentPerImage"]
-    tile_width = config["finalTileWidth"]
-    tile_height = config["finalTileHeight"]
-    slidingDir = config["out_dir"]
-
+def augmentImgaes(indir, outdir, augment_num_per_img, tile_width, tile_height):
+    labeled_imgs = []
+    raw_imgs = []
+    for imPath in os.listdir(indir):
+        if imPath.endswith("_label.png"):
+            labeled_imgs.append(os.path.join(indir, imPath))
+        else:
+            raw_imgs.append(os.path.join(indir, imPath))
     # Read images and corresponding labels
-    labeled_imgs = natsorted(glob.glob(f'{slidingDir}labels/*'))
-    raw_imgs = natsorted(glob.glob(f'{slidingDir}images/*'))
+    labeled_imgs = natsorted(labeled_imgs)
+    raw_imgs = natsorted(raw_imgs)
 
     # assert len of images and labels are equal else raise error
     assert len(labeled_imgs) == len(raw_imgs), "Number of images and labels are not equal"
 
     logging.basicConfig(level=logging.DEBUG)
 
-    base_dir = config["augmented_dir"]
-    createDir([base_dir])
+    base_dir = outdir
 
 
     # print stats
@@ -280,7 +281,7 @@ if __name__ == '__main__':
     logging.debug("Number of augmentations per image: " + str(augment_num_per_img))
     logging.debug("Tile width: " + str(tile_width))
     logging.debug("Tile height: " + str(tile_height))
-    logging.debug("Sliding direction: " + str(slidingDir))
+    logging.debug("Sliding direction: " + str(indir))
     logging.debug("Augmented directory: " + str(base_dir))
 
     # run once flag
@@ -356,4 +357,43 @@ if __name__ == '__main__':
             f.write(new_img_name+"\n"+new_label_name+"\n")
             count += 1
 
-    f.close()
+
+
+
+
+
+if __name__ == '__main__':
+    
+    args = arg_init()
+
+    if args.config == "none":
+        print("Please provide a config file")
+        exit()
+
+    config = readConfig(args.config)
+
+    log_dir = config["log"]
+    f = open(log_dir + "logs-pre-training.txt", "a")
+    print("Performing Photometric and Geometric Augmentations")
+    f.write("Performing Photometric and Geometric Augmentations\n")
+
+    # GET CONFIGURATION DETAILS
+    augment_num_per_img = config["augmentPerImage"]
+    tile_width = config["finalTileWidth"]
+    tile_height = config["finalTileHeight"]
+    slidingDir = config["out_dir"]
+
+    trainingSlided = config["out_dir"]+"training/"
+    validationSlided = config["out_dir"]+"validation/"
+    trainDataset = config["trainDataset"]
+    valDataset = config["valDataset"]
+
+    createDir([trainDataset, valDataset])
+
+    augmentImgaes(trainingSlided, trainDataset, augment_num_per_img, tile_width, tile_height)
+    augmentImgaes(validationSlided, valDataset, augment_num_per_img=int(augment_num_per_img//1.3), tile_width=tile_width, tile_height=tile_height)
+
+    print("Augmentation Completed")
+    f.write("Augmentation Completed\n")
+    f.close()   
+    

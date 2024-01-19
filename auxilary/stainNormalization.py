@@ -8,8 +8,15 @@ from natsort import natsorted
 import os
 import sys
 import logging
+import argparse
 
 from utils import createDir, readConfig
+
+
+def arg_init():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config', type=str, default='none', help='Path to the config file.')
+    return parser.parse_args()
 
 
 def machenkoNormal(img, target):
@@ -46,7 +53,15 @@ if __name__=='__main__':
     '''
 
     # read config
-    config = readConfig()
+    args = arg_init()
+    config = args.config
+
+    if config == 'none':
+        print("Please provide the path to the config file")
+        exit()
+
+    config = readConfig(config)
+    
     pathDataset = config["to_be_aug"]
     targetPath = config["targetImagePath"]
     newPath = 'Dataset/MonuSegData/Test/TissueImagesNormalized/'

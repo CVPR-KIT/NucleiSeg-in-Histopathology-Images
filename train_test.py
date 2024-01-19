@@ -17,6 +17,7 @@ from torchmetrics import JaccardIndex
 import json
 import torchvision
 import matplotlib.pyplot as plt
+from auxilary.lossFunctions import weightedDiceLoss
 
 import logging
 
@@ -44,6 +45,16 @@ def make_preRunNecessities(expt_dir):
 
     return config if config is not None else print("PreRun: Error reading config file")
 
+def calculate_class_weights(targets, num_classes):
+        # Calculate class weights based on target labels
+        class_counts = torch.bincount(targets.flatten(), minlength=num_classes)
+        total_samples = targets.numel()
+        class_weights = total_samples / (num_classes * class_counts.float())
+        '''print("class weights:", class_weights)
+        print("class counts:", class_counts)
+        print("total samples:", total_samples)'''
+        return class_weights
+
 
     
 def runInference(data, model, device, config, img_type):
@@ -53,9 +64,13 @@ def runInference(data, model, device, config, img_type):
     dices = []
     mious = []
     aji = []
+    losses = []
+
+    criterion = weightedDiceLoss()
 
     for i,(images,y) in enumerate(tqdm(data)):
-        pred = model(images.to(device))
+        input = (images.to(device), y.to(device))
+        pred = model(input)
 
         #print(pred.shape)
 
@@ -67,14 +82,23 @@ def runInference(data, model, device, config, img_type):
             
         #y = y.reshape((1,wid,hit))
         
+        class_weights = calculate_class_weights(y, 2)
+        criterion = weightedDiceLoss()
+        criterion.setWeights(class_weights.to(device))
+        
+        y = y.type(torch.float32).to(device)
 
         _, rslt = torch.max(pred,1)
 
         rslt = rslt.squeeze().type(torch.uint8)
         y = y.reshape((wid,hit))
 
+        loss = 1- criterion(pred, y)
+        losses.append(loss.item())
+
         #print(f"rslt: {rslt.shape}")
         #print(f"y: {y.shape}")
+        y = y.type(torch.uint8).cpu()
 
         test_acc = torch.sum(rslt.cpu() == y)
 
@@ -115,7 +139,7 @@ def runInference(data, model, device, config, img_type):
         rslt = rslt.squeeze()
         rslt_color = result_recolor(rslt.cpu().detach().numpy())
         cv2.imwrite(config['expt_dir']+'inference/'+img_type+'/'+str(i)+'_'+str(test_acc.item()/(wid*hit))[:5]+'_'+'predict.png',rslt_color)
-    return np.average(accList), np.average(mAPs), np.average(dices), np.average(mious), np.average(aji)
+    return np.average(accList), np.average(mAPs), np.average(dices), np.average(mious), np.average(aji), np.average(losses)
 
 
 '''
@@ -200,25 +224,30 @@ def main():
             logging.info("Loading dataset")
             dataset = MonuSegOnlyTestDataSet(path, config)
             data = DataLoader(dataset,batch_size=1)
-            acc, mAP, mdice, miou, aji = runInference(data, model, device, config, img_type)
+            acc, mAP, mdice, miou, aji, meanloss = runInference(data, model, device, config, img_type)
             f.write(f"{args.expt_dir},{img_type},{np.average(acc)} \n")
             print(f"Testing Accuracy -{args.expt_dir}-{img_type}- {acc} \n")
             print(f"Testing mAP -{args.expt_dir}-{img_type}- {mAP} \n")
             print(f"Testing Dice -{args.expt_dir}-{img_type}- {mdice} \n")
             print(f"Testing mIoU -{args.expt_dir}-{img_type}- {miou} \n")
+            print(f"Testing mean Loss -{args.expt_dir}-{img_type}- {meanloss} \n")
            # print(f"Testing AJI -{args.expt_dir}-{img_type}- {aji} \n")
 
     else:
         # Load Dataset
-        logging.info("Loading dataset")
-        dataset = MonuSegOnlyTestDataSet(args.img_dir)
-        data = DataLoader(dataset,batch_size=1)
-        acc, mAP, mdice, miou, aji = runInference(data, model, device, config, args)
-        f.write(f"{args.expt_dir},{args.img_type},{np.average(acc)} \n")
-        print(f"Testing Accuracy -{args.expt_dir}-{args.img_type}- {np.average(acc)} \n")
-        print(f"Testing mAP -{args.expt_dir}-{img_type}- {mAP} \n")
-        print(f"Testing Dice -{args.expt_dir}-{img_type}- {mdice} \n")
-        print(f"Testing mIoU -{args.expt_dir}-{img_type}- {miou} \n")
+        paths = [(args.img_dir, 'testData')]
+        for path, img_type in paths:
+            # Load Dataset
+            logging.info("Loading dataset")
+            dataset = MonuSegOnlyTestDataSet(path, config)
+            data = DataLoader(dataset,batch_size=1)
+            acc, mAP, mdice, miou, aji, meanloss = runInference(data, model, device, config, img_type)
+            f.write(f"{args.expt_dir},{img_type},{np.average(acc)} \n")
+            print(f"Testing Accuracy -{args.expt_dir}-{img_type}- {acc} \n")
+            print(f"Testing mAP -{args.expt_dir}-{img_type}- {mAP} \n")
+            print(f"Testing Dice -{args.expt_dir}-{img_type}- {mdice} \n")
+            print(f"Testing mIoU -{args.expt_dir}-{img_type}- {miou} \n")
+            print(f"Testing mean Loss -{args.expt_dir}-{img_type}- {meanloss} \n")
         #print(f"Testing AJI -{args.expt_dir}-{img_type}- {aji} \n")
 
     

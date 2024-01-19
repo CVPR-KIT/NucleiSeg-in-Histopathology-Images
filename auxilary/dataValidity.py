@@ -5,10 +5,24 @@ from utils import readConfig
 from natsort import natsorted
 import logging
 import json
+import argparse
 
+
+def arg_init():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config', type=str, default='none', help='Path to the config file.')
+    return parser.parse_args()
 
 def getData(mode = "Training/"):
-    config = readConfig()
+    args = arg_init()
+    config = args.config
+
+    if config == 'none':
+        print("Please provide the path to the config file")
+        exit()
+
+    config = readConfig(config)
+    
     dataDir = config["to_be_aug"]
     logging.debug(f"Data Directory: {dataDir}")
     typeDir = os.path.join(dataDir, mode)

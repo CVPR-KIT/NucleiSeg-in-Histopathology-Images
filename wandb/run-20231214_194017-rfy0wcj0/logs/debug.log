@@ -1,0 +1,27 @@
+2023-12-14 19:40:17,208 INFO    MainThread:4722 [wandb_setup.py:_flush():76] Current SDK version is 0.15.8
+2023-12-14 19:40:17,208 INFO    MainThread:4722 [wandb_setup.py:_flush():76] Configure stats pid to 4722
+2023-12-14 19:40:17,208 INFO    MainThread:4722 [wandb_setup.py:_flush():76] Loading settings from /home/blue/.config/wandb/settings
+2023-12-14 19:40:17,208 INFO    MainThread:4722 [wandb_setup.py:_flush():76] Loading settings from /home/blue/projects/MoNuSeg/wandb/settings
+2023-12-14 19:40:17,208 INFO    MainThread:4722 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2023-12-14 19:40:17,208 INFO    MainThread:4722 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2023-12-14 19:40:17,208 INFO    MainThread:4722 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program': '/home/blue/projects/MoNuSeg/main.py'}
+2023-12-14 19:40:17,208 INFO    MainThread:4722 [wandb_init.py:_log_setup():507] Logging user logs to /home/blue/projects/MoNuSeg/wandb/run-20231214_194017-rfy0wcj0/logs/debug.log
+2023-12-14 19:40:17,209 INFO    MainThread:4722 [wandb_init.py:_log_setup():508] Logging internal logs to /home/blue/projects/MoNuSeg/wandb/run-20231214_194017-rfy0wcj0/logs/debug-internal.log
+2023-12-14 19:40:17,209 INFO    MainThread:4722 [wandb_init.py:init():547] calling init triggers
+2023-12-14 19:40:17,209 INFO    MainThread:4722 [wandb_init.py:init():554] wandb.init called with sweep_config: {}
+config: {'log': 'log/', 'debug': False, 'debugDilution': 20, 'wandb': True, 'normalization': 'reinhard', 'targetImagePath': 'Dataset/MonuSegData/Training/TissueImages/TCGA-A7-A13F-01Z-00-DX1.png', 'to_be_aug': 'Dataset/MonuSegData/', 'split_dir': 'Dataset/MonuSegData/split2/', 'out_dir': 'Dataset/MonuSegData/slidingAugNormal/', 'tileHeight': 800, 'tileWidth': 800, 'slidingSize': 50, 'augmentPerImage': 100, 'finalTileHeight': 256, 'finalTileWidth': 256, 'splitRatio': 0.7, 'trainDataset': 'Dataset/trainNormal3/', 'valDataset': 'Dataset/valNormal3/', 'testDataset': 'Dataset/testNormal/', 'resumeModel': 'model/best_model.pth', 'sampleImages': True, 'dinoModelType': 'giga', 'reUseFeatures': True, 'batchVisualization': True, 'trainingPhase': 'high-density', 'class1': [0, 0, 0], 'class2': [255, 255, 255], 'model_type': 'UNet_3PlusShort', 'input_img_type': 'rgb', 'kernel_size': 3, 'use_maxblurpool': False, 'epochs': 30, 'batch_size': 16, 'learning_rate': 1e-06, 'lr_decay': False, 'num_classes': 2, 'weight_path': None, 'activation': 'GLU', 'resume': False, 'resume_epoch': 0, 'channel': 32, 'attention': False, 'loss': 'weighteddice', 'dropout': 0.3, 'dropoutLOC': 'std', 'dilation': 1, 'l1_regularization': False, 'multiScaleAttention': False, 'eigen_decomposition': False, 'top_k_features': 0, 'dropBlock': False, 'dropBlockProb': 0.8, 'dropBlockSize': 5, 'lookahead': False, 'lookahead_k': 5, 'lookahead_alpha': 0.8}
+2023-12-14 19:40:17,209 INFO    MainThread:4722 [wandb_init.py:init():596] starting backend
+2023-12-14 19:40:17,209 INFO    MainThread:4722 [wandb_init.py:init():600] setting up manager
+2023-12-14 19:40:17,209 INFO    MainThread:4722 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2023-12-14 19:40:17,232 INFO    MainThread:4722 [wandb_init.py:init():606] backend started and connected
+2023-12-14 19:40:17,235 INFO    MainThread:4722 [wandb_init.py:init():697] updated telemetry
+2023-12-14 19:40:17,294 INFO    MainThread:4722 [wandb_init.py:init():730] communicating run to backend with 60.0 second timeout
+2023-12-14 19:40:17,867 INFO    MainThread:4722 [wandb_run.py:_on_init():2180] communicating current version
+2023-12-14 19:40:17,942 INFO    MainThread:4722 [wandb_run.py:_on_init():2189] got version response upgrade_message: "wandb version 0.16.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2023-12-14 19:40:17,942 INFO    MainThread:4722 [wandb_init.py:init():781] starting run threads in backend
+2023-12-14 19:40:18,185 INFO    MainThread:4722 [wandb_run.py:_console_start():2159] atexit reg
+2023-12-14 19:40:18,186 INFO    MainThread:4722 [wandb_run.py:_redirect():2014] redirect: wrap_raw
+2023-12-14 19:40:18,186 INFO    MainThread:4722 [wandb_run.py:_redirect():2079] Wrapping output streams.
+2023-12-14 19:40:18,186 INFO    MainThread:4722 [wandb_run.py:_redirect():2104] Redirects installed.
+2023-12-14 19:40:18,187 INFO    MainThread:4722 [wandb_init.py:init():822] run started, returning control to user process

@@ -8,6 +8,7 @@ import sys
 import matplotlib.pyplot as plt
 import logging
 from auxilary.utils import result_recolor, toGray, toGray4C, readConfig, normalize_image
+
 class MonuSegDataSet(Dataset):
     def __init__(self, img_dir, config = None):
         self.img_dir = img_dir
@@ -35,6 +36,7 @@ class MonuSegDataSet(Dataset):
         if self.debug:
             return len(os.listdir(self.img_dir))//self.debugDilution
         else:
+            #return 820
             return len(os.listdir(self.img_dir))//2
 
     def __getitem__(self, index):
@@ -122,13 +124,13 @@ class MonuSegValDataSet(Dataset):
     def __getitem__(self, index):
         try:
             if self.config["input_img_type"] == "rgb":
-                image = cv2.imread(os.path.join(self.img_dir,str(index+1)+'.png'))/255
+                image = cv2.imread(os.path.join(self.img_dir,str(index)+'.png'))/255
                 # Normalize image
                 #image = normalize_image(image)
             else:
-                image = cv2.imread(os.path.join(self.img_dir,str(index+1)+'.png'),cv2.IMREAD_GRAYSCALE)/255
+                image = cv2.imread(os.path.join(self.img_dir,str(index)+'.png'),cv2.IMREAD_GRAYSCALE)/255
         except TypeError:
-            print(os.path.join(self.img_dir,str(index+1)+'.png'))
+            print(os.path.join(self.img_dir,str(index)+'.png'))
 
         # set the width and height of the image
         self.wid = image.shape[0]
@@ -140,9 +142,9 @@ class MonuSegValDataSet(Dataset):
                 self.loggerFlag = False
             return self.__getitem__(random.randint(0,len(self)-1))
 
-        label = cv2.imread(os.path.join(self.img_dir,str(index+1)+'_label'+'.png'),cv2.IMREAD_GRAYSCALE)
+        label = cv2.imread(os.path.join(self.img_dir,str(index)+'_label'+'.png'),cv2.IMREAD_GRAYSCALE)
         if label is None:
-            print(os.path.join(self.img_dir,str(index+1)+'_label'+'.png'))
+            print(os.path.join(self.img_dir,str(index)+'_label'+'.png'))
 
         label[label==255] = 1
         label[label==0] = 0
@@ -268,7 +270,7 @@ class MonuSegOnlyTestDataSet(Dataset):
         self.hit = 512 # default value and is replaced later 
         logging.basicConfig(filename=self.config["log"] + "dataloader.log", filemode='w', 
                         level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-        self.len = 800
+        self.len = 480
         return 
     
     def __len__(self):
@@ -292,7 +294,7 @@ class MonuSegOnlyTestDataSet(Dataset):
         self.wid = image.shape[0]
         self.hit = image.shape[1]
 
-        #self.wid = self.hit = self.len
+        self.wid = self.hit = self.len
 
 
         

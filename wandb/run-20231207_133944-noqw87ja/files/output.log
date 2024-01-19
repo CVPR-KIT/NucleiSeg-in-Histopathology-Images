@@ -1,0 +1,102 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+loading Images from path: Dataset/trainNormal2/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100%|██████████| 63360/63360 [02:57<00:00, 357.89it/s]
+Using cache found in /home/blue/.cache/torch/hub/facebookresearch_dinov2_main
+Loading Features
+Applying DBSCAN
+Unique clusters: [-1  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22
+ 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37]
+Directory Outputs/Plots/ already exists
+Sampling Initialization Complete

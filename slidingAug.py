@@ -4,6 +4,7 @@ from tqdm import tqdm
 import numpy as np
 from natsort import natsorted
 import sys
+import argparse
 
 from auxilary.utils import *
 
@@ -12,56 +13,68 @@ Run this file for Sliding image augmentation.
 '''
 # Preserve the directory name in the given order as it is associated with makeVal.bash
 
-# Read Config
-config = readConfig()
-tile_width = config["tileHeight"]
-tile_height = config["tileWidth"]
-slidingTile = config["slidingSize"]
-#print(config)
+
+def arg_init():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config', type=str, default='none', help='Path to the config file.')
+    return parser.parse_args()
+
+# sliding image augmentation
+def slidingAugment(indir, outdir, tile_width, tile_height, slidingTile):
+    cnt = 0
+    for i in tqdm(range(1, len(os.listdir(indir))//2)):
+        image = cv2.imread(os.path.join(indir, str(i)+".png"))
+        # read binary image
+        label = cv2.imread(os.path.join(indir, str(i)+"_label.png"), cv2.IMREAD_GRAYSCALE)
+        if label is None:
+            print("label is None")
+
+        for x in range(0, image.shape[0]-tile_height, slidingTile):
+            for y in range(0, image.shape[1]-tile_width,slidingTile):
+                imageTile = image[x:x + tile_height, y:y + tile_width]
+                labelTile = label[x:x + tile_height, y:y + tile_width]
+                cv2.imwrite(os.path.join(outdir,str(cnt)+".png"), imageTile)
+                cv2.imwrite(os.path.join(outdir,str(cnt)+"_label.png"), labelTile)
+                cnt += 1
 
 
-log_dir = config["log"]
-createDir([log_dir])
+if __name__ == '__main__':
 
-f = open(log_dir +  "slidingAugLog.txt", "w")
+    args = arg_init()
+    config = args.config
 
-if not os.path.exists(config["out_dir"]):
+    if config == 'none':
+        print("Please provide the path to the config file")
+        exit()
+
+    config = readConfig(config)
+    tile_width = config["tileHeight"]
+    tile_height = config["tileWidth"]
+    slidingTile = config["slidingSize"]
+
+
+    log_dir = config["log"]
+    createDir([log_dir])
+
+    f = open(log_dir +  "logs-pre-training.txt", "a")
+    f.write("Sliding Augmentation\n")
+
+    if not os.path.exists(config["out_dir"]):   
         os.mkdir(config["out_dir"])
 
+    createDir([config["out_dir"]+"training/", config["out_dir"]+"validation/"])
 
-image_dir = config["to_be_aug"]+'GroundTruth/'
+    image_dir = config["split_dir"]
 
-# Read json file
-metadata = readJson(config["to_be_aug"]+"metadata.json")
+    print("Sliding Augmentation of Training Images")
+    f.write("Sliding Augmentation of Training Images\n")
+    out_dir_img = config["out_dir"]+"training/"    
+    slidingAugment(image_dir+"train/", out_dir_img, tile_width, tile_height, slidingTile)
+    print("Sliding Augmentation of Val Labels")
+    f.write("Sliding Augmentation of Val Labels\n")
+    out_dir_label = config["out_dir"]+"validation/"    
+    slidingAugment(image_dir+"val/", out_dir_label, tile_width, tile_height, slidingTile)
 
-#print(metadata)
-out_dir_img = os.path.join(config["out_dir"], "images/")
-out_dir_label = os.path.join(config["out_dir"], "labels/")
-createDir([out_dir_img, out_dir_label])
-
-print("Augmenting images in ", config["out_dir"], " directory")
-f.write("Augmenting images in "+ config["out_dir"]+ " directory\n")
-cnt = 0
-
-for imageidx, imagePath in tqdm(enumerate(metadata["images"])):
-    f.write("imagePath: "+imagePath+"\n")
-    image = cv2.imread(imagePath)
-    # read binary image
-    f.write("labelPath: "+metadata["labels"][imageidx]+ "\n")
-    label = cv2.imread(metadata["labels"][imageidx], cv2.IMREAD_GRAYSCALE)
-    if label is None:
-        f.write("label is None\n")
-
-    for x in range(0, image.shape[0]-tile_height, slidingTile):
-        for y in range(0, image.shape[1]-tile_width,slidingTile):
-            f.write("("+str(x)+","+str(y)+")\n")
-            imageTile = image[x:x + tile_height, y:y + tile_width]
-            labelTile = label[x:x + tile_height, y:y + tile_width]
-            cv2.imwrite(os.path.join(out_dir_img,str(cnt)+".png"), imageTile)
-            cv2.imwrite(os.path.join(out_dir_label,str(cnt)+".png"), labelTile)
-            cnt += 1
-
-
-print("Sliding Augmentation done")
-f.write("Sliding Augmentation done\n")
-f.close()
+    print("Sliding Augmentation done")
+    f.write("Sliding Augmentation done\n")
+    f.close()

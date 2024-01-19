@@ -3,6 +3,8 @@ import numpy as np
 import argparse
 import sys
 import os
+from utils import *
+from natsort import natsorted
 
 def arg_init():
     parser = argparse.ArgumentParser()
@@ -71,11 +73,15 @@ if __name__ == "__main__":
         print("Please specify experiment directory")
         sys.exit(1)
 
-    predicted_img_dir = args.expt_dir
+    predicted_img_dir = args.expt_dir + "inference/testDataNormal/"
+    output_img_dir = args.expt_dir + "inference/postProcessed/"
+
+    createDir([output_img_dir])
 
     dices = []
+    index = 0
 
-    for filename in os.listdir(predicted_img_dir):
+    for filename in natsorted(os.listdir(predicted_img_dir)):
         
         if filename.endswith('predict.png'): 
             file_path = os.path.join(predicted_img_dir, filename)
@@ -93,10 +99,11 @@ if __name__ == "__main__":
                 dices.append(dice)
 
                 # Save the post-processed image
-                post_processed_img_path = os.path.join(predicted_img_dir,'post_' +str(dice)+"_"+ filename)
+                post_processed_img_path = os.path.join(output_img_dir, str(index)+'_post_' +str(dice)+"_"+ filename)
                 print(post_processed_img_path)
-                #cv2.imwrite(post_processed_img_path, post_processed_img)
+                cv2.imwrite(post_processed_img_path, post_processed_img)
             else:
                 print(f"Failed to read image: {file_path}")
+            index += 1
 
     print(f"Average Dice Score: {np.average(dices)}")

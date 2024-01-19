@@ -1,0 +1,331 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+configuring model - UNET 3+ Short
+saving model summary
+logging parameters
+starting training
+mode: train
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch 0/30: 100%|██████████| 52/52 [00:38<00:00,  1.34it/s]
+Epoch 0/30:   0%|          | 0/9600 [00:00<?, ?it/s]
+train_loss: 0.5451977505133703
+train_mIoU: 0.30201183926491937
+train_accuracy: 0.4667468373368426
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch 0/30: 100%|██████████| 9600/9600 [03:11<00:00, 50.12it/s]
+Epoch 1/30:   4%|▍         | 2/52 [00:00<00:17,  2.82it/s]
+val_loss: 0.5278337480562428
+val_mIoU: 0.34837710659152266
+val_accuracy: 0.5188594182332357
+saving model
+
+
+
+
+
+
+
+
+Epoch 1/30:  96%|█████████▌| 50/52 [00:16<00:00,  2.93it/s]
+train_loss: 0.5243885964155197
+train_mIoU: 0.33939013416398467
+train_accuracy: 0.5116934799566502
+Epoch 1/30: 100%|██████████| 52/52 [00:17<00:00,  2.99it/s]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch 1/30: 100%|█████████▉| 9594/9600 [03:11<00:00, 54.63it/s]
+val_loss: 0.5475245716671149
+val_mIoU: 0.3740853641443118
+val_accuracy: 0.5479790353775025
+saving model
+Epoch 1/30: 100%|██████████| 9600/9600 [03:12<00:00, 49.99it/s]
+
+
+
+
+
+
+
+
+Epoch 2/30:  96%|█████████▌| 50/52 [00:17<00:00,  2.88it/s]
+train_loss: 0.5067314155972921
+train_mIoU: 0.375998317752714
+train_accuracy: 0.5541513954720846
+Epoch 2/30: 100%|██████████| 52/52 [00:17<00:00,  2.91it/s]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch 2/30:  78%|███████▊  | 7487/9600 [02:20<00:38, 55.16it/s]Exception ignored in: <generator object tqdm.__iter__ at 0x7fa08efdeab0>Exception ignored in sys.unraisablehook: <built-in function unraisablehook>
