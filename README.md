@@ -117,7 +117,7 @@ Distributed under the MIT License. See [LICENSE](https://github.com/CVPR-KIT/Nuc
 
 ## Authors
 
-* [**Bishal Ranjan Swain**](https://bluesaiyancodes.github.io/) - *PhD Candidate at Kumoh National Insitute of Technology*
+* [**Bishal Ranjan Swain**](https://github.com/bluesaiyancodes) - *PhD Candidate at Kumoh National Insitute of Technology*
 
 
 
