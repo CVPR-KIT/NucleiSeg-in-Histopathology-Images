@@ -20,9 +20,15 @@
 </p>
 
 <div align="center">
+  <h3> Qualitative Performance Comparison </h3>
   <img src="figs/qualitativeImage3.png" alt="Qualitative Results" width="600"/>
 </div>
 
+
+<div align="center">
+  <h3> Quantitative Performance Comparison </h3>
+  <img src="figs/comparison.png" alt="Performance Comparison Table" width="400"/>
+</div>
 
 ***
 
