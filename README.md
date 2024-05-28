@@ -19,7 +19,6 @@
 </div>
 
 
-__Implementation of UNet3+, ELUNet on MoNuSeg Dataset__ <br>
 If you have questions, *raise an issue* about it and i will answer it for you.
 ***
 
