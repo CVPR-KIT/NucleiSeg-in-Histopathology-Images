@@ -141,7 +141,6 @@ Contributions are what make the open source community such an amazing place to l
 * If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/CVPR-KIT/NucleiSeg-in-Histopathology-Images/issues) to discuss it, or directly create a pull request after editing the README.md file with necessary changes.
 * Please make sure you check your spelling and grammar.
 * Create individual PRs for each suggestion.
-* Please also read through the [Code of Conduct](https://github.com/CVPR-KIT/NucleiSeg-in-Histopathology-Images/blob/main/CODE_OF_CONDUCT.md) before posting your first idea as well.
 
 ### Creating A Pull Request
 1. Fork the Project
