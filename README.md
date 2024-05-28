@@ -1,4 +1,22 @@
-# MoNuSeg Segmentation
+
+
+<br/>
+<p align="center">
+  <h3 align="center">Nuclei Segmentation in Histopathological Images with Enhanced U-Net3+</h3>
+
+  <p align="center">
+    Official implementation of the paper published at MIDL 2024
+    <br/>
+    <br/>
+    <a href="https://github.com/CVPR-KIT/NucleiSeg-in-Histopathology-Images/issues">Report Bug</a>
+    .
+    <a href="https://github.com/CVPR-KIT/NucleiSeg-in-Histopathology-Images/issues">Request Feature</a>
+  </p>
+</p>
+
+<div align="center">
+
+</div>
 
 
 __Implementation of UNet3+, ELUNet on MoNuSeg Dataset__ <br>
