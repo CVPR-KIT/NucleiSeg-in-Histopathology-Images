@@ -13,6 +13,12 @@
   </p>
 </p>
 
+<p align="center">
+<a href="https://github.com/CVPR-KIT/NucleiSeg-in-Histopathology-Images">
+  <img alt="Static Badge" src="https://img.shields.io/badge/View--GitHub-Code?color=purple">
+</a>
+</p>
+
 <div align="center">
   <img src="figs/qualitativeImage3.png" alt="Qualitative Results" width="600"/>
 </div>
