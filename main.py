@@ -35,7 +35,7 @@ python main.py --config config.sys |& tee log/log-08-07.txt
 
 #os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 #os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-spl_losses = ['unet3+loss', 'improvedLoss']
+spl_losses = ['unet3+loss', 'improvedLoss', 'bce']
 
 def make_preRunNecessities(config):
     # Create the log directory

@@ -65,6 +65,7 @@ def runInference(data, model, device, config, img_type):
     mious = []
     aji = []
     losses = []
+    pqs = []
 
     criterion = weightedDiceLoss()
 
@@ -93,8 +94,11 @@ def runInference(data, model, device, config, img_type):
         rslt = rslt.squeeze().type(torch.uint8)
         y = y.reshape((wid,hit))
 
-        loss = 1- criterion(pred, y)
-        losses.append(loss.item())
+        #loss = 1- criterion(pred, y)
+        #loss = 0
+        #losses.append(loss.item())
+        loss = 0
+        losses.append(loss)
 
         #print(f"rslt: {rslt.shape}")
         #print(f"y: {y.shape}")
@@ -121,6 +125,8 @@ def runInference(data, model, device, config, img_type):
         mAPs.append(mAP)
         dices.append(calc_dice_score(cm))
         mious.append(calc_mIoU2(rslt.cpu(), y, config["num_classes"]))
+        pq_score = calculate_pq(y, rslt.cpu())
+        pqs.append(pq_score)                                                               
         #print(f"mAP: {mAP}")
         
 
@@ -139,7 +145,7 @@ def runInference(data, model, device, config, img_type):
         rslt = rslt.squeeze()
         rslt_color = result_recolor(rslt.cpu().detach().numpy())
         cv2.imwrite(config['expt_dir']+'inference/'+img_type+'/'+str(i)+'_'+str(test_acc.item()/(wid*hit))[:5]+'_'+'predict.png',rslt_color)
-    return np.average(accList), np.average(mAPs), np.average(dices), np.average(mious), np.average(aji), np.average(losses)
+    return np.average(accList), np.average(mAPs), np.average(dices), np.average(mious), np.average(aji), np.average(losses), np.average(pqs)
 
 
 '''
@@ -204,7 +210,8 @@ def main():
     logging.info("Starting Inference")
 
     logging.info(f"Loading Model at {weight_path}")
-    checkpoint = torch.load(weight_path)
+   # load path with map location to device
+    checkpoint = torch.load(weight_path, map_location=device)
 
     logging.info("Loading checkpoints")
     model.load_state_dict(checkpoint['model_state_dict'])
@@ -224,13 +231,14 @@ def main():
             logging.info("Loading dataset")
             dataset = MonuSegOnlyTestDataSet(path, config)
             data = DataLoader(dataset,batch_size=1)
-            acc, mAP, mdice, miou, aji, meanloss = runInference(data, model, device, config, img_type)
+            acc, mAP, mdice, miou, aji, meanloss, mpq = runInference(data, model, device, config, img_type)
             f.write(f"{args.expt_dir},{img_type},{np.average(acc)} \n")
             print(f"Testing Accuracy -{args.expt_dir}-{img_type}- {acc} \n")
             print(f"Testing mAP -{args.expt_dir}-{img_type}- {mAP} \n")
             print(f"Testing Dice -{args.expt_dir}-{img_type}- {mdice} \n")
             print(f"Testing mIoU -{args.expt_dir}-{img_type}- {miou} \n")
             print(f"Testing mean Loss -{args.expt_dir}-{img_type}- {meanloss} \n")
+            print(f"Testing PQ -{args.expt_dir}-{img_type}- {mpq} \n")
            # print(f"Testing AJI -{args.expt_dir}-{img_type}- {aji} \n")
 
     else:
@@ -241,13 +249,14 @@ def main():
             logging.info("Loading dataset")
             dataset = MonuSegOnlyTestDataSet(path, config)
             data = DataLoader(dataset,batch_size=1)
-            acc, mAP, mdice, miou, aji, meanloss = runInference(data, model, device, config, img_type)
+            acc, mAP, mdice, miou, aji, meanloss, mpq = runInference(data, model, device, config, img_type)
             f.write(f"{args.expt_dir},{img_type},{np.average(acc)} \n")
             print(f"Testing Accuracy -{args.expt_dir}-{img_type}- {acc} \n")
             print(f"Testing mAP -{args.expt_dir}-{img_type}- {mAP} \n")
             print(f"Testing Dice -{args.expt_dir}-{img_type}- {mdice} \n")
             print(f"Testing mIoU -{args.expt_dir}-{img_type}- {miou} \n")
             print(f"Testing mean Loss -{args.expt_dir}-{img_type}- {meanloss} \n")
+            print(f"Testing PQ -{args.expt_dir}-{img_type}- {mpq} \n")
         #print(f"Testing AJI -{args.expt_dir}-{img_type}- {aji} \n")
 
     

@@ -25,7 +25,7 @@ class MonuSegDataSet(Dataset):
                         level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.loggerFlag = True
 
-        self.spl_losses = ['unet3+loss', 'improvedLoss', 'ClassRatioLoss']
+        self.spl_losses = ['unet3+loss', 'improvedLoss', 'ClassRatioLoss', 'bce']
         self.spl_models = ['UNet_3Plus', 'EluNet', 'UNet_3PlusShort']
         self.debug = self.config["debug"]
         self.debugDilution = self.config["debugDilution"]
@@ -107,7 +107,7 @@ class MonuSegValDataSet(Dataset):
         self.hit = 512 # default value and is replaced later 
         logging.basicConfig(filename=self.config["log"] + "dataloader.log", filemode='w', 
                         level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-        self.spl_losses = ['unet3+loss', 'improvedLoss', 'ClassRatioLoss']
+        self.spl_losses = ['unet3+loss', 'improvedLoss', 'ClassRatioLoss', 'bce']
         self.spl_models = ['UNet_3Plus', 'EluNet', 'UNet_3PlusShort']
         self.loggerFlag = True
         self.debug = self.config["debug"]
@@ -270,7 +270,7 @@ class MonuSegOnlyTestDataSet(Dataset):
         self.hit = 512 # default value and is replaced later 
         logging.basicConfig(filename=self.config["log"] + "dataloader.log", filemode='w', 
                         level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-        self.len = 480
+        self.len = 256
         return 
     
     def __len__(self):
@@ -290,11 +290,17 @@ class MonuSegOnlyTestDataSet(Dataset):
         
 
         label = cv2.imread(os.path.join(self.img_dir,str(index)+'_label'+img_paths[1][-4:]),cv2.IMREAD_GRAYSCALE)
+        # convery non black pixel to white
+        for i in range(0,label.shape[0]):
+            for j in range(0,label.shape[1]):
+                if label[i][j] != 0:
+                    label[i][j] = 255
 
         self.wid = image.shape[0]
         self.hit = image.shape[1]
 
         self.wid = self.hit = self.len
+
 
 
         

@@ -1,0 +1,88 @@
+{
+    "os": "Linux-5.10.16.3-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "python": "3.10.9",
+    "heartbeatAt": "2024-02-05T16:02:40.661514",
+    "startedAt": "2024-02-05T16:02:39.897207",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--config",
+        "config_conic.sys"
+    ],
+    "state": "running",
+    "program": "/home/blue/projects/MoNuSeg/main.py",
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/bluesaiyancodes/MoNuSeg-Segmentation.git",
+        "commit": "2a0587e7217275840a80c67f2a9467bffee1277a"
+    },
+    "email": "blue.bishal@rocketmail.com",
+    "root": "/home/blue/projects/MoNuSeg",
+    "host": "Blue-LAB",
+    "username": "blue",
+    "executable": "/home/blue/projects/MoNuSeg/monuSegEnv/bin/python",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 3407.997,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3407.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3407.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3407.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3407.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3407.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3407.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3407.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3407.997,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 1536.9762916564941,
+        "used": 961.3222885131836
+    },
+    "gpu": "NVIDIA RTX A6000",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA RTX A6000",
+            "memory_total": 51527024640
+        }
+    ],
+    "memory": {
+        "total": 29.391098022460938
+    }
+}

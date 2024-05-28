@@ -1,0 +1,199 @@
+wandb_version: 1
+
+log:
+  desc: null
+  value: log/
+debug:
+  desc: null
+  value: false
+debugDilution:
+  desc: null
+  value: 200
+wandb:
+  desc: null
+  value: true
+normalization:
+  desc: null
+  value: reinhard
+targetImagePath:
+  desc: null
+  value: Dataset/MonuSegData/Training/TissueImages/TCGA-A7-A13F-01Z-00-DX1.png
+imagePath:
+  desc: null
+  value: Dataset/Otherdata/CoNICChallengeTrain/images.npy
+labelPath:
+  desc: null
+  value: Dataset/Otherdata/CoNICChallengeTrain/labels.npy
+augmentPerImage:
+  desc: null
+  value: 10
+finalTileHeight:
+  desc: null
+  value: 256
+finalTileWidth:
+  desc: null
+  value: 256
+splitRatio:
+  desc: null
+  value: 0.7
+trainDataset:
+  desc: null
+  value: Dataset/Otherdata/prepared_CoNIC/trainNormal/
+valDataset:
+  desc: null
+  value: Dataset/Otherdata/prepared_CoNIC/valNormal/
+testDataset:
+  desc: null
+  value: Dataset/Otherdata/prepared_CoNIC/testNormal/
+resumeModel:
+  desc: null
+  value: model/best_model.pth
+torchsummary:
+  desc: null
+  value: false
+sampleImages:
+  desc: null
+  value: false
+dinoModelType:
+  desc: null
+  value: giga
+reUseFeatures:
+  desc: null
+  value: true
+batchVisualization:
+  desc: null
+  value: true
+trainingPhase:
+  desc: null
+  value: high-density
+class1:
+  desc: null
+  value:
+  - 0
+  - 0
+  - 0
+class2:
+  desc: null
+  value:
+  - 255
+  - 255
+  - 255
+model_type:
+  desc: null
+  value: UNet
+input_img_type:
+  desc: null
+  value: rgb
+kernel_size:
+  desc: null
+  value: 3
+use_maxblurpool:
+  desc: null
+  value: false
+epochs:
+  desc: null
+  value: 50
+batch_size:
+  desc: null
+  value: 16
+learning_rate:
+  desc: null
+  value: 1.0e-07
+lr_decay:
+  desc: null
+  value: false
+num_classes:
+  desc: null
+  value: 2
+weight_path:
+  desc: null
+  value: null
+activation:
+  desc: null
+  value: GLU
+resume:
+  desc: null
+  value: false
+resume_epoch:
+  desc: null
+  value: 0
+channel:
+  desc: null
+  value: 32
+attention:
+  desc: null
+  value: false
+loss:
+  desc: null
+  value: weighteddice
+dropout:
+  desc: null
+  value: 0.3
+dropoutLOC:
+  desc: null
+  value: std
+dilation:
+  desc: null
+  value: 1
+l1_regularization:
+  desc: null
+  value: false
+multiScaleAttention:
+  desc: null
+  value: false
+eigen_decomposition:
+  desc: null
+  value: false
+top_k_features:
+  desc: null
+  value: 0
+dropBlock:
+  desc: null
+  value: true
+dropBlockProb:
+  desc: null
+  value: 0.8
+dropBlockSize:
+  desc: null
+  value: 5
+lookahead:
+  desc: null
+  value: false
+lookahead_k:
+  desc: null
+  value: 5
+lookahead_alpha:
+  desc: null
+  value: 0.8
+guidedFilter:
+  desc: null
+  value: true
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.9
+    cli_version: 0.15.8
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1707148457.237864
+    t:
+      1:
+      - 1
+      - 5
+      - 41
+      - 53
+      - 55
+      2:
+      - 1
+      - 5
+      - 41
+      - 53
+      - 55
+      3:
+      - 16
+      - 23
+      4: 3.10.9
+      5: 0.15.8
+      8:
+      - 5

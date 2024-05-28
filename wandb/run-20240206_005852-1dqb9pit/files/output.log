@@ -1,0 +1,30 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+configuring model - UNET
+saving model summary
+logging parameters
+starting training
+mode: train
+Epoch 0/50:   0%|          | 0/6537 [00:26<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/blue/projects/MoNuSeg/main.py", line 645, in <module>
+    main()
+  File "/home/blue/projects/MoNuSeg/main.py", line 456, in main
+    train_loss ,train_confusion_matrix, train_mIoU,train_accuracy =  run_epoch(model, train_data, criterion, optimizer, epoch, device, 'train',config)
+  File "/home/blue/projects/MoNuSeg/main.py", line 132, in run_epoch
+    pred = model(input)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/networkModules/model.py", line 163, in forward
+    y1 = self.contract1(x)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blue/projects/MoNuSeg/networkModules/conv_modules.py", line 158, in forward
+    y = self.actv1(y)
+  File "/home/blue/projects/MoNuSeg/monuSegEnv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1614, in __getattr__
+    raise AttributeError("'{}' object has no attribute '{}'".format(
+AttributeError: 'BigConv2times' object has no attribute 'actv1'

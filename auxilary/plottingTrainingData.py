@@ -7,6 +7,7 @@ import sys
 def arg_init():
     parser = argparse.ArgumentParser()
     parser.add_argument('--expt_dir', type=str, default='none', help='Path to the experiment directory.')
+    parser.add_argument('--mode', type=str, default='c', help='c for complete, u for uncomplete')
     return parser.parse_args()
 
 
@@ -77,7 +78,7 @@ def finished(path, outPath):
     validationLoss = results["validationLoss"]
     validationAccuracy = results["validationAccuracy"]
     for i in range(len(validationAccuracy)):
-        trainingLoss[i] = trainingLoss[i] - 1
+        trainingLoss[i] = trainingLoss[i]
 
     #print('trainingLoss', trainingLoss)
     #print('trainingAccuracy', trainingAccuracy)
@@ -97,10 +98,10 @@ def finished(path, outPath):
 
 
 if __name__ == "__main__":
-    #unfinished("log/log-09-08.txt", "Outputs/")
-    finalPath = "Outputs/experiment_09-15_18.42.14/"
+    unfinished("log/log-02-06.txt", "Outputs/experiment_02-06_01.08.22/")
+    #finalPath = "Outputs/experiment_09-15_18.42.14/"
 
-    args = arg_init()
+    '''args = arg_init()
 
     if args.expt_dir == 'none':
         print("Please specify experiment directory")
@@ -108,5 +109,5 @@ if __name__ == "__main__":
 
     finalPath = args.expt_dir
 
-    finished(finalPath, finalPath)
+    finished(finalPath, finalPath)'''
     

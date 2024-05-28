@@ -1,0 +1,6 @@
+2024-01-20 22:58:00 ERROR dropped chunk HTTPSConnectionPool(host='api.wandb.ai', port=443): Max retries exceeded with url: /files/bluesaiyancodes/monunet-segmenation/yo2km9ii/file_stream (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f5ed0463df0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+NoneType: None
+2024-01-21 01:18:32 ERROR dropped chunk HTTPSConnectionPool(host='api.wandb.ai', port=443): Max retries exceeded with url: /files/bluesaiyancodes/monunet-segmenation/yo2km9ii/file_stream (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f5ed0461180>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+NoneType: None
+2024-01-21 03:37:41 ERROR dropped chunk HTTPSConnectionPool(host='api.wandb.ai', port=443): Max retries exceeded with url: /files/bluesaiyancodes/monunet-segmenation/yo2km9ii/file_stream (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f5ed0463a60>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+NoneType: None

@@ -1,0 +1,182 @@
+2024-02-06 00:58:01,494 INFO    StreamThr :10785 [internal.py:wandb_internal():86] W&B internal server running at pid: 10785, started at: 2024-02-06 00:58:01.493591
+2024-02-06 00:58:01,497 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: status
+2024-02-06 00:58:01,499 INFO    WriterThread:10785 [datastore.py:open_for_write():85] open: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/run-laqlqpk6.wandb
+2024-02-06 00:58:01,502 DEBUG   SenderThread:10785 [sender.py:send():379] send: header
+2024-02-06 00:58:01,502 DEBUG   SenderThread:10785 [sender.py:send():379] send: run
+2024-02-06 00:58:02,021 INFO    SenderThread:10785 [dir_watcher.py:__init__():211] watching files in: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files
+2024-02-06 00:58:02,021 INFO    SenderThread:10785 [sender.py:_start_run_threads():1121] run started: laqlqpk6 with start time 1707148681.494063
+2024-02-06 00:58:02,022 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: summary_record
+2024-02-06 00:58:02,023 INFO    SenderThread:10785 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2024-02-06 00:58:02,031 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: check_version
+2024-02-06 00:58:02,031 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: check_version
+2024-02-06 00:58:02,090 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: run_start
+2024-02-06 00:58:02,205 DEBUG   HandlerThread:10785 [system_info.py:__init__():31] System info init
+2024-02-06 00:58:02,206 DEBUG   HandlerThread:10785 [system_info.py:__init__():46] System info init done
+2024-02-06 00:58:02,206 INFO    HandlerThread:10785 [system_monitor.py:start():181] Starting system monitor
+2024-02-06 00:58:02,206 INFO    SystemMonitor:10785 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2024-02-06 00:58:02,206 INFO    HandlerThread:10785 [system_monitor.py:probe():201] Collecting system info
+2024-02-06 00:58:02,207 INFO    SystemMonitor:10785 [interfaces.py:start():190] Started cpu monitoring
+2024-02-06 00:58:02,210 INFO    SystemMonitor:10785 [interfaces.py:start():190] Started disk monitoring
+2024-02-06 00:58:02,211 INFO    SystemMonitor:10785 [interfaces.py:start():190] Started gpu monitoring
+2024-02-06 00:58:02,212 INFO    SystemMonitor:10785 [interfaces.py:start():190] Started memory monitoring
+2024-02-06 00:58:02,213 INFO    SystemMonitor:10785 [interfaces.py:start():190] Started network monitoring
+2024-02-06 00:58:02,230 DEBUG   HandlerThread:10785 [system_info.py:probe():195] Probing system
+2024-02-06 00:58:02,268 DEBUG   HandlerThread:10785 [system_info.py:_probe_git():180] Probing git
+2024-02-06 00:58:02,273 DEBUG   HandlerThread:10785 [system_info.py:_probe_git():188] Probing git done
+2024-02-06 00:58:02,273 DEBUG   HandlerThread:10785 [system_info.py:probe():240] Probing system done
+2024-02-06 00:58:02,273 DEBUG   HandlerThread:10785 [system_monitor.py:probe():210] {'os': 'Linux-5.10.16.3-microsoft-standard-WSL2-x86_64-with-glibc2.35', 'python': '3.10.9', 'heartbeatAt': '2024-02-05T15:58:02.231011', 'startedAt': '2024-02-05T15:58:01.488379', 'docker': None, 'cuda': None, 'args': ('--config', 'config_conic.sys'), 'state': 'running', 'program': '/home/blue/projects/MoNuSeg/main.py', 'codePath': 'main.py', 'git': {'remote': 'https://github.com/bluesaiyancodes/MoNuSeg-Segmentation.git', 'commit': '2a0587e7217275840a80c67f2a9467bffee1277a'}, 'email': 'blue.bishal@rocketmail.com', 'root': '/home/blue/projects/MoNuSeg', 'host': 'Blue-LAB', 'username': 'blue', 'executable': '/home/blue/projects/MoNuSeg/monuSegEnv/bin/python', 'cpu_count': 4, 'cpu_count_logical': 8, 'cpu_freq': {'current': 3407.997, 'min': 0.0, 'max': 0.0}, 'cpu_freq_per_core': [{'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}, {'current': 3407.997, 'min': 0.0, 'max': 0.0}], 'disk': {'total': 1536.9762916564941, 'used': 961.3219413757324}, 'gpu': 'NVIDIA RTX A6000', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA RTX A6000', 'memory_total': 51527024640}], 'memory': {'total': 29.391098022460938}}
+2024-02-06 00:58:02,273 INFO    HandlerThread:10785 [system_monitor.py:probe():211] Finished collecting system info
+2024-02-06 00:58:02,274 INFO    HandlerThread:10785 [system_monitor.py:probe():214] Publishing system info
+2024-02-06 00:58:02,274 DEBUG   HandlerThread:10785 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2024-02-06 00:58:02,274 DEBUG   HandlerThread:10785 [system_info.py:_save_pip():67] Saving pip packages done
+2024-02-06 00:58:02,274 INFO    HandlerThread:10785 [system_monitor.py:probe():216] Finished publishing system info
+2024-02-06 00:58:02,279 DEBUG   SenderThread:10785 [sender.py:send():379] send: files
+2024-02-06 00:58:02,279 INFO    SenderThread:10785 [sender.py:_save_file():1375] saving file wandb-metadata.json with policy now
+2024-02-06 00:58:02,286 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: stop_status
+2024-02-06 00:58:02,287 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: stop_status
+2024-02-06 00:58:02,574 DEBUG   SenderThread:10785 [sender.py:send():379] send: telemetry
+2024-02-06 00:58:03,022 INFO    Thread-12 :10785 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/requirements.txt
+2024-02-06 00:58:03,022 INFO    Thread-12 :10785 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/wandb-metadata.json
+2024-02-06 00:58:03,022 INFO    Thread-12 :10785 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/wandb-summary.json
+2024-02-06 00:58:03,023 INFO    Thread-12 :10785 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/output.log
+2024-02-06 00:58:03,037 INFO    wandb-upload_0:10785 [upload_job.py:push():131] Uploaded file /tmp/tmp5oaz579hwandb/bc86w01t-wandb-metadata.json
+2024-02-06 00:58:05,022 INFO    Thread-12 :10785 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/output.log
+2024-02-06 00:58:06,373 DEBUG   SenderThread:10785 [sender.py:send():379] send: exit
+2024-02-06 00:58:06,374 INFO    SenderThread:10785 [sender.py:send_exit():584] handling exit code: 1
+2024-02-06 00:58:06,374 INFO    SenderThread:10785 [sender.py:send_exit():586] handling runtime: 4
+2024-02-06 00:58:06,374 INFO    SenderThread:10785 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2024-02-06 00:58:06,374 INFO    SenderThread:10785 [sender.py:send_exit():592] send defer
+2024-02-06 00:58:06,375 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:06,375 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 0
+2024-02-06 00:58:06,375 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:06,375 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 0
+2024-02-06 00:58:06,375 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 1
+2024-02-06 00:58:06,376 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:06,376 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 1
+2024-02-06 00:58:06,376 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:06,376 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 1
+2024-02-06 00:58:06,376 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 2
+2024-02-06 00:58:06,376 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:06,376 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 2
+2024-02-06 00:58:06,376 INFO    HandlerThread:10785 [system_monitor.py:finish():190] Stopping system monitor
+2024-02-06 00:58:06,377 DEBUG   SystemMonitor:10785 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2024-02-06 00:58:06,377 DEBUG   SystemMonitor:10785 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2024-02-06 00:58:06,377 DEBUG   SystemMonitor:10785 [system_monitor.py:_start():170] Publishing last batch of metrics
+2024-02-06 00:58:06,377 INFO    HandlerThread:10785 [interfaces.py:finish():202] Joined cpu monitor
+2024-02-06 00:58:06,378 INFO    HandlerThread:10785 [interfaces.py:finish():202] Joined disk monitor
+2024-02-06 00:58:06,388 INFO    HandlerThread:10785 [interfaces.py:finish():202] Joined gpu monitor
+2024-02-06 00:58:06,388 INFO    HandlerThread:10785 [interfaces.py:finish():202] Joined memory monitor
+2024-02-06 00:58:06,388 INFO    HandlerThread:10785 [interfaces.py:finish():202] Joined network monitor
+2024-02-06 00:58:06,389 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:06,389 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 2
+2024-02-06 00:58:06,389 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 3
+2024-02-06 00:58:06,389 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:06,389 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 3
+2024-02-06 00:58:06,389 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:06,389 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 3
+2024-02-06 00:58:06,389 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 4
+2024-02-06 00:58:06,390 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:06,390 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 4
+2024-02-06 00:58:06,390 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:06,390 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 4
+2024-02-06 00:58:06,390 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 5
+2024-02-06 00:58:06,390 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:06,390 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 5
+2024-02-06 00:58:06,391 DEBUG   SenderThread:10785 [sender.py:send():379] send: summary
+2024-02-06 00:58:06,391 INFO    SenderThread:10785 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2024-02-06 00:58:06,392 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:06,392 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 5
+2024-02-06 00:58:06,392 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 6
+2024-02-06 00:58:06,392 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:06,392 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 6
+2024-02-06 00:58:06,392 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:06,392 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 6
+2024-02-06 00:58:06,397 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: status_report
+2024-02-06 00:58:06,639 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 7
+2024-02-06 00:58:06,639 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:06,639 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 7
+2024-02-06 00:58:06,640 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:06,640 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 7
+2024-02-06 00:58:07,023 INFO    Thread-12 :10785 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/output.log
+2024-02-06 00:58:07,023 INFO    Thread-12 :10785 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/wandb-summary.json
+2024-02-06 00:58:07,023 INFO    Thread-12 :10785 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/config.yaml
+2024-02-06 00:58:07,373 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: poll_exit
+2024-02-06 00:58:08,023 INFO    Thread-12 :10785 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/output.log
+2024-02-06 00:58:09,855 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 8
+2024-02-06 00:58:09,856 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: poll_exit
+2024-02-06 00:58:09,856 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:09,856 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 8
+2024-02-06 00:58:09,856 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:09,857 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 8
+2024-02-06 00:58:09,857 INFO    SenderThread:10785 [job_builder.py:build():281] Attempting to build job artifact
+2024-02-06 00:58:09,857 INFO    SenderThread:10785 [job_builder.py:_get_source_type():400] is repo sourced job
+2024-02-06 00:58:09,858 INFO    SenderThread:10785 [job_builder.py:build():374] adding wandb-job metadata file
+2024-02-06 00:58:09,898 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 9
+2024-02-06 00:58:09,899 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:09,899 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 9
+2024-02-06 00:58:09,899 DEBUG   SenderThread:10785 [sender.py:send():379] send: artifact
+2024-02-06 00:58:10,023 INFO    Thread-12 :10785 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/output.log
+2024-02-06 00:58:12,375 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: keepalive
+2024-02-06 00:58:13,194 INFO    SenderThread:10785 [sender.py:send_artifact():1475] sent artifact job-https___github.com_bluesaiyancodes_MoNuSeg-Segmentation.git_main.py - {'id': 'QXJ0aWZhY3Q6NzE0MzMyMDI4', 'digest': '7059db04aa7dda91a27b14f4644daffd', 'state': 'COMMITTED', 'aliases': [{'artifactCollectionName': 'job-https___github.com_bluesaiyancodes_MoNuSeg-Segmentation.git_main.py', 'alias': 'latest'}, {'artifactCollectionName': 'job-https___github.com_bluesaiyancodes_MoNuSeg-Segmentation.git_main.py', 'alias': 'v33'}], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjg5OTQ0NzM0', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NzE0MzMyMDI4', 'versionIndex': 33}}, 'version': 'v33'}
+2024-02-06 00:58:13,194 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:13,194 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 9
+2024-02-06 00:58:13,194 INFO    SenderThread:10785 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-02-06 00:58:13,195 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: status_report
+2024-02-06 00:58:14,026 INFO    SenderThread:10785 [dir_watcher.py:finish():388] scan: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files
+2024-02-06 00:58:14,026 INFO    SenderThread:10785 [dir_watcher.py:finish():402] scan save: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/output.log output.log
+2024-02-06 00:58:14,026 INFO    SenderThread:10785 [dir_watcher.py:finish():402] scan save: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/config.yaml config.yaml
+2024-02-06 00:58:14,026 INFO    SenderThread:10785 [dir_watcher.py:finish():402] scan save: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/wandb-metadata.json wandb-metadata.json
+2024-02-06 00:58:14,027 INFO    SenderThread:10785 [dir_watcher.py:finish():402] scan save: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/requirements.txt requirements.txt
+2024-02-06 00:58:14,027 INFO    SenderThread:10785 [dir_watcher.py:finish():402] scan save: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/wandb-summary.json wandb-summary.json
+2024-02-06 00:58:14,030 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 10
+2024-02-06 00:58:14,037 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:14,038 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 10
+2024-02-06 00:58:14,038 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:14,038 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 10
+2024-02-06 00:58:14,038 INFO    SenderThread:10785 [file_pusher.py:finish():159] shutting down file pusher
+2024-02-06 00:58:14,502 INFO    wandb-upload_1:10785 [upload_job.py:push():131] Uploaded file /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/output.log
+2024-02-06 00:58:14,559 INFO    wandb-upload_2:10785 [upload_job.py:push():131] Uploaded file /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/config.yaml
+2024-02-06 00:58:14,636 INFO    wandb-upload_3:10785 [upload_job.py:push():131] Uploaded file /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/wandb-summary.json
+2024-02-06 00:58:14,642 INFO    wandb-upload_0:10785 [upload_job.py:push():131] Uploaded file /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/files/requirements.txt
+2024-02-06 00:58:14,843 INFO    Thread-11 (_thread_body):10785 [sender.py:transition_state():612] send defer: 11
+2024-02-06 00:58:14,843 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:14,843 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 11
+2024-02-06 00:58:14,844 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:14,844 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 11
+2024-02-06 00:58:14,844 INFO    SenderThread:10785 [file_pusher.py:join():164] waiting for file pusher
+2024-02-06 00:58:14,844 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 12
+2024-02-06 00:58:14,844 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:14,844 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 12
+2024-02-06 00:58:14,845 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:14,845 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 12
+2024-02-06 00:58:14,845 INFO    SenderThread:10785 [file_stream.py:finish():593] file stream finish called
+2024-02-06 00:58:15,240 INFO    SenderThread:10785 [file_stream.py:finish():597] file stream finish is done
+2024-02-06 00:58:15,240 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 13
+2024-02-06 00:58:15,240 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:15,240 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 13
+2024-02-06 00:58:15,241 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:15,241 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 13
+2024-02-06 00:58:15,241 INFO    SenderThread:10785 [sender.py:transition_state():612] send defer: 14
+2024-02-06 00:58:15,241 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: defer
+2024-02-06 00:58:15,242 INFO    HandlerThread:10785 [handler.py:handle_request_defer():170] handle defer: 14
+2024-02-06 00:58:15,242 DEBUG   SenderThread:10785 [sender.py:send():379] send: final
+2024-02-06 00:58:15,242 DEBUG   SenderThread:10785 [sender.py:send():379] send: footer
+2024-02-06 00:58:15,242 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: defer
+2024-02-06 00:58:15,242 INFO    SenderThread:10785 [sender.py:send_request_defer():608] handle sender defer: 14
+2024-02-06 00:58:15,243 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: poll_exit
+2024-02-06 00:58:15,244 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: poll_exit
+2024-02-06 00:58:15,244 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: server_info
+2024-02-06 00:58:15,245 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: server_info
+2024-02-06 00:58:15,245 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: get_summary
+2024-02-06 00:58:15,249 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: sampled_history
+2024-02-06 00:58:15,250 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: job_info
+2024-02-06 00:58:15,445 DEBUG   SenderThread:10785 [sender.py:send_request():406] send_request: job_info
+2024-02-06 00:58:15,446 INFO    MainThread:10785 [wandb_run.py:_footer_history_summary_info():3481] rendering history
+2024-02-06 00:58:15,446 INFO    MainThread:10785 [wandb_run.py:_footer_history_summary_info():3513] rendering summary
+2024-02-06 00:58:15,446 INFO    MainThread:10785 [wandb_run.py:_footer_sync_info():3440] logging synced files
+2024-02-06 00:58:15,446 DEBUG   HandlerThread:10785 [handler.py:handle_request():144] handle_request: shutdown
+2024-02-06 00:58:15,447 INFO    HandlerThread:10785 [handler.py:finish():857] shutting down handler
+2024-02-06 00:58:16,251 INFO    WriterThread:10785 [datastore.py:close():294] close: /home/blue/projects/MoNuSeg/wandb/run-20240206_005801-laqlqpk6/run-laqlqpk6.wandb
+2024-02-06 00:58:16,446 INFO    SenderThread:10785 [sender.py:finish():1552] shutting down sender
+2024-02-06 00:58:16,446 INFO    SenderThread:10785 [file_pusher.py:finish():159] shutting down file pusher
+2024-02-06 00:58:16,446 INFO    SenderThread:10785 [file_pusher.py:join():164] waiting for file pusher

@@ -1,0 +1,22 @@
+PreRun: Creating required directories
+Directory Outputs/ already exists
+Directory log/ already exists
+PreRun: generating experiment config file
+Using cuda device
+configuring data loaders
+configuring model - UNET
+saving model summary
+logging parameters
+starting training
+mode: train
+Epoch 0/50:   0%|          | 0/6537 [00:07<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/blue/projects/MoNuSeg/main.py", line 645, in <module>
+    main()
+  File "/home/blue/projects/MoNuSeg/main.py", line 456, in main
+    train_loss ,train_confusion_matrix, train_mIoU,train_accuracy =  run_epoch(model, train_data, criterion, optimizer, epoch, device, 'train',config)
+  File "/home/blue/projects/MoNuSeg/main.py", line 202, in run_epoch
+    confusion_matrix += calc_confusion_matrix(gt.to(device), rslt, config["num_classes"])
+  File "/home/blue/projects/MoNuSeg/auxilary/utils.py", line 283, in calc_confusion_matrix
+    category = num_classes*label + pred
+ValueError: operands could not be broadcast together with shapes (16,2,256,256) (16,256,256)

@@ -240,6 +240,42 @@ def zoom_center(img, zoom_factor=1.5):
     img_cropped = img[y1:y2,x1:x2]
     return cv2.resize(img_cropped, None, fx=zoom_factor, fy=zoom_factor)
 
+
+def calculate_iou(pred, target):
+    intersection = torch.logical_and(target, pred)
+    union = torch.logical_or(target, pred)
+    iou = torch.sum(intersection) / torch.sum(union)
+    return iou
+
+def classify_segments(preds, targets, iou_threshold=0.5):
+    tp, fp, fn = 0, 0, len(targets)
+    for pred in preds:
+        matched = False
+        for target in targets:
+            iou = calculate_iou(pred, target)
+            if iou > iou_threshold:
+                tp += 1
+                matched = True
+                break
+        if matched:
+            fn -= 1
+        else:
+            fp += 1
+    return tp, fp, fn
+
+
+def calculate_pq(preds, targets, iou_threshold=0.5):
+    tp, fp, fn = classify_segments(preds, targets, iou_threshold)
+    total_iou = sum(calculate_iou(pred, target) for pred, target in zip(preds, targets) if calculate_iou(pred, target) > iou_threshold)
+
+    sq = total_iou / tp if tp > 0 else 0
+    dq = tp / (tp + 0.5 * fp + 0.5 * fn)
+    pq = sq * dq
+
+    return pq
+
+
+
 # Calculate confusion matrix
 def calc_confusion_matrix(label, pred,num_classes):
     label = label.cpu().detach().numpy()

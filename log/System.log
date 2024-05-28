@@ -13220,3 +13220,2374 @@
 01/17/2024 08:28:53 PM Outputting label
 01/17/2024 08:28:53 PM saving images
 01/17/2024 08:28:53 PM Outputting label
+01/20/2024 01:53:22 AM 
+
+#################### New Run ####################
+01/20/2024 01:53:25 AM PreRun: Creating required directories
+01/20/2024 01:53:25 AM PreRun: Generating experiment config file
+01/20/2024 01:53:26 AM Using cuda device
+01/20/2024 01:53:26 AM configuring data loaders
+01/20/2024 01:54:40 AM 
+
+#################### New Run ####################
+01/20/2024 01:54:47 AM PreRun: Creating required directories
+01/20/2024 01:54:47 AM PreRun: Generating experiment config file
+01/20/2024 01:54:47 AM Using cuda device
+01/20/2024 01:54:47 AM configuring data loaders
+01/20/2024 01:54:47 AM configuring model - UNET 3+ Short
+01/20/2024 01:54:56 AM saving model summary at Outputs/experiment_01-20_01.54.47/modelSummary.txt
+01/20/2024 01:54:56 AM logging parameters
+01/20/2024 01:54:56 AM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+01/20/2024 01:54:56 AM starting training
+01/20/2024 03:15:47 AM saving model at Outputs/experiment_01-20_01.54.47/model/best_model_0.pth
+01/20/2024 04:10:44 AM saving model at Outputs/experiment_01-20_01.54.47/model/best_model_1.pth
+01/20/2024 04:56:08 AM saving model at Outputs/experiment_01-20_01.54.47/model/best_model_2.pth
+01/20/2024 05:41:26 AM saving model at Outputs/experiment_01-20_01.54.47/model/best_model_3.pth
+01/21/2024 04:11:31 PM loading model for testing from Outputs/experiment_01-20_01.54.47/model/best_model.pth
+01/21/2024 04:12:05 PM Testing...
+01/21/2024 04:12:07 PM Outputting label
+01/21/2024 04:12:07 PM Outputting label
+01/21/2024 04:12:07 PM saving images
+01/21/2024 04:12:07 PM Outputting label
+01/21/2024 04:12:08 PM Outputting label
+01/21/2024 04:12:09 PM saving images
+01/21/2024 04:12:09 PM saving images
+01/21/2024 04:12:09 PM Outputting label
+01/21/2024 04:12:09 PM Outputting label
+01/21/2024 04:12:09 PM saving images
+01/21/2024 04:12:10 PM Outputting label
+01/21/2024 04:12:10 PM saving images
+01/21/2024 04:12:10 PM Outputting label
+01/21/2024 04:12:10 PM saving images
+01/21/2024 04:12:10 PM Outputting label
+01/21/2024 04:12:10 PM saving images
+01/21/2024 04:12:11 PM Outputting label
+01/21/2024 04:12:11 PM saving images
+01/21/2024 04:12:11 PM Outputting label
+01/21/2024 04:12:11 PM saving images
+01/21/2024 04:12:11 PM Outputting label
+01/21/2024 04:12:11 PM saving images
+01/21/2024 04:12:12 PM saving images
+01/21/2024 04:12:12 PM Outputting label
+01/21/2024 04:12:12 PM Outputting label
+01/21/2024 04:12:12 PM saving images
+01/21/2024 04:12:12 PM saving images
+01/21/2024 04:12:12 PM Outputting label
+01/21/2024 04:12:12 PM saving images
+01/21/2024 04:12:12 PM Outputting label
+01/21/2024 04:12:13 PM Outputting label
+01/21/2024 04:12:13 PM saving images
+01/21/2024 04:12:13 PM Outputting label
+01/21/2024 04:12:13 PM saving images
+01/21/2024 04:12:13 PM Outputting label
+01/21/2024 04:12:13 PM saving images
+01/21/2024 04:12:13 PM Outputting label
+01/21/2024 04:12:13 PM saving images
+01/21/2024 04:12:14 PM Outputting label
+01/21/2024 04:12:14 PM saving images
+01/21/2024 04:12:14 PM Outputting label
+01/21/2024 04:12:14 PM saving images
+01/21/2024 04:12:14 PM Outputting label
+01/21/2024 04:12:14 PM saving images
+01/21/2024 04:12:14 PM Outputting label
+01/21/2024 04:12:14 PM saving images
+01/21/2024 04:12:14 PM Outputting label
+01/21/2024 04:12:14 PM saving images
+01/21/2024 04:12:14 PM Outputting label
+01/21/2024 04:12:14 PM saving images
+01/21/2024 04:12:15 PM Outputting label
+01/21/2024 04:12:15 PM saving images
+01/21/2024 04:12:15 PM Outputting label
+01/21/2024 04:12:15 PM saving images
+01/21/2024 04:12:15 PM saving images
+01/21/2024 04:12:15 PM Outputting label
+01/21/2024 04:12:15 PM Outputting label
+01/21/2024 04:12:15 PM saving images
+01/21/2024 04:12:15 PM Outputting label
+01/21/2024 04:12:15 PM saving images
+01/21/2024 04:12:16 PM Outputting label
+01/21/2024 04:12:16 PM saving images
+01/21/2024 04:12:16 PM Outputting label
+01/21/2024 04:12:16 PM saving images
+01/21/2024 04:12:16 PM Outputting label
+01/21/2024 04:12:16 PM saving images
+01/21/2024 04:12:16 PM Outputting label
+01/21/2024 04:12:16 PM saving images
+01/21/2024 04:12:16 PM Outputting label
+01/21/2024 04:12:16 PM saving images
+01/21/2024 04:12:17 PM Outputting label
+01/21/2024 04:12:17 PM saving images
+01/21/2024 04:12:17 PM Outputting label
+01/21/2024 04:12:17 PM saving images
+01/21/2024 04:12:17 PM Outputting label
+01/21/2024 04:12:17 PM saving images
+01/21/2024 04:12:18 PM Outputting label
+01/21/2024 04:12:18 PM saving images
+01/21/2024 04:12:18 PM Outputting label
+01/21/2024 04:12:18 PM saving images
+01/21/2024 04:12:18 PM Outputting label
+01/21/2024 04:12:18 PM saving images
+01/21/2024 04:12:19 PM Outputting label
+01/21/2024 04:12:19 PM saving images
+01/21/2024 04:12:19 PM Outputting label
+01/21/2024 04:12:19 PM saving images
+01/21/2024 04:12:19 PM Outputting label
+01/21/2024 04:12:19 PM saving images
+01/21/2024 04:12:19 PM Outputting label
+01/21/2024 04:12:19 PM saving images
+01/21/2024 04:12:19 PM Outputting label
+01/21/2024 04:12:19 PM saving images
+01/21/2024 04:12:20 PM Outputting label
+01/21/2024 04:12:20 PM saving images
+01/21/2024 04:12:20 PM Outputting label
+01/21/2024 04:12:20 PM saving images
+01/21/2024 04:12:20 PM Outputting label
+01/21/2024 04:12:20 PM saving images
+01/21/2024 04:12:20 PM Outputting label
+01/21/2024 04:12:20 PM saving images
+01/21/2024 04:12:20 PM Outputting label
+01/21/2024 04:12:20 PM saving images
+01/21/2024 04:12:20 PM Outputting label
+01/21/2024 04:12:21 PM saving images
+01/21/2024 04:12:21 PM Outputting label
+01/21/2024 04:12:21 PM saving images
+01/21/2024 04:12:21 PM Outputting label
+01/21/2024 04:12:21 PM saving images
+01/21/2024 04:12:21 PM Outputting label
+01/21/2024 04:12:21 PM saving images
+01/21/2024 04:12:21 PM Outputting label
+01/21/2024 04:12:21 PM saving images
+01/21/2024 04:12:22 PM Outputting label
+01/21/2024 04:12:22 PM saving images
+01/21/2024 04:12:22 PM Outputting label
+01/21/2024 04:12:22 PM saving images
+01/21/2024 04:12:22 PM Outputting label
+01/21/2024 04:12:22 PM saving images
+01/21/2024 04:12:22 PM Outputting label
+01/21/2024 04:12:22 PM saving images
+01/21/2024 04:12:22 PM saving images
+01/21/2024 04:12:22 PM Outputting label
+01/21/2024 04:12:23 PM saving images
+01/21/2024 04:12:23 PM Outputting label
+01/21/2024 04:12:23 PM Outputting label
+01/21/2024 04:12:23 PM saving images
+01/21/2024 04:12:23 PM Outputting label
+01/21/2024 04:12:23 PM saving images
+01/21/2024 04:12:23 PM Outputting label
+01/21/2024 04:12:23 PM saving images
+01/21/2024 04:12:23 PM Outputting label
+01/21/2024 04:12:23 PM saving images
+01/21/2024 04:12:23 PM Outputting label
+01/21/2024 04:12:23 PM saving images
+01/21/2024 04:12:24 PM Outputting label
+01/21/2024 04:12:24 PM saving images
+01/21/2024 04:12:24 PM Outputting label
+01/21/2024 04:12:24 PM saving images
+01/21/2024 04:12:24 PM Outputting label
+01/21/2024 04:12:24 PM saving images
+01/21/2024 04:12:24 PM Outputting label
+01/21/2024 04:12:24 PM saving images
+01/21/2024 04:12:24 PM Outputting label
+01/21/2024 04:12:24 PM saving images
+01/21/2024 04:12:25 PM Outputting label
+01/21/2024 04:12:25 PM saving images
+01/21/2024 04:12:25 PM Outputting label
+01/21/2024 04:12:25 PM saving images
+01/21/2024 04:12:25 PM Outputting label
+01/21/2024 04:12:25 PM saving images
+01/21/2024 04:12:25 PM Outputting label
+01/21/2024 04:12:25 PM saving images
+01/21/2024 04:12:25 PM Outputting label
+01/21/2024 04:12:25 PM saving images
+01/21/2024 04:12:26 PM Outputting label
+01/21/2024 04:12:26 PM saving images
+01/21/2024 04:12:26 PM Outputting label
+01/21/2024 04:12:26 PM saving images
+01/21/2024 04:12:26 PM Outputting label
+01/21/2024 04:12:26 PM saving images
+01/21/2024 04:12:26 PM Outputting label
+01/21/2024 04:12:26 PM saving images
+01/21/2024 04:12:26 PM Outputting label
+01/21/2024 04:12:26 PM saving images
+01/21/2024 04:12:27 PM Outputting label
+01/21/2024 04:12:27 PM saving images
+01/21/2024 04:12:27 PM Outputting label
+01/21/2024 04:12:27 PM saving images
+01/21/2024 04:12:27 PM Outputting label
+01/21/2024 04:12:27 PM saving images
+01/21/2024 04:12:27 PM Outputting label
+01/21/2024 04:12:27 PM saving images
+01/21/2024 04:12:28 PM saving images
+01/21/2024 04:12:28 PM Outputting label
+01/21/2024 04:12:28 PM Outputting label
+01/21/2024 04:12:28 PM saving images
+01/21/2024 04:12:28 PM Outputting label
+01/21/2024 04:12:28 PM saving images
+01/21/2024 04:12:28 PM Outputting label
+01/21/2024 04:12:28 PM saving images
+01/21/2024 04:12:28 PM Outputting label
+01/21/2024 04:12:28 PM saving images
+01/21/2024 04:12:28 PM Outputting label
+01/21/2024 04:12:28 PM saving images
+01/21/2024 04:12:29 PM Outputting label
+01/21/2024 04:12:29 PM saving images
+01/21/2024 04:12:29 PM Outputting label
+01/21/2024 04:12:29 PM saving images
+01/21/2024 04:12:29 PM Outputting label
+01/21/2024 04:12:29 PM saving images
+01/21/2024 04:12:29 PM Outputting label
+01/21/2024 04:12:29 PM saving images
+01/21/2024 04:12:29 PM Outputting label
+01/21/2024 04:12:29 PM saving images
+01/21/2024 04:12:29 PM Outputting label
+01/21/2024 04:12:29 PM saving images
+01/21/2024 04:12:30 PM Outputting label
+01/21/2024 04:12:30 PM saving images
+01/21/2024 04:12:30 PM Outputting label
+01/21/2024 04:12:30 PM saving images
+01/21/2024 04:12:30 PM Outputting label
+01/21/2024 04:12:30 PM saving images
+01/21/2024 04:12:30 PM Outputting label
+01/21/2024 04:12:30 PM saving images
+01/21/2024 04:12:30 PM Outputting label
+01/21/2024 04:12:30 PM saving images
+01/21/2024 04:12:30 PM Outputting label
+01/21/2024 04:12:31 PM saving images
+01/21/2024 04:12:31 PM Outputting label
+01/21/2024 04:12:31 PM saving images
+01/21/2024 04:12:31 PM Outputting label
+01/21/2024 04:12:31 PM saving images
+01/21/2024 04:12:31 PM Outputting label
+01/21/2024 04:12:31 PM saving images
+01/21/2024 04:12:31 PM Outputting label
+01/21/2024 04:12:31 PM saving images
+01/21/2024 04:12:31 PM Outputting label
+01/21/2024 04:12:31 PM saving images
+01/21/2024 04:12:32 PM saving images
+01/21/2024 04:12:32 PM Outputting label
+01/21/2024 04:12:32 PM Outputting label
+01/21/2024 04:12:32 PM saving images
+01/21/2024 04:12:32 PM Outputting label
+01/21/2024 04:12:32 PM saving images
+01/21/2024 04:12:32 PM Outputting label
+01/21/2024 04:12:32 PM saving images
+01/21/2024 04:12:32 PM saving images
+01/21/2024 04:12:32 PM Outputting label
+01/21/2024 04:12:32 PM Outputting label
+01/21/2024 04:12:32 PM saving images
+01/21/2024 04:12:33 PM Outputting label
+01/21/2024 04:12:33 PM saving images
+01/21/2024 04:12:33 PM Outputting label
+01/21/2024 04:12:33 PM saving images
+01/21/2024 04:12:33 PM Outputting label
+01/21/2024 04:12:33 PM saving images
+01/21/2024 04:12:33 PM Outputting label
+01/21/2024 04:12:33 PM saving images
+01/21/2024 04:12:33 PM Outputting label
+01/21/2024 04:12:33 PM saving images
+01/21/2024 04:12:34 PM Outputting label
+01/21/2024 04:12:34 PM saving images
+01/21/2024 04:12:34 PM Outputting label
+01/21/2024 04:12:34 PM saving images
+01/21/2024 04:12:34 PM Outputting label
+01/21/2024 04:12:34 PM saving images
+01/21/2024 04:12:34 PM Outputting label
+01/21/2024 04:12:34 PM saving images
+01/21/2024 04:12:34 PM Outputting label
+01/21/2024 04:12:34 PM saving images
+01/21/2024 04:12:34 PM Outputting label
+01/21/2024 04:12:35 PM saving images
+01/21/2024 04:12:35 PM Outputting label
+01/21/2024 04:12:35 PM saving images
+01/21/2024 04:12:35 PM Outputting label
+01/21/2024 04:12:35 PM saving images
+01/21/2024 04:12:35 PM Outputting label
+01/21/2024 04:12:35 PM saving images
+01/21/2024 04:12:35 PM Outputting label
+01/21/2024 04:12:35 PM saving images
+01/21/2024 04:12:35 PM Outputting label
+01/21/2024 04:12:35 PM saving images
+01/21/2024 04:12:36 PM Outputting label
+01/21/2024 04:12:36 PM saving images
+01/21/2024 04:12:36 PM Outputting label
+01/21/2024 04:12:36 PM saving images
+01/21/2024 04:12:36 PM Outputting label
+01/21/2024 04:12:36 PM saving images
+01/21/2024 04:12:36 PM Outputting label
+01/21/2024 04:12:36 PM saving images
+01/21/2024 04:12:36 PM Outputting label
+01/21/2024 04:12:36 PM saving images
+01/21/2024 04:12:37 PM Outputting label
+01/21/2024 04:12:37 PM saving images
+01/21/2024 04:12:37 PM Outputting label
+01/21/2024 04:12:37 PM saving images
+01/21/2024 04:12:37 PM Outputting label
+01/21/2024 04:12:37 PM saving images
+01/21/2024 04:12:37 PM Outputting label
+01/21/2024 04:12:37 PM saving images
+01/21/2024 04:12:37 PM Outputting label
+01/21/2024 04:12:37 PM saving images
+01/21/2024 04:12:37 PM Outputting label
+01/21/2024 04:12:38 PM saving images
+01/21/2024 04:12:38 PM Outputting label
+01/21/2024 04:12:38 PM saving images
+01/21/2024 04:12:38 PM Outputting label
+01/21/2024 04:12:38 PM saving images
+01/21/2024 04:12:38 PM Outputting label
+01/21/2024 04:12:38 PM saving images
+01/21/2024 04:12:38 PM Outputting label
+01/21/2024 04:12:38 PM saving images
+01/21/2024 04:12:38 PM Outputting label
+01/21/2024 04:12:38 PM saving images
+01/21/2024 04:12:39 PM Outputting label
+01/21/2024 04:12:39 PM saving images
+01/21/2024 04:12:39 PM Outputting label
+01/21/2024 04:12:39 PM saving images
+01/21/2024 04:12:39 PM Outputting label
+01/21/2024 04:12:39 PM saving images
+01/21/2024 04:12:39 PM Outputting label
+01/21/2024 04:12:39 PM saving images
+01/21/2024 04:12:39 PM saving images
+01/21/2024 04:12:39 PM Outputting label
+01/21/2024 04:12:40 PM Outputting label
+01/21/2024 04:12:40 PM saving images
+01/21/2024 04:12:40 PM Outputting label
+01/21/2024 04:12:40 PM saving images
+01/21/2024 04:12:40 PM Outputting label
+01/21/2024 04:12:40 PM saving images
+01/21/2024 04:12:40 PM Outputting label
+01/21/2024 04:12:40 PM saving images
+01/21/2024 04:12:40 PM Outputting label
+01/21/2024 04:12:40 PM saving images
+01/21/2024 04:12:40 PM Outputting label
+01/21/2024 04:12:40 PM saving images
+01/21/2024 04:12:41 PM Outputting label
+01/21/2024 04:12:41 PM saving images
+01/21/2024 04:12:41 PM Outputting label
+01/21/2024 04:12:41 PM saving images
+01/21/2024 04:12:41 PM Outputting label
+01/21/2024 04:12:41 PM saving images
+01/21/2024 04:12:41 PM Outputting label
+01/21/2024 04:12:41 PM saving images
+01/21/2024 04:12:41 PM Outputting label
+01/21/2024 04:12:41 PM saving images
+01/21/2024 04:12:41 PM Outputting label
+01/21/2024 04:12:42 PM saving images
+01/21/2024 04:12:42 PM saving images
+01/21/2024 04:12:42 PM Outputting label
+01/21/2024 04:12:42 PM Outputting label
+01/21/2024 04:12:42 PM saving images
+01/21/2024 04:12:42 PM saving images
+01/21/2024 04:12:42 PM Outputting label
+01/21/2024 04:12:42 PM Outputting label
+01/21/2024 04:12:42 PM saving images
+01/21/2024 04:12:43 PM Outputting label
+01/21/2024 04:12:43 PM saving images
+01/21/2024 04:12:43 PM Outputting label
+01/21/2024 04:12:43 PM saving images
+01/21/2024 04:12:43 PM Outputting label
+01/21/2024 04:12:43 PM saving images
+01/21/2024 04:12:43 PM Outputting label
+01/21/2024 04:12:43 PM saving images
+01/21/2024 04:12:43 PM Outputting label
+01/21/2024 04:12:43 PM saving images
+01/21/2024 04:12:44 PM Outputting label
+01/21/2024 04:12:44 PM saving images
+01/21/2024 04:12:44 PM Outputting label
+01/21/2024 04:12:44 PM saving images
+01/21/2024 04:12:44 PM Outputting label
+01/21/2024 04:12:44 PM saving images
+01/21/2024 04:12:44 PM Outputting label
+01/21/2024 04:12:44 PM saving images
+01/21/2024 04:12:44 PM Outputting label
+01/21/2024 04:12:45 PM saving images
+01/21/2024 04:12:45 PM Outputting label
+01/21/2024 04:12:45 PM saving images
+01/21/2024 04:12:45 PM Outputting label
+01/21/2024 04:12:45 PM saving images
+01/21/2024 04:12:45 PM Outputting label
+01/21/2024 04:12:45 PM saving images
+01/21/2024 04:12:45 PM Outputting label
+01/21/2024 04:12:45 PM saving images
+01/21/2024 04:12:46 PM Outputting label
+01/21/2024 04:12:46 PM saving images
+01/21/2024 04:12:46 PM Outputting label
+01/21/2024 04:12:46 PM saving images
+01/21/2024 04:12:46 PM Outputting label
+01/21/2024 04:12:46 PM saving images
+01/21/2024 04:12:46 PM Outputting label
+01/21/2024 04:12:46 PM saving images
+01/21/2024 04:12:46 PM Outputting label
+01/21/2024 04:12:46 PM saving images
+01/21/2024 04:12:46 PM saving images
+01/21/2024 04:12:46 PM Outputting label
+01/21/2024 04:12:47 PM Outputting label
+01/21/2024 04:12:47 PM saving images
+01/21/2024 04:12:47 PM Outputting label
+01/21/2024 04:12:47 PM saving images
+01/21/2024 04:12:47 PM Outputting label
+01/21/2024 04:12:47 PM saving images
+01/21/2024 04:12:47 PM Outputting label
+01/21/2024 04:12:47 PM saving images
+01/21/2024 04:12:47 PM Outputting label
+01/21/2024 04:12:47 PM saving images
+01/21/2024 04:12:47 PM Outputting label
+01/21/2024 04:12:47 PM saving images
+01/21/2024 04:12:48 PM Outputting label
+01/21/2024 04:12:48 PM saving images
+01/21/2024 04:12:48 PM Outputting label
+01/21/2024 04:12:48 PM saving images
+01/21/2024 04:12:48 PM Outputting label
+01/21/2024 04:12:48 PM saving images
+01/21/2024 04:12:48 PM Outputting label
+01/21/2024 04:12:48 PM saving images
+01/21/2024 04:12:49 PM Outputting label
+01/21/2024 04:12:49 PM saving images
+01/21/2024 04:12:49 PM Outputting label
+01/21/2024 04:12:49 PM saving images
+01/21/2024 04:12:49 PM Outputting label
+01/21/2024 04:12:49 PM saving images
+01/21/2024 04:12:49 PM Outputting label
+01/21/2024 04:12:49 PM saving images
+01/21/2024 04:12:50 PM Outputting label
+01/21/2024 04:12:50 PM saving images
+01/21/2024 04:12:50 PM Outputting label
+01/21/2024 04:12:50 PM saving images
+01/21/2024 04:12:50 PM saving images
+01/21/2024 04:12:50 PM Outputting label
+01/21/2024 04:12:50 PM saving images
+01/21/2024 04:12:50 PM Outputting label
+01/21/2024 04:12:50 PM Outputting label
+01/21/2024 04:12:50 PM saving images
+01/21/2024 04:12:51 PM saving images
+01/21/2024 04:12:51 PM Outputting label
+01/21/2024 04:12:51 PM Outputting label
+01/21/2024 04:12:51 PM saving images
+01/21/2024 04:12:51 PM Outputting label
+01/21/2024 04:12:51 PM saving images
+01/21/2024 04:12:51 PM Outputting label
+01/21/2024 04:12:51 PM saving images
+01/21/2024 04:12:51 PM Outputting label
+01/21/2024 04:12:51 PM saving images
+01/21/2024 04:12:51 PM Outputting label
+01/21/2024 04:12:51 PM saving images
+01/21/2024 04:12:52 PM Outputting label
+01/21/2024 04:12:52 PM saving images
+01/21/2024 04:12:52 PM Outputting label
+01/21/2024 04:12:52 PM saving images
+01/21/2024 04:12:52 PM Outputting label
+01/21/2024 04:12:52 PM saving images
+01/21/2024 04:12:52 PM Outputting label
+01/21/2024 04:12:52 PM saving images
+01/21/2024 04:12:53 PM Outputting label
+01/21/2024 04:12:53 PM saving images
+01/21/2024 04:12:53 PM saving images
+01/21/2024 04:12:53 PM Outputting label
+01/21/2024 04:12:53 PM saving images
+01/21/2024 04:12:53 PM Outputting label
+01/21/2024 04:12:53 PM saving images
+01/21/2024 04:12:53 PM Outputting label
+01/21/2024 04:12:53 PM saving images
+01/21/2024 04:12:53 PM Outputting label
+01/21/2024 04:12:53 PM Outputting label
+01/21/2024 04:12:53 PM saving images
+01/21/2024 04:12:53 PM saving images
+01/21/2024 04:12:53 PM Outputting label
+01/21/2024 04:12:54 PM Outputting label
+01/21/2024 04:12:54 PM saving images
+01/21/2024 04:12:54 PM Outputting label
+01/21/2024 04:12:54 PM saving images
+01/21/2024 04:12:54 PM Outputting label
+01/21/2024 04:12:54 PM saving images
+01/21/2024 04:12:54 PM saving images
+01/21/2024 04:12:54 PM Outputting label
+01/21/2024 04:12:54 PM saving images
+01/21/2024 04:12:54 PM Outputting label
+01/21/2024 04:12:54 PM saving images
+01/21/2024 04:12:54 PM Outputting label
+01/21/2024 04:12:54 PM saving images
+01/21/2024 04:12:54 PM Outputting label
+01/21/2024 04:12:54 PM saving images
+01/21/2024 04:12:54 PM Outputting label
+01/21/2024 04:12:55 PM Outputting label
+01/21/2024 04:12:55 PM saving images
+01/21/2024 04:12:55 PM Outputting label
+01/21/2024 04:12:55 PM saving images
+01/21/2024 04:12:55 PM saving images
+01/21/2024 04:12:55 PM Outputting label
+01/21/2024 04:12:55 PM Outputting label
+01/21/2024 04:12:55 PM saving images
+01/21/2024 04:12:55 PM Outputting label
+01/21/2024 04:12:55 PM saving images
+01/21/2024 04:12:55 PM saving images
+01/21/2024 04:12:55 PM Outputting label
+01/21/2024 04:12:56 PM Outputting label
+01/21/2024 04:12:56 PM saving images
+01/21/2024 04:12:56 PM Outputting label
+01/21/2024 04:12:56 PM saving images
+01/21/2024 04:12:56 PM Outputting label
+01/21/2024 04:12:56 PM saving images
+01/21/2024 04:12:56 PM saving images
+01/21/2024 04:12:56 PM Outputting label
+01/21/2024 04:12:56 PM saving images
+01/21/2024 04:12:56 PM Outputting label
+01/21/2024 04:12:56 PM Outputting label
+01/21/2024 04:12:56 PM saving images
+01/21/2024 04:12:57 PM saving images
+01/21/2024 04:12:57 PM Outputting label
+01/21/2024 04:12:57 PM Outputting label
+01/21/2024 04:12:57 PM saving images
+01/21/2024 04:12:57 PM Outputting label
+01/21/2024 04:12:57 PM saving images
+01/21/2024 04:12:57 PM Outputting label
+01/21/2024 04:12:57 PM saving images
+01/21/2024 04:12:57 PM Outputting label
+01/21/2024 04:12:57 PM saving images
+01/21/2024 04:12:58 PM Outputting label
+01/21/2024 04:12:58 PM saving images
+01/21/2024 04:12:58 PM Outputting label
+01/21/2024 04:12:58 PM saving images
+01/21/2024 04:12:58 PM saving images
+01/21/2024 04:12:58 PM Outputting label
+01/21/2024 04:12:58 PM Outputting label
+01/21/2024 04:12:58 PM saving images
+01/21/2024 04:12:58 PM Outputting label
+01/21/2024 04:12:58 PM saving images
+01/21/2024 04:12:59 PM Outputting label
+01/21/2024 04:12:59 PM saving images
+01/21/2024 04:12:59 PM Outputting label
+01/21/2024 04:12:59 PM saving images
+01/21/2024 04:12:59 PM Outputting label
+01/21/2024 04:12:59 PM saving images
+01/21/2024 04:12:59 PM Outputting label
+01/21/2024 04:12:59 PM saving images
+01/21/2024 04:12:59 PM Outputting label
+01/21/2024 04:13:00 PM saving images
+01/21/2024 04:13:00 PM Outputting label
+01/21/2024 04:13:00 PM saving images
+01/21/2024 04:13:00 PM Outputting label
+01/21/2024 04:13:00 PM saving images
+01/21/2024 04:13:00 PM Outputting label
+01/21/2024 04:13:00 PM saving images
+01/21/2024 04:13:00 PM Outputting label
+01/21/2024 04:13:00 PM saving images
+01/21/2024 04:13:01 PM Outputting label
+01/21/2024 04:13:01 PM saving images
+01/21/2024 04:13:01 PM Outputting label
+01/21/2024 04:13:01 PM saving images
+01/21/2024 04:13:01 PM Outputting label
+01/21/2024 04:13:01 PM saving images
+01/21/2024 04:13:01 PM Outputting label
+01/21/2024 04:13:01 PM saving images
+01/21/2024 04:13:02 PM Outputting label
+01/21/2024 04:13:02 PM saving images
+01/21/2024 04:13:02 PM saving images
+01/21/2024 04:13:04 PM Outputting label
+01/21/2024 04:13:04 PM Outputting label
+01/21/2024 04:13:04 PM saving images
+01/21/2024 04:13:04 PM Outputting label
+01/21/2024 04:13:04 PM saving images
+01/21/2024 04:13:05 PM Outputting label
+01/21/2024 04:13:05 PM saving images
+01/21/2024 04:13:05 PM saving images
+01/21/2024 04:13:06 PM Outputting label
+01/21/2024 04:13:06 PM saving images
+01/21/2024 04:13:06 PM Outputting label
+01/21/2024 04:13:06 PM Outputting label
+01/21/2024 04:13:06 PM saving images
+01/21/2024 04:13:06 PM Outputting label
+01/21/2024 04:13:06 PM saving images
+01/21/2024 04:13:06 PM Outputting label
+01/21/2024 04:13:06 PM saving images
+01/21/2024 04:13:07 PM saving images
+01/21/2024 04:13:07 PM Outputting label
+01/21/2024 04:13:07 PM Outputting label
+01/21/2024 04:13:07 PM saving images
+01/21/2024 04:13:07 PM Outputting label
+01/21/2024 04:13:07 PM saving images
+01/21/2024 04:13:08 PM Outputting label
+01/21/2024 04:13:08 PM saving images
+01/21/2024 04:13:08 PM Outputting label
+01/21/2024 04:13:08 PM saving images
+01/21/2024 04:13:08 PM Outputting label
+01/21/2024 04:13:08 PM saving images
+01/21/2024 04:13:08 PM Outputting label
+01/21/2024 04:13:08 PM saving images
+01/21/2024 04:13:08 PM saving images
+01/21/2024 04:13:08 PM Outputting label
+01/21/2024 04:13:09 PM Outputting label
+01/21/2024 04:13:09 PM saving images
+01/21/2024 04:13:09 PM Outputting label
+01/21/2024 04:13:09 PM saving images
+01/21/2024 04:13:09 PM Outputting label
+01/21/2024 04:13:09 PM saving images
+01/21/2024 04:13:09 PM Outputting label
+01/21/2024 04:13:09 PM saving images
+01/21/2024 04:13:09 PM Outputting label
+01/21/2024 04:13:09 PM saving images
+01/21/2024 04:13:10 PM Outputting label
+01/21/2024 04:13:10 PM saving images
+01/21/2024 04:13:10 PM Outputting label
+01/21/2024 04:13:10 PM saving images
+01/21/2024 04:13:10 PM saving images
+01/21/2024 04:13:10 PM Outputting label
+01/21/2024 04:13:10 PM saving images
+01/21/2024 04:13:11 PM Outputting label
+01/21/2024 04:13:11 PM Outputting label
+01/21/2024 04:13:11 PM saving images
+01/21/2024 04:13:11 PM Outputting label
+01/21/2024 04:13:11 PM saving images
+01/21/2024 04:13:11 PM saving images
+01/21/2024 04:13:11 PM Outputting label
+01/21/2024 04:13:11 PM Outputting label
+01/21/2024 04:13:11 PM saving images
+01/21/2024 04:13:12 PM Outputting label
+01/21/2024 04:13:12 PM saving images
+01/21/2024 04:13:12 PM saving images
+01/21/2024 04:13:12 PM Outputting label
+01/21/2024 04:13:12 PM saving images
+01/21/2024 04:13:13 PM Outputting label
+01/21/2024 04:13:13 PM saving images
+01/21/2024 04:13:13 PM Outputting label
+01/21/2024 04:13:13 PM saving images
+01/21/2024 04:13:13 PM Outputting label
+01/21/2024 04:13:14 PM Outputting label
+01/21/2024 04:13:14 PM saving images
+01/21/2024 04:13:14 PM Outputting label
+01/21/2024 04:13:14 PM saving images
+01/21/2024 04:13:14 PM Outputting label
+01/21/2024 04:13:14 PM saving images
+01/21/2024 04:13:14 PM Outputting label
+01/21/2024 04:13:14 PM saving images
+01/21/2024 04:13:14 PM Outputting label
+01/21/2024 04:13:14 PM saving images
+01/21/2024 04:13:15 PM Outputting label
+01/21/2024 04:13:15 PM saving images
+01/21/2024 04:13:15 PM saving images
+01/21/2024 04:13:15 PM Outputting label
+01/21/2024 04:13:15 PM Outputting label
+01/21/2024 04:13:15 PM saving images
+01/21/2024 04:13:16 PM saving images
+01/21/2024 04:13:16 PM Outputting label
+01/21/2024 04:13:16 PM saving images
+01/21/2024 04:13:16 PM Outputting label
+01/21/2024 04:13:16 PM saving images
+01/21/2024 04:13:18 PM saving images
+01/21/2024 04:13:18 PM Outputting label
+01/21/2024 04:13:19 PM saving images
+01/21/2024 04:13:19 PM Outputting label
+01/21/2024 04:13:19 PM saving images
+01/21/2024 04:13:19 PM Outputting label
+01/21/2024 04:13:20 PM saving images
+01/21/2024 04:13:20 PM Outputting label
+01/21/2024 04:13:20 PM Outputting label
+01/21/2024 04:13:20 PM Outputting label
+01/21/2024 04:13:20 PM saving images
+01/21/2024 04:13:20 PM Outputting label
+01/21/2024 04:13:20 PM saving images
+01/21/2024 04:13:21 PM Outputting label
+01/21/2024 04:13:21 PM saving images
+01/21/2024 04:13:21 PM Outputting label
+01/21/2024 04:13:21 PM saving images
+01/21/2024 04:13:21 PM saving images
+01/21/2024 04:13:21 PM Outputting label
+01/21/2024 04:13:21 PM Outputting label
+01/21/2024 04:13:21 PM saving images
+01/21/2024 04:13:22 PM Outputting label
+01/21/2024 04:13:22 PM saving images
+01/21/2024 04:13:22 PM saving images
+01/21/2024 04:13:22 PM Outputting label
+01/21/2024 04:13:22 PM Outputting label
+01/21/2024 04:13:22 PM saving images
+01/21/2024 04:13:22 PM Outputting label
+01/21/2024 04:13:22 PM saving images
+01/21/2024 04:13:22 PM Outputting label
+01/21/2024 04:13:22 PM saving images
+01/21/2024 04:13:22 PM saving images
+01/21/2024 04:13:22 PM Outputting label
+01/21/2024 04:13:23 PM Outputting label
+01/21/2024 04:13:23 PM saving images
+01/21/2024 04:13:23 PM Outputting label
+01/21/2024 04:13:23 PM saving images
+01/21/2024 04:13:23 PM Outputting label
+01/21/2024 04:13:23 PM saving images
+01/21/2024 04:13:23 PM Outputting label
+01/21/2024 04:13:23 PM saving images
+01/21/2024 04:13:23 PM Outputting label
+01/21/2024 04:13:23 PM saving images
+01/21/2024 04:13:23 PM saving images
+01/21/2024 04:13:23 PM Outputting label
+01/21/2024 04:13:24 PM Outputting label
+01/21/2024 04:13:24 PM saving images
+01/21/2024 04:13:24 PM Outputting label
+01/21/2024 04:13:24 PM saving images
+01/21/2024 04:13:24 PM Outputting label
+01/21/2024 04:13:24 PM saving images
+01/21/2024 04:13:24 PM saving images
+01/21/2024 04:13:24 PM Outputting label
+01/21/2024 04:13:24 PM Outputting label
+01/21/2024 04:13:24 PM saving images
+01/21/2024 04:13:25 PM Outputting label
+01/21/2024 04:13:25 PM saving images
+01/21/2024 04:13:25 PM Outputting label
+01/21/2024 04:13:25 PM saving images
+01/21/2024 04:13:25 PM saving images
+01/21/2024 04:13:25 PM Outputting label
+01/21/2024 04:13:25 PM saving images
+01/21/2024 04:13:25 PM Outputting label
+01/21/2024 04:13:26 PM Outputting label
+01/21/2024 04:13:26 PM saving images
+01/21/2024 04:13:26 PM saving images
+01/21/2024 04:13:26 PM Outputting label
+01/21/2024 04:13:26 PM saving images
+01/21/2024 04:13:26 PM Outputting label
+01/21/2024 04:13:27 PM Outputting label
+01/21/2024 04:13:27 PM saving images
+01/21/2024 04:13:27 PM saving images
+01/21/2024 04:13:28 PM Outputting label
+01/21/2024 04:13:28 PM saving images
+01/21/2024 04:13:29 PM Outputting label
+01/21/2024 04:13:29 PM saving images
+01/21/2024 04:13:29 PM Outputting label
+01/21/2024 04:13:29 PM saving images
+01/21/2024 04:13:30 PM Outputting label
+01/21/2024 04:13:30 PM Outputting label
+01/21/2024 04:13:30 PM saving images
+01/21/2024 04:13:30 PM saving images
+01/21/2024 04:13:30 PM Outputting label
+01/21/2024 04:13:30 PM Outputting label
+01/21/2024 04:13:30 PM saving images
+01/21/2024 04:13:31 PM Outputting label
+01/21/2024 04:13:31 PM saving images
+01/21/2024 04:13:31 PM Outputting label
+01/21/2024 04:13:31 PM saving images
+01/21/2024 04:13:31 PM Outputting label
+01/21/2024 04:13:31 PM saving images
+01/21/2024 04:13:31 PM Outputting label
+01/21/2024 04:13:31 PM saving images
+01/21/2024 04:13:31 PM Outputting label
+01/21/2024 04:13:31 PM saving images
+01/21/2024 04:13:32 PM Outputting label
+01/21/2024 04:13:32 PM saving images
+01/21/2024 04:13:32 PM Outputting label
+01/21/2024 04:13:32 PM saving images
+01/21/2024 04:13:32 PM Outputting label
+01/21/2024 04:13:32 PM saving images
+01/21/2024 04:13:32 PM Outputting label
+01/21/2024 04:13:32 PM saving images
+01/21/2024 04:13:32 PM Outputting label
+01/21/2024 04:13:32 PM saving images
+01/21/2024 04:13:32 PM Outputting label
+01/21/2024 04:13:32 PM saving images
+01/21/2024 04:13:33 PM Outputting label
+01/21/2024 04:13:33 PM saving images
+01/21/2024 04:13:33 PM Outputting label
+01/21/2024 04:13:33 PM saving images
+01/21/2024 04:13:33 PM Outputting label
+01/21/2024 04:13:33 PM saving images
+01/21/2024 04:13:33 PM Outputting label
+01/21/2024 04:13:33 PM saving images
+01/21/2024 04:13:33 PM Outputting label
+01/21/2024 04:13:33 PM saving images
+01/21/2024 04:13:33 PM Outputting label
+01/21/2024 04:13:33 PM saving images
+01/21/2024 04:13:34 PM Outputting label
+01/21/2024 04:13:34 PM saving images
+01/21/2024 04:13:34 PM Outputting label
+01/21/2024 04:13:34 PM saving images
+01/21/2024 04:13:34 PM Outputting label
+01/21/2024 04:13:34 PM saving images
+01/21/2024 04:13:34 PM Outputting label
+01/21/2024 04:13:34 PM saving images
+01/21/2024 04:13:35 PM Outputting label
+01/21/2024 04:13:35 PM saving images
+01/21/2024 04:13:35 PM Outputting label
+01/21/2024 04:13:35 PM saving images
+01/21/2024 04:13:35 PM saving images
+01/21/2024 04:13:35 PM Outputting label
+01/21/2024 04:13:35 PM Outputting label
+01/21/2024 04:13:35 PM saving images
+01/21/2024 04:13:36 PM saving images
+01/21/2024 04:13:36 PM Outputting label
+01/21/2024 04:13:36 PM Outputting label
+01/21/2024 04:13:36 PM saving images
+01/21/2024 04:13:36 PM Outputting label
+01/21/2024 04:13:36 PM saving images
+01/21/2024 04:13:37 PM Outputting label
+01/21/2024 04:13:37 PM saving images
+01/21/2024 04:13:37 PM Outputting label
+01/21/2024 04:13:37 PM saving images
+01/21/2024 04:13:37 PM Outputting label
+01/21/2024 04:13:37 PM saving images
+01/21/2024 04:13:37 PM saving images
+01/21/2024 04:13:37 PM Outputting label
+01/21/2024 04:13:37 PM Outputting label
+01/21/2024 04:13:37 PM saving images
+01/21/2024 04:13:38 PM Outputting label
+01/21/2024 04:13:38 PM saving images
+01/21/2024 04:13:38 PM Outputting label
+01/21/2024 04:13:38 PM saving images
+01/21/2024 04:13:39 PM Outputting label
+01/21/2024 04:13:39 PM saving images
+01/21/2024 04:13:39 PM Outputting label
+01/21/2024 04:13:39 PM saving images
+01/21/2024 04:13:40 PM saving images
+01/21/2024 04:13:40 PM Outputting label
+01/21/2024 04:13:40 PM saving images
+01/21/2024 04:13:40 PM Outputting label
+01/21/2024 04:13:40 PM saving images
+01/21/2024 04:13:40 PM Outputting label
+01/21/2024 04:13:40 PM saving images
+01/21/2024 04:13:40 PM Outputting label
+01/21/2024 04:13:40 PM Outputting label
+01/21/2024 04:13:40 PM saving images
+01/21/2024 04:13:40 PM saving images
+01/21/2024 04:13:40 PM Outputting label
+01/21/2024 04:13:41 PM Outputting label
+01/21/2024 04:13:41 PM saving images
+01/21/2024 04:13:41 PM Outputting label
+01/21/2024 04:13:41 PM saving images
+01/21/2024 04:13:41 PM Outputting label
+01/21/2024 04:13:41 PM saving images
+01/21/2024 04:13:41 PM Outputting label
+01/21/2024 04:13:41 PM saving images
+01/21/2024 04:13:41 PM saving images
+01/21/2024 04:13:41 PM Outputting label
+01/21/2024 04:13:41 PM Outputting label
+01/21/2024 04:13:42 PM saving images
+01/21/2024 04:13:42 PM Outputting label
+01/21/2024 04:13:42 PM saving images
+01/21/2024 04:13:42 PM Outputting label
+01/21/2024 04:13:42 PM saving images
+01/21/2024 04:13:42 PM Outputting label
+01/21/2024 04:13:42 PM saving images
+01/21/2024 04:13:42 PM Outputting label
+01/21/2024 04:13:42 PM saving images
+01/21/2024 04:13:42 PM Outputting label
+01/21/2024 04:13:42 PM saving images
+01/21/2024 04:13:42 PM saving images
+01/21/2024 04:13:43 PM Outputting label
+01/21/2024 04:13:43 PM Outputting label
+01/21/2024 04:13:43 PM saving images
+01/21/2024 04:13:43 PM saving images
+01/21/2024 04:13:44 PM Outputting label
+01/21/2024 04:13:44 PM saving images
+01/21/2024 04:13:44 PM saving images
+01/21/2024 04:13:44 PM Outputting label
+01/21/2024 04:13:45 PM Outputting label
+01/21/2024 04:13:45 PM Outputting label
+01/21/2024 04:13:45 PM saving images
+01/21/2024 04:13:45 PM Outputting label
+01/21/2024 04:13:45 PM saving images
+01/21/2024 04:13:45 PM saving images
+01/21/2024 04:13:45 PM Outputting label
+01/21/2024 04:13:45 PM Outputting label
+01/21/2024 04:13:45 PM saving images
+01/21/2024 04:13:46 PM Outputting label
+01/21/2024 04:13:46 PM saving images
+01/21/2024 04:13:46 PM Outputting label
+01/21/2024 04:13:46 PM saving images
+01/21/2024 04:13:46 PM saving images
+01/21/2024 04:13:46 PM Outputting label
+01/21/2024 04:13:46 PM Outputting label
+01/21/2024 04:13:46 PM saving images
+01/21/2024 04:13:46 PM Outputting label
+01/21/2024 04:13:46 PM saving images
+01/21/2024 04:13:46 PM Outputting label
+01/21/2024 04:13:46 PM saving images
+01/21/2024 04:13:47 PM Outputting label
+01/21/2024 04:13:47 PM saving images
+01/21/2024 04:13:47 PM Outputting label
+01/21/2024 04:13:47 PM saving images
+01/21/2024 04:13:47 PM saving images
+01/21/2024 04:13:47 PM Outputting label
+01/21/2024 04:13:47 PM saving images
+01/21/2024 04:13:47 PM Outputting label
+01/21/2024 04:13:48 PM Outputting label
+01/21/2024 04:13:48 PM saving images
+01/21/2024 04:13:48 PM saving images
+01/21/2024 04:13:48 PM Outputting label
+01/21/2024 04:13:48 PM saving images
+01/21/2024 04:13:48 PM Outputting label
+01/21/2024 04:13:48 PM saving images
+01/21/2024 04:13:49 PM Outputting label
+01/21/2024 04:13:49 PM saving images
+01/21/2024 04:13:49 PM Outputting label
+01/21/2024 04:13:49 PM Outputting label
+01/21/2024 04:13:49 PM saving images
+01/21/2024 04:13:49 PM Outputting label
+01/21/2024 04:13:49 PM saving images
+01/21/2024 04:13:49 PM saving images
+01/21/2024 04:13:49 PM Outputting label
+01/21/2024 04:13:50 PM saving images
+01/21/2024 04:13:50 PM Outputting label
+01/21/2024 04:13:50 PM Outputting label
+01/21/2024 04:13:50 PM saving images
+01/21/2024 04:13:50 PM Outputting label
+01/21/2024 04:13:50 PM saving images
+01/21/2024 04:13:50 PM saving images
+01/21/2024 04:13:50 PM Outputting label
+01/21/2024 04:13:50 PM saving images
+01/21/2024 04:13:50 PM Outputting label
+01/21/2024 04:13:51 PM Outputting label
+01/21/2024 04:13:51 PM saving images
+01/21/2024 04:13:51 PM saving images
+01/21/2024 04:13:52 PM Outputting label
+01/21/2024 04:13:52 PM Outputting label
+01/21/2024 04:13:52 PM saving images
+01/21/2024 04:13:52 PM Outputting label
+01/21/2024 04:13:52 PM saving images
+01/21/2024 04:13:52 PM Outputting label
+01/21/2024 04:13:52 PM saving images
+01/21/2024 04:13:53 PM Outputting label
+01/21/2024 04:13:53 PM saving images
+01/21/2024 04:13:53 PM saving images
+01/21/2024 04:13:53 PM Outputting label
+01/21/2024 04:13:53 PM saving images
+01/21/2024 04:13:53 PM Outputting label
+01/21/2024 04:13:53 PM saving images
+01/21/2024 04:13:53 PM Outputting label
+01/21/2024 04:13:53 PM saving images
+01/21/2024 04:13:54 PM Outputting label
+01/21/2024 04:13:54 PM Outputting label
+01/21/2024 04:13:54 PM saving images
+01/21/2024 04:13:54 PM Outputting label
+01/21/2024 04:13:54 PM saving images
+01/21/2024 04:13:54 PM Outputting label
+01/21/2024 04:13:54 PM saving images
+01/21/2024 04:13:54 PM Outputting label
+01/21/2024 04:13:54 PM saving images
+01/21/2024 04:13:54 PM Outputting label
+01/21/2024 04:13:54 PM saving images
+01/21/2024 04:13:55 PM Outputting label
+01/21/2024 04:13:55 PM saving images
+01/21/2024 04:13:55 PM Outputting label
+01/21/2024 04:13:55 PM saving images
+01/21/2024 04:13:55 PM Outputting label
+01/21/2024 04:13:55 PM saving images
+01/21/2024 04:13:55 PM Outputting label
+01/21/2024 04:13:55 PM saving images
+01/21/2024 04:13:55 PM Outputting label
+01/21/2024 04:13:55 PM saving images
+01/21/2024 04:13:56 PM Outputting label
+01/21/2024 04:13:56 PM saving images
+01/21/2024 04:13:56 PM Outputting label
+01/21/2024 04:13:56 PM saving images
+01/21/2024 04:13:56 PM Outputting label
+01/21/2024 04:13:56 PM saving images
+01/21/2024 04:13:56 PM Outputting label
+01/21/2024 04:13:56 PM saving images
+01/21/2024 04:13:56 PM Outputting label
+01/21/2024 04:13:56 PM saving images
+01/21/2024 04:13:56 PM Outputting label
+01/21/2024 04:13:56 PM saving images
+01/21/2024 04:13:57 PM saving images
+01/21/2024 04:13:57 PM saving images
+01/21/2024 04:13:57 PM Outputting label
+01/21/2024 04:13:57 PM saving images
+01/21/2024 04:13:57 PM Outputting label
+01/21/2024 04:13:57 PM Outputting label
+01/21/2024 04:13:57 PM Outputting label
+01/21/2024 04:13:57 PM saving images
+01/21/2024 04:13:58 PM saving images
+01/21/2024 04:13:59 PM Outputting label
+01/21/2024 04:13:59 PM saving images
+01/21/2024 04:13:59 PM Outputting label
+01/21/2024 04:13:59 PM Outputting label
+01/21/2024 04:13:59 PM saving images
+01/21/2024 04:13:59 PM saving images
+01/21/2024 04:13:59 PM Outputting label
+01/21/2024 04:13:59 PM Outputting label
+01/21/2024 04:13:59 PM saving images
+01/21/2024 04:14:00 PM Outputting label
+01/21/2024 04:14:00 PM saving images
+01/21/2024 04:14:00 PM Outputting label
+01/21/2024 04:14:00 PM saving images
+01/21/2024 04:14:00 PM Outputting label
+01/21/2024 04:14:00 PM saving images
+01/21/2024 04:14:00 PM Outputting label
+01/21/2024 04:14:00 PM saving images
+01/21/2024 04:14:00 PM Outputting label
+01/21/2024 04:14:00 PM saving images
+01/21/2024 04:14:01 PM Outputting label
+01/21/2024 04:14:01 PM saving images
+01/21/2024 04:14:01 PM Outputting label
+01/21/2024 04:14:01 PM saving images
+01/21/2024 04:14:01 PM saving images
+01/21/2024 04:14:01 PM Outputting label
+01/21/2024 04:14:01 PM Outputting label
+01/21/2024 04:14:02 PM saving images
+01/21/2024 04:14:02 PM saving images
+01/21/2024 04:14:03 PM Outputting label
+01/21/2024 04:14:04 PM saving images
+01/21/2024 04:14:04 PM Outputting label
+01/21/2024 04:14:04 PM saving images
+01/21/2024 04:14:04 PM Outputting label
+01/21/2024 04:14:04 PM Outputting label
+01/21/2024 04:14:04 PM saving images
+01/21/2024 04:14:04 PM Outputting label
+01/21/2024 04:14:04 PM saving images
+01/21/2024 04:14:04 PM Outputting label
+01/21/2024 04:14:04 PM saving images
+01/21/2024 04:14:05 PM Outputting label
+01/21/2024 04:14:05 PM saving images
+01/21/2024 04:14:05 PM Outputting label
+01/21/2024 04:14:05 PM saving images
+01/21/2024 04:14:05 PM Outputting label
+01/21/2024 04:14:05 PM saving images
+01/21/2024 04:14:05 PM saving images
+01/21/2024 04:14:05 PM Outputting label
+01/21/2024 04:14:05 PM saving images
+01/21/2024 04:14:05 PM Outputting label
+01/21/2024 04:14:05 PM saving images
+01/21/2024 04:14:06 PM saving images
+01/21/2024 04:14:06 PM Saving Training Stats at Outputs/experiment_01-20_01.54.47/loss_log.txt
+01/21/2024 04:14:07 PM Experiment took 38.32 hours
+01/21/2024 04:14:07 PM generting loss and accuracy plot at Outputs/experiment_01-20_01.54.47/loss_plot.png
+01/21/2024 04:14:19 PM Experiment End
+01/22/2024 04:07:07 PM 
+
+#################### New Run ####################
+01/22/2024 04:07:10 PM PreRun: Creating required directories
+01/22/2024 04:07:10 PM PreRun: Generating experiment config file
+01/22/2024 04:07:11 PM Using cuda device
+01/22/2024 04:07:11 PM configuring data loaders
+01/22/2024 04:07:11 PM configuring model - UNET 3+ Short
+01/22/2024 04:07:14 PM saving model summary at Outputs/experiment_01-22_16.07.10/modelSummary.txt
+01/22/2024 04:07:14 PM logging parameters
+01/22/2024 04:07:14 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 1e-06,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+01/22/2024 04:07:14 PM starting training
+01/22/2024 05:14:20 PM saving model at Outputs/experiment_01-22_16.07.10/model/best_model_0.pth
+01/22/2024 06:49:49 PM saving model at Outputs/experiment_01-22_16.07.10/model/best_model_1.pth
+01/22/2024 09:40:37 PM 
+
+#################### New Run ####################
+01/22/2024 09:40:40 PM PreRun: Creating required directories
+01/22/2024 09:40:40 PM PreRun: Generating experiment config file
+01/22/2024 09:40:40 PM Using cuda device
+01/22/2024 09:40:40 PM configuring data loaders
+01/22/2024 09:40:41 PM configuring model - UNET 3+ Short
+01/22/2024 09:40:47 PM saving model summary at Outputs/experiment_01-22_21.40.40/modelSummary.txt
+01/22/2024 09:40:47 PM logging parameters
+01/22/2024 09:40:47 PM {
+    "model": "UNet_3PlusShort",
+    "epochs": 50,
+    "learning_rate": 1e-07,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+01/22/2024 09:40:47 PM starting training
+01/22/2024 11:06:44 PM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_0.pth
+01/23/2024 12:10:13 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_1.pth
+01/23/2024 01:02:03 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_2.pth
+01/23/2024 01:53:43 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_3.pth
+01/23/2024 02:45:05 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_4.pth
+01/23/2024 04:27:41 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_6.pth
+01/23/2024 05:18:52 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_7.pth
+01/23/2024 06:09:58 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_8.pth
+01/23/2024 07:01:08 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_9.pth
+01/23/2024 07:52:20 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_10.pth
+01/23/2024 08:43:38 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_11.pth
+01/23/2024 09:35:44 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_12.pth
+01/23/2024 10:26:34 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_13.pth
+01/23/2024 11:17:05 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_14.pth
+01/23/2024 12:08:11 PM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_15.pth
+01/23/2024 01:00:15 PM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_16.pth
+01/23/2024 02:38:58 PM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_18.pth
+01/23/2024 03:26:42 PM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_19.pth
+01/23/2024 09:04:33 PM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_26.pth
+01/23/2024 09:52:49 PM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_27.pth
+01/23/2024 10:41:17 PM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_28.pth
+01/24/2024 06:42:06 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_38.pth
+01/24/2024 09:04:42 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_41.pth
+01/24/2024 09:51:05 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_42.pth
+01/24/2024 10:37:47 AM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_43.pth
+01/24/2024 01:01:02 PM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_46.pth
+01/24/2024 01:49:03 PM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_47.pth
+01/24/2024 02:37:09 PM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_48.pth
+01/24/2024 03:24:46 PM saving model at Outputs/experiment_01-22_21.40.40/model/best_model_49.pth
+01/24/2024 03:24:46 PM loading model for testing from Outputs/experiment_01-22_21.40.40/model/best_model.pth
+01/24/2024 03:24:46 PM Testing...
+01/24/2024 03:24:46 PM Outputting label
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM saving images
+01/24/2024 03:24:47 PM Outputting label
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:48 PM Outputting label
+01/24/2024 03:24:48 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:49 PM Outputting label
+01/24/2024 03:24:49 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:50 PM Outputting label
+01/24/2024 03:24:50 PM saving images
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM Outputting label
+01/24/2024 03:24:51 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:52 PM saving images
+01/24/2024 03:24:52 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:53 PM saving images
+01/24/2024 03:24:53 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:54 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:54 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:54 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:54 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:54 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:54 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:54 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:54 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:54 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:54 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:54 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:54 PM Outputting label
+01/24/2024 03:24:54 PM saving images
+01/24/2024 03:24:55 PM Outputting label
+01/24/2024 03:24:55 PM saving images
+01/24/2024 03:24:55 PM Outputting label
+01/24/2024 03:24:55 PM saving images
+01/24/2024 03:24:55 PM Outputting label
+01/24/2024 03:24:55 PM saving images
+01/24/2024 03:24:55 PM Outputting label
+01/24/2024 03:24:55 PM saving images
+01/24/2024 03:24:55 PM Outputting label
+01/24/2024 03:24:55 PM saving images
+01/24/2024 03:24:55 PM Outputting label
+01/24/2024 03:24:55 PM saving images
+01/24/2024 03:24:55 PM Outputting label
+01/24/2024 03:24:55 PM saving images
+01/24/2024 03:24:55 PM Outputting label
+01/24/2024 03:24:55 PM saving images
+01/24/2024 03:24:55 PM Outputting label
+01/24/2024 03:24:55 PM saving images
+01/24/2024 03:24:55 PM Outputting label
+01/24/2024 03:24:55 PM saving images
+01/24/2024 03:24:55 PM Outputting label
+01/24/2024 03:24:55 PM saving images
+01/24/2024 03:24:56 PM Outputting label
+01/24/2024 03:24:56 PM saving images
+01/24/2024 03:24:56 PM Outputting label
+01/24/2024 03:24:56 PM saving images
+01/24/2024 03:24:56 PM Outputting label
+01/24/2024 03:24:56 PM saving images
+01/24/2024 03:24:56 PM Outputting label
+01/24/2024 03:24:56 PM saving images
+01/24/2024 03:24:56 PM Outputting label
+01/24/2024 03:24:56 PM saving images
+01/24/2024 03:24:56 PM Outputting label
+01/24/2024 03:24:56 PM saving images
+01/24/2024 03:24:56 PM Outputting label
+01/24/2024 03:24:56 PM saving images
+01/24/2024 03:24:56 PM Outputting label
+01/24/2024 03:24:56 PM saving images
+01/24/2024 03:24:56 PM Outputting label
+01/24/2024 03:24:56 PM saving images
+01/24/2024 03:24:56 PM Outputting label
+01/24/2024 03:24:56 PM saving images
+01/24/2024 03:24:56 PM Outputting label
+01/24/2024 03:24:56 PM saving images
+01/24/2024 03:24:56 PM Outputting label
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:57 PM Outputting label
+01/24/2024 03:24:57 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM saving images
+01/24/2024 03:24:58 PM Outputting label
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:24:59 PM Outputting label
+01/24/2024 03:24:59 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:00 PM Outputting label
+01/24/2024 03:25:00 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:01 PM Outputting label
+01/24/2024 03:25:01 PM saving images
+01/24/2024 03:25:02 PM Outputting label
+01/24/2024 03:25:02 PM saving images
+01/24/2024 03:25:02 PM Outputting label
+01/24/2024 03:25:02 PM saving images
+01/24/2024 03:25:02 PM Outputting label
+01/24/2024 03:25:02 PM saving images
+01/24/2024 03:25:02 PM Outputting label
+01/24/2024 03:25:02 PM saving images
+01/24/2024 03:25:02 PM Outputting label
+01/24/2024 03:25:02 PM saving images
+01/24/2024 03:25:02 PM Outputting label
+01/24/2024 03:25:02 PM saving images
+01/24/2024 03:25:02 PM Outputting label
+01/24/2024 03:25:02 PM saving images
+01/24/2024 03:25:02 PM Outputting label
+01/24/2024 03:25:02 PM saving images
+01/24/2024 03:25:02 PM Outputting label
+01/24/2024 03:25:02 PM saving images
+01/24/2024 03:25:02 PM Outputting label
+01/24/2024 03:25:02 PM saving images
+01/24/2024 03:25:02 PM Outputting label
+01/24/2024 03:25:02 PM saving images
+01/24/2024 03:25:03 PM Outputting label
+01/24/2024 03:25:03 PM saving images
+01/24/2024 03:25:03 PM Outputting label
+01/24/2024 03:25:03 PM saving images
+01/24/2024 03:25:03 PM Outputting label
+01/24/2024 03:25:03 PM saving images
+01/24/2024 03:25:03 PM Outputting label
+01/24/2024 03:25:03 PM saving images
+01/24/2024 03:25:03 PM Outputting label
+01/24/2024 03:25:03 PM saving images
+01/24/2024 03:25:03 PM Outputting label
+01/24/2024 03:25:03 PM saving images
+01/24/2024 03:25:03 PM Outputting label
+01/24/2024 03:25:03 PM saving images
+01/24/2024 03:25:03 PM Outputting label
+01/24/2024 03:25:03 PM saving images
+01/24/2024 03:25:03 PM Outputting label
+01/24/2024 03:25:03 PM saving images
+01/24/2024 03:25:03 PM Outputting label
+01/24/2024 03:25:03 PM saving images
+01/24/2024 03:25:03 PM Outputting label
+01/24/2024 03:25:04 PM saving images
+01/24/2024 03:25:04 PM saving images
+01/24/2024 03:25:04 PM Outputting label
+01/24/2024 03:25:04 PM Outputting label
+01/24/2024 03:25:04 PM saving images
+01/24/2024 03:25:04 PM Outputting label
+01/24/2024 03:25:04 PM saving images
+01/24/2024 03:25:04 PM Outputting label
+01/24/2024 03:25:04 PM saving images
+01/24/2024 03:25:04 PM Outputting label
+01/24/2024 03:25:04 PM saving images
+01/24/2024 03:25:04 PM Outputting label
+01/24/2024 03:25:04 PM saving images
+01/24/2024 03:25:04 PM Outputting label
+01/24/2024 03:25:04 PM saving images
+01/24/2024 03:25:04 PM Outputting label
+01/24/2024 03:25:04 PM saving images
+01/24/2024 03:25:04 PM Outputting label
+01/24/2024 03:25:04 PM saving images
+01/24/2024 03:25:04 PM Outputting label
+01/24/2024 03:25:04 PM saving images
+01/24/2024 03:25:04 PM Outputting label
+01/24/2024 03:25:04 PM saving images
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:05 PM Outputting label
+01/24/2024 03:25:05 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:06 PM Outputting label
+01/24/2024 03:25:06 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:07 PM saving images
+01/24/2024 03:25:07 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:08 PM Outputting label
+01/24/2024 03:25:08 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:09 PM saving images
+01/24/2024 03:25:09 PM Outputting label
+01/24/2024 03:25:10 PM saving images
+01/24/2024 03:25:10 PM Outputting label
+01/24/2024 03:25:10 PM saving images
+01/24/2024 03:25:10 PM Outputting label
+01/24/2024 03:25:10 PM saving images
+01/24/2024 03:25:10 PM Outputting label
+01/24/2024 03:25:10 PM saving images
+01/24/2024 03:25:10 PM Outputting label
+01/24/2024 03:25:10 PM saving images
+01/24/2024 03:25:10 PM Outputting label
+01/24/2024 03:25:10 PM saving images
+01/24/2024 03:25:10 PM Outputting label
+01/24/2024 03:25:10 PM saving images
+01/24/2024 03:25:10 PM Outputting label
+01/24/2024 03:25:10 PM saving images
+01/24/2024 03:25:10 PM Outputting label
+01/24/2024 03:25:10 PM saving images
+01/24/2024 03:25:10 PM Outputting label
+01/24/2024 03:25:10 PM saving images
+01/24/2024 03:25:10 PM Outputting label
+01/24/2024 03:25:10 PM saving images
+01/24/2024 03:25:10 PM Outputting label
+01/24/2024 03:25:10 PM saving images
+01/24/2024 03:25:11 PM Outputting label
+01/24/2024 03:25:11 PM saving images
+01/24/2024 03:25:11 PM Outputting label
+01/24/2024 03:25:11 PM saving images
+01/24/2024 03:25:11 PM Outputting label
+01/24/2024 03:25:11 PM saving images
+01/24/2024 03:25:11 PM Outputting label
+01/24/2024 03:25:11 PM saving images
+01/24/2024 03:25:11 PM Outputting label
+01/24/2024 03:25:11 PM saving images
+01/24/2024 03:25:11 PM Outputting label
+01/24/2024 03:25:11 PM saving images
+01/24/2024 03:25:11 PM Outputting label
+01/24/2024 03:25:11 PM saving images
+01/24/2024 03:25:11 PM Outputting label
+01/24/2024 03:25:11 PM saving images
+01/24/2024 03:25:11 PM Outputting label
+01/24/2024 03:25:11 PM saving images
+01/24/2024 03:25:11 PM Outputting label
+01/24/2024 03:25:11 PM saving images
+01/24/2024 03:25:11 PM Outputting label
+01/24/2024 03:25:11 PM saving images
+01/24/2024 03:25:12 PM Outputting label
+01/24/2024 03:25:12 PM saving images
+01/24/2024 03:25:12 PM Outputting label
+01/24/2024 03:25:12 PM saving images
+01/24/2024 03:25:12 PM Outputting label
+01/24/2024 03:25:12 PM saving images
+01/24/2024 03:25:12 PM Outputting label
+01/24/2024 03:25:12 PM saving images
+01/24/2024 03:25:12 PM Outputting label
+01/24/2024 03:25:12 PM saving images
+01/24/2024 03:25:12 PM Outputting label
+01/24/2024 03:25:12 PM saving images
+01/24/2024 03:25:12 PM Outputting label
+01/24/2024 03:25:12 PM saving images
+01/24/2024 03:25:12 PM Outputting label
+01/24/2024 03:25:12 PM saving images
+01/24/2024 03:25:12 PM Outputting label
+01/24/2024 03:25:12 PM saving images
+01/24/2024 03:25:12 PM Outputting label
+01/24/2024 03:25:12 PM saving images
+01/24/2024 03:25:12 PM Outputting label
+01/24/2024 03:25:12 PM saving images
+01/24/2024 03:25:12 PM Outputting label
+01/24/2024 03:25:12 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM saving images
+01/24/2024 03:25:13 PM Outputting label
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:14 PM Outputting label
+01/24/2024 03:25:14 PM saving images
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:15 PM Outputting label
+01/24/2024 03:25:15 PM saving images
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM saving images
+01/24/2024 03:25:16 PM Outputting label
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:17 PM Outputting label
+01/24/2024 03:25:17 PM saving images
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:18 PM Outputting label
+01/24/2024 03:25:18 PM saving images
+01/24/2024 03:25:19 PM Outputting label
+01/24/2024 03:25:19 PM saving images
+01/24/2024 03:25:19 PM Outputting label
+01/24/2024 03:25:19 PM saving images
+01/24/2024 03:25:19 PM Outputting label
+01/24/2024 03:25:19 PM saving images
+01/24/2024 03:25:19 PM Outputting label
+01/24/2024 03:25:19 PM saving images
+01/24/2024 03:25:19 PM Outputting label
+01/24/2024 03:25:19 PM saving images
+01/24/2024 03:25:19 PM Outputting label
+01/24/2024 03:25:19 PM saving images
+01/24/2024 03:25:19 PM Outputting label
+01/24/2024 03:25:19 PM saving images
+01/24/2024 03:25:19 PM Outputting label
+01/24/2024 03:25:19 PM saving images
+01/24/2024 03:25:19 PM Outputting label
+01/24/2024 03:25:19 PM saving images
+01/24/2024 03:25:19 PM Outputting label
+01/24/2024 03:25:19 PM saving images
+01/24/2024 03:25:19 PM Outputting label
+01/24/2024 03:25:19 PM saving images
+01/24/2024 03:25:20 PM Outputting label
+01/24/2024 03:25:20 PM saving images
+01/24/2024 03:25:20 PM Outputting label
+01/24/2024 03:25:20 PM saving images
+01/24/2024 03:25:20 PM Outputting label
+01/24/2024 03:25:20 PM saving images
+01/24/2024 03:25:20 PM saving images
+01/24/2024 03:25:20 PM Outputting label
+01/24/2024 03:25:20 PM Outputting label
+01/24/2024 03:25:20 PM saving images
+01/24/2024 03:25:20 PM Outputting label
+01/24/2024 03:25:20 PM saving images
+01/24/2024 03:25:20 PM Outputting label
+01/24/2024 03:25:20 PM saving images
+01/24/2024 03:25:20 PM Outputting label
+01/24/2024 03:25:20 PM saving images
+01/24/2024 03:25:20 PM Outputting label
+01/24/2024 03:25:20 PM saving images
+01/24/2024 03:25:20 PM Outputting label
+01/24/2024 03:25:20 PM saving images
+01/24/2024 03:25:20 PM Outputting label
+01/24/2024 03:25:20 PM saving images
+01/24/2024 03:25:20 PM Outputting label
+01/24/2024 03:25:20 PM saving images
+01/24/2024 03:25:21 PM Outputting label
+01/24/2024 03:25:21 PM saving images
+01/24/2024 03:25:21 PM Outputting label
+01/24/2024 03:25:21 PM saving images
+01/24/2024 03:25:21 PM Outputting label
+01/24/2024 03:25:21 PM saving images
+01/24/2024 03:25:21 PM Outputting label
+01/24/2024 03:25:21 PM saving images
+01/24/2024 03:25:21 PM Outputting label
+01/24/2024 03:25:21 PM saving images
+01/24/2024 03:25:21 PM Outputting label
+01/24/2024 03:25:21 PM saving images
+01/24/2024 03:25:21 PM Outputting label
+01/24/2024 03:25:21 PM saving images
+01/24/2024 03:25:21 PM Outputting label
+01/24/2024 03:25:21 PM saving images
+01/24/2024 03:25:21 PM Outputting label
+01/24/2024 03:25:21 PM saving images
+01/24/2024 03:25:21 PM Outputting label
+01/24/2024 03:25:21 PM saving images
+01/24/2024 03:25:21 PM Outputting label
+01/24/2024 03:25:21 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM Outputting label
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:22 PM saving images
+01/24/2024 03:25:23 PM Saving Training Stats at Outputs/experiment_01-22_21.40.40/loss_log.txt
+01/24/2024 03:25:23 PM Experiment took 41.75 hours
+01/24/2024 03:25:23 PM generting loss and accuracy plot at Outputs/experiment_01-22_21.40.40/loss_plot.png
+01/24/2024 03:25:24 PM Experiment End
+02/06/2024 12:50:02 AM 
+
+#################### New Run ####################
+02/06/2024 12:50:07 AM PreRun: Creating required directories
+02/06/2024 12:50:07 AM PreRun: Generating experiment config file
+02/06/2024 12:50:08 AM Using cuda device
+02/06/2024 12:50:08 AM configuring data loaders
+02/06/2024 12:50:08 AM configuring model - UNET
+02/06/2024 12:52:13 AM 
+
+#################### New Run ####################
+02/06/2024 12:52:17 AM PreRun: Creating required directories
+02/06/2024 12:52:17 AM PreRun: Generating experiment config file
+02/06/2024 12:52:18 AM Using cuda device
+02/06/2024 12:52:18 AM configuring data loaders
+02/06/2024 12:52:18 AM configuring model - UNET
+02/06/2024 12:52:29 AM saving model summary at Outputs/experiment_02-06_00.52.17/modelSummary.txt
+02/06/2024 12:52:29 AM logging parameters
+02/06/2024 12:52:29 AM {
+    "model": "UNet",
+    "epochs": 50,
+    "learning_rate": 1e-07,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+02/06/2024 12:52:29 AM starting training
+02/06/2024 12:54:15 AM 
+
+#################### New Run ####################
+02/06/2024 12:54:18 AM PreRun: Creating required directories
+02/06/2024 12:54:18 AM PreRun: Generating experiment config file
+02/06/2024 12:54:18 AM Using cuda device
+02/06/2024 12:54:18 AM configuring data loaders
+02/06/2024 12:54:18 AM configuring model - UNET
+02/06/2024 12:54:21 AM saving model summary at Outputs/experiment_02-06_00.54.18/modelSummary.txt
+02/06/2024 12:54:21 AM logging parameters
+02/06/2024 12:54:21 AM {
+    "model": "UNet",
+    "epochs": 50,
+    "learning_rate": 1e-07,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+02/06/2024 12:54:21 AM starting training
+02/06/2024 12:57:59 AM 
+
+#################### New Run ####################
+02/06/2024 12:58:02 AM PreRun: Creating required directories
+02/06/2024 12:58:02 AM PreRun: Generating experiment config file
+02/06/2024 12:58:02 AM Using cuda device
+02/06/2024 12:58:02 AM configuring data loaders
+02/06/2024 12:58:02 AM configuring model - UNET
+02/06/2024 12:58:05 AM saving model summary at Outputs/experiment_02-06_00.58.02/modelSummary.txt
+02/06/2024 12:58:05 AM logging parameters
+02/06/2024 12:58:05 AM {
+    "model": "UNet",
+    "epochs": 50,
+    "learning_rate": 1e-07,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+02/06/2024 12:58:05 AM starting training
+02/06/2024 12:58:50 AM 
+
+#################### New Run ####################
+02/06/2024 12:58:53 AM PreRun: Creating required directories
+02/06/2024 12:58:53 AM PreRun: Generating experiment config file
+02/06/2024 12:58:53 AM Using cuda device
+02/06/2024 12:58:53 AM configuring data loaders
+02/06/2024 12:58:53 AM configuring model - UNET
+02/06/2024 12:58:55 AM saving model summary at Outputs/experiment_02-06_00.58.53/modelSummary.txt
+02/06/2024 12:58:55 AM logging parameters
+02/06/2024 12:58:55 AM {
+    "model": "UNet",
+    "epochs": 50,
+    "learning_rate": 1e-07,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "GLU",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+02/06/2024 12:58:55 AM starting training
+02/06/2024 01:01:05 AM 
+
+#################### New Run ####################
+02/06/2024 01:01:07 AM PreRun: Creating required directories
+02/06/2024 01:01:07 AM PreRun: Generating experiment config file
+02/06/2024 01:01:07 AM Using cuda device
+02/06/2024 01:01:07 AM configuring data loaders
+02/06/2024 01:01:08 AM configuring model - UNET
+02/06/2024 01:01:10 AM saving model summary at Outputs/experiment_02-06_01.01.07/modelSummary.txt
+02/06/2024 01:01:10 AM logging parameters
+02/06/2024 01:01:10 AM {
+    "model": "UNet",
+    "epochs": 50,
+    "learning_rate": 1e-07,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "weighteddice",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+02/06/2024 01:01:10 AM starting training
+02/06/2024 01:02:05 AM 
+
+#################### New Run ####################
+02/06/2024 01:02:08 AM PreRun: Creating required directories
+02/06/2024 01:02:08 AM PreRun: Generating experiment config file
+02/06/2024 01:02:08 AM Using cuda device
+02/06/2024 01:02:08 AM configuring data loaders
+02/06/2024 01:02:08 AM configuring model - UNET
+02/06/2024 01:02:10 AM saving model summary at Outputs/experiment_02-06_01.02.08/modelSummary.txt
+02/06/2024 01:02:10 AM logging parameters
+02/06/2024 01:02:10 AM {
+    "model": "UNet",
+    "epochs": 50,
+    "learning_rate": 1e-07,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "dice",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+02/06/2024 01:02:10 AM starting training
+02/06/2024 01:02:38 AM 
+
+#################### New Run ####################
+02/06/2024 01:02:40 AM PreRun: Creating required directories
+02/06/2024 01:02:40 AM PreRun: Generating experiment config file
+02/06/2024 01:02:40 AM Using cuda device
+02/06/2024 01:02:40 AM configuring data loaders
+02/06/2024 01:02:41 AM configuring model - UNET
+02/06/2024 01:02:43 AM saving model summary at Outputs/experiment_02-06_01.02.40/modelSummary.txt
+02/06/2024 01:02:43 AM logging parameters
+02/06/2024 01:02:43 AM {
+    "model": "UNet",
+    "epochs": 50,
+    "learning_rate": 1e-07,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "bce",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+02/06/2024 01:02:43 AM starting training
+02/06/2024 01:04:10 AM 
+
+#################### New Run ####################
+02/06/2024 01:04:13 AM PreRun: Creating required directories
+02/06/2024 01:04:13 AM PreRun: Generating experiment config file
+02/06/2024 01:04:13 AM Using cuda device
+02/06/2024 01:04:13 AM configuring data loaders
+02/06/2024 01:04:13 AM configuring model - UNET
+02/06/2024 01:04:15 AM saving model summary at Outputs/experiment_02-06_01.04.13/modelSummary.txt
+02/06/2024 01:04:15 AM logging parameters
+02/06/2024 01:04:15 AM {
+    "model": "UNet",
+    "epochs": 50,
+    "learning_rate": 1e-07,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "bce",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+02/06/2024 01:04:15 AM starting training
+02/06/2024 01:08:20 AM 
+
+#################### New Run ####################
+02/06/2024 01:08:22 AM PreRun: Creating required directories
+02/06/2024 01:08:22 AM PreRun: Generating experiment config file
+02/06/2024 01:08:23 AM Using cuda device
+02/06/2024 01:08:23 AM configuring data loaders
+02/06/2024 01:08:23 AM configuring model - UNET
+02/06/2024 01:08:25 AM saving model summary at Outputs/experiment_02-06_01.08.22/modelSummary.txt
+02/06/2024 01:08:25 AM logging parameters
+02/06/2024 01:08:25 AM {
+    "model": "UNet",
+    "epochs": 50,
+    "learning_rate": 1e-07,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "loss": "bce",
+    "activation": "relu",
+    "Kernel_size": 3,
+    "num_classes": 2,
+    "channels": 32,
+    "dropout": 0.3,
+    "dilation": 1
+}
+02/06/2024 01:08:25 AM starting training
+02/06/2024 01:47:30 AM saving model at Outputs/experiment_02-06_01.08.22/model/best_model_0.pth
+02/06/2024 02:21:45 AM saving model at Outputs/experiment_02-06_01.08.22/model/best_model_1.pth
+02/06/2024 02:55:01 AM saving model at Outputs/experiment_02-06_01.08.22/model/best_model_2.pth
+02/06/2024 03:25:24 AM saving model at Outputs/experiment_02-06_01.08.22/model/best_model_3.pth
+02/06/2024 04:23:14 AM saving model at Outputs/experiment_02-06_01.08.22/model/best_model_5.pth
+02/06/2024 05:03:16 PM saving model at Outputs/experiment_02-06_01.08.22/model/best_model_32.pth
+02/06/2024 06:55:42 PM saving model at Outputs/experiment_02-06_01.08.22/model/best_model_36.pth
+02/06/2024 07:24:05 PM saving model at Outputs/experiment_02-06_01.08.22/model/best_model_37.pth
+02/06/2024 08:20:31 PM saving model at Outputs/experiment_02-06_01.08.22/model/best_model_39.pth
+02/06/2024 08:48:33 PM saving model at Outputs/experiment_02-06_01.08.22/model/best_model_40.pth
+02/06/2024 09:46:12 PM saving model at Outputs/experiment_02-06_01.08.22/model/best_model_42.pth
+02/07/2024 12:37:44 AM saving model at Outputs/experiment_02-06_01.08.22/model/best_model_48.pth
+02/07/2024 01:05:58 AM loading model for testing from Outputs/experiment_02-06_01.08.22/model/best_model.pth
+02/07/2024 01:05:58 AM Testing...
+02/07/2024 01:05:59 AM Outputting label
+02/07/2024 01:05:59 AM Outputting label
+02/07/2024 01:05:59 AM Outputting label

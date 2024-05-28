@@ -7,7 +7,7 @@ from  networkModules.conv_modules import *
 
 
 class UNet(nn.Module):
-    def __init__(self,config,in_ch=1):
+    def __init__(self,config,in_ch=3):
         super(UNet,self).__init__()
 
         #print(config)
@@ -17,10 +17,10 @@ class UNet(nn.Module):
         self.apply(self._init_weights2)
 
 
-        self.anti_type = config["anti_type"]
-        self.attention = config["attention"]
+        self.anti_type = "none"
+        self.attention = False
         self.ch = config["channel"]
-        self.depth = config["depth"]
+        self.depth = 4
         self.activation = config["activation"]
 
         self.dropout = nn.Dropout2d(p=config["dropout"])
@@ -157,7 +157,9 @@ class UNet(nn.Module):
         x = torch.cat((left,right),1)
         return x
 
-    def forward(self, x):
+    def forward(self, modelInput):
+        inputs, label = modelInput
+        x = inputs
         y1 = self.contract1(x)
         y2 = self.pool1(y1)
         

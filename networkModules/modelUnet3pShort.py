@@ -41,10 +41,14 @@ class UNet_3PlusShort(nn.Module):
         channel_head_dim=[1, 1, 1, 1],
 
         # Guided filter
-        if config["guidedFilter"]:
-            self.guildedFilterFlag = True
-        else:
+        try:
+            if config["guidedFilter"]:
+                self.guildedFilterFlag = True
+            else:
+                self.guildedFilterFlag = False
+        except:
             self.guildedFilterFlag = False
+
             
         #self.guided_filter_module = ConvGuidedFilter(radius=2)
         self.guided_filter_module = FastGuidedFilter(r=2, eps=1e-2)
