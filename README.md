@@ -1,5 +1,9 @@
 
 <br/>
+<div align="center">
+  <img src="figs/labandUni.png" alt="Qualitative Results" width="250"/>
+</div>
+
 <p align="center">
   <h3 align="center">Nuclei Segmentation in Histopathological Images with Enhanced U-Net3+</h3>
 
