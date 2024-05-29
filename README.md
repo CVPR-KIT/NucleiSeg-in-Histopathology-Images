@@ -1,7 +1,7 @@
 
 <br/>
 <div align="center">
-  <img src="figs/labandUni.png" alt="Qualitative Results" width="450"/>
+  <img src="figs/labandUni.png" alt="Logo" width="450"/>
 </div>
 
 <p align="center">
