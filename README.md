@@ -174,3 +174,22 @@ Distributed under the MIT License. See [LICENSE](https://github.com/CVPR-KIT/Nuc
 ## Acknowledgements
 * [Prof. Jaepil Ko](http://cvpr.kumoh.ac.kr/#team)
 
+
+<!-- Default Statcounter code for MIDL 2024
+https://cvpr-kit.github.io/NucleiSeg-in-Histopathology-Images/
+-->
+<script type="text/javascript">
+var sc_project=13016053; 
+var sc_invisible=1; 
+var sc_security="d5a59165"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics
+Made Easy - Statcounter" href="https://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/13016053/0/d5a59165/1/"
+alt="Web Analytics Made Easy - Statcounter"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
