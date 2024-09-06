@@ -18,6 +18,9 @@
 </p>
 
 <p align="center">
+  <a href="https://openreview.net/forum?id=263qZjQ2xC">
+  <img alt="Static Badge" src="https://img.shields.io/badge/View--Paper-Code?color=blue">
+</a>
 <a href="https://github.com/CVPR-KIT/NucleiSeg-in-Histopathology-Images">
   <img alt="Static Badge" src="https://img.shields.io/badge/View--GitHub-Code?color=purple">
 </a>
